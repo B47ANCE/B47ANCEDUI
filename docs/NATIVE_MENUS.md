@@ -1,6 +1,6 @@
 # Native main and Esc menu styling
 
-Project Version: 0.5.0-dev.2
+Project Version: 0.5.0-dev.3
 
 Compatible MINOR integration within public Lua API 1. Development source only; no deployment, package or upload for this iteration. Workshop item 3822582242 remains at the recorded 0.3.0-dev.1 build.
 
@@ -25,3 +25,5 @@ Ownership checks require native label type, known field/internal ID, direct pare
 0.5.0-dev.1 adds an instance-only main-menu background adapter and decorative four-monitor animation; see [design, API evidence and runtime checks](MENU_BACKGROUND.md). Public API major 1 is unchanged. Native actions/controller label identities are retained, but main-menu label widths/position and logo placement now fit the left column. Esc rendering is unchanged. No shared state, save mutation or networking. New integration runtime NOT TESTED; offline fixtures are not game evidence.
 
 0.5.0-dev.2: responsive, centered main-menu rows dynamically discover visible direct ISLabel/ISButton entries. Known native label renderers support enlarged text; foreign custom renderers retain their draw paths. Initial static is independently 1-60 seconds, then each monitor stays in its no-signal loop. See MENU_BACKGROUND.md for compatibility boundaries and offline evidence. New layout/timing runtime NOT TESTED.
+
+0.5.0-dev.3 mutes native music runtime gain while the security-room main menu renders; native exit restores the configured gain. Saved preferences and in-game/Esc audio are untouched. Audible storm suppression and audio restoration require runtime listening; NOT TESTED. See docs/MENU_BACKGROUND.md for source evidence and limits.

@@ -1,6 +1,12 @@
 -- Offline integration fixture: rendering order, lifecycle and native invariants.
 local U=require 'B47ANCEDUI/API'
 local oldMain,oldEvents,oldTexture,oldClock,oldManager=MainScreen,Events,getTexture,getTimestampMs,UIManager
+local oldSound=getSoundManager
+local gain,calls=.7,0
+getSoundManager=function() return {
+ getMusicVolume=function()return gain end,
+ setMusicVolume=function(_,v)gain=v;calls=calls+1 end
+} end
 local events={}
 local function event() return {Add=function(f) events[#events+1]=f end} end
 Events={OnMainMenuEnter=event(),OnResetLua=event()}
@@ -93,7 +99,13 @@ assert(last.y+last.height<=main.bottomPanel.height+.001 and last.b47MenuScale<1)
 for _,size in ipairs({{1280,720},{1024,768},{3440,1440}})do
  local x,y,s=B.geometry(size[1],size[2]);assert(x>=0 and y>=0 and 1672*s<=size[1]+.001 and 941*s<=size[2]+.001)
 end
+assert(gain==0 and calls==1,'Main menu must mute runtime music gain')
+main:prerender();assert(calls==1,'Do not repeatedly write unchanged gain')
+gain=.4;main:prerender();assert(gain==0 and calls==2,'Reapply after options volume preview')
+main.inGame=true;gain=.8;main:prerender();assert(gain==.8,'Never mute in-game/Esc audio')
+main.inGame=false
 throws=true;assert(not pcall(main.prerender,main));assert(main.drawTextureScaled==draw)
 MainScreen,Events,getTexture,getTimestampMs,UIManager=oldMain,oldEvents,oldTexture,oldClock,oldManager
+getSoundManager=oldSound
 package.loaded['OptionScreens/MainScreen']=oldMain
 print('PASS offline background lifecycle, timing, aspect fit, layering, fallback, Esc exclusion and native exception restoration')

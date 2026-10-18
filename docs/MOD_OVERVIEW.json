@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.5.0-dev.2",
+  "version": "0.5.0-dev.3",
   "reviewed": true,
-  "source_digest": "f7d9b5767e009490776859b022cc149121f22c6428ff8b01dc79137d1facfd81",
+  "source_digest": "486c43e31c05e48b5010a86687ac8de67095a6cd3b56dcd91532493ef7da7368",
   "features": [
     {
       "status": "Source",
@@ -28,6 +28,10 @@
     },
     {
       "status": "Source",
+      "text": "Main-menu-only runtime music gain mute; saved options unchanged and native exit restores configured gain. Audible rain/thunder suppression NOT TESTED."
+    },
+    {
+      "status": "Source",
       "text": "In-game hex/RGB accent editor with live scoped preview, per-consumer/local-player persistence, opacity-only migration and reset to grey."
     },
     {
@@ -43,7 +47,7 @@
       "text": "Public Workshop MP test item 3822582242 updated to 0.3.0-dev.1 with source/package/stage parity and independent public description verification; native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.5.0-dev.2 development source only; Workshop remains 0.3.0-dev.1. New background runtime NOT TESTED. Other main-menu render replacements are skipped. Offline tests do not establish native, controller, split-screen or dedicated acceptance. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
+  "limits": "0.5.0-dev.3 development source only; Workshop remains 0.3.0-dev.1. New background runtime NOT TESTED. Other main-menu render replacements are skipped. Offline tests do not establish native, controller, split-screen or dedicated acceptance. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
   "evidence": [
     "README.md",
     "docs/API.md",

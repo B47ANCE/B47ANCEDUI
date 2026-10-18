@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.0-dev.3]
+- Compatible PATCH refinement of the unreleased 0.5 UI: mute native menu music runtime gain while the security-room title screen renders. No saved audio options are changed; native menu exit restores the configured volume, and Esc/in-game rendering is excluded.
+- Offline gain/idempotence/options-change/Esc regression coverage. Audible rain/thunder suppression and return-to-game audio require runtime listening; NOT TESTED.
+
 ## [0.5.0-dev.2]
 - Each monitor independently runs initial static for 1-60 seconds, then stays in its subdued no-signal loop without recurring static bursts.
 - Compatible layout refinement: larger main-menu text centered beneath the logo, with responsive rows and automatic discovery of added/hidden/removed menu labels and buttons. Native/foreign actions retained.

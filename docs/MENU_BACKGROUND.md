@@ -1,6 +1,6 @@
 # Security-room main menu
 
-Project Version: 0.5.0-dev.2
+Project Version: 0.5.0-dev.3
 
 Compatible MINOR addition from 0.4.0-dev.1; public API major 1, appearance storage and consumer contracts are unchanged. This is development source, not a Workshop upload.
 
@@ -34,3 +34,11 @@ Commands: `python -B scripts/check_versions.py` and `python -B tests/run_tests.p
 ## Runtime gates [RUNTIME GATE]
 
 New background/animation native execution NOT TESTED. Check initial boot, restart variation, all four rounded openings, resize/fullscreen/ultrawide, large fonts/long translations, controller focus, submenu/modal return, quit cooldown, Lua reload, missing texture fallback and other menu mods. Very small viewports or oversized localized menu text need native acceptance. Confirm the Esc screen retains its native background and no drawing runs over gameplay. Previous 0.4 screenshots do not validate this 0.5 feature. Dedicated G7 and stable G8 remain BLOCKED under the project's integration acceptance policy. No deployment, game launch, package or publication was performed for this iteration.
+
+## Main-menu audio (0.5.0-dev.3)
+
+The security-room prerender sets SoundManager runtime music gain to zero only outside a game. It does not edit saved audio options, stop sound instances, pause buses, or change world/UI sound categories. The installed MainScreenState.exit restores getOptionMusicVolume()/10 after its fade. The next title-screen render reapplies zero if the options screen changes the gain. Missing artwork or a foreign main renderer leaves native audio alone. No new sandbox setting: this is local presentation, with existing native audio preferences retained for gameplay.
+
+[VERIFIED: installed 42.21.0, Steam build 25485521] LuaManager.Exposer exposes SoundManager. SoundManager.getMusicVolume()/setMusicVolume(float) read/write runtime gain and the Settings_Music VCA. MainScreenState.enter selects MainMenu music state; SoundManager starts MusicCombined (script event Music/Main). MainScreenState.exit restores configured music gain. Source inspection used javap -c -p against the installed stock projectzomboid.jar; no Java runtime mod is introduced.
+
+[TESTED: offline Lua 5.1] Main-menu gain becomes zero, unchanged gain is not rewritten, options-preview changes are remuted, and in-game prerender does not change gain. These mocks do not establish FMOD routing. [RUNTIME GATE] Listen for both music and rain/thunder suppression, enter/leave a game and check configured music plus weather audio, and change audio options before repeating. Audible storm suppression is NOT TESTED; do not treat the VCA source audit as listening evidence. Earlier 0.5.0-dev.2 visual approval does not validate this audio change.

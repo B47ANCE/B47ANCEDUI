@@ -1,6 +1,6 @@
 # B47ANCE'd UI
 
-Development version: 0.5.0-dev.2.
+Development version: 0.5.0-dev.3.
 
 Lua-only shared presentation for Project Zomboid Build 42.21. Public client API 1 provides styled native controls, rendering, layout helpers, focus, dialogs, bounded tooltips, per-mod/per-local-player appearance preferences, the appearance editor and original clipboard drawing.
 
@@ -14,7 +14,7 @@ The native adapter applies that style automatically to the native main-menu and 
 
 Quartermaster consumes this library; UI works without Quartermaster, Rooms or PC Framework. Application rows, labels, callbacks, permissions and network/gameplay state belong to consuming mods. No global vanilla class patches or custom Java/JAR dependencies.
 
-Development 0.5.0-dev.2 includes the original security-room main-menu artwork, with dark menu space on the left and four CRT screens on the right. Each boot creates independent short startup delays and 1-60 seconds of static per monitor, followed by a persistent subdued NO SIGNAL loop. Menu labels are enlarged and centered beneath the logo; visible direct-child menu entries are discovered dynamically and rows refit when mods add, hide or remove them. Standard labels scale; custom renderers retain their own text drawing. These are decorative animations, not live cameras. The Esc background stays native; original menu actions and controller label objects remain. See [background design and runtime gates](docs/MENU_BACKGROUND.md).
+Development 0.5.0-dev.3 includes the original security-room main-menu artwork, with dark menu space on the left and four CRT screens on the right. Each boot creates independent short startup delays and 1-60 seconds of static per monitor, followed by a persistent subdued NO SIGNAL loop. Menu labels are enlarged and centered beneath the logo; visible direct-child menu entries are discovered dynamically and rows refit when mods add, hide or remove them. Standard labels scale; custom renderers retain their own text drawing. These are decorative animations, not live cameras. The Esc background stays native; original menu actions and controller label objects remain. See [background design and runtime gates](docs/MENU_BACKGROUND.md).
 
 ```lua
 local UI=require('B47ANCEDUI/API').requireVersion(1).forMod('MyMod')
@@ -39,3 +39,5 @@ python -B tests/run_tests.py
 See [API](docs/API.md), [architecture and migration](docs/ARCHITECTURE.md), [tests and runtime gates](docs/TESTING.md), [source provenance](docs/PROVENANCE.json), [version inventory](docs/VERSIONING.md) and [policy](docs/VERSION_POLICY.md). Source is `src/B47ANCEDUI`; root `VERSION` is canonical. `dist/` and generated `workshop/` are ignored. Host Python/Lupa are test tools, never runtime dependencies.
 
 Original B47ANCE-owned code extracted with explicit owner approval from [Quartermaster](https://github.com/B47ANCE/B47ANCEDQuartermaster) commit `2c1d663dadd68ec1757845ff90e14b6225908904`. No external-mod code/assets copied. Source provenance grants no implied third-party reuse license; no license was invented for the owner.
+
+0.5.0-dev.3 mutes native music runtime gain while the security-room main menu renders; native exit restores the configured gain. Saved preferences and in-game/Esc audio are untouched. Audible storm suppression and audio restoration require runtime listening; NOT TESTED. See docs/MENU_BACKGROUND.md for source evidence and limits.

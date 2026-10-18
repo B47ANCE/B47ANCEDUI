@@ -115,6 +115,10 @@ function B.apply(screen)
  screen.b47MenuBackground=B.newSession(getTimestampMs())
  screen.prerender=function(self,...)
   if self.inGame then return nativePre(self,...) end
+  -- Runtime gain only: MainScreenState.exit restores the configured music gain.
+  -- Never write saved options or mute world/UI sound categories.
+  local sound=getSoundManager()
+  if sound and sound:getMusicVolume()~=0 then sound:setMusicVolume(0) end
   B.draw(self,self.b47MenuBackground,UIManager.getMillisSinceLastRender())
   local w,h=self:getWidth(),self:getHeight()
   local margin=math.max(16,w*.025)
