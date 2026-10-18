@@ -4,7 +4,7 @@
   "name": "B47ANCE'd UI",
   "version": "0.3.0-dev.1",
   "reviewed": true,
-  "source_digest": "376749227118d56eb9a071b4eb5aed9419e0c5b17033f888a7153ce48810e495",
+  "source_digest": "de18905a4df6ededab0cb48a1c0cba617d412d3ad31edb16a76b71458fa1c73d",
   "features": [
     {
       "status": "Source",
@@ -35,7 +35,7 @@
       "text": "Public Workshop MP test item 3822582242 updated to 0.2.0-dev.3 with exact source/package/staging and public description verification; native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.3.0-dev.1 MenuButton is source only; no automatic vanilla menu integration or action. Workshop remains verified 0.2.0-dev.3 MP test distribution on item 3822582242. Native client/input/menu acceptance/dedicated NOT TESTED; G7/stable G8 BLOCKED. Lua-only local presentation.",
+  "limits": "0.3.0-dev.1 MenuButton MP test upload authorized after PR 6 merge; upload pending. No automatic vanilla menu integration or action. Previous verified distribution is 0.2.0-dev.3 on item 3822582242. Native SP/menu/controller/split-screen/settings/download/dedicated NOT TESTED; G7/stable G8 BLOCKED. Lua-only local presentation.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -45,7 +45,8 @@
     "docs/WORKSHOP_PUBLICATION.md",
     "docs/STYLE_SOURCE_EVIDENCE.json",
     "docs/WORKSHOP_UPDATE.md",
-    "docs/WORKSHOP_UPDATE_0.2.0-dev.3_2026-10-18.json"
+    "docs/WORKSHOP_UPDATE_0.2.0-dev.3_2026-10-18.json",
+    "docs/WORKSHOP_MENU_UPDATE.md"
   ],
   "relations": []
 }

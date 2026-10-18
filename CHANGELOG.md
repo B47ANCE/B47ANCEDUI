@@ -2,7 +2,7 @@
 
 ## [0.3.0-dev.1]
 
-Compatible MINOR addition within API 1: separate MenuButton component for main/pause/Esc-style navigation. Larger native text, transparent surface, no button border, and label-only hover/controller focus underline. Regular buttons remain Small/Normal; legacy Large alias unchanged. No automatic vanilla menu replacement, gameplay action, deployment or upload. Offline evidence only; native runtime acceptance pending.
+Compatible MINOR addition within API 1: separate MenuButton component for main/pause/Esc-style navigation. Larger native text, transparent surface, no button border, and label-only hover/controller focus underline. Regular buttons remain Small/Normal; legacy Large alias unchanged. No automatic vanilla menu replacement or gameplay action. Offline evidence only; native runtime acceptance pending. Owner-authorized Workshop MP test preparation after PR 6 merge updates canonical listing/notes and preserves prior upload records; no runtime bump for publication metadata.
 
 ## [0.2.0-dev.3]
 

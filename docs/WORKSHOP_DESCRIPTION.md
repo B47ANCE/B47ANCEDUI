@@ -6,6 +6,7 @@ Shared Lua-only interface components for B47ANCE'd Workshop mods in Project Zomb
 ## Features
 - Near-black native buttons, windows, lists, text inputs and context menus with restrained rounded corners.
 - Small and Normal button sizes; older Large requests use Normal.
+- Separate large-text MenuButton for consumer-owned menu navigation: transparent backing, no button frame, subtle accent text and underline on hover or controller focus.
 - Shared rendering, layout helpers, controller focus, dialogs and bounded tooltips.
 - Independent appearance preferences for each consuming mod and local player.
 - Local opacity and hex/RGB accent editor with live preview; default accent is neutral grey (#B0B0B0).
@@ -30,7 +31,7 @@ GitHub: https://github.com/B47ANCE/B47ANCEDUI
 Mod developers consume the versioned public Lua API. Application data, server authority and synchronization remain with the application mod.
 
 ## Known Issues
-The full vanilla UI overhaul, main-menu/CCTV system and advanced layout editor are planned, not implemented. Runtime visual/input acceptance, actual settings reload, native rounded-draw performance and texture-corner clipping remain outstanding. No universal click-through, arbitrary custom font support or multiplayer verification is claimed.
+MenuButton is an opt-in component; it does not automatically replace the vanilla main or pause/Esc menus. The full vanilla UI overhaul, main-menu/CCTV system and advanced layout editor are planned, not implemented. Runtime visual/input acceptance, actual settings reload, native rounded-draw performance and texture-corner clipping remain outstanding. No universal click-through, arbitrary custom font support or multiplayer verification is claimed.
 
 ## Credits & Permissions
 Developed by B47ANCE'd Workshop. Original B47ANCE-owned shared code extracted from Quartermaster with explicit owner authorization. No external mod implementation or assets copied. No reuse license is implied beyond permissions separately granted by the owner.

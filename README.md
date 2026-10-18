@@ -8,7 +8,7 @@ Near-black surfaces, neutral grey accents and restrained rounded corners define 
 
 The in-game appearance editor offers a `#RRGGBB` field and Red/Green/Blue sliders (0–255), with immediate local preview. Default accent: grey `#B0B0B0`. Settings are isolated per consumer/local player; Reset restores opacity 82 and the grey accent. Existing opacity-only preferences keep their values.
 
-A separate `UI.MenuButton:new(x,y,width,label,target,callback,...)` creates large text navigation for main/pause/Esc-style menus: native Large font, transparent background, no button border and a label-only accent underline on hover/controller focus. It is independent of ordinary Small/Normal controls. This 0.3.0-dev.1 component is source only; no vanilla menu is automatically replaced.
+A separate `UI.MenuButton:new(x,y,width,label,target,callback,...)` creates large text navigation for main/pause/Esc-style menus: native Large font, transparent background, no button border and a label-only accent underline on hover/controller focus. It is independent of ordinary Small/Normal controls. No vanilla menu is automatically replaced. The owner authorized the 0.3.0-dev.1 Workshop MP testing update after PR 6 merged; see [upload status and provenance](docs/WORKSHOP_MENU_UPDATE.md).
 
 Quartermaster consumes this library; UI works without Quartermaster, Rooms or PC Framework. Application rows, labels, callbacks, permissions and network/gameplay state belong to consuming mods. No global vanilla class patches or custom Java/JAR dependencies.
 
