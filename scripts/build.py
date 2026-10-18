@@ -26,6 +26,14 @@ def verify(archive,expected):
         assert set(names)==set(expected)|set(DIRECTORIES),'Unexpected/missing member'
         for name,data in expected.items():assert z.read(name)==data, name
     return hashlib.sha256(archive.read_bytes()).hexdigest()
+def verify_source_commit(receipt):
+    head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+    source=receipt['source_commit']
+    subprocess.run(['git','merge-base','--is-ancestor',source,head],cwd=ROOT,check=True)
+    # Preserve a package created before a metadata-only validation correction.
+    # Its original source commit/receipt remain immutable; reject any runtime/version drift.
+    assert not subprocess.check_output(['git','diff','--name-only',source,head,'--','src','VERSION','scripts/production-files.json'],cwd=ROOT).strip(),'Packaged source differs from current revision'
+    return head
 def build():
     assert not subprocess.check_output(['git','status','--porcelain'],cwd=ROOT).strip(),'Commit/review source before packaging'
     subprocess.run([sys.executable,'-B',str(ROOT/'tests/run_tests.py')],check=True)
@@ -49,6 +57,6 @@ if __name__=='__main__':
         version=(ROOT/'VERSION').read_text().strip();archive=ROOT/f'dist/current/{MOD}-{version}.zip'
         receipt=json.loads(archive.with_name(archive.name+'.provenance.json').read_text())
         assert verify(archive,source_files())==receipt['package_sha256']
-        assert receipt['source_commit']==subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+        verify_source_commit(receipt)
         print('PASS source/package/hash/commit integrity; no runtime claim')
     else:build()

@@ -51,7 +51,7 @@
         "zip_members": [
           {
             "member": "B47ANCEDUI/42/mod.info",
-            "pattern": "^modversion=(?P<version>\\S+)$"
+            "pattern": "^modversion=(?P<version>[^\\r\\n]+)\\r?$"
           }
         ]
       }
