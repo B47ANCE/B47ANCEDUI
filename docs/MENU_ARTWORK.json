@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "origin": "Original user-directed built-in image generation, security-room-menu-v1; not taken from another mod.",
+  "dimensions": [
+    1672,
+    941
+  ],
+  "screen_centres_alpha": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "note": "Generated art has incidental partial alpha outside screen holes. An opaque black underlay prevents vanilla background bleed. Rounded apertures mask the animated textures.",
+  "animation": "Eight deterministic original grayscale 64x48 textures authored by scripts/generate_menu_static.py; Lua owns independent timing.",
+  "assets": {
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoom.png": "1b694091f466f951e6917d6399f5f2ab9aeb4748b047d2a1c5d00befe7991295",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static1.png": "dbaf8fdc8c66029bf9a7544b506df6a3f586463ffd7a420b6ea8ad2c9b046e9d",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static2.png": "768f0cd0c1d32b8f97c271a848dc8929b230e05c0f903555e5914ed0cfb56cc5",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static3.png": "aaea06a05b84d93318769b03d04b2b057fb909bd21a5ce754a71380513afb310",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static4.png": "353d0174157fd89776b8deb8addad12d0282080a5b9fd09622439865ad52e863",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static5.png": "f7950b521ffcfb04eea2a7166c2b442a3bd8dd670d64ab40766f4edf36ea0b64",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static6.png": "c87c64a549b6b808f09e632291f7c82f8c2f7b49e0bafb796e966d9b51822e61",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static7.png": "57cbd4aaca2abf88d4d29c5b60f1c5d648e519db998db0ba5c9fa0c6090c3f4c",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static8.png": "65137127a76a187573ad6d04c7f1f4f928b808ed387b0bd042cd4484ff6490cf"
+  }
+}

@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.5.0-dev.2]
+- Each monitor independently runs initial static for 1-60 seconds, then stays in its subdued no-signal loop without recurring static bursts.
+- Compatible layout refinement: larger main-menu text centered beneath the logo, with responsive rows and automatic discovery of added/hidden/removed menu labels and buttons. Native/foreign actions retained.
+
+
+## [0.5.0-dev.1]
+- MINOR: add the original security-room main-menu background with four independently timed static/no-signal monitors. Public API 1 and gameplay/save contracts remain unchanged.
+- Main-menu-only instance rendering; native actions and controller objects preserved. Offline tests only; new runtime integration NOT TESTED. No deployment/publication.
+
+
 ## [0.4.0-dev.1]
 
 Compatible MINOR native menu integration within public API 1. Apply the separate MenuButton text/underline style to verified main-menu and in-game Esc-menu navigation labels, retaining native identity, actions, controller order, visibility and geometry. No shared gameplay ownership or networking. Development source only; not deployed or published. Native acceptance remains NOT TESTED.

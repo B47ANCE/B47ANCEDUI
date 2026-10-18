@@ -37,6 +37,10 @@
     {
       "path": "docs/NATIVE_MENUS.md",
       "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/MENU_BACKGROUND.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {

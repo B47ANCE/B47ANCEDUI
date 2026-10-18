@@ -54,5 +54,5 @@
     "python -B tests/run_tests.py"
   ],
   "lua_only": true,
-  "artwork": "No fallback branding: UI is explicitly excluded by team policy."
+  "artwork": "Original user-directed security-room PNG plus reproducible procedural static frames; docs/MENU_ARTWORK.json records hashes. No fallback branding."
 }

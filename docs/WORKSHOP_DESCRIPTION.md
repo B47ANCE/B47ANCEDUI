@@ -36,3 +36,7 @@ The native menu adapter changes verified navigation labels only; other menu mods
 
 ## Credits & Permissions
 Developed by B47ANCE'd Workshop. Original B47ANCE-owned shared code extracted from Quartermaster with explicit owner authorization. No external mod implementation or assets copied. No reuse license is implied beyond permissions separately granted by the owner.
+
+## Development background
+
+The development branch adds a security-room main menu with decorative static/no-signal monitors; no live CCTV feeds. Not yet published. Native runtime acceptance remains NOT TESTED.
