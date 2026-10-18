@@ -1,0 +1,41 @@
+{
+  "game_version": "42.21",
+  "steam_build": "25485521",
+  "status": "VERIFIED source only",
+  "runtime": "NOT TESTED",
+  "evidence": [
+    {
+      "symbol": "drawRect",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISUIElement.lua",
+      "sha256": "2de4720f995ae35e76a1465c6690ad17fe272e33dec3b106e49c475310440f8f",
+      "lines": [
+        1191,
+        1198
+      ],
+      "statement": "Vanilla Lua defines the color rectangle primitive and forwards to its vanilla UI object."
+    },
+    {
+      "symbol": "drawRectBorder",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISUIElement.lua",
+      "sha256": "2de4720f995ae35e76a1465c6690ad17fe272e33dec3b106e49c475310440f8f",
+      "lines": [
+        1219,
+        1228
+      ],
+      "statement": "Vanilla Lua defines the color rectangle primitive and forwards to its vanilla UI object."
+    },
+    {
+      "symbol": "ISButton.prerender",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISButton.lua",
+      "sha256": "5a4101bb351f3fc5d20de884b0d15692d9048d72ceff0d8b4e0420800fac3011",
+      "lines": [
+        111,
+        184
+      ],
+      "statement": "Native background/border calls use full widget bounds; fade, pressed, icon and input lifecycle stay native."
+    }
+  ]
+}

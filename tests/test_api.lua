@@ -2,8 +2,8 @@
 UIFont={Small=1,Medium=2};Joypad={BButton=1}
 getTextManager=function() return {getFontHeight=function() return 14 end,MeasureStringX=function(_,_,s) return #s*7 end} end
 local Widget={}
-function Widget:new(x,y,w,h,title)
- return setmetatable({x=x,y=y,width=w,height=h,title=title,Type='Fixture',children={},playerNum=0},{__index=self})
+function Widget:new(x,y,w,h,title,target,onclick,...)
+ return setmetatable({x=x,y=y,width=w,height=h,title=title,target=target,onclick=onclick,onClickArgs={...},Type='Fixture',children={},playerNum=0},{__index=self})
 end
 function Widget:prerender() end
 function Widget:render() end

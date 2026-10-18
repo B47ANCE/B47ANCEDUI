@@ -1,7 +1,5 @@
-Version 0.1.0-dev.1
+Version 0.2.0-dev.1
 
 MP testing build - dedicated multiplayer NOT TESTED
 
-Initial shared UI foundation: public client Lua API 1, native controls, rendering/layout helpers, dialogs, focus, tooltips, per-mod/local-player appearance settings and clipboard drawing. Quartermaster integration consumes this standalone provider. Old registered appearance files import read-only; explicit saves use the new scoped location without overwriting legacy files.
-
-Offline standalone and paired Quartermaster tests passed. Native SP, controller, split-screen and dedicated multiplayer NOT TESTED. Full vanilla UI overhaul and CCTV remain future work. No custom Java/JAR dependency. No stable-release approval.
+Development source only; this note has not been uploaded. Near-black shared UI with muted sage accents, restrained rounded corners and three explicit button sizes. Native SP, controller, split-screen and dedicated multiplayer NOT TESTED. Known limits: no whole-game skin, texture clipping or verified native draw performance. No stable-release approval.

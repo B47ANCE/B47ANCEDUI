@@ -2,13 +2,17 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.1.0-dev.1",
+  "version": "0.2.0-dev.1",
   "reviewed": true,
-  "source_digest": "ee9677d116e5a0269b359310af5c98c4763b232b2b94e2e4c3f70bfd207609f3",
+  "source_digest": "0fe5cc735f99daa5b18ddfc96a08b4a7bcef1149e73285359799050300ae275a",
   "features": [
     {
       "status": "Source",
       "text": "Public Lua client API 1: styled native controls, renderer, layout, dialogs, focus and bounded tooltips."
+    },
+    {
+      "status": "Source",
+      "text": "Near-black shared surfaces, muted sage accents and instance-rounded corners; additive Small/Normal/Large button helpers preserve existing explicit geometry and native callbacks."
     },
     {
       "status": "Source",
@@ -23,14 +27,15 @@
       "text": "Public Workshop MP test item 3822582242 confirmed; deterministic package/provenance and canonical listing. Native/dedicated NOT TESTED."
     }
   ],
-  "limits": "Native SP/controller/split-screen/dedicated NOT TESTED. Public Workshop MP test item 3822582242; distribution is not runtime proof. Lua-only client presentation; no gameplay ownership.",
+  "limits": "0.2.0-dev.1 styling is source only; public item 3822582242 remains historical 0.1.0-dev.1 MP test distribution. Native SP/controller/split-screen/dedicated NOT TESTED; rounded draw performance and texture corners require runtime acceptance. Lua-only presentation, no gameplay ownership.",
   "evidence": [
     "README.md",
     "docs/API.md",
     "docs/PROVENANCE.json",
     "docs/TESTING.md",
     "docs/WORKSHOP_PREPARATION.md",
-    "docs/WORKSHOP_PUBLICATION.md"
+    "docs/WORKSHOP_PUBLICATION.md",
+    "docs/STYLE_SOURCE_EVIDENCE.json"
   ],
   "relations": []
 }

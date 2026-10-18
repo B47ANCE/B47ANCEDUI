@@ -1,5 +1,60 @@
 require 'B47ANCEDUI/Theme'
 local U=B47ANCEDUI;local T=U.Theme;local R={};U.Renderer=R
+local corners={}
+local function corner(width,height,radius)
+ local r=math.max(0,math.min(8,math.floor(radius or 0),math.floor(math.min(width,height)/2)))
+ if not corners[r] then
+  local offsets={}
+  for y=0,r-1 do offsets[y+1]=math.ceil(r-math.sqrt(r*r-(r-y-.5)^2)-.5) end
+  corners[r]=offsets
+ end
+ return r,corners[r]
+end
+function R.roundedRect(w,x,y,width,height,c,radius)
+ if width<=0 or height<=0 then return end
+ local draw=w.b47RawRect or w.drawRect;local r,offsets=corner(width,height,radius)
+ for row=0,r-1 do
+  local inset=offsets[row+1]
+  draw(w,x+inset,y+row,width-2*inset,1,c.a,c.r,c.g,c.b)
+  draw(w,x+inset,y+height-row-1,width-2*inset,1,c.a,c.r,c.g,c.b)
+ end
+ if height>2*r then draw(w,x,y+r,width,height-2*r,c.a,c.r,c.g,c.b) end
+end
+function R.roundedBorder(w,x,y,width,height,c,radius)
+ if width<=0 or height<=0 then return end
+ local draw=w.b47RawRect or w.drawRect;local r,offsets=corner(width,height,radius)
+ if r==0 then return (w.b47RawBorder or w.drawRectBorder)(w,x,y,width,height,c.a,c.r,c.g,c.b) end
+ for row=0,r-1 do
+  local inset=offsets[row+1];local edge=row==0 and width-2*inset or math.max(1,offsets[row]-inset)
+  for _,yy in ipairs({y+row,y+height-row-1}) do
+   draw(w,x+inset,yy,edge,1,c.a,c.r,c.g,c.b)
+   if row>0 and width-2*inset>edge then draw(w,x+width-inset-edge,yy,edge,1,c.a,c.r,c.g,c.b) end
+  end
+ end
+ if height>2*r then
+  draw(w,x,y+r,1,height-2*r,c.a,c.r,c.g,c.b)
+  if width>1 then draw(w,x+width-1,y+r,1,height-2*r,c.a,c.r,c.g,c.b) end
+ end
+end
+-- Only a styled instance's exact backing bounds are rounded. Native callbacks,
+-- textures, stripes, list rows and all other drawing retain their own geometry.
+function R.round(w,radius)
+ w.b47Radius=radius
+ if w.b47RawRect or not w.drawRect or not w.drawRectBorder then return end
+ w.b47RawRect=w.drawRect;w.b47RawBorder=w.drawRectBorder
+ w.drawRect=function(self,x,y,width,height,a,r,g,b)
+  if x==0 and y==0 and width==self:getWidth() and height==self:getHeight() then
+   return R.roundedRect(self,x,y,width,height,{a=a,r=r,g=g,b=b},self.b47Radius)
+  end
+  return self.b47RawRect(self,x,y,width,height,a,r,g,b)
+ end
+ w.drawRectBorder=function(self,x,y,width,height,a,r,g,b)
+  if x==0 and y==0 and width==self:getWidth() and height==self:getHeight() then
+   return R.roundedBorder(self,x,y,width,height,{a=a,r=r,g=g,b=b},self.b47Radius)
+  end
+  return self.b47RawBorder(self,x,y,width,height,a,r,g,b)
+ end
+end
 function R.rect(w,x,y,width,height,c) if width>0 and height>0 then w:drawRect(x,y,width,height,c.a,c.r,c.g,c.b) end end
 function R.background(w,x,y,width,height,c)
  if width>0 and height>0 then w:drawRect(x,y,width,height,U.Appearance and U.Appearance.alpha(w) or c.a,c.r,c.g,c.b) end
@@ -19,8 +74,8 @@ function R.fit(text,width,font)
 end
 function R.focus(w)
  if w.joypadFocused or w.joyfocus or w.isFocused and w:isFocused() then
-  R.border(w,1,1,w:getWidth()-2,w:getHeight()-2,T.colors.accent)
-  R.border(w,2,2,w:getWidth()-4,w:getHeight()-4,T.colors.strong)
+  R.roundedBorder(w,1,1,w:getWidth()-2,w:getHeight()-2,T.colors.accent,math.max(0,(w.b47Radius or 0)-1))
+  R.roundedBorder(w,2,2,w:getWidth()-4,w:getHeight()-4,T.colors.strong,math.max(0,(w.b47Radius or 0)-2))
  end
 end
 function R.row(w,y,height,index,selected,hover)

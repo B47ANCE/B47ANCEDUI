@@ -1,8 +1,10 @@
 # B47ANCE'd UI
 
-Development version: 0.1.0-dev.1.
+Development version: 0.2.0-dev.1.
 
 Lua-only shared presentation for Project Zomboid Build 42.21. Public client API 1 provides styled native controls, rendering, layout helpers, focus, dialogs, bounded tooltips, per-mod/per-local-player appearance preferences, the appearance editor and original clipboard drawing.
+
+Near-black surfaces, quiet sage accents and restrained rounded corners define the shared style. Opt into `UI.Button.sized('small' / 'normal' / 'large', ...)` for three font-aware sizes; existing native constructor dimensions are preserved.
 
 Quartermaster consumes this library; UI works without Quartermaster, Rooms or PC Framework. Application rows, labels, callbacks, permissions and network/gameplay state belong to consuming mods. No global vanilla class patches or custom Java/JAR dependencies.
 
@@ -18,7 +20,7 @@ Enable Mod ID `B47ANCEDUI` alongside dependent mods. [Subscribe on Steam Worksho
 
 This is an extracted shared-UI foundation, **not the complete vanilla UI overhaul**. Main-menu replacement/CCTV, the full layout editor, two finished themes and broad vanilla adapters remain planned and are not implemented here. Earlier Java proposals are historical and not current authorization.
 
-Native SP, controller, split-screen, saved settings and dedicated multiplayer acceptance are NOT TESTED. Offline Lua fixtures do not establish game behavior. G6 NOT TESTED; G7/stable G8 BLOCKED for integration acceptance. No package/deploy/Workshop upload.
+Native SP, controller, split-screen, saved settings and dedicated multiplayer acceptance are NOT TESTED. Offline Lua fixtures do not establish game behavior. G6 NOT TESTED; G7/stable G8 BLOCKED for integration acceptance. This 0.2.0-dev.1 styling iteration is source only; the Workshop item still carries the earlier 0.1.0-dev.1 MP testing build.
 
 ```sh
 python -m pip install -r requirements-dev.txt

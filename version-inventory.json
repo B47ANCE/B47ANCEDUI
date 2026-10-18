@@ -31,10 +31,6 @@
       "pattern": "^  \"version\": \"(?P<version>[^\\\"]+)\""
     },
     {
-      "path": "docs/WORKSHOP_PREPARATION.md",
-      "pattern": "^Project Version: (?P<version>\\S+)$"
-    },
-    {
       "path": "docs/WORKSHOP_CHANGELOG.md",
       "pattern": "^Version (?P<version>\\S+)$"
     }
@@ -77,6 +73,10 @@
     {
       "reference": "docs/WORKSHOP_PUBLICATION.md; docs/WORKSHOP_PUBLICATION_2026-10-18.json",
       "reason": "Immutable dated first upload/distribution proof; exact original version, commits and hashes are never upgraded to later source/runtime evidence."
+    },
+    {
+      "reference": "docs/WORKSHOP_PREPARATION.md",
+      "reason": "Original pre-upload preparation for 0.1.0-dev.1; not current source validation."
     }
   ]
 }

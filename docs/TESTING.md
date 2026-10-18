@@ -1,8 +1,14 @@
 # Validation
 
-Project Version: 0.1.0-dev.1
+Project Version: 0.2.0-dev.1
 
 Commands: `python -B scripts/check_versions.py`; `python -B tests/run_tests.py`.
+
+0.2.0-dev.1 [TESTED — offline Windows, 2026-10-18]: both commands PASS with bundled Python/Lupa Lua 5.1. Added 960 width/height geometry cases with radius clamping, bounded fill/border call counts, no within-pass alpha overlap and border containment, plus three ordered sizes, larger-font height growth, unsupported-size refusal, facade scoping, untouched explicit dimensions/native callback arguments and idempotent instance wrappers. Existing version/source/archive/API fixtures pass. Restored legacy Theme.metrics().button after paired tests detected footer overlap; new size helpers are opt-in.
+
+Full paired Quartermaster suite PASS (0.22.0-dev.1 source 3e643183306b5175fcb6f931d76832ae311bebd3; actual Rooms checkout and PC Framework c77cac2add9702e846d2c16adef9e88064ada136). Exact command from the Quartermaster worktree: `python -B tests/run_tests.py --ui '<ui-black>/B47ANCEDUI' --rooms '<repositories>/B47ANCEDRooms' --require-rooms --pc-framework '<pc-workshop-publication>/B47ANCEDPCFramework'`. This ran unchanged authority/transfer, layout/font, settings, clipboard and ledger fixtures against the real public UI provider. It does not execute native rendering or game input.
+
+[VERIFIED — installed vanilla Lua, Build 42.21 / Steam 25485521] drawRect/drawRectBorder definitions and ISButton full-bounds drawing call sites inspected. Portable hashes/line ranges: STYLE_SOURCE_EVIDENCE.json; reusable symbols recorded in the local API audit draft. No third-party source used. [RUNTIME GATE] Validate corner appearance at UI scales, focused/pressed/disabled states, texture edges, large fonts, native hit areas, opacity, resize and frame cost before deployment. Interactive design previews passed headless Chrome checks at 320/736/1024 widths and local selection/opacity/reset/filter interactions; they are illustrative mockups, not in-game screenshots. No styling package, deployment or upload.
 
 [TESTED â€” offline Windows, 2026-10-18, bundled Python/Lupa 2.6 Lua 5.1] `python -B tests/run_tests.py` PASS: syntax, API-major refusal, no Quartermaster requirement, repeated/conflicting registration, instance-only idempotent styling, scoped constructors, two consumers/two local players, inherited scope, old appearance import without writes, new preference save, legacy retention, invalid IDs/values, reader/writer failure and cleanup. Source checks PASS: exact 40-file runtime inventory, Lua-only runtime, internal require case, and four translated keys with equality/nonempty coverage in 29 JSON locales. Folder counts alone are not the language check; fallback is English/unreviewed. CI is offline only. Version checker PASS; absent package is deferred, not validated.
 
