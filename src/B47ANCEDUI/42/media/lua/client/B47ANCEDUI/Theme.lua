@@ -21,9 +21,11 @@ function T.metrics()
 end
 -- Returned values are caller-owned. Native font scale determines minimum height.
 function T.buttonSize(size)
- local specs={small={24,10,8,3,T.fonts.body},normal={32,18,12,4,T.fonts.body},large={44,26,18,6,T.fonts.section}}
+ -- Compatibility alias only: there is no distinct third button size.
+ if size=='large' then size='normal' end
+ local specs={small={24,10,8,3,T.fonts.body},normal={32,18,12,4,T.fonts.body}}
  local s=specs[size];assert(s,'B47ANCEDUI: unknown button size '..tostring(size))
- return {height=math.max(s[1],getTextManager():getFontHeight(s[5])+s[2]),padding=s[3],radius=s[4],font=s[5]}
+ return {id=size,height=math.max(s[1],getTextManager():getFontHeight(s[5])+s[2]),padding=s[3],radius=s[4],font=s[5]}
 end
 function T.copy(c) return {r=c.r,g=c.g,b=c.b,a=c.a} end
 return T

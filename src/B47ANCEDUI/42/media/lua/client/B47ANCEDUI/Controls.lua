@@ -76,7 +76,7 @@ U.ScrollList=factory(ISScrollingListBox,'list');U.TextInput=factory(ISTextEntryB
 U.NumberInput=factory(ISTextEntryBox,'input');U.Toggle=factory(ISButton,'button')
 for _,f in ipairs({U.Button,U.IconButton,U.Toggle}) do
  f.setSize=function(w,size)
-  local s=T.buttonSize(size);w.font=s.font;w.b47Padding=s.padding;w.b47Radius=s.radius;w.b47ButtonSize=size
+  local s=T.buttonSize(size);w.font=s.font;w.b47Padding=s.padding;w.b47Radius=s.radius;w.b47ButtonSize=s.id
   w:setHeight(s.height);w.b47TitleWidth=nil;return w
  end
  f.sized=function(size,x,y,width,title,target,onclick,...)

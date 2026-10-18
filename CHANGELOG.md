@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.0-dev.3]
+
+Owner-requested presentation checkpoint: Small and Normal are the only distinct button sizes; older Large requests alias Normal without breaking API 1 callers. Grey default and hex/RGB accent editor retained. Prepare the explicitly authorized existing-item MP testing update with assigned-ID package provenance and a no-upload staging/VDF helper. No native/dedicated acceptance inferred.
+
 ## [0.2.0-dev.2]
 
 Next checkpoint in the compatible 0.2 MINOR iteration, public API 1 unchanged. Default accent is neutral grey (#B0B0B0). Add local in-game hex/RGB accent editing with live scoped preview and backward-compatible preference persistence. Offline evidence only; no deployment/upload or native acceptance.

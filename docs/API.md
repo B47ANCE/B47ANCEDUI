@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.2.0-dev.2
+Project Version: 0.2.0-dev.3
 
 Client only. `local API=require 'B47ANCEDUI/API'`; `API.requireVersion(1)` returns the provider or errors for an unsupported API major before application UI is constructed. `API.apiVersion` is the independent contract major; `API.version` is the project version. API 1 is the initial contract. Add `B47ANCEDUI` to mod.info `require`; no bundled implementation fallback or private module require is supported for consumers.
 
@@ -11,7 +11,7 @@ Client only. `local API=require 'B47ANCEDUI/API'`; `API.requireVersion(1)` retur
 | `UI.WindowShell/Panel/Button/IconButton/ScrollList/TextInput/NumberInput/Toggle:new(...)` | Same arguments and lifecycle as the corresponding native factory in Controls; returned native instance is styled and tagged with consumer scope. Caller initializes/instantiates/adds/removes it. |
 | `UI.skin(widget,kind,role)` / `skinChildren(parent)` | Owned instances only; idempotent styling. Never pass unknown third-party trees or native global classes. Kinds include window/panel/button/list/input/dropdown/label; role primary/destructive optional. |
 | `UI.Dropdown.style(widget)` | Style an existing native combobox. |
-| `UI.Button.sized(size,x,y,width,title,target,onclick,...)` | Opt-in `small`, `normal`, `large`: minimum heights 24/32/44, horizontal padding 8/12/18, corner radii 3/4/6. Height grows with native font metrics. Same native lifecycle/callback arguments; also available on IconButton/Toggle. Unknown IDs error. |
+| `UI.Button.sized(size,x,y,width,title,target,onclick,...)` | Two opt-in sizes: `small` / `normal`, minimum heights 24/32, horizontal padding 8/12, corner radii 3/4. Legacy `large` requests resolve to Normal; no distinct third size remains. Height grows with native font metrics. Same native lifecycle/callback arguments; also available on IconButton/Toggle. Unknown IDs error. |
 | `UI.Button.setSize(widget,size)` / `UI.Theme.buttonSize(size)` | Opt-in height/font/padding/radius update; returns widget. Theme returns a fresh caller-owned metric record. Existing `:new(...)` dimensions and legacy `Theme.metrics().button` stay unchanged. |
 | `UI.Theme.colors/fonts/spacing`, `Theme.metrics()` | Shared design tokens/read-only-by-contract. Font metrics cached. Do not mutate shared tables per app. Arbitrary fonts/themes are not provided. |
 | `UI.Renderer.rect/border/text/fit/icon/background`, `UI.Table.prepare/draw` | Shared drawing/table helpers, same retained native arguments; text/rows and callbacks supplied by application. No gameplay data fetching. |
