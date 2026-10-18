@@ -33,6 +33,10 @@
     {
       "path": "docs/WORKSHOP_CHANGELOG.md",
       "pattern": "^Version (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/WORKSHOP_MENU_UPDATE.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {
