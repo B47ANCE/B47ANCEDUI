@@ -59,6 +59,11 @@ function R.round(w,radius)
  end
 end
 function R.rect(w,x,y,width,height,c) c=color(w,c);if width>0 and height>0 then w:drawRect(x,y,width,height,c.a,c.r,c.g,c.b) end end
+-- Shared text-only menu focus mark; native labels retain their own row geometry.
+function R.menuUnderline(w,x,width)
+ width=math.min(width,math.max(0,w:getWidth()-x-3))
+ R.rect(w,x,w:getHeight()-6,width,2,T.colors.accent)
+end
 function R.background(w,x,y,width,height,c)
  c=color(w,c)
  if width>0 and height>0 then w:drawRect(x,y,width,height,U.Appearance and U.Appearance.alpha(w) or c.a,c.r,c.g,c.b) end

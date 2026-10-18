@@ -124,6 +124,83 @@
         435
       ],
       "statement": "Vanilla menu label height and labels use exposed UIFont.Large."
+    },
+    {
+      "symbol": "MainScreen menu construction",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/OptionScreens/MainScreen.lua",
+      "sha256": "f89d351830fcb0050cfc10bc7a7e1a216a260b4731fe0ac34da9bcd4269352e5",
+      "lines": [
+        387,
+        620
+      ],
+      "statement": "Both front-end and in-game MainScreen create large-font ISLabel navigation with native internal IDs, callbacks and bottomPanel ownership; native layout measures and sizes the labels."
+    },
+    {
+      "symbol": "MainScreen menu rendering",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/OptionScreens/MainScreen.lua",
+      "sha256": "f89d351830fcb0050cfc10bc7a7e1a216a260b4731fe0ac34da9bcd4269352e5",
+      "lines": [
+        694,
+        703
+      ],
+      "statement": "Native construction assigns UITransition fade and MainScreen.prerenderBottomPanelLabel to navigation labels."
+    },
+    {
+      "symbol": "MainScreen hover transition",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/OptionScreens/MainScreen.lua",
+      "sha256": "f89d351830fcb0050cfc10bc7a7e1a216a260b4731fe0ac34da9bcd4269352e5",
+      "lines": [
+        897,
+        936
+      ],
+      "statement": "Native label prerender updates fade and draws the old grey hover rectangle before delegating to ISLabel; hover/controller transition and audio are managed separately."
+    },
+    {
+      "symbol": "MainScreen lifecycle events",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/OptionScreens/MainScreen.lua",
+      "sha256": "f89d351830fcb0050cfc10bc7a7e1a216a260b4731fe0ac34da9bcd4269352e5",
+      "lines": [
+        2176,
+        2185
+      ],
+      "statement": "Native callbacks register menu construction on OnMainMenuEnter and OnGameStart, with OnResetLua restoring state; an adapter registered after requiring the module can decorate the completed instance."
+    },
+    {
+      "symbol": "MainScreen joypad actions",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/OptionScreens/MainScreen.lua",
+      "sha256": "f89d351830fcb0050cfc10bc7a7e1a216a260b4731fe0ac34da9bcd4269352e5",
+      "lines": [
+        1855,
+        1933
+      ],
+      "statement": "Native controller rows refer to label identities and activate the same native menu action callback; instance rendering need not replace those labels or controller methods."
+    },
+    {
+      "symbol": "MainScreen quit guards",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/OptionScreens/MainScreen.lua",
+      "sha256": "f89d351830fcb0050cfc10bc7a7e1a216a260b4731fe0ac34da9bcd4269352e5",
+      "lines": [
+        1340,
+        1374
+      ],
+      "statement": "Native action callback guards delay/tutorial/save checks and quit cooldown before native exit actions. The adapter only reads those guards for visual state."
+    },
+    {
+      "symbol": "ISLabel.prerender",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISLabel.lua",
+      "sha256": "b8a69677be88480ffd07f111e36a5b4a8e4fd6a607a8b2bd54e5818d710fa758",
+      "lines": [
+        69,
+        108
+      ],
+      "statement": "Native label prerender draws translated/name text, preserves controller A glyph behavior and updates the existing tooltip. Temporary text/color fields can be restored after delegation without changing action identity."
     }
   ]
 }

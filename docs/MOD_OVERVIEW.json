@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.3.0-dev.1",
+  "version": "0.4.0-dev.1",
   "reviewed": true,
-  "source_digest": "44931bb298042c997beed90e4c0802d4b293c6ae80f4171abfa6a2e85364d54a",
+  "source_digest": "06080c266bdfb118ac156385dbac897bb2fed82fca4752fd4d507b83ee60b049",
   "features": [
     {
       "status": "Source",
@@ -20,6 +20,10 @@
     },
     {
       "status": "Source",
+      "text": "Native main/Esc navigation adapter: large text with scoped accent hover/controller underline, preserving native label identities, actions, visibility, controller rows and geometry. No global class override or tick scan."
+    },
+    {
+      "status": "Source",
       "text": "In-game hex/RGB accent editor with live scoped preview, per-consumer/local-player persistence, opacity-only migration and reset to grey."
     },
     {
@@ -28,14 +32,14 @@
     },
     {
       "status": "Planned",
-      "text": "Full vanilla UI overhaul, main-menu/CCTV and advanced layout editor are not implemented."
+      "text": "Full vanilla UI overhaul, complete main-menu redesign/CCTV and advanced layout editor remain unimplemented; native main/Esc navigation styling is implemented separately."
     },
     {
       "status": "Source",
       "text": "Public Workshop MP test item 3822582242 updated to 0.3.0-dev.1 with source/package/stage parity and independent public description verification; native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.3.0-dev.1 public Workshop MP test distribution verified. MenuButton is opt-in, with no automatic vanilla menu integration or gameplay action. Native SP/menu/controller/split-screen/settings/download/dedicated NOT TESTED; G7/stable G8 BLOCKED. Lua-only local presentation; Steam desktop not restarted.",
+  "limits": "0.4.0-dev.1 native main/Esc styling is development source only, not deployed/published; Workshop remains 0.3.0-dev.1. Adapter skips unrecognized or differently styled labels; menu-mod conflicts and actual profile/startup load are runtime gates. Native SP/menu/controller/split-screen/settings/download/dedicated NOT TESTED; G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -47,7 +51,8 @@
     "docs/WORKSHOP_UPDATE.md",
     "docs/WORKSHOP_UPDATE_0.2.0-dev.3_2026-10-18.json",
     "docs/WORKSHOP_MENU_UPDATE.md",
-    "docs/WORKSHOP_UPDATE_0.3.0-dev.1_2026-10-18.json"
+    "docs/WORKSHOP_UPDATE_0.3.0-dev.1_2026-10-18.json",
+    "docs/NATIVE_MENUS.md"
   ],
   "relations": []
 }
