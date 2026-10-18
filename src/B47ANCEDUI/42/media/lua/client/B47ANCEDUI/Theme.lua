@@ -2,13 +2,14 @@
 B47ANCEDUI=B47ANCEDUI or {}
 local T={};B47ANCEDUI.Theme=T
 local function color(r,g,b,a) return {r=r,g=g,b=b,a=a or 1} end
-T.colors={window=color(.025,.03,.032,.94),panel=color(.045,.055,.06,.94),raised=color(.08,.095,.105,.96),
- row=color(.045,.05,.052,.90),alternate=color(.075,.085,.09,.92),hover=color(.16,.18,.19,.96),
- selected=color(.22,.19,.115,.96),border=color(.28,.31,.32,.85),strong=color(.62,.66,.66,.95),
- text=color(.92,.93,.91),muted=color(.65,.69,.70),accent=color(.83,.68,.35),accentHover=color(.94,.79,.44),
- needed=color(.87,.34,.32),warning=color(.83,.68,.35),success=color(.43,.72,.43),disabled=color(.42,.46,.47),
- destructive=color(.73,.28,.26),overlay=color(.01,.015,.02,.80)}
-T.spacing={xs=4,s=8,m=12,l=18,xl=24};T.borderSize=1;T.corner='square'
+T.colors={window=color(.035,.039,.039,.96),panel=color(.055,.059,.059,.96),raised=color(.09,.098,.098,.98),
+ row=color(.055,.059,.059,.94),alternate=color(.075,.082,.082,.94),hover=color(.14,.157,.15,.98),
+ selected=color(.17,.17,.17,.98),border=color(.22,.25,.24,.9),strong=color(.46,.52,.49,.96),
+ text=color(.91,.93,.92),muted=color(.62,.67,.64),accent=color(176/255,176/255,176/255),accentHover=color(.81,.81,.81),
+ needed=color(.82,.42,.39),warning=color(.80,.69,.45),success=color(.53,.72,.58),disabled=color(.39,.43,.41),
+ destructive=color(.73,.37,.34),overlay=color(.015,.02,.02,.86)}
+T.spacing={xs=4,s=8,m=12,l=18,xl=24};T.borderSize=1;T.corner='rounded';T.radius=6
+T.defaultAccent='#B0B0B0'
 T.fonts={title=UIFont.Medium,section=UIFont.Medium,body=UIFont.Small,small=UIFont.Small,item=UIFont.Small,status=UIFont.Small}
 local cached
 function T.metrics()
@@ -17,6 +18,12 @@ function T.metrics()
  cached={font=small,titleFont=title,header=math.max(40,title+18),row=math.max(30,small+12),treeRow=math.max(22,small+8),
  button=math.max(28,small+12),tab=math.max(32,small+16),icon=24,treeIcon=18,railIcon=32,railRow=math.max(48,small+28),rail=math.max(180,small*8),scrollbar=17,gap=8}
  return cached
+end
+-- Returned values are caller-owned. Native font scale determines minimum height.
+function T.buttonSize(size)
+ local specs={small={24,10,8,3,T.fonts.body},normal={32,18,12,4,T.fonts.body},large={44,26,18,6,T.fonts.section}}
+ local s=specs[size];assert(s,'B47ANCEDUI: unknown button size '..tostring(size))
+ return {height=math.max(s[1],getTextManager():getFontHeight(s[5])+s[2]),padding=s[3],radius=s[4],font=s[5]}
 end
 function T.copy(c) return {r=c.r,g=c.g,b=c.b,a=c.a} end
 return T

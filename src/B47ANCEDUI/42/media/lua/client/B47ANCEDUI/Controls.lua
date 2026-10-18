@@ -21,6 +21,7 @@ function U.skin(w,kind,role)
  if not w then return end
  if w.b47Styled then if role then w.b47Role=role end;return w end
  kind=kind or U.kind(w);w.b47Styled=true;w.b47Kind=kind;w.b47Role=role
+ if kind=='button' or kind=='input' or kind=='dropdown' or kind=='panel' or kind=='window' then R.round(w,kind=='button' and 4 or T.radius) end
  w.backgroundColor=T.copy(kind=='window' and T.colors.window or kind=='button' and T.colors.raised or T.colors.panel)
  w.backgroundColorMouseOver=T.copy(T.colors.hover);w.borderColor=T.copy(T.colors.border)
  w.textColor=T.copy(T.colors.text);w.textColorDisabled=T.copy(T.colors.disabled);w.font=T.fonts.body
@@ -42,8 +43,9 @@ function U.skin(w,kind,role)
   local render=w.render
   w.render=function(self,...)
    local full=self.title
-   if full and (self.b47FullTitle~=full or self.b47TitleWidth~=self:getWidth() or self.b47TitleFont~=T.metrics().font) then
-    self.b47FullTitle=full;self.b47TitleWidth=self:getWidth();self.b47TitleFont=T.metrics().font;self.b47ShortTitle=R.fit(full,self:getWidth()-18,self.font)
+   local fontHeight=getTextManager():getFontHeight(self.font)
+   if full and (self.b47FullTitle~=full or self.b47TitleWidth~=self:getWidth() or self.b47TitleFont~=self.font or self.b47TitleFontHeight~=fontHeight) then
+    self.b47FullTitle=full;self.b47TitleWidth=self:getWidth();self.b47TitleFont=self.font;self.b47TitleFontHeight=fontHeight;self.b47ShortTitle=R.fit(full,self:getWidth()-2*(self.b47Padding or 9),self.font)
    end
    if full then self.title=self.b47ShortTitle;if not self.tooltip or self.tooltip==self.b47FallbackTip then self.b47FallbackTip=self.title~=full and full or nil;self:setTooltip(self.b47FallbackTip) end end
    local ok,result=pcall(render,self,...);self.title=full;if not ok then error(result) end;return result
@@ -72,6 +74,16 @@ end
 U.WindowShell=factory(ISCollapsableWindowJoypad,'window');U.Panel=factory(ISPanel,'panel');U.Button=factory(ISButton,'button');U.IconButton=factory(ISButton,'button')
 U.ScrollList=factory(ISScrollingListBox,'list');U.TextInput=factory(ISTextEntryBox,'input')
 U.NumberInput=factory(ISTextEntryBox,'input');U.Toggle=factory(ISButton,'button')
+for _,f in ipairs({U.Button,U.IconButton,U.Toggle}) do
+ f.setSize=function(w,size)
+  local s=T.buttonSize(size);w.font=s.font;w.b47Padding=s.padding;w.b47Radius=s.radius;w.b47ButtonSize=size
+  w:setHeight(s.height);w.b47TitleWidth=nil;return w
+ end
+ f.sized=function(size,x,y,width,title,target,onclick,...)
+  local s=T.buttonSize(size)
+  return f.setSize(U.skin(ISButton:new(x,y,width,s.height,title,target,onclick,...),'button'),size)
+ end
+end
 U.Dropdown={style=function(w) return U.skin(w,'dropdown') end}
 -- Explicit layout and native anchoring must not both move the same geometry.
 U.Layout={}

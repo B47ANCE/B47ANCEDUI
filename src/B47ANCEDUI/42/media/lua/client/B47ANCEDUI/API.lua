@@ -5,7 +5,7 @@ require 'B47ANCEDUI/Clipboard'
 local U=B47ANCEDUI
 U.AppearanceEditor={open=function(owner) return require('B47ANCEDUI/AppearanceEditor').open(owner) end}
 U.apiVersion=1
-U.version='0.1.0-dev.1'
+U.version='0.2.0-dev.2'
 function U.requireVersion(version)
  assert(version==U.apiVersion,'B47ANCEDUI: unsupported public API version '..tostring(version))
  return U
@@ -22,6 +22,8 @@ function U.forMod(id,options)
   local base=U[key];local factory={}
   if base.new then factory.new=function(_,...) return own(base:new(...)) end end
   if base.style then factory.style=function(w,role) return base.style(own(w),role) end end
+  if base.sized then factory.sized=function(...) return own(base.sized(...)) end end
+  if base.setSize then factory.setSize=function(w,size) return base.setSize(own(w),size) end end
   api[key]=factory
  end
  api.Dialog={decorate=function(dialog,player,owner) return U.Dialog.decorate(own(dialog),player,owner) end,
