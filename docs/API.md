@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.2.0-dev.3
+Project Version: 0.3.0-dev.1
 
 Client only. `local API=require 'B47ANCEDUI/API'`; `API.requireVersion(1)` returns the provider or errors for an unsupported API major before application UI is constructed. `API.apiVersion` is the independent contract major; `API.version` is the project version. API 1 is the initial contract. Add `B47ANCEDUI` to mod.info `require`; no bundled implementation fallback or private module require is supported for consumers.
 
@@ -9,8 +9,10 @@ Client only. `local API=require 'B47ANCEDUI/API'`; `API.requireVersion(1)` retur
 | API | Contract |
 |---|---|
 | `UI.WindowShell/Panel/Button/IconButton/ScrollList/TextInput/NumberInput/Toggle:new(...)` | Same arguments and lifecycle as the corresponding native factory in Controls; returned native instance is styled and tagged with consumer scope. Caller initializes/instantiates/adds/removes it. |
-| `UI.skin(widget,kind,role)` / `skinChildren(parent)` | Owned instances only; idempotent styling. Never pass unknown third-party trees or native global classes. Kinds include window/panel/button/list/input/dropdown/label; role primary/destructive optional. |
+| `UI.skin(widget,kind,role)` / `skinChildren(parent)` | Owned instances only; idempotent styling. Never pass unknown third-party trees or native global classes. Kinds include window/panel/button/menuButton/list/input/dropdown/label; role primary/destructive optional. |
 | `UI.Dropdown.style(widget)` | Style an existing native combobox. |
+| `UI.MenuButton:new(x,y,width,title,target,onclick,...)` | Dedicated main/pause/Esc-style navigation. Native ISButton instance/input/lifecycle, native Large font, left-aligned text, minimum height 56 growing to font height +24, transparent surface and no button border. Hover/selected/controller focus use scoped accent text and a 2px underline beneath the label only. Caller supplies localized text and owns the action. Regular controls remain Small/Normal. |
+| `UI.MenuButton.style(widget)` / `UI.Theme.menuMetrics()` | Style an unstyled owned native ISButton without resizing; already-menu styling is idempotent, mixing with an already styled ordinary control errors. Metrics return a fresh height/font/padding record. Native dimensions apply for styled instances; caller must allow enough height. MenuButton is not a third ordinary size, and `Button.sized("large",...)` remains the compatibility alias to Normal. |
 | `UI.Button.sized(size,x,y,width,title,target,onclick,...)` | Two opt-in sizes: `small` / `normal`, minimum heights 24/32, horizontal padding 8/12, corner radii 3/4. Legacy `large` requests resolve to Normal; no distinct third size remains. Height grows with native font metrics. Same native lifecycle/callback arguments; also available on IconButton/Toggle. Unknown IDs error. |
 | `UI.Button.setSize(widget,size)` / `UI.Theme.buttonSize(size)` | Opt-in height/font/padding/radius update; returns widget. Theme returns a fresh caller-owned metric record. Existing `:new(...)` dimensions and legacy `Theme.metrics().button` stay unchanged. |
 | `UI.Theme.colors/fonts/spacing`, `Theme.metrics()` | Shared design tokens/read-only-by-contract. Font metrics cached. Do not mutate shared tables per app. Arbitrary fonts/themes are not provided. |
@@ -33,6 +35,6 @@ Appearance migration is a read fallback only; new explicit saves write `B47ANCED
 
 The editor saves after changed slider release, valid hex Enter/focus loss, Reset and Close. Drag/typing previews do not write per frame. Reset restores both defaults; Close/B saves the last valid colour and returns focus. A reported writer failure leaves the editor open once; Close again retries and permits session-only dismissal if persistence still fails. Native silent I/O failures cannot be guaranteed detectable.
 
-Main menu/CCTV, whole-game theming, arbitrary fonts, universal No Click and automatic layout editing are not claimed by API 1. Support for those requires separate Lua-only evidence/design.
+Automatic main/pause-menu integration, CCTV, whole-game theming, arbitrary fonts, universal No Click and automatic layout editing are not claimed by API 1. MenuButton supplies a presentation component for consumer-owned navigation; it does not patch vanilla menus, pause/resume the world, load saves or quit the application. Support for those requires separate Lua-only evidence/design.
 
 The current style uses near-black surfaces, editable accents (neutral grey by default) and restrained corners. Rounded fill/border helpers use cached, bounded Lua scanlines through native drawRect; instance wrappers round only exact backing bounds. Textures and decorative subrectangles retain native geometry. Texture clipping, antialiasing and rounded hit testing are not provided; native rectangular hit areas remain. Native performance, pixels and input require runtime acceptance. These technical presentation tokens need no shared gameplay sandbox options.

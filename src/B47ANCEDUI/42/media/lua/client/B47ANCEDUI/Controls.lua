@@ -8,6 +8,9 @@ require 'ISUI/ISButton'
 require 'ISUI/ISScrollingListBox'
 require 'ISUI/ISTextEntryBox'
 local U=B47ANCEDUI;local T,R=U.Theme,U.Renderer
+local function menuActive(w)
+ return w.enable~=false and (w.joypadFocused or w.b47Selected or w.isFocused and w:isFocused() or w.mouseOver and (not w.isMouseOver or w:isMouseOver()))
+end
 function U.kind(w)
  local name=w.Type or ''
  if w.isButton or w.onclick and w.title then return 'button' end
@@ -26,6 +29,10 @@ function U.skin(w,kind,role)
  w.backgroundColorMouseOver=T.copy(T.colors.hover);w.borderColor=T.copy(T.colors.border)
  w.textColor=T.copy(T.colors.text);w.textColorDisabled=T.copy(T.colors.disabled);w.font=T.fonts.body
  if kind=='window' then w.titleFont=T.fonts.title end
+ if kind=='menuButton' then
+  w.displayBackground=false;w.backgroundColor.a=0;w.backgroundColorMouseOver.a=0;w.borderColor.a=0
+  w.titleLeft=true;w.font=T.fonts.menu;w.b47Padding=T.menuMetrics().padding
+ end
  if kind=='list' then w.selectionColor=T.copy(T.colors.selected) end
  U.Tooltip.attach(w,w.playerNum or w.parent and w.parent.playerNum)
  if kind=='list' and w.updateTooltip then U.RowTooltip.attach(w,w.b47TooltipPlayer) end
@@ -39,16 +46,22 @@ function U.skin(w,kind,role)
    if not ok then error(result) end;return result
   end
  end
- if kind=='button' and w.render then
+ if (kind=='button' or kind=='menuButton') and w.render then
   local render=w.render
   w.render=function(self,...)
    local full=self.title
+   if kind=='menuButton' then self.textColor=T.copy(U.Appearance.color(self,menuActive(self) and T.colors.accent or T.colors.text)) end
    local fontHeight=getTextManager():getFontHeight(self.font)
    if full and (self.b47FullTitle~=full or self.b47TitleWidth~=self:getWidth() or self.b47TitleFont~=self.font or self.b47TitleFontHeight~=fontHeight) then
     self.b47FullTitle=full;self.b47TitleWidth=self:getWidth();self.b47TitleFont=self.font;self.b47TitleFontHeight=fontHeight;self.b47ShortTitle=R.fit(full,self:getWidth()-2*(self.b47Padding or 9),self.font)
    end
    if full then self.title=self.b47ShortTitle;if not self.tooltip or self.tooltip==self.b47FallbackTip then self.b47FallbackTip=self.title~=full and full or nil;self:setTooltip(self.b47FallbackTip) end end
-   local ok,result=pcall(render,self,...);self.title=full;if not ok then error(result) end;return result
+   local ok,result=pcall(render,self,...);self.title=full;if not ok then error(result) end
+   if kind=='menuButton' and menuActive(self) then
+    local width=math.min(self:getWidth()-6,getTextManager():MeasureStringX(self.font,self.b47ShortTitle or ''))
+    R.rect(self,3,self:getHeight()-6,width,2,T.colors.accent)
+   end
+   return result
   end
  end
  local old=w.prerender
@@ -58,10 +71,12 @@ function U.skin(w,kind,role)
   if self.tooltipUI and not self.tooltipUI.b47Styled then
    self.tooltipUI.b47Styled=true -- Preserve the native final tooltip frame deliberately.
   end
-  if self.b47Selected then R.rect(self,0,self:getHeight()-3,self:getWidth(),3,T.colors.accent) end
-  if self.b47Role=='destructive' then R.border(self,0,0,self:getWidth(),self:getHeight(),T.colors.destructive)
-  elseif self.b47Role=='primary' then R.border(self,0,0,self:getWidth(),self:getHeight(),T.colors.accent) end
-  R.focus(self)
+  if kind~='menuButton' then
+   if self.b47Selected then R.rect(self,0,self:getHeight()-3,self:getWidth(),3,T.colors.accent) end
+   if self.b47Role=='destructive' then R.border(self,0,0,self:getWidth(),self:getHeight(),T.colors.destructive)
+   elseif self.b47Role=='primary' then R.border(self,0,0,self:getWidth(),self:getHeight(),T.colors.accent) end
+   R.focus(self)
+  end
  end
  return w
 end
@@ -74,6 +89,15 @@ end
 U.WindowShell=factory(ISCollapsableWindowJoypad,'window');U.Panel=factory(ISPanel,'panel');U.Button=factory(ISButton,'button');U.IconButton=factory(ISButton,'button')
 U.ScrollList=factory(ISScrollingListBox,'list');U.TextInput=factory(ISTextEntryBox,'input')
 U.NumberInput=factory(ISTextEntryBox,'input');U.Toggle=factory(ISButton,'button')
+U.MenuButton=factory(ISButton,'menuButton')
+-- Dedicated menu navigation, not a third ordinary button size.
+U.MenuButton.new=function(_,x,y,width,title,target,onclick,...)
+ return U.skin(ISButton:new(x,y,width,T.menuMetrics().height,title,target,onclick,...),'menuButton')
+end
+U.MenuButton.style=function(w)
+ assert(not w.b47Styled or w.b47Kind=='menuButton','MenuButton.style requires an unstyled owned native button')
+ return U.skin(w,'menuButton')
+end
 for _,f in ipairs({U.Button,U.IconButton,U.Toggle}) do
  f.setSize=function(w,size)
   local s=T.buttonSize(size);w.font=s.font;w.b47Padding=s.padding;w.b47Radius=s.radius;w.b47ButtonSize=s.id
