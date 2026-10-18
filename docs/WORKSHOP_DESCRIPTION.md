@@ -7,6 +7,7 @@ Shared Lua-only interface components for B47ANCE'd Workshop mods in Project Zomb
 - Near-black native buttons, windows, lists, text inputs and context menus with restrained rounded corners.
 - Small and Normal button sizes; older Large requests use Normal.
 - Separate large-text MenuButton for consumer-owned menu navigation: transparent backing, no button frame, subtle accent text and underline on hover or controller focus.
+- Native main-menu and in-game Esc-menu navigation use the same text/underline style, preserving native actions, visibility, controller order and layout.
 - Shared rendering, layout helpers, controller focus, dialogs and bounded tooltips.
 - Independent appearance preferences for each consuming mod and local player.
 - Local opacity and hex/RGB accent editor with live preview; default accent is neutral grey (#B0B0B0).
@@ -31,7 +32,7 @@ GitHub: https://github.com/B47ANCE/B47ANCEDUI
 Mod developers consume the versioned public Lua API. Application data, server authority and synchronization remain with the application mod.
 
 ## Known Issues
-MenuButton is an opt-in component; it does not automatically replace the vanilla main or pause/Esc menus. The full vanilla UI overhaul, main-menu/CCTV system and advanced layout editor are planned, not implemented. Runtime visual/input acceptance, actual settings reload, native rounded-draw performance and texture-corner clipping remain outstanding. No universal click-through, arbitrary custom font support or multiplayer verification is claimed.
+The native menu adapter changes verified navigation labels only; other menu mods may conflict or leave guarded items in their original style. Startup/profile loading and native main/Esc acceptance require in-game testing. The full vanilla UI overhaul, redesigned main-menu/CCTV system and advanced layout editor remain planned. Runtime visual/input acceptance, actual settings reload, native rounded-draw performance and texture-corner clipping remain outstanding. No universal click-through, arbitrary custom font support or multiplayer verification is claimed.
 
 ## Credits & Permissions
 Developed by B47ANCE'd Workshop. Original B47ANCE-owned shared code extracted from Quartermaster with explicit owner authorization. No external mod implementation or assets copied. No reuse license is implied beyond permissions separately granted by the owner.

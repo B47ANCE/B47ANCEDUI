@@ -59,7 +59,7 @@ function U.skin(w,kind,role)
    local ok,result=pcall(render,self,...);self.title=full;if not ok then error(result) end
    if kind=='menuButton' and menuActive(self) then
     local width=math.min(self:getWidth()-6,getTextManager():MeasureStringX(self.font,self.b47ShortTitle or ''))
-    R.rect(self,3,self:getHeight()-6,width,2,T.colors.accent)
+    R.menuUnderline(self,3,width)
    end
    return result
   end
