@@ -1,6 +1,7 @@
 -- Local main-menu presentation only. No world RNG, ticks, networking or saves.
 require 'B47ANCEDUI/API'
 require 'OptionScreens/MainScreen'
+require 'ISUI/ISLabel'
 local U=B47ANCEDUI
 if U.MenuBackground then return U.MenuBackground end
 local B={};U.MenuBackground=B
@@ -28,7 +29,7 @@ function B.newSession(seed)
  local session={elapsed=0,monitors={}}
  for i=1,4 do
   session.monitors[i]={delay=(i-1)*.19+random(700)/1000,
-   boot=1.2+random(1400)/1000,period=7+random(4000)/1000,
+   boot=1+random(59001)/1000,
    speed=7+random(4),phase=random(8),offset=random(1000)/1000}
  end
  return session
@@ -37,7 +38,7 @@ function B.sample(m,time)
  local age=time-m.delay
  if age<0 then return 'off',1,0 end
  local frame=(math.floor(age*m.speed)+m.phase)%8+1
- local noise=age<m.boot or (age-m.boot)%m.period<.45
+ local noise=age<m.boot
  return noise and 'static' or 'signal',frame,(age*.13+m.offset)%1
 end
 function B.geometry(width,height)
@@ -65,6 +66,49 @@ function B.draw(screen,session,dt)
  end
  screen:drawTextureScaled(texture,x,y,imageWidth*s,imageHeight*s,1,1,1,1)
 end
+function B.layout(screen,menuWidth,top,bottom)
+ if U.NativeMenus then U.NativeMenus.apply(screen) end
+ local menu=screen.bottomPanel
+ local entries={}
+ for _,child in pairs(menu:getChildren()) do
+  local actionable=child.Type=='ISLabel' and (child.b47NativeMenu or child.onMouseDown and child.onMouseDown~=ISLabel.onMouseDown)
+   or child.Type=='ISButton' and child.onclick
+  if actionable and child~=screen.controllerLabel and child~=screen.controllerLabel2 and child~=screen.abutton then
+   -- Keep original order independent of positions assigned by this layout.
+   if child.b47MenuOrder==nil or child.b47MenuAssignedY and child.y~=child.b47MenuAssignedY then
+    child.b47MenuOrder=child.y or 0
+   end
+   if not child.getIsVisible or child:getIsVisible() then entries[#entries+1]=child end
+  end
+ end
+ table.sort(entries,function(a,b)
+  if a.b47MenuOrder~=b.b47MenuOrder then return a.b47MenuOrder<b.b47MenuOrder end
+  return tostring(a.internal or a.name or a.title or '')<tostring(b.internal or b.name or b.title or '')
+ end)
+ if #entries==0 then return end
+ local available=math.max(1,bottom-top)
+ local row=available/#entries
+ local zoom=math.min(1.9,screen:getHeight()/600)
+ for _,child in ipairs(entries) do
+  local font=child.font or UIFont.Large
+  local text=child.translation or child.name or child.title or ''
+  local width=getTextManager():MeasureStringX(font,text)
+  local height=getTextManager():getFontHeight(font)
+  zoom=math.min(zoom,(menuWidth-48)/math.max(1,width),row*.65/math.max(1,height))
+ end
+ zoom=math.max(.05,zoom)
+ for i,child in ipairs(entries) do
+  local text=child.translation or child.name or child.title or ''
+  local font=child.font or UIFont.Large
+  local scalable=child.b47NativeMenu==true
+  child.b47MenuScale=scalable and zoom or nil
+  local width=math.min(menuWidth,math.max(1,getTextManager():MeasureStringX(font,text)*(scalable and zoom or 1)+4))
+  child:setX((menuWidth-width)/2);child:setY((i-1)*row)
+  child.b47MenuAssignedY=(i-1)*row
+  child:setWidth(width);child:setHeight(row)
+ end
+ menu:setHeight(available)
+end
 function B.apply(screen)
  if not screen or screen.inGame or screen.b47MenuBackground or not screen.bottomPanel
   or screen.prerender~=nativePre or not loadArt() then return false end
@@ -76,16 +120,17 @@ function B.apply(screen)
   local margin=math.max(16,w*.025)
   local menu=self.bottomPanel
   local menuWidth=math.max(self.maxMenuItemWidth or 0,w*.28)
-  local menuHeight=menu:getHeight()
-  local top=math.max(margin,h-menuHeight-margin)
+  local logoScale=math.min(menuWidth/self.logoTexture:getWidth(),h*.34/self.logoTexture:getHeight())
+  local logoHeight=self.logoTexture:getHeight()*logoScale
+  local top=margin+logoHeight+margin*.7
   local originalDraw=self.drawTextureScaled
   local previousRaw=rawget(self,'drawTextureScaled')
   -- Only redirect this instance's logo draw during the native prerender call.
   -- Native delay, fading, demo notices and state guards still execute once.
   self.drawTextureScaled=function(owner,tex,tx,ty,tw,th,...)
    if tex==owner.logoTexture then
-    local scale=math.max(0,math.min(menuWidth/tex:getWidth(),(top-margin*2)/tex:getHeight()))
-    tx,ty,tw,th=margin,margin,tex:getWidth()*scale,tex:getHeight()*scale
+    tw,th=tex:getWidth()*logoScale,logoHeight
+    tx,ty=margin+(menuWidth-tw)/2,margin
    end
    return originalDraw(owner,tex,tx,ty,tw,th,...)
   end
@@ -93,9 +138,7 @@ function B.apply(screen)
   self.drawTextureScaled=previousRaw
   if not ok then error(result) end
   menu:setX(margin);menu:setY(top);menu:setWidth(menuWidth)
-  for _,child in pairs(menu:getChildren()) do
-   if child.Type=='ISLabel' then child:setWidth(menuWidth) end
-  end
+  B.layout(self,menuWidth,top,h-margin)
   return result
  end
  return true

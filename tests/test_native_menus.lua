@@ -112,6 +112,18 @@ local demo=screen({survivalOption='APOCALYPSE',tutorialOption='TUTORIAL',exitOpt
 assert(N.apply(demo)==3,'Native demo actions not retained')
 local fresh=screen(fields);MainScreen.instance=fresh;Events.OnMainMenuEnter.fire()
 assert(fresh.optionsOption.b47NativeMenu and fresh.optionsOption~=original)
+local foreignScreen=screen({})
+foreignScreen.b47MenuBackground={}
+local foreign=label(foreignScreen,'OTHER_MOD')
+local foreignAction=function()return 'mod-action'end
+foreign.onMouseDown=foreignAction;foreign.fade=nil;foreign.prerender=nativePre
+foreignScreen.bottomPanel.getChildren=function()return {foreign}end
+assert(N.apply(foreignScreen)==1 and foreign.onMouseDown==foreignAction)
+foreign.b47MenuScale=1.5
+foreign.drawTextZoomed=function()end
+local oldDraw=foreign.drawText
+foreign:prerender();assert(foreign.drawText==oldDraw and foreign:onMouseDown()=='mod-action')
+assert(N.apply(foreignScreen)==0)
 getFileReader,getFileWriter=previousReader,previousWriter
 ISLabel,MainScreen,Events,isQuitCooldown=previousLabel,previousMain,previousEvents,previousCooldown
 print('PASS OFFLINE native menu adapter: main/Esc/demo, lifecycle/idempotence, unchanged identities/actions/layout/visibility/controller rows, scoped text focus, cooldown/modal guards, translation/resize/tooltips, error restoration and foreign-style refusal')

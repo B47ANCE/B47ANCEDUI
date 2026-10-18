@@ -1,6 +1,6 @@
 # Validation
 
-Project Version: 0.5.0-dev.1
+Project Version: 0.5.0-dev.2
 
 Commands: `python -B scripts/check_versions.py`; `python -B tests/run_tests.py`.
 
@@ -41,3 +41,5 @@ Publication-preparation tooling adds deterministic packaging, CRC/member/source 
 0.5.0-dev.1 [TESTED - offline Windows, 2026-10-18]: version/source/syntax/asset integrity and all Lua contract suites PASS. Current runtime inventory: 51 files, 11 keys across 29 locales with English fallback. New tests verify independent monitor timing, draw order, fallback, idempotence, aspect fit and exception restoration. No current consumer/runtime test result is inferred from historical records.
 
 0.5.0-dev.1 adds an instance-only main-menu background adapter and decorative four-monitor animation; see [design, API evidence and runtime checks](MENU_BACKGROUND.md). Public API major 1 is unchanged. Native actions/controller label identities are retained, but main-menu label widths/position and logo placement now fit the left column. Esc rendering is unchanged. No shared state, save mutation or networking. New integration runtime NOT TESTED; offline fixtures are not game evidence.
+
+0.5.0-dev.2: responsive, centered main-menu rows dynamically discover visible direct ISLabel/ISButton entries. Known native label renderers support enlarged text; foreign custom renderers retain their draw paths. Initial static is independently 1-60 seconds, then each monitor stays in its no-signal loop. See MENU_BACKGROUND.md for compatibility boundaries and offline evidence. New layout/timing runtime NOT TESTED.

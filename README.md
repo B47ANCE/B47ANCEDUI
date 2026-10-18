@@ -1,6 +1,6 @@
 # B47ANCE'd UI
 
-Development version: 0.5.0-dev.1.
+Development version: 0.5.0-dev.2.
 
 Lua-only shared presentation for Project Zomboid Build 42.21. Public client API 1 provides styled native controls, rendering, layout helpers, focus, dialogs, bounded tooltips, per-mod/per-local-player appearance preferences, the appearance editor and original clipboard drawing.
 
@@ -14,7 +14,7 @@ The native adapter applies that style automatically to the native main-menu and 
 
 Quartermaster consumes this library; UI works without Quartermaster, Rooms or PC Framework. Application rows, labels, callbacks, permissions and network/gameplay state belong to consuming mods. No global vanilla class patches or custom Java/JAR dependencies.
 
-Development 0.5.0-dev.1 adds the original security-room main-menu artwork, with dark menu space on the left and four CRT screens on the right. Each boot creates independent short startup delays, subdued static and NO SIGNAL cycles. These are decorative animations, not live cameras. The Esc background stays native; original menu actions and controller label objects remain. See [background design and runtime gates](docs/MENU_BACKGROUND.md).
+Development 0.5.0-dev.2 includes the original security-room main-menu artwork, with dark menu space on the left and four CRT screens on the right. Each boot creates independent short startup delays and 1-60 seconds of static per monitor, followed by a persistent subdued NO SIGNAL loop. Menu labels are enlarged and centered beneath the logo; visible direct-child menu entries are discovered dynamically and rows refit when mods add, hide or remove them. Standard labels scale; custom renderers retain their own text drawing. These are decorative animations, not live cameras. The Esc background stays native; original menu actions and controller label objects remain. See [background design and runtime gates](docs/MENU_BACKGROUND.md).
 
 ```lua
 local UI=require('B47ANCEDUI/API').requireVersion(1).forMod('MyMod')

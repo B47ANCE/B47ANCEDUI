@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.5.0-dev.1
+Project Version: 0.5.0-dev.2
 
 Client only. `local API=require 'B47ANCEDUI/API'`; `API.requireVersion(1)` returns the provider or errors for an unsupported API major before application UI is constructed. `API.apiVersion` is the independent contract major; `API.version` is the project version. API 1 is the initial contract. Add `B47ANCEDUI` to mod.info `require`; no bundled implementation fallback or private module require is supported for consumers.
 
@@ -42,3 +42,5 @@ The current style uses near-black surfaces, editable accents (neutral grey by de
 ## Security-room main menu
 
 0.5.0-dev.1 adds an instance-only main-menu background adapter and decorative four-monitor animation; see [design, API evidence and runtime checks](MENU_BACKGROUND.md). Public API major 1 is unchanged. Native actions/controller label identities are retained, but main-menu label widths/position and logo placement now fit the left column. Esc rendering is unchanged. No shared state, save mutation or networking. New integration runtime NOT TESTED; offline fixtures are not game evidence.
+
+0.5.0-dev.2: responsive, centered main-menu rows dynamically discover visible direct ISLabel/ISButton entries. Known native label renderers support enlarged text; foreign custom renderers retain their draw paths. Initial static is independently 1-60 seconds, then each monitor stays in its no-signal loop. See MENU_BACKGROUND.md for compatibility boundaries and offline evidence. New layout/timing runtime NOT TESTED.

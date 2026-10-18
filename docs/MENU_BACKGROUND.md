@@ -1,14 +1,14 @@
 # Security-room main menu
 
-Project Version: 0.5.0-dev.1
+Project Version: 0.5.0-dev.2
 
 Compatible MINOR addition from 0.4.0-dev.1; public API major 1, appearance storage and consumer contracts are unchanged. This is development source, not a Workshop upload.
 
 ## Behavior and ownership
 
-`MenuBackground.lua` wraps only a recognized, out-of-game `MainScreen` instance's native `prerender`. It draws an opaque black underlay, four animated screen surfaces, then the original room artwork. The artwork's transparent screen apertures mask the effects. The room is aspect-fitted without cropping; extra viewport space stays black. The original PZ logo is fitted above the native menu in the left column. Labels retain their native actions, visibility and controller references; the panel position and label widths are updated for the left column. Native delay, fade and modal logic still run once. The temporary instance logo-drawing override is restored even when native rendering throws.
+`MenuBackground.lua` wraps only a recognized, out-of-game `MainScreen` instance's native `prerender`. It draws an opaque black underlay, four animated screen surfaces, then the original room artwork. The artwork's transparent screen apertures mask the effects. The room is aspect-fitted without cropping; extra viewport space stays black. The original PZ logo is fitted above the native menu in the left column. Visible interactive ISLabel and ISButton children are discovered each menu render; native controller helper labels are excluded. Rows share the available vertical area beneath the logo. Standard native labels use drawTextZoomed (ISUIElement.lua:1260), up to 1.9x, reduced for crowded rows/long labels, with their centers aligned to the logo midpoint. Unknown custom renderers retain their text drawing; their row bounds are centered/refitted. Nested custom panels and nonstandard control types are not automatically adapted. Callbacks, visibility and controller rows are never replaced. Added/hidden/removed entries and explicit position changes trigger updated layout without restarting. Labels retain their native actions, visibility and controller references; the panel position and label widths are updated for the left column. Native delay, fade and modal logic still run once. The temporary instance logo-drawing override is restored even when native rendering throws.
 
-Each newly constructed main-menu instance gets four independently phased animation states seeded from the local millisecond timestamp. Repeated events do not reset an existing instance. A private Park-Miller generator does not seed or consume game/random-library state. Screens begin dark, show subdued static after staggered delays, settle into localized NO SIGNAL, and occasionally lose signal briefly. Eight original 64x48 grayscale frames play at independently chosen 7–10 fps. No full-screen flashing, per-frame texture generation, new global tick handler, audio, real camera feed or gameplay scanning is involved. Visible-menu render time advances the animation, clamped to 100 ms per render to avoid large jumps after a stall.
+Each newly constructed main-menu instance gets four independently phased animation states seeded from the local millisecond timestamp. Repeated events do not reset an existing instance. A private Park-Miller generator does not seed or consume game/random-library state. Screens begin dark, show subdued static after staggered delays, settle permanently into a localized NO SIGNAL loop after independently selected 1-60 second static durations. Eight original 64x48 grayscale frames play at independently chosen 7–10 fps. No full-screen flashing, per-frame texture generation, new global tick handler, audio, real camera feed or gameplay scanning is involved. Visible-menu render time advances the animation, clamped to 100 ms per render to avoid large jumps after a stall.
 
 The in-game Esc menu is excluded. Unrecognized main-menu prerenders and missing artwork retain native behavior; a later mod can still replace this adapter. There is no custom networking, server state, persistence, world mutation or save schema. Pixel coordinates and animation limits are implementation details, not gameplay configuration; no sandbox option is warranted. NO SIGNAL uses a translation key with the project's explicit English fallback across 29 locales. These are decorative monitors; live CCTV remains planned.
 
@@ -26,6 +26,10 @@ The installed game has unrelated local modifications; these references establish
 ## Validation [TESTED: offline]
 
 Commands: `python -B scripts/check_versions.py` and `python -B tests/run_tests.py` (Python UTF-8 mode on Windows). Tests cover Lua 5.1 syntax, all existing API contracts, missing-art/foreign-renderer fallback, event idempotence, Esc exclusion, independent state ranges, boot/static/no-signal transitions, layer order, logo placement, exception restoration, and aspect fitting at 1024x768, 1280x720 and 3440x1440. PNG hashes/CRC and deterministic noise-frame reproduction are checked. The packaging suite uses disposable malformed fixtures; it does not build a release.
+
+## Layout revision evidence
+
+0.5.0-dev.2 [TESTED: offline]: dynamic add/hide/show/remove, 40-entry crowded layout, logo-centered labels, foreign callbacks without a fade object and persistent no-signal states at 1/60/600/3600 seconds after initial static. Initial static duration bounds are 1-60 seconds per monitor. This presentation timing is internal, with no gameplay configuration.
 
 ## Runtime gates [RUNTIME GATE]
 
