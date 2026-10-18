@@ -13,6 +13,7 @@
   "generated_outputs": [
     "dist/current/",
     "dist/workshop-draft-*/",
+    "dist/workshop-update-*/",
     "workshop/"
   ],
   "package_inventory": "scripts/production-files.json",

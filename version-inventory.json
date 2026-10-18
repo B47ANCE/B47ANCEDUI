@@ -3,6 +3,10 @@
   "canonical": "VERSION",
   "mirrors": [
     {
+      "path": "docs/WORKSHOP_UPDATE.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
       "path": "src/B47ANCEDUI/42/mod.info",
       "pattern": "^modversion=(?P<version>\\S+)$"
     },

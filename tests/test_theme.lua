@@ -5,7 +5,7 @@ local plain=UI.Button:new(0,0,90,29,'Original')
 assert(plain:getHeight()==29,'Existing explicit dimensions changed')
 local last=0
 local target={};local callback=function() return 'native' end
-for _,size in ipairs({'small','normal','large'}) do
+for _,size in ipairs({'small','normal'}) do
  local b=UI.Button.sized(size,0,0,100,'Action',target,callback,'intent')
  assert(b:getHeight()>last and b.b47AppearanceScope=='ThemeFixture')
  assert(b.b47ButtonSize==size and b.b47Padding>=8)
@@ -13,10 +13,12 @@ for _,size in ipairs({'small','normal','large'}) do
  last=b:getHeight()
 end
 assert(not pcall(UI.Button.sized,'huge',0,0,100,'Action'))
-local before=UI.Theme.buttonSize('large').height
+local old=UI.Button.sized('large',0,0,100,'Old caller')
+assert(old.b47ButtonSize=='normal' and old.height==UI.Theme.buttonSize('normal').height,'Legacy alias reintroduced a third size')
+local before=UI.Theme.buttonSize('normal').height
 local manager=getTextManager
 getTextManager=function() return {getFontHeight=function() return 36 end} end
-assert(UI.Theme.buttonSize('large').height>before,'Large game font clipped')
+assert(UI.Theme.buttonSize('normal').height>before,'Large game font clipped')
 getTextManager=manager
 local T,R=UI.Theme,UI.Renderer
 for width=1,40 do for height=1,24 do
@@ -50,4 +52,4 @@ R.round(w,4);local wrapped=w.drawRect;R.round(w,6)
 assert(w.drawRect==wrapped and w.onclick==callback and w.b47RawRect==raw)
 w:drawRect(0,8,80,2,.4,1,1,1)
 assert(#draws==1 and draws[1][2]==8,'Non-backing geometry changed')
-print('PASS OFFLINE three sizes, font scaling, explicit geometry, bounded rounded fill/perimeter, single-pass alpha and instance callback isolation')
+print('PASS OFFLINE two sizes and legacy alias, font scaling, explicit geometry, bounded rounded fill/perimeter, single-pass alpha and instance callback isolation')
