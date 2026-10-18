@@ -22,7 +22,7 @@ Enable Mod ID `B47ANCEDUI` alongside dependent mods. [Subscribe on Steam Worksho
 
 This is an extracted shared-UI foundation, **not the complete vanilla UI overhaul**. Main-menu replacement/CCTV, the full layout editor, two finished themes and broad vanilla adapters remain planned and are not implemented here. Earlier Java proposals are historical and not current authorization.
 
-Native SP, controller, split-screen, saved settings and dedicated multiplayer acceptance are NOT TESTED. Offline Lua fixtures do not establish game behavior. G6 NOT TESTED; G7/stable G8 BLOCKED for integration acceptance. The owner authorized the 0.2.0-dev.3 MP test update after merging PRs 2 and 3. Offline gates and exact package/staging checks apply; see docs/WORKSHOP_UPDATE.md for source/distribution status. Prior 0.1.0-dev.1 publication evidence remains historical.
+Native SP, controller, split-screen, saved settings and dedicated multiplayer acceptance are NOT TESTED. Offline Lua fixtures do not establish game behavior. G6 NOT TESTED; G7/stable G8 BLOCKED for integration acceptance. Version 0.2.0-dev.3 is published as a public Workshop MP testing build after PRs 2, 3 and the final two-size follow-up merged. Upload and public description verification passed; see [current publication provenance](docs/WORKSHOP_UPDATE.md). Prior 0.1.0-dev.1 publication evidence remains historical. Steam was left unchanged by explicit user choice.
 
 ```sh
 python -m pip install -r requirements-dev.txt
