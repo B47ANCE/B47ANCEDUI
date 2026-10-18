@@ -89,6 +89,10 @@
     {
       "reference": "docs/WORKSHOP_UPDATE.md",
       "reason": "Completed dated 0.2.0-dev.3 Workshop upload record; preserves actual source/validation/distribution identities."
+    },
+    {
+      "reference": "docs/WORKSHOP_UPDATE_0.3.0-dev.1_2026-10-18.json",
+      "reason": "Immutable dated 0.3.0-dev.1 distribution receipt binds the release commit, package/runtime hashes and public verification; no native/dedicated proof."
     }
   ]
 }
