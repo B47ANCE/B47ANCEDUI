@@ -4,7 +4,7 @@
   "name": "B47ANCE'd UI",
   "version": "0.3.0-dev.1",
   "reviewed": true,
-  "source_digest": "de18905a4df6ededab0cb48a1c0cba617d412d3ad31edb16a76b71458fa1c73d",
+  "source_digest": "44931bb298042c997beed90e4c0802d4b293c6ae80f4171abfa6a2e85364d54a",
   "features": [
     {
       "status": "Source",
@@ -32,10 +32,10 @@
     },
     {
       "status": "Source",
-      "text": "Public Workshop MP test item 3822582242 updated to 0.2.0-dev.3 with exact source/package/staging and public description verification; native/dedicated NOT TESTED."
+      "text": "Public Workshop MP test item 3822582242 updated to 0.3.0-dev.1 with source/package/stage parity and independent public description verification; native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.3.0-dev.1 MenuButton MP test upload authorized after PR 6 merge; upload pending. No automatic vanilla menu integration or action. Previous verified distribution is 0.2.0-dev.3 on item 3822582242. Native SP/menu/controller/split-screen/settings/download/dedicated NOT TESTED; G7/stable G8 BLOCKED. Lua-only local presentation.",
+  "limits": "0.3.0-dev.1 public Workshop MP test distribution verified. MenuButton is opt-in, with no automatic vanilla menu integration or gameplay action. Native SP/menu/controller/split-screen/settings/download/dedicated NOT TESTED; G7/stable G8 BLOCKED. Lua-only local presentation; Steam desktop not restarted.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -46,7 +46,8 @@
     "docs/STYLE_SOURCE_EVIDENCE.json",
     "docs/WORKSHOP_UPDATE.md",
     "docs/WORKSHOP_UPDATE_0.2.0-dev.3_2026-10-18.json",
-    "docs/WORKSHOP_MENU_UPDATE.md"
+    "docs/WORKSHOP_MENU_UPDATE.md",
+    "docs/WORKSHOP_UPDATE_0.3.0-dev.1_2026-10-18.json"
   ],
   "relations": []
 }

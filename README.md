@@ -8,7 +8,7 @@ Near-black surfaces, neutral grey accents and restrained rounded corners define 
 
 The in-game appearance editor offers a `#RRGGBB` field and Red/Green/Blue sliders (0–255), with immediate local preview. Default accent: grey `#B0B0B0`. Settings are isolated per consumer/local player; Reset restores opacity 82 and the grey accent. Existing opacity-only preferences keep their values.
 
-A separate `UI.MenuButton:new(x,y,width,label,target,callback,...)` creates large text navigation for main/pause/Esc-style menus: native Large font, transparent background, no button border and a label-only accent underline on hover/controller focus. It is independent of ordinary Small/Normal controls. No vanilla menu is automatically replaced. The owner authorized the 0.3.0-dev.1 Workshop MP testing update after PR 6 merged; see [upload status and provenance](docs/WORKSHOP_MENU_UPDATE.md).
+A separate `UI.MenuButton:new(x,y,width,label,target,callback,...)` creates large text navigation for main/pause/Esc-style menus: native Large font, transparent background, no button border and a label-only accent underline on hover/controller focus. It is independent of ordinary Small/Normal controls. No vanilla menu is automatically replaced. Version 0.3.0-dev.1 is published as the Workshop MP testing build after PR 6 merged; see [upload status and provenance](docs/WORKSHOP_MENU_UPDATE.md).
 
 Quartermaster consumes this library; UI works without Quartermaster, Rooms or PC Framework. Application rows, labels, callbacks, permissions and network/gameplay state belong to consuming mods. No global vanilla class patches or custom Java/JAR dependencies.
 
@@ -24,7 +24,7 @@ Enable Mod ID `B47ANCEDUI` alongside dependent mods. [Subscribe on Steam Worksho
 
 This is an extracted shared-UI foundation, **not the complete vanilla UI overhaul**. Main-menu replacement/CCTV, the full layout editor, two finished themes and broad vanilla adapters remain planned and are not implemented here. Earlier Java proposals are historical and not current authorization.
 
-Native SP, controller, split-screen, saved settings and dedicated multiplayer acceptance are NOT TESTED. Offline Lua fixtures do not establish game behavior. G6 NOT TESTED; G7/stable G8 BLOCKED for integration acceptance. Version 0.2.0-dev.3 is published as a public Workshop MP testing build after PRs 2, 3 and the final two-size follow-up merged. Upload and public description verification passed; see [current publication provenance](docs/WORKSHOP_UPDATE.md). Prior 0.1.0-dev.1 publication evidence remains historical. Steam was left unchanged by explicit user choice.
+Native SP, controller, split-screen, saved settings and dedicated multiplayer acceptance are NOT TESTED. Offline Lua fixtures do not establish game behavior. G6 NOT TESTED; G7/stable G8 BLOCKED for integration acceptance. Version 0.3.0-dev.1 is published on public Workshop item 3822582242. SteamCMD commit-success and exact public description verification passed; see [current publication provenance](docs/WORKSHOP_MENU_UPDATE.md). Prior [0.2.0-dev.3](docs/WORKSHOP_UPDATE.md) and 0.1.0-dev.1 publication evidence remains historical. Steam desktop was not restarted for this upload.
 
 ```sh
 python -m pip install -r requirements-dev.txt
