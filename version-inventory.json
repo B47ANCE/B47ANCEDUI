@@ -81,6 +81,10 @@
     {
       "reference": "docs/WORKSHOP_PREPARATION.md",
       "reason": "Original pre-upload preparation for 0.1.0-dev.1; not current source validation."
+    },
+    {
+      "reference": "docs/WORKSHOP_UPDATE_0.2.0-dev.3_2026-10-18.json",
+      "reason": "Immutable dated 0.2.0-dev.3 upload receipt binds actual source/validation commit, package/runtime hashes and public verification; no native or dedicated proof."
     }
   ]
 }

@@ -4,7 +4,7 @@
   "name": "B47ANCE'd UI",
   "version": "0.2.0-dev.3",
   "reviewed": true,
-  "source_digest": "636161b4d6f31575befed7335134b2740481fc0008ee8fe53cd0b6b538fab6bf",
+  "source_digest": "fafc56317060feb84134e3f06a018d2a99709436389fe6b67ffd772227c20eee",
   "features": [
     {
       "status": "Source",
@@ -28,10 +28,10 @@
     },
     {
       "status": "Source",
-      "text": "Public Workshop MP test item 3822582242 confirmed; deterministic package/provenance and canonical listing. Native/dedicated NOT TESTED."
+      "text": "Public Workshop MP test item 3822582242 updated to 0.2.0-dev.3 with exact source/package/staging and public description verification; native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.2.0-dev.3 MP test upload explicitly authorized to existing public item 3822582242; preparation/distribution evidence in WORKSHOP_UPDATE.md. Native SP/controller/split-screen/dedicated NOT TESTED; no stable G8 approval. Lua-only client presentation; no gameplay ownership.",
+  "limits": "0.2.0-dev.3 public Workshop MP test distribution verified on item 3822582242. Native SP/controller/split-screen/settings reload/draw performance/download/dedicated NOT TESTED; G7 and stable G8 BLOCKED. Lua-only presentation; no gameplay ownership. Steam unchanged by user choice.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -40,7 +40,8 @@
     "docs/WORKSHOP_PREPARATION.md",
     "docs/WORKSHOP_PUBLICATION.md",
     "docs/STYLE_SOURCE_EVIDENCE.json",
-    "docs/WORKSHOP_UPDATE.md"
+    "docs/WORKSHOP_UPDATE.md",
+    "docs/WORKSHOP_UPDATE_0.2.0-dev.3_2026-10-18.json"
   ],
   "relations": []
 }
