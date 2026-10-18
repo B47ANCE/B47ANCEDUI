@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.2.0-dev.1",
+  "version": "0.2.0-dev.2",
   "reviewed": true,
-  "source_digest": "0fe5cc735f99daa5b18ddfc96a08b4a7bcef1149e73285359799050300ae275a",
+  "source_digest": "76633be259158914cdb1be5cc6325e5b5693405728aef60fede83543b6011221",
   "features": [
     {
       "status": "Source",
@@ -12,7 +12,11 @@
     },
     {
       "status": "Source",
-      "text": "Near-black shared surfaces, muted sage accents and instance-rounded corners; additive Small/Normal/Large button helpers preserve existing explicit geometry and native callbacks."
+      "text": "Near-black shared surfaces, grey default accent and instance-rounded corners; explicit Small/Normal/Large button helpers preserve existing geometry and native callbacks."
+    },
+    {
+      "status": "Source",
+      "text": "In-game hex/RGB accent editor with live scoped preview, per-consumer/local-player persistence, opacity-only migration and reset to grey."
     },
     {
       "status": "Source",
@@ -27,7 +31,7 @@
       "text": "Public Workshop MP test item 3822582242 confirmed; deterministic package/provenance and canonical listing. Native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.2.0-dev.1 styling is source only; public item 3822582242 remains historical 0.1.0-dev.1 MP test distribution. Native SP/controller/split-screen/dedicated NOT TESTED; rounded draw performance and texture corners require runtime acceptance. Lua-only presentation, no gameplay ownership.",
+  "limits": "0.2.0-dev.2 styling is source only; public item 3822582242 remains historical 0.1.0-dev.1 MP test distribution. Native SP/controller/split-screen/dedicated NOT TESTED; rounded draw performance and texture corners require runtime acceptance. Lua-only presentation, no gameplay ownership.",
   "evidence": [
     "README.md",
     "docs/API.md",

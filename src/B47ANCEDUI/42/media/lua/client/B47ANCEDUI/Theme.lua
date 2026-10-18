@@ -4,11 +4,12 @@ local T={};B47ANCEDUI.Theme=T
 local function color(r,g,b,a) return {r=r,g=g,b=b,a=a or 1} end
 T.colors={window=color(.035,.039,.039,.96),panel=color(.055,.059,.059,.96),raised=color(.09,.098,.098,.98),
  row=color(.055,.059,.059,.94),alternate=color(.075,.082,.082,.94),hover=color(.14,.157,.15,.98),
- selected=color(.13,.17,.15,.98),border=color(.22,.25,.24,.9),strong=color(.46,.52,.49,.96),
- text=color(.91,.93,.92),muted=color(.62,.67,.64),accent=color(.66,.72,.67),accentHover=color(.77,.83,.78),
+ selected=color(.17,.17,.17,.98),border=color(.22,.25,.24,.9),strong=color(.46,.52,.49,.96),
+ text=color(.91,.93,.92),muted=color(.62,.67,.64),accent=color(176/255,176/255,176/255),accentHover=color(.81,.81,.81),
  needed=color(.82,.42,.39),warning=color(.80,.69,.45),success=color(.53,.72,.58),disabled=color(.39,.43,.41),
  destructive=color(.73,.37,.34),overlay=color(.015,.02,.02,.86)}
 T.spacing={xs=4,s=8,m=12,l=18,xl=24};T.borderSize=1;T.corner='rounded';T.radius=6
+T.defaultAccent='#B0B0B0'
 T.fonts={title=UIFont.Medium,section=UIFont.Medium,body=UIFont.Small,small=UIFont.Small,item=UIFont.Small,status=UIFont.Small}
 local cached
 function T.metrics()

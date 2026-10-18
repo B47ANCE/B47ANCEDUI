@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.0-dev.2]
+
+Next checkpoint in the compatible 0.2 MINOR iteration, public API 1 unchanged. Default accent is neutral grey (#B0B0B0). Add local in-game hex/RGB accent editing with live scoped preview and backward-compatible preference persistence. Offline evidence only; no deployment/upload or native acceptance.
+
 ## [0.2.0-dev.1]
 
 Compatible MINOR iteration within public API 1. Near-black surfaces, muted sage accents and restrained rounded corners on owned controls. Add explicit Small/Normal/Large button sizing with font-aware heights and padding; existing constructor dimensions and native callbacks remain intact. Offline geometry/alpha/size contracts tested; native rendering, performance, input and dedicated integration NOT TESTED. Development source only, not deployed or uploaded.

@@ -1,5 +1,6 @@
 require 'B47ANCEDUI/Theme'
 local U=B47ANCEDUI;local T=U.Theme;local R={};U.Renderer=R
+local function color(w,c) return U.Appearance and U.Appearance.color(w,c) or c end
 local corners={}
 local function corner(width,height,radius)
  local r=math.max(0,math.min(8,math.floor(radius or 0),math.floor(math.min(width,height)/2)))
@@ -11,6 +12,7 @@ local function corner(width,height,radius)
  return r,corners[r]
 end
 function R.roundedRect(w,x,y,width,height,c,radius)
+ c=color(w,c)
  if width<=0 or height<=0 then return end
  local draw=w.b47RawRect or w.drawRect;local r,offsets=corner(width,height,radius)
  for row=0,r-1 do
@@ -21,6 +23,7 @@ function R.roundedRect(w,x,y,width,height,c,radius)
  if height>2*r then draw(w,x,y+r,width,height-2*r,c.a,c.r,c.g,c.b) end
 end
 function R.roundedBorder(w,x,y,width,height,c,radius)
+ c=color(w,c)
  if width<=0 or height<=0 then return end
  local draw=w.b47RawRect or w.drawRect;local r,offsets=corner(width,height,radius)
  if r==0 then return (w.b47RawBorder or w.drawRectBorder)(w,x,y,width,height,c.a,c.r,c.g,c.b) end
@@ -55,12 +58,13 @@ function R.round(w,radius)
   return self.b47RawBorder(self,x,y,width,height,a,r,g,b)
  end
 end
-function R.rect(w,x,y,width,height,c) if width>0 and height>0 then w:drawRect(x,y,width,height,c.a,c.r,c.g,c.b) end end
+function R.rect(w,x,y,width,height,c) c=color(w,c);if width>0 and height>0 then w:drawRect(x,y,width,height,c.a,c.r,c.g,c.b) end end
 function R.background(w,x,y,width,height,c)
+ c=color(w,c)
  if width>0 and height>0 then w:drawRect(x,y,width,height,U.Appearance and U.Appearance.alpha(w) or c.a,c.r,c.g,c.b) end
 end
-function R.border(w,x,y,width,height,c) if width>0 and height>0 then w:drawRectBorder(x,y,width,height,c.a,c.r,c.g,c.b) end end
-function R.text(w,text,x,y,c,font) w:drawText(tostring(text or ''),x,y,c.r,c.g,c.b,c.a,font or T.fonts.body) end
+function R.border(w,x,y,width,height,c) c=color(w,c);if width>0 and height>0 then w:drawRectBorder(x,y,width,height,c.a,c.r,c.g,c.b) end end
+function R.text(w,text,x,y,c,font) c=color(w,c);w:drawText(tostring(text or ''),x,y,c.r,c.g,c.b,c.a,font or T.fonts.body) end
 function R.fit(text,width,font)
  text=tostring(text or '');font=font or T.fonts.body
  local measure=getTextManager();if measure:MeasureStringX(font,text)<=width then return text end
@@ -79,7 +83,7 @@ function R.focus(w)
  end
 end
 function R.row(w,y,height,index,selected,hover)
- local c=selected and T.colors.selected or hover and T.colors.hover or index%2==0 and T.colors.alternate or T.colors.row
+ local c=color(w,selected and T.colors.selected or hover and T.colors.hover or index%2==0 and T.colors.alternate or T.colors.row)
  -- The root owns the single backing pass. Rows add a light contrast overlay,
  -- while the opaque selection stripe stays independent of user opacity.
  local a=U.Appearance and U.Appearance.alpha(w)*.12 or c.a

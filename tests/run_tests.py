@@ -13,4 +13,5 @@ lua=LuaRuntime(unpack_returned_tuples=True)
 lua.globals().package.path=(ROOT/'src/B47ANCEDUI/42/media/lua/client').as_posix()+'/?.lua;'+lua.globals().package.path
 lua.execute((ROOT/'tests/test_api.lua').read_text())
 lua.execute((ROOT/'tests/test_theme.lua').read_text())
+lua.execute((ROOT/'tests/test_accent.lua').read_text())
 print('Offline only. Native SP/controller/split-screen/dedicated NOT TESTED.')

@@ -24,7 +24,7 @@ def validate():
     translations=SOURCE/'42/media/lua/shared/Translate'
     english=json.loads((translations/'EN/UI.json').read_text())
     # AppearanceEditor's concatenated prefix is explicitly enumerated.
-    keys.update('UI_B47ANCEDUI_'+k for k in ('ResetAppearance','Close','WindowOpacity'))
+    keys.update('UI_B47ANCEDUI_'+k for k in ('ResetAppearance','Close','WindowOpacity','AccentHex','Red','Green','Blue','InvalidHex','SaveFailed'))
     assert set(english)==keys,(set(english),keys)
     locales=[]
     for p in translations.glob('*/UI.json'):

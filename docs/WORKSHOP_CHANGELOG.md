@@ -1,5 +1,5 @@
-Version 0.2.0-dev.1
+Version 0.2.0-dev.2
 
 MP testing build - dedicated multiplayer NOT TESTED
 
-Development source only; this note has not been uploaded. Near-black shared UI with muted sage accents, restrained rounded corners and three explicit button sizes. Native SP, controller, split-screen and dedicated multiplayer NOT TESTED. Known limits: no whole-game skin, texture clipping or verified native draw performance. No stable-release approval.
+Development source only; this note has not been uploaded. Near-black UI, neutral grey default accent, editable hex/RGB accent settings with local live preview, restrained corners and three button sizes. Existing opacity preferences are preserved. Native SP, controller, split-screen, draw performance and dedicated multiplayer NOT TESTED. No stable-release approval.
