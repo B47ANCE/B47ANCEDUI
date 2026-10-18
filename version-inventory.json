@@ -29,6 +29,14 @@
     {
       "path": "docs/MOD_OVERVIEW.json",
       "pattern": "^  \"version\": \"(?P<version>[^\\\"]+)\""
+    },
+    {
+      "path": "docs/WORKSHOP_PREPARATION.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/WORKSHOP_CHANGELOG.md",
+      "pattern": "^Version (?P<version>\\S+)$"
     }
   ],
   "changelog": {

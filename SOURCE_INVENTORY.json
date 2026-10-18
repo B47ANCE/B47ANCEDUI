@@ -9,7 +9,9 @@
   ],
   "workshop_ids": [],
   "generated_outputs": [
-    "dist/current/"
+    "dist/current/",
+    "dist/workshop-draft-*/",
+    "workshop/"
   ],
   "package_inventory": "scripts/production-files.json",
   "intended_package": "dist/current/B47ANCEDUI-<VERSION>.zip",

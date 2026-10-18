@@ -4,7 +4,7 @@
   "name": "B47ANCE'd UI",
   "version": "0.1.0-dev.1",
   "reviewed": true,
-  "source_digest": "d95295fc5aa1a13e8897606e338c0b8ddd44ddee0a993974ba66e39d5022d5a7",
+  "source_digest": "df32f7fc9f9b8d930e63a35f4436addfadd793dd399226d5a06bfc769b395944",
   "features": [
     {
       "status": "Source",
@@ -17,6 +17,10 @@
     {
       "status": "Planned",
       "text": "Full vanilla UI overhaul, main-menu/CCTV and advanced layout editor are not implemented."
+    },
+    {
+      "status": "Foundation",
+      "text": "Canonical Workshop test listing, deterministic packaging/integrity and draft staging; no item assigned or upload performed."
     }
   ],
   "limits": "Native SP/controller/split-screen/dedicated NOT TESTED. No Workshop item. Lua-only client presentation; no gameplay ownership.",
@@ -24,7 +28,8 @@
     "README.md",
     "docs/API.md",
     "docs/PROVENANCE.json",
-    "docs/TESTING.md"
+    "docs/TESTING.md",
+    "docs/WORKSHOP_PREPARATION.md"
   ],
   "relations": []
 }

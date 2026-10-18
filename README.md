@@ -14,7 +14,7 @@ button:instantiate()
 owner:addChild(button)
 ```
 
-Enable Mod ID `B47ANCEDUI` alongside dependent mods. No Workshop item is assigned or published; use source in the established B42 layout for separately authorized local testing. This iteration is not deployed. No artwork is invented or substituted.
+Enable Mod ID `B47ANCEDUI` alongside dependent mods. No Workshop item is assigned or published. [First-publication preparation](docs/WORKSHOP_PREPARATION.md) supplies the canonical proposed listing and explicit packaging/draft-staging tools; creation of a new item requires separate authorization. This iteration is not deployed. No artwork is invented or substituted.
 
 This is an extracted shared-UI foundation, **not the complete vanilla UI overhaul**. Main-menu replacement/CCTV, the full layout editor, two finished themes and broad vanilla adapters remain planned and are not implemented here. Earlier Java proposals are historical and not current authorization.
 
@@ -26,6 +26,6 @@ python -B scripts/check_versions.py
 python -B tests/run_tests.py
 ```
 
-See [API](docs/API.md), [architecture and migration](docs/ARCHITECTURE.md), [tests and runtime gates](docs/TESTING.md), [source provenance](docs/PROVENANCE.json), [version inventory](docs/VERSIONING.md) and [policy](docs/VERSION_POLICY.md). Source is `src/B47ANCEDUI`; root `VERSION` is canonical. `dist/` is generated/ignored; no package generated. Host Python/Lupa are test tools, never runtime dependencies.
+See [API](docs/API.md), [architecture and migration](docs/ARCHITECTURE.md), [tests and runtime gates](docs/TESTING.md), [source provenance](docs/PROVENANCE.json), [version inventory](docs/VERSIONING.md) and [policy](docs/VERSION_POLICY.md). Source is `src/B47ANCEDUI`; root `VERSION` is canonical. `dist/` and generated `workshop/` are ignored. Host Python/Lupa are test tools, never runtime dependencies.
 
 Original B47ANCE-owned code extracted with explicit owner approval from [Quartermaster](https://github.com/B47ANCE/B47ANCEDQuartermaster) commit `2c1d663dadd68ec1757845ff90e14b6225908904`. No external-mod code/assets copied. Source provenance grants no implied third-party reuse license; no license was invented for the owner.
