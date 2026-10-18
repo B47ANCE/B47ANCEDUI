@@ -1,5 +1,7 @@
 # First Workshop publication preparation
 
+Historical pre-upload preparation. The owner subsequently authorized creation and public item 3822582242 was verified; see WORKSHOP_PUBLICATION.md. Original package and validation commits below retain their actual identities.
+
 Project Version: 0.1.0-dev.1
 
 2026-10-18: owner requested publishing UI after merging UI PR 1 and Quartermaster PR 27, in that order. UI merge commit is 38ef51ec08759f75cecd138fa6f461f6158f2d73; Quartermaster merge is 3839523c53f59e2e36cab02463eff23009a6b44a. The public API/runtime source is unchanged by this publication tooling/documentation preparation, so the intended mod version stays 0.1.0-dev.1. This is not a relabeling of old runtime evidence or a new compatibility contract.

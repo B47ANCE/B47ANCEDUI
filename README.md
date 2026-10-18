@@ -14,7 +14,7 @@ button:instantiate()
 owner:addChild(button)
 ```
 
-Enable Mod ID `B47ANCEDUI` alongside dependent mods. No Workshop item is assigned or published. [First-publication preparation](docs/WORKSHOP_PREPARATION.md) supplies the canonical proposed listing and explicit packaging/draft-staging tools; creation of a new item requires separate authorization. This iteration is not deployed. No artwork is invented or substituted.
+Enable Mod ID `B47ANCEDUI` alongside dependent mods. [Subscribe on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3822582242). The public MP testing upload is verified; native SP/dedicated acceptance remains NOT TESTED. [Publication and source/package provenance](docs/WORKSHOP_PUBLICATION.md). No local deployment or Steam restart was performed. No fallback artwork was substituted.
 
 This is an extracted shared-UI foundation, **not the complete vanilla UI overhaul**. Main-menu replacement/CCTV, the full layout editor, two finished themes and broad vanilla adapters remain planned and are not implemented here. Earlier Java proposals are historical and not current authorization.
 
