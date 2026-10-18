@@ -1,12 +1,14 @@
 # B47ANCE'd UI
 
-Development version: 0.2.0-dev.3.
+Development version: 0.3.0-dev.1.
 
 Lua-only shared presentation for Project Zomboid Build 42.21. Public client API 1 provides styled native controls, rendering, layout helpers, focus, dialogs, bounded tooltips, per-mod/per-local-player appearance preferences, the appearance editor and original clipboard drawing.
 
 Near-black surfaces, neutral grey accents and restrained rounded corners define the shared style. Opt into `UI.Button.sized('small' / 'normal', ...)` for two font-aware sizes; existing native constructor dimensions are preserved.
 
 The in-game appearance editor offers a `#RRGGBB` field and Red/Green/Blue sliders (0–255), with immediate local preview. Default accent: grey `#B0B0B0`. Settings are isolated per consumer/local player; Reset restores opacity 82 and the grey accent. Existing opacity-only preferences keep their values.
+
+A separate `UI.MenuButton:new(x,y,width,label,target,callback,...)` creates large text navigation for main/pause/Esc-style menus: native Large font, transparent background, no button border and a label-only accent underline on hover/controller focus. It is independent of ordinary Small/Normal controls. This 0.3.0-dev.1 component is source only; no vanilla menu is automatically replaced.
 
 Quartermaster consumes this library; UI works without Quartermaster, Rooms or PC Framework. Application rows, labels, callbacks, permissions and network/gameplay state belong to consuming mods. No global vanilla class patches or custom Java/JAR dependencies.
 

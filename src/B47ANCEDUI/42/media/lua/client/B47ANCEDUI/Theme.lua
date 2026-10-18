@@ -11,6 +11,10 @@ T.colors={window=color(.035,.039,.039,.96),panel=color(.055,.059,.059,.96),raise
 T.spacing={xs=4,s=8,m=12,l=18,xl=24};T.borderSize=1;T.corner='rounded';T.radius=6
 T.defaultAccent='#B0B0B0'
 T.fonts={title=UIFont.Medium,section=UIFont.Medium,body=UIFont.Small,small=UIFont.Small,item=UIFont.Small,status=UIFont.Small}
+T.fonts.menu=UIFont.Large or UIFont.Medium
+function T.menuMetrics()
+ return {height=math.max(56,getTextManager():getFontHeight(T.fonts.menu)+24),font=T.fonts.menu,padding=3}
+end
 local cached
 function T.metrics()
  local small=getTextManager():getFontHeight(T.fonts.body);local title=getTextManager():getFontHeight(T.fonts.title)

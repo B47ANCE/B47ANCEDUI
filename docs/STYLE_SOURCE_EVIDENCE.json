@@ -91,6 +91,39 @@
         172
       ],
       "statement": "Vanilla Lua method forwards the maximum text length to its existing text box object."
+    },
+    {
+      "symbol": "menu presentation fields",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISButton.lua",
+      "sha256": "5a4101bb351f3fc5d20de884b0d15692d9048d72ceff0d8b4e0420800fac3011",
+      "lines": [
+        111,
+        145
+      ],
+      "statement": "displayBackground gates native backing; borderColor alpha controls native focused border."
+    },
+    {
+      "symbol": "menu presentation fields",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISButton.lua",
+      "sha256": "5a4101bb351f3fc5d20de884b0d15692d9048d72ceff0d8b4e0420800fac3011",
+      "lines": [
+        245,
+        255
+      ],
+      "statement": "titleLeft and font/textColor govern the native label position and rendering."
+    },
+    {
+      "symbol": "menu presentation fields",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/OptionScreens/MainScreen.lua",
+      "sha256": "f89d351830fcb0050cfc10bc7a7e1a216a260b4731fe0ac34da9bcd4269352e5",
+      "lines": [
+        387,
+        435
+      ],
+      "statement": "Vanilla menu label height and labels use exposed UIFont.Large."
     }
   ]
 }

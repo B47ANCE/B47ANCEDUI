@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.0-dev.1]
+
+Compatible MINOR addition within API 1: separate MenuButton component for main/pause/Esc-style navigation. Larger native text, transparent surface, no button border, and label-only hover/controller focus underline. Regular buttons remain Small/Normal; legacy Large alias unchanged. No automatic vanilla menu replacement, gameplay action, deployment or upload. Offline evidence only; native runtime acceptance pending.
+
 ## [0.2.0-dev.3]
 
 Owner-requested presentation checkpoint: Small and Normal are the only distinct button sizes; older Large requests alias Normal without breaking API 1 callers. Grey default and hex/RGB accent editor retained. Prepare the explicitly authorized existing-item MP testing update with assigned-ID package provenance and a no-upload staging/VDF helper. No native/dedicated acceptance inferred.

@@ -3,10 +3,6 @@
   "canonical": "VERSION",
   "mirrors": [
     {
-      "path": "docs/WORKSHOP_UPDATE.md",
-      "pattern": "^Project Version: (?P<version>\\S+)$"
-    },
-    {
       "path": "src/B47ANCEDUI/42/mod.info",
       "pattern": "^modversion=(?P<version>\\S+)$"
     },
@@ -85,6 +81,10 @@
     {
       "reference": "docs/WORKSHOP_UPDATE_0.2.0-dev.3_2026-10-18.json",
       "reason": "Immutable dated 0.2.0-dev.3 upload receipt binds actual source/validation commit, package/runtime hashes and public verification; no native or dedicated proof."
+    },
+    {
+      "reference": "docs/WORKSHOP_UPDATE.md",
+      "reason": "Completed dated 0.2.0-dev.3 Workshop upload record; preserves actual source/validation/distribution identities."
     }
   ]
 }

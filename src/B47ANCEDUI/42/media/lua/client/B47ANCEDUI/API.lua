@@ -5,7 +5,7 @@ require 'B47ANCEDUI/Clipboard'
 local U=B47ANCEDUI
 U.AppearanceEditor={open=function(owner) return require('B47ANCEDUI/AppearanceEditor').open(owner) end}
 U.apiVersion=1
-U.version='0.2.0-dev.3'
+U.version='0.3.0-dev.1'
 function U.requireVersion(version)
  assert(version==U.apiVersion,'B47ANCEDUI: unsupported public API version '..tostring(version))
  return U
@@ -18,7 +18,7 @@ function U.forMod(id,options)
  local function own(w) if w then w.b47AppearanceScope=id end;return w end
  function api.skin(w,kind,role) return U.skin(own(w),kind,role) end
  function api.skinChildren(parent) own(parent);return U.skinChildren(parent) end
- for _,key in ipairs({'WindowShell','Panel','Button','IconButton','ScrollList','TextInput','NumberInput','Toggle','Dropdown'}) do
+ for _,key in ipairs({'WindowShell','Panel','Button','MenuButton','IconButton','ScrollList','TextInput','NumberInput','Toggle','Dropdown'}) do
   local base=U[key];local factory={}
   if base.new then factory.new=function(_,...) return own(base:new(...)) end end
   if base.style then factory.style=function(w,role) return base.style(own(w),role) end end

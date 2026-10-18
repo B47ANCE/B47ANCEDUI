@@ -1,5 +1,5 @@
 -- Isolated client contract fixtures. Not native rendering or input proof.
-UIFont={Small=1,Medium=2};Joypad={BButton=1}
+UIFont={Small=1,Medium=2,Large=3};Joypad={BButton=1}
 getTextManager=function() return {getFontHeight=function() return 14 end,MeasureStringX=function(_,_,s) return #s*7 end} end
 local Widget={}
 function Widget:new(x,y,w,h,title,target,onclick,...)
