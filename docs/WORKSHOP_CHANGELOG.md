@@ -1,5 +1,7 @@
-Version 0.4.0-dev.1
+Version 0.5.0-dev.1
 
 MP testing build - dedicated multiplayer NOT TESTED
 
-Apply the MenuButton text style to native main-menu and in-game Esc-menu navigation: large text, no filled hover box, scoped accent text and underline on hover/controller focus. Native actions, localized labels, visibility, layout and controller order remain. Small/Normal regular buttons, grey default and hex/RGB editor remain. Other menu mods may conflict or leave guarded items in native style. Native startup/profile/menu/controller/split-screen and dedicated multiplayer NOT TESTED. No stable-release approval.
+Original security-room main-menu background with four independently randomized static/no-signal monitors. Native main-menu actions and controller label identities remain; Esc background is unchanged. Decorative animation only, no live CCTV.
+
+Development source only, not uploaded. Main-menu rendering, resolutions, controller and menu-mod compatibility require native validation. G7 and stable G8 remain blocked.

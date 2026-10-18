@@ -8,5 +8,6 @@
   "UI_B47ANCEDUI_Green": "Green",
   "UI_B47ANCEDUI_Blue": "Blue",
   "UI_B47ANCEDUI_InvalidHex": "Enter six hex digits: #RRGGBB.",
-  "UI_B47ANCEDUI_SaveFailed": "Could not save. Close again for session-only changes."
+  "UI_B47ANCEDUI_SaveFailed": "Could not save. Close again for session-only changes.",
+  "UI_B47ANCEDUI_NoSignal": "NO SIGNAL"
 }

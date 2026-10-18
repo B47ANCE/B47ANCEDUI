@@ -10,7 +10,7 @@ def validate():
     assert len(files)==len({n.lower() for n in files}),'Case collision'
     for name in files:
         assert '..' not in Path(name).parts and not name.startswith('/')
-        assert files[name].suffix in {'.lua','.json','.info'},name
+        assert files[name].suffix in {'.lua','.json','.info','.png'},name
     info=(SOURCE/'42/mod.info').read_text()
     assert 'id=B47ANCEDUI\n' in info and 'require=' not in info
     keys=set()

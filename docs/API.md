@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.4.0-dev.1
+Project Version: 0.5.0-dev.1
 
 Client only. `local API=require 'B47ANCEDUI/API'`; `API.requireVersion(1)` returns the provider or errors for an unsupported API major before application UI is constructed. `API.apiVersion` is the independent contract major; `API.version` is the project version. API 1 is the initial contract. Add `B47ANCEDUI` to mod.info `require`; no bundled implementation fallback or private module require is supported for consumers.
 
@@ -38,3 +38,7 @@ The editor saves after changed slider release, valid hex Enter/focus loss, Reset
 MenuButton remains the presentation component for consumer-owned navigation; constructing it does not trigger a native action. Starting in 0.4.0-dev.1, the separately auto-loaded NativeMenus adapter applies the same text/underline style to verified native main/Esc navigation labels. It preserves label identity, native geometry/font, localized names, controller rows and original callbacks. Native labels keep their existing row heights rather than the factory's opt-in minimum 56. See NATIVE_MENUS.md; NativeMenus is an internal adapter, not a supported consumer load entry point. Native menus use appearance scope B47ANCEDUI, local slot 0; consumers' independent settings are unchanged. CCTV, whole-game theming, arbitrary fonts, universal No Click and automatic layout editing remain unimplemented.
 
 The current style uses near-black surfaces, editable accents (neutral grey by default) and restrained corners. Rounded fill/border helpers use cached, bounded Lua scanlines through native drawRect; instance wrappers round only exact backing bounds. Textures and decorative subrectangles retain native geometry. Texture clipping, antialiasing and rounded hit testing are not provided; native rectangular hit areas remain. Native performance, pixels and input require runtime acceptance. These technical presentation tokens need no shared gameplay sandbox options.
+
+## Security-room main menu
+
+0.5.0-dev.1 adds an instance-only main-menu background adapter and decorative four-monitor animation; see [design, API evidence and runtime checks](MENU_BACKGROUND.md). Public API major 1 is unchanged. Native actions/controller label identities are retained, but main-menu label widths/position and logo placement now fit the left column. Esc rendering is unchanged. No shared state, save mutation or networking. New integration runtime NOT TESTED; offline fixtures are not game evidence.
