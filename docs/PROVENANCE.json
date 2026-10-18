@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "origin": "https://github.com/B47ANCE/B47ANCEDQuartermaster",
+  "source_commit": "2c1d663dadd68ec1757845ff90e14b6225908904",
+  "source_version": "0.21.0-dev.5",
+  "permission": "Owner explicitly authorized shared owned UI extraction on 2026-10-18.",
+  "files": [
+    {
+      "source": "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/Appearance.lua",
+      "sha256": "86dc0dc841b42e7c99fc24f7e9fb7e95adbad2f6d50b1bcee4f1fdfeabe281e0",
+      "destination": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Appearance.lua"
+    },
+    {
+      "source": "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/Controls.lua",
+      "sha256": "ad8e3bfb5700ffe17d55522b577fb984ce14aa1827b036fbbcde8ac879a6c73e",
+      "destination": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Controls.lua"
+    },
+    {
+      "source": "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/Dialog.lua",
+      "sha256": "5190495f6af79dcac3fc382b00252d86a1481a9423b4e980acff85ff2352e81c",
+      "destination": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Dialog.lua"
+    },
+    {
+      "source": "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/Renderer.lua",
+      "sha256": "ae63a0260e1ca354913588811804d6308ff2ad6e5164d4a2d6bb287346619122",
+      "destination": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Renderer.lua"
+    },
+    {
+      "source": "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/RowTooltip.lua",
+      "sha256": "ea660779cd4c78d803ef8521a3fabef4e715addb6ad398226ed9c2803b82edab",
+      "destination": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/RowTooltip.lua"
+    },
+    {
+      "source": "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/Theme.lua",
+      "sha256": "277e0d7c29382d4388ab1f423bc0f57d8020fc73d380fc4549c1edd93fd69e4d",
+      "destination": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Theme.lua"
+    },
+    {
+      "source": "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/Tooltip.lua",
+      "sha256": "ca821d54c7057324c5b59eb4e72c3ca2420fbdb77705faed8af35a394cb3898c",
+      "destination": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Tooltip.lua"
+    },
+    {
+      "source": "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDQuartermaster/AppearanceUI.lua",
+      "sha256": "dd02bfa982f1b239f66fbc424f7d8f2cde797cd02db19a7abb5dab61aa537501",
+      "destination": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/AppearanceEditor.lua"
+    },
+    {
+      "source": "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDQuartermaster/ClipboardArt.lua",
+      "sha256": "be162642d73b34b6f71524b94d6a0a85f9e4078de627924ebe4b098f55ab71fc",
+      "destination": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Clipboard.lua"
+    }
+  ],
+  "runtime": "NOT TESTED"
+}

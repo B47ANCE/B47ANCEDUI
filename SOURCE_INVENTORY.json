@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "canonical_version": "VERSION",
+  "source_roots": [
+    "src/B47ANCEDUI"
+  ],
+  "mod_ids": [
+    "B47ANCEDUI"
+  ],
+  "workshop_ids": [],
+  "generated_outputs": [
+    "dist/current/"
+  ],
+  "package_inventory": "scripts/production-files.json",
+  "intended_package": "dist/current/B47ANCEDUI-<VERSION>.zip",
+  "locales": [
+    "AR",
+    "CA",
+    "CH",
+    "CN",
+    "CS",
+    "DA",
+    "DE",
+    "EN",
+    "ES",
+    "ES_CL",
+    "ES_MX",
+    "FI",
+    "FR",
+    "HU",
+    "ID",
+    "IT",
+    "JP",
+    "KO",
+    "NL",
+    "NO",
+    "PL",
+    "PT",
+    "PTBR",
+    "RO",
+    "RU",
+    "STREW",
+    "TH",
+    "TR",
+    "UA"
+  ],
+  "validation_commands": [
+    "python -B scripts/check_versions.py",
+    "python -B tests/run_tests.py"
+  ],
+  "lua_only": true,
+  "artwork": "No fallback branding: UI is explicitly excluded by team policy."
+}

@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "id": "local-295e28ef7161",
+  "name": "B47ANCE'd UI",
+  "version": "0.1.0-dev.1",
+  "reviewed": true,
+  "source_digest": "d95295fc5aa1a13e8897606e338c0b8ddd44ddee0a993974ba66e39d5022d5a7",
+  "features": [
+    {
+      "status": "Source",
+      "text": "Public Lua client API 1: styled native controls, renderer, layout, dialogs, focus and bounded tooltips."
+    },
+    {
+      "status": "Source",
+      "text": "Consumer/player scoped local appearance with legacy import, lazy appearance editor and original clipboard drawing."
+    },
+    {
+      "status": "Planned",
+      "text": "Full vanilla UI overhaul, main-menu/CCTV and advanced layout editor are not implemented."
+    }
+  ],
+  "limits": "Native SP/controller/split-screen/dedicated NOT TESTED. No Workshop item. Lua-only client presentation; no gameplay ownership.",
+  "evidence": [
+    "README.md",
+    "docs/API.md",
+    "docs/PROVENANCE.json",
+    "docs/TESTING.md"
+  ],
+  "relations": []
+}

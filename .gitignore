@@ -1,0 +1,14 @@
+dist/
+.test-deps/
+__pycache__/
+*.pyc
+*.log
+.env*
+*.pem
+*.key
+local.settings*
+console.txt
+server-console*
+*.zip
+*.jar
+*.class
