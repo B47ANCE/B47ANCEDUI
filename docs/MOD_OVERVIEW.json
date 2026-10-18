@@ -4,7 +4,7 @@
   "name": "B47ANCE'd UI",
   "version": "0.1.0-dev.1",
   "reviewed": true,
-  "source_digest": "d95295fc5aa1a13e8897606e338c0b8ddd44ddee0a993974ba66e39d5022d5a7",
+  "source_digest": "ee9677d116e5a0269b359310af5c98c4763b232b2b94e2e4c3f70bfd207609f3",
   "features": [
     {
       "status": "Source",
@@ -17,14 +17,20 @@
     {
       "status": "Planned",
       "text": "Full vanilla UI overhaul, main-menu/CCTV and advanced layout editor are not implemented."
+    },
+    {
+      "status": "Source",
+      "text": "Public Workshop MP test item 3822582242 confirmed; deterministic package/provenance and canonical listing. Native/dedicated NOT TESTED."
     }
   ],
-  "limits": "Native SP/controller/split-screen/dedicated NOT TESTED. No Workshop item. Lua-only client presentation; no gameplay ownership.",
+  "limits": "Native SP/controller/split-screen/dedicated NOT TESTED. Public Workshop MP test item 3822582242; distribution is not runtime proof. Lua-only client presentation; no gameplay ownership.",
   "evidence": [
     "README.md",
     "docs/API.md",
     "docs/PROVENANCE.json",
-    "docs/TESTING.md"
+    "docs/TESTING.md",
+    "docs/WORKSHOP_PREPARATION.md",
+    "docs/WORKSHOP_PUBLICATION.md"
   ],
   "relations": []
 }

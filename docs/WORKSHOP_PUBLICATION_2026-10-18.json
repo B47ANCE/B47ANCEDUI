@@ -1,0 +1,21 @@
+{
+  "workshop_id": "3822582242",
+  "result": 1,
+  "consumer_app_id": 108600,
+  "visibility": 0,
+  "title": "B47ANCE'd UI",
+  "description_has_testing_label": true,
+  "file_size": "46671",
+  "banned": 0,
+  "description_sha256": "90172c53d7569520169ac9aab4235d4c5288ec4756de32db9930107e76a4e8f8",
+  "steamcmd_exit_code": 0,
+  "verified_commit_success": true,
+  "source_commit": "c8898283db0e723f314cf8a87faef115b706b97e",
+  "validation_commit": "37b9e5fbaaff055fdff97134ceabd4efdd92de7c",
+  "project_version": "0.1.0-dev.1",
+  "package_sha256": "dfda5d43a46f3f107abca8be1dbc4d1ff0ce269607ccdc8e1c1fb067483ba671",
+  "Steam_desktop_restart": "NOT PERFORMED - user explicitly declined",
+  "G7": "BLOCKED / NOT TESTED",
+  "stable_G8": "BLOCKED",
+  "initial_detector": "Expected Published File Id text; original result preserved. Actual commit-success line plus assigned VDF ID and public API establish success."
+}

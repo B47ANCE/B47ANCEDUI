@@ -7,9 +7,13 @@
   "mod_ids": [
     "B47ANCEDUI"
   ],
-  "workshop_ids": [],
+  "workshop_ids": [
+    "3822582242"
+  ],
   "generated_outputs": [
-    "dist/current/"
+    "dist/current/",
+    "dist/workshop-draft-*/",
+    "workshop/"
   ],
   "package_inventory": "scripts/production-files.json",
   "intended_package": "dist/current/B47ANCEDUI-<VERSION>.zip",

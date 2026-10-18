@@ -29,6 +29,14 @@
     {
       "path": "docs/MOD_OVERVIEW.json",
       "pattern": "^  \"version\": \"(?P<version>[^\\\"]+)\""
+    },
+    {
+      "path": "docs/WORKSHOP_PREPARATION.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/WORKSHOP_CHANGELOG.md",
+      "pattern": "^Version (?P<version>\\S+)$"
     }
   ],
   "changelog": {
@@ -43,7 +51,7 @@
         "zip_members": [
           {
             "member": "B47ANCEDUI/42/mod.info",
-            "pattern": "^modversion=(?P<version>\\S+)$"
+            "pattern": "^modversion=(?P<version>[^\\r\\n]+)\\r?$"
           }
         ]
       }
@@ -65,6 +73,10 @@
     {
       "reference": "docs/PROVENANCE.json",
       "reason": "Original owner-approved Quartermaster source version/commit/hashes; not current UI validation."
+    },
+    {
+      "reference": "docs/WORKSHOP_PUBLICATION.md; docs/WORKSHOP_PUBLICATION_2026-10-18.json",
+      "reason": "Immutable dated first upload/distribution proof; exact original version, commits and hashes are never upgraded to later source/runtime evidence."
     }
   ]
 }

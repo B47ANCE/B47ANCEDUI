@@ -1,4 +1,5 @@
 dist/
+workshop/
 .test-deps/
 __pycache__/
 *.pyc

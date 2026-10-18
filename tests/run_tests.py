@@ -5,6 +5,7 @@ from lupa.lua51 import LuaRuntime
 ROOT=Path(__file__).resolve().parents[1]
 subprocess.run([sys.executable,'-B',str(ROOT/'scripts/check_versions.py')],check=True)
 subprocess.run([sys.executable,'-B',str(ROOT/'scripts/check_source.py')],check=True)
+subprocess.run([sys.executable,'-B',str(ROOT/'tests/test_package.py')],check=True)
 for path in sorted((ROOT/'src').rglob('*.lua')):
     LuaRuntime().execute('assert(loadstring(...))',path.read_text())
 print('PASS Lua 5.1 syntax')
