@@ -23,9 +23,7 @@
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static6.png": "c87c64a549b6b808f09e632291f7c82f8c2f7b49e0bafb796e966d9b51822e61",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static7.png": "57cbd4aaca2abf88d4d29c5b60f1c5d648e519db998db0ba5c9fa0c6090c3f4c",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static8.png": "65137127a76a187573ad6d04c7f1f4f928b808ed387b0bd042cd4484ff6490cf",
-    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomWide.png": "74bd940b6498043f8315f75b290932a23c0b8f6bfc00839d2b42ebefe1d00d63",
-    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityWingLeft.png": "2c09a63ec0cd8e4538437efb3767a6b58da89912d14ac856ecb95f89d6f5271e",
-    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityWingRight.png": "722d69cf2bb51f1e9f27f6965f091857cf702966e651ce39429b5ca804c04142"
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "e19234ee5a873283c3bfd9e3c2791204a12027cb9212acdde589c59e23f6c69b"
   },
   "ultrawide": {
     "target_aspect": "32:9",
@@ -33,41 +31,47 @@
       5120,
       1440
     ],
-    "center_dimensions": [
-      1983,
-      793
+    "dimensions": [
+      2172,
+      724
     ],
-    "wing_dimensions": [
-      887,
-      1774
-    ],
+    "render_crop_padding": {
+      "top": 28,
+      "bottom": 32
+    },
     "transparent_apertures": [
       [
-        1015,
-        170,
-        1229,
-        315
+        1107,
+        190,
+        1270,
+        296
       ],
       [
-        1315,
-        170,
-        1528,
-        315
+        1337,
+        189,
+        1498,
+        296
       ],
       [
-        1016,
-        369,
-        1229,
-        511
+        1108,
+        342,
+        1270,
+        448
       ],
       [
-        1315,
-        368,
-        1528,
-        511
+        1337,
+        342,
+        1498,
+        448
       ]
     ],
-    "layout": "Center art is height-fitted and cropped on narrower viewports. Separate portrait wings fill side margins to 32:9 without stretching the CRTs. Other aspects may stretch only the wall wings.",
-    "origin": "Original user-directed built-in image edit/outpainting from the B47ANCE-owned security-room art; no third-party assets."
+    "screen_centres_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "layout": "One continuous panorama, uniformly cover-scaled and centered. Authoring edge padding is cropped outside the viewport. No separate side additions or seam overlays.",
+    "origin": "Original user-directed built-in image edit from the B47ANCE-owned security-room art; no third-party assets."
   }
 }

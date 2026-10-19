@@ -4,7 +4,7 @@
   "name": "B47ANCE'd UI",
   "version": "0.5.0-dev.3",
   "reviewed": true,
-  "source_digest": "44abfc2e35fef44b8c6e92ea6d2354ea46e978430c8842e86e6c3089bbff3818",
+  "source_digest": "2468ca146c9cf0fd5ba38744835a90d8293658112fd888eb9a800b25c641ab03",
   "features": [
     {
       "status": "Source",
@@ -32,7 +32,7 @@
     },
     {
       "status": "Source",
-      "text": "32:9 security-room art: undistorted central CRT image, cropped outer room on narrower viewports and two portrait wall panels filling ultrawide sides; 5120x1440 PZ runtime NOT TESTED."
+      "text": "One continuous security-room panorama, uniform cover scaling through 32:9, four transparent CRT interiors and a source-aligned left menu column. No separate side panels or seam overlays. PZ ultrawide runtime NOT TESTED."
     },
     {
       "status": "Source",

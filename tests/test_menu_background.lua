@@ -76,7 +76,7 @@ for i,d in ipairs(draws)do
   if d.texture==logo then logoIndex=i;assert(math.abs(d[1]+d[3]/2-(main.bottomPanel.x+main.bottomPanel.width/2))<.001 and d[3]<=448.001) end
 end
 assert(draws[1].kind=='rect' and artIndex and logoIndex>artIndex,'Layers in wrong order')
-assert(main.bottomPanel.x>40 and main.bottomPanel.y<400)
+assert(main.bottomPanel.x>=40 and main.bottomPanel.y<400)
 local item=main.bottomPanel.children[1]
 assert(math.abs(item.x+item.width/2-main.bottomPanel.width/2)<.001 and item.b47MenuScale>1)
 -- A later-added item joins without another boot; hidden/removed entries free space.
@@ -97,19 +97,26 @@ main:prerender()
 local last=main.bottomPanel.children[40]
 assert(last.y+last.height<=main.bottomPanel.height+.001 and last.b47MenuScale<1)
 for _,size in ipairs({{1280,720},{1024,768},{1920,1008},{3440,1440},{5120,1440}})do
- local x,y,s=B.geometry(size[1],size[2]);assert(y==0 and math.abs(793*s-size[2])<.001)
- assert(math.abs(x+(1983*s)/2-size[1]/2)<.001)
-end
-local ultra=screen(false);ultra.width=5120;ultra.height=1440
-assert(B.apply(ultra));draws={};ultra:prerender()
-local wingCount=0
-for _,d in ipairs(draws) do
- if d.texture and d.texture.path and d.texture.path:find('SecurityWing') then
-  wingCount=wingCount+1;assert(d[3]>0 and math.abs(d[4]-1440)<.001)
+ local w,h=size[1],size[2]
+ local x,y,s=B.geometry(w,h)
+ assert(x<=.001 and y+28*s<=.001 and x+2172*s>=w-.001 and y+(724-32)*s>=h-.001,'Panorama must cover viewport after padding crop')
+ assert(math.abs(x+2172*s/2-w/2)<.001)
+ local fitted=screen(false);fitted.width=w;fitted.height=h
+ assert(B.apply(fitted));fitted.b47MenuBackground.elapsed=2;draws={};fitted:prerender()
+ local roomCount,monitors,leftmost=0,0,math.huge
+ for _,d in ipairs(draws)do
+  local name=d.texture and d.texture.path
+  if name and name:find('SecurityRoomPanorama') then
+   roomCount=roomCount+1;assert(math.abs(d[3]/d[4]-2172/724)<.001,'Do not stretch room or CRTs')
+  elseif name and name:find('Static') then
+   monitors=monitors+1;leftmost=math.min(leftmost,d[1])
+   assert(d[1]>=0 and d[2]>=0 and d[1]+d[3]<=w and d[2]+d[4]<=h,'CRT aperture cropped')
+  end
+  assert(not name or not name:find('SecurityWing'),'No separate side additions')
  end
+ assert(roomCount==1 and monitors==4,'Draw one continuous room and four feeds')
+ assert(fitted.bottomPanel.x>=0 and fitted.bottomPanel.x+fitted.bottomPanel.width<leftmost,'Keep navigation clear of CRTs')
 end
-assert(wingCount==2,'32:9 must use both side panels')
-assert(ultra.bottomPanel.x>0 and ultra.bottomPanel.x+ultra.bottomPanel.width<5120)
 assert(gain==0 and calls==1,'Main menu must mute runtime music gain')
 main:prerender();assert(calls==1,'Do not repeatedly write unchanged gain')
 gain=.4;main:prerender();assert(gain==0 and calls==2,'Reapply after options volume preview')

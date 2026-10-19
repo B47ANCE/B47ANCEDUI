@@ -46,4 +46,4 @@ Publication-preparation tooling adds deterministic packaging, CRC/member/source 
 
 0.5.0-dev.3 mutes native music runtime gain while the security-room main menu renders; native exit restores the configured gain. Saved preferences and in-game/Esc audio are untouched. Audible storm suppression and audio restoration require runtime listening; NOT TESTED. See docs/MENU_BACKGROUND.md for source evidence and limits.
 
-0.5.0-dev.3 ultrawide [TESTED: offline]: center artwork scales to viewport height, wing panels cover both side margins at 5120x1440, CRT apertures remain source-aligned, and logo/menu column stays within the viewport. Actual PZ 32:9 rendering and resize remain [RUNTIME GATE] NOT TESTED.
+0.5.0-dev.3 ultrawide [TESTED: offline]: one panorama uniformly covers viewports from 1024x768 through 5120x1440, four CRT apertures remain visible and source-aligned, and the logo/menu column stays clear of the CRTs. Actual PZ 32:9 rendering and resize remain [RUNTIME GATE] NOT TESTED.

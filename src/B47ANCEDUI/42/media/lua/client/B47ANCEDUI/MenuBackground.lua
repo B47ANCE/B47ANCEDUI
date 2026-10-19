@@ -7,22 +7,21 @@ if U.MenuBackground then return U.MenuBackground end
 local B={};U.MenuBackground=B
 local path='media/ui/B47ANCEDUI/'
 local nativePre=MainScreen.prerender
-local imageWidth,imageHeight=1983,793
+local imageWidth,imageHeight=2172,724
+local trimTop,trimBottom=28,32
 -- Rectangles extend behind the opaque bezels; the artwork supplies rounded masks.
-local apertures={{1014,169,216,147},{1314,169,215,147},{1015,367,215,145},{1314,367,215,145}}
-local texture,leftWing,rightWing,frames
+local apertures={{1105,188,167,110},{1335,187,165,111},{1106,340,166,110},{1335,340,165,110}}
+local texture,frames
 local function loadArt()
  if texture then return true end
- local art=getTexture(path..'SecurityRoomWide.png')
- local left=getTexture(path..'SecurityWingLeft.png')
- local right=getTexture(path..'SecurityWingRight.png')
- if not art or not left or not right then return false end
+ local art=getTexture(path..'SecurityRoomPanorama.png')
+ if not art then return false end
  local loaded={}
  for i=1,8 do
   loaded[i]=getTexture(path..'Static'..i..'.png')
   if not loaded[i] then return false end
  end
- texture,leftWing,rightWing,frames=art,left,right,loaded;return true
+ texture,frames=art,loaded;return true
 end
 function B.newSession(seed)
  -- Private Park-Miller generator: never reseed or consume gameplay randomness.
@@ -44,20 +43,17 @@ function B.sample(m,time)
  return noise and 'static' or 'signal',frame,(age*.13+m.offset)%1
 end
 function B.geometry(width,height)
- -- Keep CRT proportions and height stable. Crop the sides on narrower viewports;
- -- the outer wall panels fill the extra width of a 32:9 desktop.
- local scale=height/imageHeight
- return (width-imageWidth*scale)/2,0,scale
+ -- One continuous image with uniform cover scaling; authoring-edge padding stays
+ -- outside the viewport. Narrow screens crop sides, ultrawide screens crop height.
+ local usableHeight=imageHeight-trimTop-trimBottom
+ local scale=math.max(width/imageWidth,height/usableHeight)
+ return (width-imageWidth*scale)/2,(height-usableHeight*scale)/2-trimTop*scale,scale
 end
 function B.draw(screen,session,dt)
  session.elapsed=session.elapsed+math.max(0,math.min(tonumber(dt) or 0,100))/1000
  local w,h=screen:getWidth(),screen:getHeight()
  local x,y,s=B.geometry(w,h)
  screen:drawRect(0,0,w,h,1,0,0,0)
- if x>0 then
-  screen:drawTextureScaled(leftWing,0,0,x,h,1,1,1,1)
-  screen:drawTextureScaled(rightWing,x+imageWidth*s,0,x,h,1,1,1,1)
- end
  for i,a in ipairs(apertures) do
   local ax,ay,aw,ah=x+a[1]*s,y+a[2]*s,a[3]*s,a[4]*s
   local mode,frame,scan=B.sample(session.monitors[i],session.elapsed)
@@ -73,14 +69,6 @@ function B.draw(screen,session,dt)
   end
  end
  screen:drawTextureScaled(texture,x,y,imageWidth*s,imageHeight*s,1,1,1,1)
- if x>0 then
-  -- Dark structural joints conceal small lighting differences between authored panels.
-  for i=1,2 do
-   local joint=i==1 and x or x+imageWidth*s
-   screen:drawRect(joint-20*s,0,40*s,h,.18,0,0,0)
-   screen:drawRect(joint-6*s,0,12*s,h,.28,0,0,0)
-  end
- end
 end
 function B.layout(screen,menuWidth,top,bottom)
  if U.NativeMenus then U.NativeMenus.apply(screen) end
@@ -141,7 +129,7 @@ function B.apply(screen)
   local menu=self.bottomPanel
   local artX,_,artScale=B.geometry(w,h)
   local menuWidth=math.min(math.max(self.maxMenuItemWidth or 0,w*.28),540*artScale)
-  local menuX=math.max(margin,math.min(w-menuWidth-margin,artX+580*artScale-menuWidth/2))
+  local menuX=math.max(margin,math.min(w-menuWidth-margin,artX+650*artScale-menuWidth/2))
   local logoScale=math.min(menuWidth/self.logoTexture:getWidth(),h*.34/self.logoTexture:getHeight())
   local logoHeight=self.logoTexture:getHeight()*logoScale
   local top=margin+logoHeight+margin*.7
