@@ -23,7 +23,7 @@ UI does not require Quartermaster, Rooms, PC Framework or custom Java/JAR compon
 
 MP testing build - dedicated multiplayer NOT TESTED
 
-Offline Lua 5.1 contracts, syntax, source inventory, translation coverage and package integrity fixtures passed. The earlier 0.5.0-dev.2 menu visuals were observed in an isolated local game profile; 0.5.0-dev.3 ultrawide and audio behavior, controller, split-screen, subscription/download and dedicated-server behavior are NOT TESTED. This is test distribution, not stable-release certification.
+Offline Lua 5.1 contracts, syntax, source inventory, translation coverage and package integrity fixtures passed. The earlier 0.5.0-dev.2 menu visuals were observed in an isolated local game profile; 0.5.0-dev.4 ultrawide and inherited audio behavior, controller, split-screen, subscription/download and dedicated-server behavior are NOT TESTED. This is test distribution, not stable-release certification.
 
 ## Configuration
 Consuming mods can expose the shared local appearance editor: background opacity, a #RRGGBB hex field and Red/Green/Blue sliders (0–255). Changes preview locally; Reset restores opacity 82 and grey #B0B0B0. Existing opacity-only settings retain their values. Values are isolated by mod and local player. Appearance settings do not change gameplay or server permissions. There are no shared-gameplay sandbox options in this presentation-only foundation.
@@ -41,4 +41,4 @@ Developed by B47ANCE'd Workshop. Original B47ANCE-owned shared code extracted fr
 
 ## Development background
 
-The 0.5.0-dev.3 development branch extends the security-room art for 32:9 screens and mutes title-screen music gain. Workshop currently remains at 0.3.0-dev.1. Native acceptance of this revision remains NOT TESTED.
+The 0.5.0-dev.4 development branch recomposes the security room for 32:9 screens with one wall/floor perspective and retains the title-screen music gain mute. Workshop currently remains at 0.3.0-dev.1. Native acceptance of this revision remains NOT TESTED.

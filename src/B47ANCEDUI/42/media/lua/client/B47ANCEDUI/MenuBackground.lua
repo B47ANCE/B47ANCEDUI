@@ -8,9 +8,8 @@ local B={};U.MenuBackground=B
 local path='media/ui/B47ANCEDUI/'
 local nativePre=MainScreen.prerender
 local imageWidth,imageHeight=2172,724
-local trimTop,trimBottom=28,32
 -- Rectangles extend behind the opaque bezels; the artwork supplies rounded masks.
-local apertures={{1105,188,167,110},{1335,187,165,111},{1106,340,166,110},{1335,340,165,110}}
+local apertures={{1361,144,187,130},{1620,144,189,130},{1361,318,187,126},{1620,318,189,126}}
 local texture,frames
 local function loadArt()
  if texture then return true end
@@ -43,11 +42,12 @@ function B.sample(m,time)
  return noise and 'static' or 'signal',frame,(age*.13+m.offset)%1
 end
 function B.geometry(width,height)
- -- One continuous image with uniform cover scaling; authoring-edge padding stays
- -- outside the viewport. Narrow screens crop sides, ultrawide screens crop height.
- local usableHeight=imageHeight-trimTop-trimBottom
- local scale=math.max(width/imageWidth,height/usableHeight)
- return (width-imageWidth*scale)/2,(height-usableHeight*scale)/2-trimTop*scale,scale
+ -- Uniform cover scaling; keep the rightmost CRT casing inside narrow viewports
+ -- by shifting the horizontal crop, without moving beyond the texture's edges.
+ local scale=math.max(width/imageWidth,height/imageHeight)
+ local x=math.min((width-imageWidth*scale)/2,width-1930*scale)
+ -- Keep the continuous overhead pipe and lamp visible; ultrawide crops floor.
+ return math.max(width-imageWidth*scale,x),0,scale
 end
 function B.draw(screen,session,dt)
  session.elapsed=session.elapsed+math.max(0,math.min(tonumber(dt) or 0,100))/1000
@@ -129,7 +129,7 @@ function B.apply(screen)
   local menu=self.bottomPanel
   local artX,_,artScale=B.geometry(w,h)
   local menuWidth=math.min(math.max(self.maxMenuItemWidth or 0,w*.28),540*artScale)
-  local menuX=math.max(margin,math.min(w-menuWidth-margin,artX+650*artScale-menuWidth/2))
+  local menuX=math.max(margin,math.min(w-menuWidth-margin,artX+700*artScale-menuWidth/2))
   local logoScale=math.min(menuWidth/self.logoTexture:getWidth(),h*.34/self.logoTexture:getHeight())
   local logoHeight=self.logoTexture:getHeight()*logoScale
   local top=margin+logoHeight+margin*.7

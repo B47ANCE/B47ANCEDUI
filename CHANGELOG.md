@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.0-dev.4]
+- Compatible PATCH correction: recompose the whole room from the original desk artwork with one continuous back wall, pipe run, floor perspective and lamp. Remove the architecture that still made 0.5.0-dev.3 look spliced.
+- Update four genuine transparent CRT masks and keep the right CRT group visible during uniform cover cropping. Menu actions, static timing and audio behavior are unchanged.
+- Offline alpha, source, geometry and regression checks; actual PZ rendering for this revision NOT TESTED. The rejected 0.5.0-dev.3 source/CI checks did not prove visual continuity.
+
 ## [0.5.0-dev.3]
 - Replace the side additions with one continuous security-room panorama. Uniform cover scaling fills 32:9 and narrower viewports without stretching the CRTs; the room has no panel joins or seam overlays.
 - Compatible PATCH refinement of the unreleased 0.5 UI: mute native menu music runtime gain while the security-room title screen renders. No saved audio options are changed; native menu exit restores the configured volume, and Esc/in-game rendering is excluded.

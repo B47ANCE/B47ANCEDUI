@@ -23,7 +23,7 @@
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static6.png": "c87c64a549b6b808f09e632291f7c82f8c2f7b49e0bafb796e966d9b51822e61",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static7.png": "57cbd4aaca2abf88d4d29c5b60f1c5d648e519db998db0ba5c9fa0c6090c3f4c",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static8.png": "65137127a76a187573ad6d04c7f1f4f928b808ed387b0bd042cd4484ff6490cf",
-    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "e19234ee5a873283c3bfd9e3c2791204a12027cb9212acdde589c59e23f6c69b"
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "b700ac07c29d6ec5b0b610e33a4057eef2c9f4e9df6defa6c1e73406a5391236"
   },
   "ultrawide": {
     "target_aspect": "32:9",
@@ -35,34 +35,30 @@
       2172,
       724
     ],
-    "render_crop_padding": {
-      "top": 28,
-      "bottom": 32
-    },
     "transparent_apertures": [
       [
-        1107,
-        190,
-        1270,
-        296
+        1364,
+        146,
+        1545,
+        271
       ],
       [
-        1337,
-        189,
-        1498,
-        296
+        1622,
+        146,
+        1806,
+        271
       ],
       [
-        1108,
-        342,
-        1270,
-        448
+        1363,
+        320,
+        1545,
+        441
       ],
       [
-        1337,
-        342,
-        1498,
-        448
+        1622,
+        320,
+        1806,
+        441
       ]
     ],
     "screen_centres_alpha": [
@@ -71,7 +67,7 @@
       0,
       0
     ],
-    "layout": "One continuous panorama, uniformly cover-scaled and centered. Authoring edge padding is cropped outside the viewport. No separate side additions or seam overlays.",
-    "origin": "Original user-directed built-in image edit from the B47ANCE-owned security-room art; no third-party assets."
+    "layout": "One newly composed room: continuous flat back wall, single horizontal pipe run and wall/floor junction, shared floor perspective and one lamp. Uniform cover scaling; narrow horizontal crops retain the right CRT group. No separate side rooms, doors, tall cabinets, side additions or seam overlays. The image is top-aligned so ultrawide cover cropping removes lower floor rather than the overhead pipe and lamp.",
+    "origin": "Original user-directed built-in image recomposition from the original B47ANCE-owned 16:9 desk art; the rejected spliced panorama was not a composition reference."
   }
 }

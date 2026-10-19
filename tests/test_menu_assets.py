@@ -36,10 +36,10 @@ for y in range(height):
         predictor=(0,left,above,(left+above)//2,paeth(left,above,corner))[kind]
         row[x]=(row[x]+predictor)&255
     rows.append(row);prior=row
-for x,y in [(1180,240),(1420,240),(1180,400),(1420,400)]:
+for x,y in [(1450,200),(1700,200),(1450,380),(1700,380)]:
     assert rows[y][x*4+3]==0,'CRT glass must be actual transparency, not painted checkerboard'
-holes=[(1105,188,1272,298),(1335,187,1500,298),(1106,340,1272,450),(1335,340,1500,450)]
-for y in range(28,height-32):
+holes=[(1361,144,1548,274),(1620,144,1809,274),(1361,318,1548,444),(1620,318,1809,444)]
+for y in range(height):
     for x in range(width):
         if rows[y][x*4+3]==0:
             assert any(x0<=x<x1 and y0<=y<y1 for x0,y0,x1,y1 in holes),'Unexpected transparent hole in visible scenery'

@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.5.0-dev.3
+Project Version: 0.5.0-dev.4
 
 Client only. `local API=require 'B47ANCEDUI/API'`; `API.requireVersion(1)` returns the provider or errors for an unsupported API major before application UI is constructed. `API.apiVersion` is the independent contract major; `API.version` is the project version. API 1 is the initial contract. Add `B47ANCEDUI` to mod.info `require`; no bundled implementation fallback or private module require is supported for consumers.
 
