@@ -7,20 +7,22 @@ if U.MenuBackground then return U.MenuBackground end
 local B={};U.MenuBackground=B
 local path='media/ui/B47ANCEDUI/'
 local nativePre=MainScreen.prerender
-local imageWidth,imageHeight=1672,941
+local imageWidth,imageHeight=1983,793
 -- Rectangles extend behind the opaque bezels; the artwork supplies rounded masks.
-local apertures={{791,157,280,200},{1157,157,278,200},{791,414,280,199},{1157,414,278,199}}
-local texture,frames
+local apertures={{1014,169,216,147},{1314,169,215,147},{1015,367,215,145},{1314,367,215,145}}
+local texture,leftWing,rightWing,frames
 local function loadArt()
  if texture then return true end
- local art=getTexture(path..'SecurityRoom.png')
- if not art then return false end
+ local art=getTexture(path..'SecurityRoomWide.png')
+ local left=getTexture(path..'SecurityWingLeft.png')
+ local right=getTexture(path..'SecurityWingRight.png')
+ if not art or not left or not right then return false end
  local loaded={}
  for i=1,8 do
   loaded[i]=getTexture(path..'Static'..i..'.png')
   if not loaded[i] then return false end
  end
- texture,frames=art,loaded;return true
+ texture,leftWing,rightWing,frames=art,left,right,loaded;return true
 end
 function B.newSession(seed)
  -- Private Park-Miller generator: never reseed or consume gameplay randomness.
@@ -42,14 +44,20 @@ function B.sample(m,time)
  return noise and 'static' or 'signal',frame,(age*.13+m.offset)%1
 end
 function B.geometry(width,height)
- local scale=math.min(width/imageWidth,height/imageHeight)
- return (width-imageWidth*scale)/2,(height-imageHeight*scale)/2,scale
+ -- Keep CRT proportions and height stable. Crop the sides on narrower viewports;
+ -- the outer wall panels fill the extra width of a 32:9 desktop.
+ local scale=height/imageHeight
+ return (width-imageWidth*scale)/2,0,scale
 end
 function B.draw(screen,session,dt)
  session.elapsed=session.elapsed+math.max(0,math.min(tonumber(dt) or 0,100))/1000
  local w,h=screen:getWidth(),screen:getHeight()
  local x,y,s=B.geometry(w,h)
  screen:drawRect(0,0,w,h,1,0,0,0)
+ if x>0 then
+  screen:drawTextureScaled(leftWing,0,0,x,h,1,1,1,1)
+  screen:drawTextureScaled(rightWing,x+imageWidth*s,0,x,h,1,1,1,1)
+ end
  for i,a in ipairs(apertures) do
   local ax,ay,aw,ah=x+a[1]*s,y+a[2]*s,a[3]*s,a[4]*s
   local mode,frame,scan=B.sample(session.monitors[i],session.elapsed)
@@ -65,6 +73,14 @@ function B.draw(screen,session,dt)
   end
  end
  screen:drawTextureScaled(texture,x,y,imageWidth*s,imageHeight*s,1,1,1,1)
+ if x>0 then
+  -- Dark structural joints conceal small lighting differences between authored panels.
+  for i=1,2 do
+   local joint=i==1 and x or x+imageWidth*s
+   screen:drawRect(joint-20*s,0,40*s,h,.18,0,0,0)
+   screen:drawRect(joint-6*s,0,12*s,h,.28,0,0,0)
+  end
+ end
 end
 function B.layout(screen,menuWidth,top,bottom)
  if U.NativeMenus then U.NativeMenus.apply(screen) end
@@ -123,7 +139,9 @@ function B.apply(screen)
   local w,h=self:getWidth(),self:getHeight()
   local margin=math.max(16,w*.025)
   local menu=self.bottomPanel
-  local menuWidth=math.max(self.maxMenuItemWidth or 0,w*.28)
+  local artX,_,artScale=B.geometry(w,h)
+  local menuWidth=math.min(math.max(self.maxMenuItemWidth or 0,w*.28),540*artScale)
+  local menuX=math.max(margin,math.min(w-menuWidth-margin,artX+580*artScale-menuWidth/2))
   local logoScale=math.min(menuWidth/self.logoTexture:getWidth(),h*.34/self.logoTexture:getHeight())
   local logoHeight=self.logoTexture:getHeight()*logoScale
   local top=margin+logoHeight+margin*.7
@@ -134,14 +152,14 @@ function B.apply(screen)
   self.drawTextureScaled=function(owner,tex,tx,ty,tw,th,...)
    if tex==owner.logoTexture then
     tw,th=tex:getWidth()*logoScale,logoHeight
-    tx,ty=margin+(menuWidth-tw)/2,margin
+    tx,ty=menuX+(menuWidth-tw)/2,margin
    end
    return originalDraw(owner,tex,tx,ty,tw,th,...)
   end
   local ok,result=pcall(nativePre,self,...)
   self.drawTextureScaled=previousRaw
   if not ok then error(result) end
-  menu:setX(margin);menu:setY(top);menu:setWidth(menuWidth)
+  menu:setX(menuX);menu:setY(top);menu:setWidth(menuWidth)
   B.layout(self,menuWidth,top,h-margin)
   return result
  end

@@ -45,3 +45,5 @@ Publication-preparation tooling adds deterministic packaging, CRC/member/source 
 0.5.0-dev.2: responsive, centered main-menu rows dynamically discover visible direct ISLabel/ISButton entries. Known native label renderers support enlarged text; foreign custom renderers retain their draw paths. Initial static is independently 1-60 seconds, then each monitor stays in its no-signal loop. See MENU_BACKGROUND.md for compatibility boundaries and offline evidence. New layout/timing runtime NOT TESTED.
 
 0.5.0-dev.3 mutes native music runtime gain while the security-room main menu renders; native exit restores the configured gain. Saved preferences and in-game/Esc audio are untouched. Audible storm suppression and audio restoration require runtime listening; NOT TESTED. See docs/MENU_BACKGROUND.md for source evidence and limits.
+
+0.5.0-dev.3 ultrawide [TESTED: offline]: center artwork scales to viewport height, wing panels cover both side margins at 5120x1440, CRT apertures remain source-aligned, and logo/menu column stays within the viewport. Actual PZ 32:9 rendering and resize remain [RUNTIME GATE] NOT TESTED.

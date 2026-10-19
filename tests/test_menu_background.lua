@@ -73,19 +73,19 @@ assert(main.drawTextureScaled==draw,'Temporary logo draw override leaked')
 local artIndex,logoIndex
 for i,d in ipairs(draws)do
  if d.texture and d.texture.path and d.texture.path:find('SecurityRoom') then artIndex=i end
-  if d.texture==logo then logoIndex=i;assert(math.abs(d[1]+d[3]/2-264)<.001 and d[3]<=448.001) end
+  if d.texture==logo then logoIndex=i;assert(math.abs(d[1]+d[3]/2-(main.bottomPanel.x+main.bottomPanel.width/2))<.001 and d[3]<=448.001) end
 end
 assert(draws[1].kind=='rect' and artIndex and logoIndex>artIndex,'Layers in wrong order')
-assert(main.bottomPanel.x==40 and main.bottomPanel.y<400)
+assert(main.bottomPanel.x>40 and main.bottomPanel.y<400)
 local item=main.bottomPanel.children[1]
-assert(math.abs(item.x+item.width/2-224)<.001 and item.b47MenuScale>1)
+assert(math.abs(item.x+item.width/2-main.bottomPanel.width/2)<.001 and item.b47MenuScale>1)
 -- A later-added item joins without another boot; hidden/removed entries free space.
 local extra=screen(false).bottomPanel.children[1]
 extra.name='OTHER MOD';extra.y=100;extra.getIsVisible=function(self)return not self.hidden end
 main.bottomPanel.children[2]=extra
 main:prerender()
 local twoHeight=item.height
-assert(extra.y>item.y and math.abs(extra.x+extra.width/2-224)<.001)
+assert(extra.y>item.y and math.abs(extra.x+extra.width/2-main.bottomPanel.width/2)<.001)
 extra.hidden=true;main:prerender();assert(item.height>twoHeight)
 extra.hidden=false;main:prerender();assert(item.height==twoHeight)
 main.bottomPanel.children[2]=nil;main:prerender();assert(item.height>twoHeight)
@@ -96,9 +96,20 @@ end
 main:prerender()
 local last=main.bottomPanel.children[40]
 assert(last.y+last.height<=main.bottomPanel.height+.001 and last.b47MenuScale<1)
-for _,size in ipairs({{1280,720},{1024,768},{3440,1440}})do
- local x,y,s=B.geometry(size[1],size[2]);assert(x>=0 and y>=0 and 1672*s<=size[1]+.001 and 941*s<=size[2]+.001)
+for _,size in ipairs({{1280,720},{1024,768},{1920,1008},{3440,1440},{5120,1440}})do
+ local x,y,s=B.geometry(size[1],size[2]);assert(y==0 and math.abs(793*s-size[2])<.001)
+ assert(math.abs(x+(1983*s)/2-size[1]/2)<.001)
 end
+local ultra=screen(false);ultra.width=5120;ultra.height=1440
+assert(B.apply(ultra));draws={};ultra:prerender()
+local wingCount=0
+for _,d in ipairs(draws) do
+ if d.texture and d.texture.path and d.texture.path:find('SecurityWing') then
+  wingCount=wingCount+1;assert(d[3]>0 and math.abs(d[4]-1440)<.001)
+ end
+end
+assert(wingCount==2,'32:9 must use both side panels')
+assert(ultra.bottomPanel.x>0 and ultra.bottomPanel.x+ultra.bottomPanel.width<5120)
 assert(gain==0 and calls==1,'Main menu must mute runtime music gain')
 main:prerender();assert(calls==1,'Do not repeatedly write unchanged gain')
 gain=.4;main:prerender();assert(gain==0 and calls==2,'Reapply after options volume preview')
