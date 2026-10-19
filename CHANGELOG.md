@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.0-dev.5]
+- Compatible PATCH artwork/layout refinement: expand the continuous room view to the right of the desk, retaining one wall, paint boundary, pipe, floor perspective and lamp. The desk is reframed toward the center-left.
+- Retarget the four transparent CRT masks and left menu column; narrow crops keep the menu/desk group visible while ultrawide displays reveal more right scenery. API, actions, monitor timing and audio behavior unchanged.
+- Offline alpha, geometry, source and regression checks; PZ runtime for this artwork NOT TESTED.
+
 ## [0.5.0-dev.4]
 - Compatible PATCH correction: recompose the whole room from the original desk artwork with one continuous back wall, pipe run, floor perspective and lamp. Remove the architecture that still made 0.5.0-dev.3 look spliced.
 - Update four genuine transparent CRT masks and keep the right CRT group visible during uniform cover cropping. Menu actions, static timing and audio behavior are unchanged.

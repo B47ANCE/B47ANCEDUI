@@ -100,7 +100,7 @@ for _,size in ipairs({{1280,720},{1024,768},{1920,1008},{3440,1440},{5120,1440}}
  local w,h=size[1],size[2]
  local x,y,s=B.geometry(w,h)
  assert(x<=.001 and y<=.001 and x+2172*s>=w-.001 and y+724*s>=h-.001,'Panorama must cover viewport')
- assert(x+1930*s<=w+.001 and y==0,'Retain right CRT casing and overhead pipe')
+ assert(x+695*s>=-.001 and x+1145*s<=w+.001 and y==0,'Retain CRT casings and overhead pipe')
  local fitted=screen(false);fitted.width=w;fitted.height=h
  assert(B.apply(fitted));fitted.b47MenuBackground.elapsed=2;draws={};fitted:prerender()
  local roomCount,monitors,leftmost=0,0,math.huge

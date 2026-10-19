@@ -1,6 +1,6 @@
 # Validation
 
-Project Version: 0.5.0-dev.4
+Project Version: 0.5.0-dev.5
 
 Commands: `python -B scripts/check_versions.py`; `python -B tests/run_tests.py`.
 
@@ -49,3 +49,5 @@ Publication-preparation tooling adds deterministic packaging, CRC/member/source 
 0.5.0-dev.4 ultrawide [TESTED: offline]: one panorama uniformly covers viewports from 1024x768 through 5120x1440, four CRT apertures remain visible and source-aligned, and the logo/menu column stays clear of the CRTs. Actual PZ 32:9 rendering and resize remain [RUNTIME GATE] NOT TESTED.
 
 0.5.0-dev.4 replaces the rejected visual composition. Alpha checks inspect the entire PNG for unintended transparent holes, and the four new CRT mask rectangles are checked in all viewport fixtures. A single PNG and passing geometry tests alone do not establish coherent room perspective; full-width art/preview inspection is recorded separately in MENU_BACKGROUND.md. PZ runtime NOT TESTED.
+
+0.5.0-dev.5 right extension [TESTED: offline]: current PNG alpha is decoded against four new aperture bounds; viewport fixtures retain both CRT casings and a separate left menu column. The right scene is shown as the viewport widens. Actual PZ rendering and input acceptance for this artwork remain NOT TESTED.

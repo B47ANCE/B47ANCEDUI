@@ -1,6 +1,6 @@
 name=B47ANCE'd UI
 id=B47ANCEDUI
 author=B47ANCE
-modversion=0.5.0-dev.4
+modversion=0.5.0-dev.5
 versionMin=42.21.0
 description=Lua-only shared presentation framework. Public client API 1: native controls, styling, rendering, layout, focus, dialogs, tooltips, scoped local appearance and clipboard drawing. Native main/Esc navigation text styling preserves original actions. No gameplay ownership or Quartermaster dependency. Native SP/controller/split-screen NOT TESTED.

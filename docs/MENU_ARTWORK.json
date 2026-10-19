@@ -23,7 +23,7 @@
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static6.png": "c87c64a549b6b808f09e632291f7c82f8c2f7b49e0bafb796e966d9b51822e61",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static7.png": "57cbd4aaca2abf88d4d29c5b60f1c5d648e519db998db0ba5c9fa0c6090c3f4c",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static8.png": "65137127a76a187573ad6d04c7f1f4f928b808ed387b0bd042cd4484ff6490cf",
-    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "b700ac07c29d6ec5b0b610e33a4057eef2c9f4e9df6defa6c1e73406a5391236"
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "af4ad97afa413ceaa5ce34c547e6a4610a6a2914a55c766a2eee8e88238d39bf"
   },
   "ultrawide": {
     "target_aspect": "32:9",
@@ -37,28 +37,28 @@
     ],
     "transparent_apertures": [
       [
-        1364,
-        146,
-        1545,
-        271
+        741,
+        175,
+        885,
+        272
       ],
       [
-        1622,
-        146,
-        1806,
-        271
+        948,
+        175,
+        1095,
+        273
       ],
       [
-        1363,
-        320,
-        1545,
-        441
+        741,
+        314,
+        885,
+        409
       ],
       [
-        1622,
-        320,
-        1806,
-        441
+        948,
+        314,
+        1095,
+        408
       ]
     ],
     "screen_centres_alpha": [
@@ -67,7 +67,7 @@
       0,
       0
     ],
-    "layout": "One newly composed room: continuous flat back wall, single horizontal pipe run and wall/floor junction, shared floor perspective and one lamp. Uniform cover scaling; narrow horizontal crops retain the right CRT group. No separate side rooms, doors, tall cabinets, side additions or seam overlays. The image is top-aligned so ultrawide cover cropping removes lower floor rather than the overhead pipe and lamp.",
-    "origin": "Original user-directed built-in image recomposition from the original B47ANCE-owned 16:9 desk art; the rejected spliced panorama was not a composition reference."
+    "layout": "Continuous room with an expanded right field of view. Desk is reframed toward the center-left; the same wall paint boundary, pipe, baseboard and floor perspective continue into the open right area. Uniform top-aligned cover scaling focuses narrow crops on the menu/desk group and reveals more right scenery at ultrawide ratios. No separate panels.",
+    "origin": "Original user-directed built-in image edit of the accepted 0.5.0-dev.4 room to add right-side scenery. The image was recomposed within the 3:1 output, moving and reducing the desk relative to the frame rather than preserving earlier pixel coordinates."
   }
 }

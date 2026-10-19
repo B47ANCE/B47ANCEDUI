@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.5.0-dev.4",
+  "version": "0.5.0-dev.5",
   "reviewed": true,
-  "source_digest": "3ea405791e2bbb56345fb52416909b60e9e6bd792264e40bc461e80fbd85a980",
+  "source_digest": "8ef46159098b410ccb77f16771cdf33abdbcd70d3fb11a2e9a42ee9908ce1aaa",
   "features": [
     {
       "status": "Source",
@@ -32,7 +32,7 @@
     },
     {
       "status": "Source",
-      "text": "Recomposed security room with one continuous wall, pipe run, floor perspective and lamp; uniform cover scaling through 32:9, four transparent CRT interiors and a left menu column. PZ runtime NOT TESTED."
+      "text": "Continuous security room expanded to the right: desk reframed toward center-left, one wall/pipe/baseboard/floor perspective and lamp, uniform cover scaling through 32:9 with four transparent CRTs and a separate left menu. PZ runtime NOT TESTED."
     },
     {
       "status": "Source",
@@ -51,7 +51,7 @@
       "text": "Public Workshop MP test item 3822582242 updated to 0.3.0-dev.1 with source/package/stage parity and independent public description verification; native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.5.0-dev.4 development source only; Workshop remains 0.3.0-dev.1. 0.5.0-dev.2 visual menu was observed in an isolated local game profile; 0.5.0-dev.4 audio and ultrawide layout runtime NOT TESTED. Other main-menu render replacements are skipped. Offline tests do not establish native, controller, split-screen or dedicated acceptance. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
+  "limits": "0.5.0-dev.5 development source only; Workshop remains 0.3.0-dev.1. 0.5.0-dev.2 visual menu was observed in an isolated local game profile; 0.5.0-dev.5 audio and ultrawide layout runtime NOT TESTED. Other main-menu render replacements are skipped. Offline tests do not establish native, controller, split-screen or dedicated acceptance. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
   "evidence": [
     "README.md",
     "docs/API.md",
