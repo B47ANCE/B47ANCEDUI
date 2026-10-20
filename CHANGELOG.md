@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.5.0-dev.11]
+- Compatible PATCH: apply the user-selected room with the horizontal pipe extended straight across the left wall at its existing height. Use the approved generated PNG unchanged; retain the four transparent CRT openings and room composition.
+- Match CRT masks/crop to the selected artwork. Keep all four casings visible from 4:3 through 32:9 and place the dynamic logo/menu below the pipe, above the baseboard and before the vertical conduit.
+- Public API 1, callbacks, status ownership, 1-60 second startup static, no-signal loops and audio behavior remain unchanged. Authorized Workshop MP testing update; native rendering and dedicated acceptance NOT TESTED, G7/stable G8 BLOCKED.
+
+## [0.5.0-dev.10]
+- Compatible PATCH: regenerate the entire security room in one image-generation pass, with one wall, floor, conduit system and lighting scheme. No side-panel compositing; retain the quiet menu wall and bunker decorations.
+- Retarget all four genuine transparent CRT apertures. Update the crop focus to retain the new monitor casings at 4:3 and fit the logo/menu within the quiet wall at source X440/Y72-470, before its conduit.
+- Strengthen alpha validation to check full inset glass interiors. Public API 1, native actions, dynamic entries, startup/static timing and audio behavior remain unchanged. Offline validation only; not deployed or uploaded. Workshop remains dev.8.
+
+## [0.5.0-dev.9]
+- Pipe art refinement: extend one straight highest run to the left edge and remove its old left ascent/lower segment; retain a single coupled connection at the right. No Lua/layout or public API change.
+- Compatible PATCH: recenter logo/navigation on the open wall at source X405 and fit the complete dynamic column inside source Y72-470, above the baseboard. Limit logo height to 34% of that wall region; preserve aspect ratio, native actions and status-note rows.
+- Rework original artwork: tuck vent/footlocker farther left, calm the wall behind the menu and route the overhead pipe continuously above it. Four transparent CRTs and continuous right-hand room retained.
+- New wall-bound regression fails on dev.8 and passes offline across the nine standard/ultrawide viewports with normal/oversized widths. Native rendering for this revision NOT TESTED; not deployed or uploaded. Workshop remains dev.8.
+
 ## [0.5.0-dev.8]
 - Compatible PATCH: cap the main-menu/logo column before the outer CRT casing, including long translated or mod-added labels at 1024x768. Existing fit/truncation and row scaling preserve actions and screen visibility.
 - Regression reproduces the prior bezel overlap; expanded standard 720p/1080p/1440p/4K and 4:3/21:9/32:9 matrices pass with normal and oversized menu-width requests. Native PZ/input and dedicated multiplayer remain NOT TESTED.

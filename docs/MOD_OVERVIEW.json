@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.5.0-dev.8",
+  "version": "0.5.0-dev.11",
   "reviewed": true,
-  "source_digest": "7879d17155c8efe24e19acac0914b2652dfe24e29c9d0fc3811747aa166fb56f",
+  "source_digest": "2625a8235493ab60b8a21c18ccf9fcd107dfb0781a0c17037a41620370fdf018",
   "features": [
     {
       "status": "Source",
@@ -40,6 +40,10 @@
     },
     {
       "status": "Source",
+      "text": "Dev.11 selected pipe artwork: existing horizontal conduit extends across the left wall; logo/menu center405, wallY116-470/right600, cropfocus680 and measured CRT masks. User-selected PNG unchanged; standard/ultrawide offline tests, native rendering NOT TESTED."
+    },
+    {
+      "status": "Source",
       "text": "Optional PZOPT_MENU title/status adapter: shared centered menu title, reserved live version/update line beneath, aligned controller glyph and original callback/render/status ownership; no external dependency or code reuse. Native integration NOT TESTED."
     },
     {
@@ -59,7 +63,7 @@
       "text": "Public Workshop MP test item 3822582242 updated to 0.5.0-dev.8 with 52-file source/package/stage parity and exact independent public description verification; native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.5.0-dev.8 public Workshop MP testing distribution verified. Standard 4:3/16:9 through 4K and 21:9/32:9 layout fixtures pass offline, including long-label casing bounds. Native rendering/input/controller, optional provider states, audible rain/thunder suppression, transition audio, split-screen, download and dedicated NOT TESTED. Historical dev.2 menu approval stays historical. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership. Steam left unchanged by user choice.",
+  "limits": "0.5.0-dev.11 development source only; Workshop remains 0.5.0-dev.8. Standard 4:3/16:9 through 4K and 21:9/32:9 wall-layout fixtures pass offline with normal/long labels. User dev8 screenshot demonstrates that earlier art/menu rendered, not dev11 or MP acceptance. Current native render/input/controller, font sizes, provider states, audio, download and dedicated acceptance NOT TESTED. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -77,7 +81,10 @@
     "docs/MENU_ARTWORK.json",
     "docs/THIRD_PARTY_RESEARCH.md",
     "docs/WORKSHOP_SECURITY_ROOM_UPDATE.md",
-    "docs/WORKSHOP_UPDATE_0.5.0-dev.8_2026-10-19.json"
+    "docs/WORKSHOP_UPDATE_0.5.0-dev.8_2026-10-19.json",
+    "docs/MENU_WALL_ART_PROMPT.md",
+    "docs/MENU_ROOM_REGENERATION_PROMPT.md",
+    "docs/MENU_SELECTED_PIPE_PROMPT.md"
   ],
   "relations": []
 }

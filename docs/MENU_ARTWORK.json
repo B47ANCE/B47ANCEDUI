@@ -23,7 +23,7 @@
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static6.png": "c87c64a549b6b808f09e632291f7c82f8c2f7b49e0bafb796e966d9b51822e61",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static7.png": "57cbd4aaca2abf88d4d29c5b60f1c5d648e519db998db0ba5c9fa0c6090c3f4c",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static8.png": "65137127a76a187573ad6d04c7f1f4f928b808ed387b0bd042cd4484ff6490cf",
-    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "1c42089ecce3c10f534f09e3f711b3742b3424d5824093a4cf948fb4309a5684"
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "340e86248af1da41a23bda51a46ecd7fff39d356096a8ebf6313d7685c87d5c0"
   },
   "ultrawide": {
     "target_aspect": "32:9",
@@ -37,28 +37,28 @@
     ],
     "transparent_apertures": [
       [
-        741,
-        175,
-        885,
-        272
+        742,
+        180,
+        883,
+        261
       ],
       [
-        948,
-        175,
-        1095,
-        273
+        953,
+        179,
+        1093,
+        264
       ],
       [
-        741,
-        314,
-        885,
-        409
+        742,
+        320,
+        882,
+        403
       ],
       [
-        948,
-        314,
-        1095,
-        408
+        952,
+        320,
+        1093,
+        403
       ]
     ],
     "screen_centres_alpha": [
@@ -67,8 +67,48 @@
       0,
       0
     ],
-    "layout": "Continuous room with an expanded right field of view. Desk is reframed toward the center-left; the same wall paint boundary, pipe, baseboard and floor perspective continue into the open right area. Uniform top-aligned cover scaling focuses narrow crops on the menu/desk group and reveals more right scenery at ultrawide ratios. No separate panels.",
-    "origin": "Original built-in image edit of the 0.5.0-dev.5 right-expanded room, adding user-requested security/bunker decoration. Source image used as generated; no external mod assets.",
-    "decoration": "Three filing cabinets, document boxes/binders, floor-plan noticeboard, key rack, intercom and extinguisher to the right; a low footlocker/folders and ventilation grille at the far left. Quiet middle-left menu area retained."
+    "layout": "User-selected continuous room with one straight horizontal pipe extended across the left wall at its existing height. Desk and four CRTs retain the selected composition; uniform top-aligned cover scaling focuses standard viewports on menu/desk and reveals right decoration on ultrawide displays.",
+    "origin": "User-supplied owned panorama edited with built-in image generation to complete only the missing left horizontal pipe. User explicitly selected this output for application/publication. PNG used unchanged. Prompt and SHA: MENU_SELECTED_PIPE_PROMPT.md. Earlier redraws remain historical.",
+    "decoration": "Small far-left vent and low footlocker; quiet left menu wall. Desk with four CRTs, keyboard, mug, papers and radio. Right filing cabinets, archive boxes, noticeboard, keys, telephone and extinguisher, all regenerated together.",
+    "menu_wall": {
+      "source_anchor_x": 405,
+      "top": 116,
+      "bottom": 470,
+      "logo_height_max_fraction": 0.34,
+      "note": "Lua lays out dynamic menu entries inside this clear wall; these are internal image coordinates.",
+      "right": 600,
+      "source_width_max": 360
+    },
+    "crop_focus_x": 680,
+    "crt_casing_span": [
+      695,
+      1145
+    ],
+    "animation_rectangles": [
+      [
+        739,
+        173,
+        148,
+        101
+      ],
+      [
+        946,
+        173,
+        151,
+        102
+      ],
+      [
+        739,
+        312,
+        148,
+        100
+      ],
+      [
+        946,
+        312,
+        151,
+        99
+      ]
+    ]
   }
 }
