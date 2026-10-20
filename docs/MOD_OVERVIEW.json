@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.5.0-dev.5",
+  "version": "0.5.0-dev.6",
   "reviewed": true,
-  "source_digest": "8ef46159098b410ccb77f16771cdf33abdbcd70d3fb11a2e9a42ee9908ce1aaa",
+  "source_digest": "8bd901268cc843246b14ebac4c1e09e19a82177fbe5b0d821c5dace0304e7569",
   "features": [
     {
       "status": "Source",
@@ -36,6 +36,10 @@
     },
     {
       "status": "Source",
+      "text": "Bunker/security artwork decoration: right filing cabinets, archive boxes, noticeboard, key rack, intercom/extinguisher; low footlocker/vent at far left with menu area clear."
+    },
+    {
+      "status": "Source",
       "text": "In-game hex/RGB accent editor with live scoped preview, per-consumer/local-player persistence, opacity-only migration and reset to grey."
     },
     {
@@ -51,7 +55,7 @@
       "text": "Public Workshop MP test item 3822582242 updated to 0.3.0-dev.1 with source/package/stage parity and independent public description verification; native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.5.0-dev.5 development source only; Workshop remains 0.3.0-dev.1. 0.5.0-dev.2 visual menu was observed in an isolated local game profile; 0.5.0-dev.5 audio and ultrawide layout runtime NOT TESTED. Other main-menu render replacements are skipped. Offline tests do not establish native, controller, split-screen or dedicated acceptance. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
+  "limits": "0.5.0-dev.6 development source only; Workshop remains 0.3.0-dev.1. 0.5.0-dev.2 visual menu was observed in an isolated local game profile; 0.5.0-dev.6 audio and ultrawide layout runtime NOT TESTED. Other main-menu render replacements are skipped. Offline tests do not establish native, controller, split-screen or dedicated acceptance. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
   "evidence": [
     "README.md",
     "docs/API.md",

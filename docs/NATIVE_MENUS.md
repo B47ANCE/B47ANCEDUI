@@ -1,6 +1,6 @@
 # Native main and Esc menu styling
 
-Project Version: 0.5.0-dev.5
+Project Version: 0.5.0-dev.6
 
 Compatible MINOR integration within public Lua API 1. Development source only; no deployment, package or upload for this iteration. Workshop item 3822582242 remains at the recorded 0.3.0-dev.1 build.
 

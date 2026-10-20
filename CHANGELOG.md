@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.0-dev.6]
+- Compatible PATCH artwork refinement: add filing cabinets, archive boxes/binders, floor-plan noticeboard, keys, intercom and extinguisher on the right; shadowed footlocker/folders and a ventilation grille at the far left. Keep the menu area clear and room continuous.
+- Genuine CRT transparency checked in composited previews and offline PNG/regression tests. No menu behavior change; native PZ runtime for this artwork NOT TESTED.
+
 ## [0.5.0-dev.5]
 - Compatible PATCH artwork/layout refinement: expand the continuous room view to the right of the desk, retaining one wall, paint boundary, pipe, floor perspective and lamp. The desk is reframed toward the center-left.
 - Retarget the four transparent CRT masks and left menu column; narrow crops keep the menu/desk group visible while ultrawide displays reveal more right scenery. API, actions, monitor timing and audio behavior unchanged.

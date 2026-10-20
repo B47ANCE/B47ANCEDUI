@@ -1,6 +1,6 @@
 # Security-room main menu
 
-Project Version: 0.5.0-dev.5
+Project Version: 0.5.0-dev.6
 
 Compatible MINOR addition from 0.4.0-dev.1; public API major 1, appearance storage and consumer contracts are unchanged. This is development source, not a Workshop upload.
 
@@ -54,3 +54,7 @@ A single original image-generated PNG recomposes the room from the original 16:9
 The image-generator edit used the accepted 0.5.0-dev.4 panorama to add a broad right room section. It retained a continuous wall/pipe/baseboard/floor perspective, four CRTs and one lamp. Because the generated output remains 2172x724, the desk was reframed smaller and closer to center-left; this is a wider scene composition, not a byte-preserving canvas append. The source PNG is used as generated. Updated mask bounds and exact hash are in MENU_ARTWORK.json. The menu anchor moves into the remaining dark left area. Narrow crops focus on the menu/desk group; 32:9 reveals the full right extension.
 
 [TESTED: offline] RGBA transparency, viewport coverage, four visible apertures and CRT casings, menu separation and existing regressions across 1024x768, 1280x720, 1920x1008, 3440x1440 and 5120x1440. Full-width art and viewport previews are inspected separately for scene continuity. [RUNTIME GATE] PZ rendering, resize, focus and integration for this revision NOT TESTED. No new deployment/publication.
+
+## Decoration (0.5.0-dev.6)
+
+User-requested filing cabinets and bunker security details occupy the right wall. A low footlocker and vent occupy the far-left edge; the middle-left menu area is clear. The 2172x724 image retains the same mask coordinates and viewport crop. Raw alpha previews may expose colorful RGB stored in near-transparent edge pixels; actual compositing over the opaque screen/black underlay was visually checked and shows clean edges. No pixel surgery or external art was used. [TESTED: offline] PNG alpha/hash/CRC and existing regression suite; code-rendered black-background viewport previews. Actual PZ rendering for this asset remains NOT TESTED.
