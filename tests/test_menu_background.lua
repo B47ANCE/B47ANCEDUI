@@ -96,14 +96,14 @@ end
 main:prerender()
 local last=main.bottomPanel.children[40]
 assert(last.y+last.height<=main.bottomPanel.height+.001 and last.b47MenuScale<1)
-for _,size in ipairs({{1280,720},{1024,768},{1920,1008},{3440,1440},{5120,1440}})do
+for _,size in ipairs({{1024,768},{1280,720},{1920,1008},{1920,1080},{2560,1440},{3840,2160},{2560,1080},{3440,1440},{5120,1440}})do
  local w,h=size[1],size[2]
  local x,y,s=B.geometry(w,h)
  assert(x<=.001 and y<=.001 and x+2172*s>=w-.001 and y+724*s>=h-.001,'Panorama must cover viewport')
  assert(x+695*s>=-.001 and x+1145*s<=w+.001 and y==0,'Retain CRT casings and overhead pipe')
  local fitted=screen(false);fitted.width=w;fitted.height=h
  assert(B.apply(fitted));fitted.b47MenuBackground.elapsed=2;draws={};fitted:prerender()
- local roomCount,monitors,leftmost=0,0,math.huge
+ local roomCount,monitors,leftmost,logoRect=0,0,math.huge,nil
  for _,d in ipairs(draws)do
   local name=d.texture and d.texture.path
   if name and name:find('SecurityRoomPanorama') then
@@ -111,11 +111,16 @@ for _,size in ipairs({{1280,720},{1024,768},{1920,1008},{3440,1440},{5120,1440}}
   elseif name and name:find('Static') then
    monitors=monitors+1;leftmost=math.min(leftmost,d[1])
    assert(d[1]>=0 and d[2]>=0 and d[1]+d[3]<=w and d[2]+d[4]<=h,'CRT aperture cropped')
+  elseif d.texture==logo then
+   logoRect=d
   end
   assert(not name or not name:find('SecurityWing'),'No separate side additions')
  end
  assert(roomCount==1 and monitors==4,'Draw one continuous room and four feeds')
  assert(fitted.bottomPanel.x>=0 and fitted.bottomPanel.x+fitted.bottomPanel.width<leftmost,'Keep navigation clear of CRTs')
+ assert(logoRect and logoRect[1]>=0 and logoRect[2]>=0 and logoRect[1]+logoRect[3]<leftmost,'Keep logo visible and clear of CRTs')
+ assert(logoRect[2]+logoRect[4]<fitted.bottomPanel.y,'Keep logo above menu')
+ assert(fitted.bottomPanel.y+fitted.bottomPanel.height<=h,'Keep complete menu inside viewport')
 end
 assert(gain==0 and calls==1,'Main menu must mute runtime music gain')
 main:prerender();assert(calls==1,'Do not repeatedly write unchanged gain')

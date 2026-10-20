@@ -43,4 +43,4 @@ Developed by B47ANCE'd Workshop. Original B47ANCE-owned shared code extracted fr
 
 ## Development background
 
-The 0.5.0-dev.7 development branch expands the continuous security room to the right, reframes the desk for 32:9 screens and retains the title-screen music gain mute. Workshop currently remains at 0.3.0-dev.1. Native acceptance of this revision remains NOT TESTED.
+Version 0.5.0-dev.7 expands the continuous security room to the right, reframes the desk for standard and ultrawide screens and retains the title-screen music gain mute. Offline viewport checks cover 4:3, 16:9 at 720p/1080p/1440p/4K, 21:9 and 32:9 through 5120x1440. Native acceptance of this revision remains NOT TESTED.
