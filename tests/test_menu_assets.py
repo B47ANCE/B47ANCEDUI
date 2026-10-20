@@ -36,11 +36,11 @@ for y in range(height):
         predictor=(0,left,above,(left+above)//2,paeth(left,above,corner))[kind]
         row[x]=(row[x]+predictor)&255
     rows.append(row);prior=row
-for x,y in [(886,236),(1088,235),(885,375),(1090,375)]:
+for x,y in [(812,220),(1023,220),(812,361),(1022,361)]:
     assert rows[y][x*4+3]==0,'CRT glass must be actual transparency, not painted checkerboard'
-holes=[(817,194,954,280),(1021,194,1158,277),(817,334,954,418),(1021,334,1158,418)]
+holes=[(739,173,887,274),(946,173,1097,275),(739,312,887,412),(946,312,1097,411)]
 # Entire inset glass interiors must be transparent; four pinholes are insufficient.
-interiors=[(824,211,943,270),(1034,210,1141,269),(827,346,945,403),(1035,344,1139,405)]
+interiors=[(759,187,874,254),(959,191,1080,250),(751,348,866,398),(967,336,1079,398)]
 for x0,y0,x1,y1 in interiors:
     assert all(rows[y][x*4+3]==0 for y in range(y0,y1) for x in range(x0,x1)), 'Opaque pixels in CRT glass'
 for y in range(height):

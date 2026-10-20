@@ -1,8 +1,8 @@
-Version 0.5.0-dev.10
+Version 0.5.0-dev.11
 
 MP testing build - dedicated multiplayer NOT TESTED
 
-Development dev.10: regenerate the entire security room in one continuous image, with consistent wall, floor, conduits and lighting. Retarget four transparent CRT apertures and standard/ultrawide crops; keep the logo/menu on the quiet wall above the baseboard. Not uploaded; Workshop remains 0.5.0-dev.8. Native dev.10 rendering NOT TESTED.
+Apply the selected security-room background with one straight horizontal pipe extending across the left wall at its existing height. Fit the logo/menu below the pipe and above the baseboard; retarget the four transparent animated CRTs and standard/ultrawide crop. Native rendering for dev.11 NOT TESTED.
 
 Right-expanded 32:9 security-room main-menu background: one continuous back wall, pipe/baseboard/floor perspective, one lamp and four independently randomized static/no-signal monitors. The wider field of view reframes the desk toward center-left. Native main-menu actions and controller label identities remain; Esc background is unchanged. Each monitor has independent 1-60 second initial static then persistent no-signal animation. One continuous panorama with undistorted CRTs and transparent screen openings fills ultrawide displays. Narrower windows crop the outer room. Larger centered navigation adapts to visible mod-added menu labels/buttons. Decorative animation only, no live CCTV.
 

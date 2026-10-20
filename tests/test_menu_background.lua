@@ -100,7 +100,7 @@ for _,size in ipairs({{1024,768},{1280,720},{1920,1008},{1920,1080},{2560,1440},
  local w,h=size[1],size[2]
  local x,y,s=B.geometry(w,h)
  assert(x<=.001 and y<=.001 and x+2172*s>=w-.001 and y+724*s>=h-.001,'Panorama must cover viewport')
- assert(x+775*s>=-.001 and x+1230*s<=w+.001 and y==0,'Retain CRT casings and overhead pipe')
+ assert(x+695*s>=-.001 and x+1145*s<=w+.001 and y==0,'Retain CRT casings and overhead pipe')
  for _,maxWidth in ipairs({240,2000}) do
  local fitted=screen(false);fitted.width=w;fitted.height=h;fitted.maxMenuItemWidth=maxWidth
  for i=1,12 do
@@ -123,17 +123,17 @@ for _,size in ipairs({{1024,768},{1280,720},{1920,1008},{1920,1080},{2560,1440},
  end
  assert(roomCount==1 and monitors==4,'Draw one continuous room and four feeds')
  assert(fitted.bottomPanel.x>=0 and fitted.bottomPanel.x+fitted.bottomPanel.width<leftmost,'Keep navigation clear of CRTs')
- assert(fitted.bottomPanel.x+fitted.bottomPanel.width<x+645*s,'Long labels must stay on the quiet wall before the pipe')
+ assert(fitted.bottomPanel.x+fitted.bottomPanel.width<x+600*s,'Long labels must stay on the quiet wall before the pipe')
  assert(logoRect and logoRect[1]>=0 and logoRect[2]>=0 and logoRect[1]+logoRect[3]<leftmost,'Keep logo visible and clear of CRTs')
- assert(logoRect[1]+logoRect[3]<x+645*s,'Keep logo on the quiet wall before the pipe')
+ assert(logoRect[1]+logoRect[3]<x+600*s,'Keep logo on the quiet wall before the pipe')
  assert(logoRect[2]+logoRect[4]<fitted.bottomPanel.y,'Keep logo above menu')
  assert(fitted.bottomPanel.y+fitted.bottomPanel.height<=h,'Keep complete menu inside viewport')
- assert(logoRect[2]>=72*s-.001,'Keep logo inside the empty wall')
+ assert(logoRect[2]>=116*s-.001,'Keep logo below the continuous wall pipe')
  assert(fitted.bottomPanel.y+fitted.bottomPanel.height<=470*s+.001,'Keep menu above wall baseboard')
  local finalEntry=fitted.bottomPanel.children[12]
  assert(finalEntry.y+finalEntry.height<=fitted.bottomPanel.height+.001,'Keep full twelve-entry/status menu inside wall')
  if maxWidth==240 then
-  assert(math.abs(logoRect[1]+logoRect[3]/2-(x+440*s))<.001,'Center logo/menu on the clear wall')
+  assert(math.abs(logoRect[1]+logoRect[3]/2-(x+405*s))<.001,'Center logo/menu on the clear wall')
  end
  end
 end

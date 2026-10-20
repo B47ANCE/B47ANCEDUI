@@ -23,7 +23,7 @@
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static6.png": "c87c64a549b6b808f09e632291f7c82f8c2f7b49e0bafb796e966d9b51822e61",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static7.png": "57cbd4aaca2abf88d4d29c5b60f1c5d648e519db998db0ba5c9fa0c6090c3f4c",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static8.png": "65137127a76a187573ad6d04c7f1f4f928b808ed387b0bd042cd4484ff6490cf",
-    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "44cd90bc4f931afc10d20cda17534d7fdbb0be500e16b7fc774cab2e087773e1"
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "340e86248af1da41a23bda51a46ecd7fff39d356096a8ebf6313d7685c87d5c0"
   },
   "ultrawide": {
     "target_aspect": "32:9",
@@ -37,28 +37,28 @@
     ],
     "transparent_apertures": [
       [
-        819,
-        196,
+        742,
+        180,
+        883,
+        261
+      ],
+      [
+        953,
+        179,
+        1093,
+        264
+      ],
+      [
+        742,
+        320,
+        882,
+        403
+      ],
+      [
         952,
-        278
-      ],
-      [
-        1023,
-        196,
-        1156,
-        275
-      ],
-      [
-        819,
-        336,
-        952,
-        416
-      ],
-      [
-        1023,
-        336,
-        1156,
-        416
+        320,
+        1093,
+        403
       ]
     ],
     "screen_centres_alpha": [
@@ -67,47 +67,47 @@
       0,
       0
     ],
-    "layout": "Entire security room regenerated in one continuous image: common wall paint boundary, baseboard, tiled floor perspective, physically connected conduits and coherent amber lighting. Uniform top-aligned cover scaling retains the menu/CRT group on narrow viewports and reveals the right furnishings on ultrawide displays. No separate panels.",
-    "origin": "Original built-in image generation using the owned dev9 scene as a loose composition/style reference; full scene regenerated in one call. Selected PNG used unchanged; no external artwork or raster post-processing. Prompt and hash: MENU_ROOM_REGENERATION_PROMPT.md.",
+    "layout": "User-selected continuous room with one straight horizontal pipe extended across the left wall at its existing height. Desk and four CRTs retain the selected composition; uniform top-aligned cover scaling focuses standard viewports on menu/desk and reveals right decoration on ultrawide displays.",
+    "origin": "User-supplied owned panorama edited with built-in image generation to complete only the missing left horizontal pipe. User explicitly selected this output for application/publication. PNG used unchanged. Prompt and SHA: MENU_SELECTED_PIPE_PROMPT.md. Earlier redraws remain historical.",
     "decoration": "Small far-left vent and low footlocker; quiet left menu wall. Desk with four CRTs, keyboard, mug, papers and radio. Right filing cabinets, archive boxes, noticeboard, keys, telephone and extinguisher, all regenerated together.",
     "menu_wall": {
-      "source_anchor_x": 440,
-      "top": 72,
+      "source_anchor_x": 405,
+      "top": 116,
       "bottom": 470,
       "logo_height_max_fraction": 0.34,
       "note": "Lua lays out dynamic menu entries inside this clear wall; these are internal image coordinates.",
-      "right": 645,
-      "source_width_max": 390
+      "right": 600,
+      "source_width_max": 360
     },
-    "crop_focus_x": 760,
+    "crop_focus_x": 680,
     "crt_casing_span": [
-      775,
-      1230
+      695,
+      1145
     ],
     "animation_rectangles": [
       [
-        817,
-        194,
-        137,
-        86
+        739,
+        173,
+        148,
+        101
       ],
       [
-        1021,
-        194,
-        137,
-        83
+        946,
+        173,
+        151,
+        102
       ],
       [
-        817,
-        334,
-        137,
-        84
+        739,
+        312,
+        148,
+        100
       ],
       [
-        1021,
-        334,
-        137,
-        84
+        946,
+        312,
+        151,
+        99
       ]
     ]
   }
