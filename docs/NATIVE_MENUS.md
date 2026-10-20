@@ -2,7 +2,7 @@
 
 Project Version: 0.5.0-dev.8
 
-Compatible MINOR integration within public Lua API 1. Development source only; no deployment, package or upload for this iteration. Workshop item 3822582242 remains at the recorded 0.3.0-dev.1 build.
+Compatible MINOR integration within public Lua API 1. Current 0.5.0-dev.8 Workshop MP test distribution is recorded in WORKSHOP_SECURITY_ROOM_UPDATE.md. Earlier no-package/upload statements below describe their original source checkpoints; native acceptance remains NOT TESTED.
 
 When the UI mod's client Lua loads, NativeMenus requires OptionScreens/MainScreen, then registers after its native construction callbacks for OnMainMenuEnter and OnGameStart. OnResetLua and an immediate pass cover an existing instance. Both the front-end and in-game Esc menu use MainScreen. The security-room adapter also checks direct menu children during each main-menu render to discover late additions; it does not scan world state or override a global class.
 
