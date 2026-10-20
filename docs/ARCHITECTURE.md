@@ -1,6 +1,6 @@
 # Architecture and persistence
 
-Project Version: 0.5.0-dev.7
+Project Version: 0.5.0-dev.8
 
 Initial project creation establishes canonical VERSION and API 1; no prior UI project version exists. This is an extracted foundation, not fulfillment of the full-overhaul audit. Authority is client presentation only: no server module, gameplay ModData, custom network commands, inventory mutation or game-state ownership. Normal client Lua load paths expose the API. Dedicated servers may install the mod as a dependency but do not load client widgets; runtime verification is pending.
 

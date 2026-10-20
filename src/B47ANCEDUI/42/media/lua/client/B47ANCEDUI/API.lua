@@ -5,7 +5,7 @@ require 'B47ANCEDUI/Clipboard'
 local U=B47ANCEDUI
 U.AppearanceEditor={open=function(owner) return require('B47ANCEDUI/AppearanceEditor').open(owner) end}
 U.apiVersion=1
-U.version='0.5.0-dev.7'
+U.version='0.5.0-dev.8'
 function U.requireVersion(version)
  assert(version==U.apiVersion,'B47ANCEDUI: unsupported public API version '..tostring(version))
  return U

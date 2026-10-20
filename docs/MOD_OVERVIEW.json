@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.5.0-dev.7",
+  "version": "0.5.0-dev.8",
   "reviewed": true,
-  "source_digest": "f948b46ea1e92b648810c702dd67d6081e11f59d12a5e45330291b0780bcba25",
+  "source_digest": "366a4ed0c4993bead70a99809d19fa8a746cfcd5c18dfbd7afdef7998e352bf4",
   "features": [
     {
       "status": "Source",
@@ -24,7 +24,7 @@
     },
     {
       "status": "Source",
-      "text": "Security-room main menu: four independent 1-60 second static startups then persistent no-signal loops; enlarged centered labels with visible direct mod-entry discovery and responsive rows, retaining callbacks."
+      "text": "Security-room main menu: four independent 1-60 second static startups then persistent no-signal loops; enlarged centered labels with visible direct mod-entry discovery and responsive rows, retaining callbacks. Menu/logo width is capped before the outer CRT casing for long translations/mod labels; standard 4:3/16:9 through 4K and 21:9/32:9 viewport fixtures pass offline."
     },
     {
       "status": "Source",
@@ -59,7 +59,7 @@
       "text": "Public Workshop MP test item 3822582242 updated to 0.3.0-dev.1 with source/package/stage parity and independent public description verification; native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.5.0-dev.7 development source only; Workshop remains 0.3.0-dev.1. 0.5.0-dev.2 visual menu was observed in an isolated local game profile; 0.5.0-dev.7 audio, ultrawide layout and optional status-label integration runtime NOT TESTED. Other main-menu render replacements are skipped. Offline tests do not establish native, controller, split-screen or dedicated acceptance. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
+  "limits": "0.5.0-dev.8 development source only; Workshop remains 0.3.0-dev.1. 0.5.0-dev.2 visual menu was observed in an isolated local game profile; 0.5.0-dev.8 audio, ultrawide layout and optional status-label integration runtime NOT TESTED. Other main-menu render replacements are skipped. Offline tests do not establish native, controller, split-screen or dedicated acceptance. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
   "evidence": [
     "README.md",
     "docs/API.md",

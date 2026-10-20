@@ -101,7 +101,8 @@ for _,size in ipairs({{1024,768},{1280,720},{1920,1008},{1920,1080},{2560,1440},
  local x,y,s=B.geometry(w,h)
  assert(x<=.001 and y<=.001 and x+2172*s>=w-.001 and y+724*s>=h-.001,'Panorama must cover viewport')
  assert(x+695*s>=-.001 and x+1145*s<=w+.001 and y==0,'Retain CRT casings and overhead pipe')
- local fitted=screen(false);fitted.width=w;fitted.height=h
+ for _,maxWidth in ipairs({240,2000}) do
+ local fitted=screen(false);fitted.width=w;fitted.height=h;fitted.maxMenuItemWidth=maxWidth
  assert(B.apply(fitted));fitted.b47MenuBackground.elapsed=2;draws={};fitted:prerender()
  local roomCount,monitors,leftmost,logoRect=0,0,math.huge,nil
  for _,d in ipairs(draws)do
@@ -118,9 +119,12 @@ for _,size in ipairs({{1024,768},{1280,720},{1920,1008},{1920,1080},{2560,1440},
  end
  assert(roomCount==1 and monitors==4,'Draw one continuous room and four feeds')
  assert(fitted.bottomPanel.x>=0 and fitted.bottomPanel.x+fitted.bottomPanel.width<leftmost,'Keep navigation clear of CRTs')
+ assert(fitted.bottomPanel.x+fitted.bottomPanel.width<x+695*s,'Long labels must keep menu clear of outer CRT casing')
  assert(logoRect and logoRect[1]>=0 and logoRect[2]>=0 and logoRect[1]+logoRect[3]<leftmost,'Keep logo visible and clear of CRTs')
+ assert(logoRect[1]+logoRect[3]<x+695*s,'Keep logo clear of outer CRT casing')
  assert(logoRect[2]+logoRect[4]<fitted.bottomPanel.y,'Keep logo above menu')
  assert(fitted.bottomPanel.y+fitted.bottomPanel.height<=h,'Keep complete menu inside viewport')
+ end
 end
 assert(gain==0 and calls==1,'Main menu must mute runtime music gain')
 main:prerender();assert(calls==1,'Do not repeatedly write unchanged gain')

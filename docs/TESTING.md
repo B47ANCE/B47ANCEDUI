@@ -1,6 +1,6 @@
 # Validation
 
-Project Version: 0.5.0-dev.7
+Project Version: 0.5.0-dev.8
 
 Commands: `python -B scripts/check_versions.py`; `python -B tests/run_tests.py`.
 
@@ -57,3 +57,5 @@ Publication-preparation tooling adds deterministic packaging, CRC/member/source 
 0.5.0-dev.7 optional status-label [TESTED: offline]: tests/test_menu_status.lua fails against pre-fix dev.6 code and passes against the current adapter/layout. Covers title zoom/accent, live release/download note text and state colors, reserved lane and crowded rows, unchanged callback, original renderer/tooltip calls, controller glyph coordinates/scaling and other-texture pass-through, inactive-background delegation, scoping/idempotence and exception method/height restoration. It loads no external module. Native PZ Optimization integration and updater paths remain [RUNTIME GATE] NOT TESTED; see THIRD_PARTY_RESEARCH.md.
 
 0.5.0-dev.7 publication viewport matrix [TESTED: offline Windows, 2026-10-19]: 1024x768, 1280x720, 1920x1008, 1920x1080, 2560x1440, 3840x2160, 2560x1080, 3440x1440 and 5120x1440. `python -X utf8 -B tests/run_tests.py` checks full viewport cover, uniform image/CRT scaling, all four visible apertures and separate navigation column. This includes common standard displays and 21:9/32:9 ultrawides; actual PZ rendering/resizing remains NOT TESTED.
+
+0.5.0-dev.8 [TESTED: offline Windows, 2026-10-19]: the same nine viewport sizes are each exercised with maxMenuItemWidth 240 and 2000. Additional assertions check logo above the complete visible menu and both clear of the outer CRT casing. The oversized-width test first failed on dev.7 at 1024x768 with `Long labels must keep menu clear of outer CRT casing`, then passed after the column cap. Commands: `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py`, `git diff --check`. All PASS; no native PZ or dedicated runtime evidence inferred.

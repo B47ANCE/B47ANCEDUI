@@ -136,7 +136,8 @@ function B.apply(screen)
   local margin=math.max(16,w*.025)
   local menu=self.bottomPanel
   local artX,_,artScale=B.geometry(w,h)
-  local menuWidth=math.min(math.max(self.maxMenuItemWidth or 0,w*.28),480*artScale)
+  local columnLimit=math.max(1,artX+695*artScale-margin*2) -- clear the outer CRT casing, including long labels
+  local menuWidth=math.min(math.max(self.maxMenuItemWidth or 0,w*.28),480*artScale,columnLimit)
   local menuX=math.max(margin,math.min(w-menuWidth-margin,artX+260*artScale-menuWidth/2))
   local logoScale=math.min(menuWidth/self.logoTexture:getWidth(),h*.34/self.logoTexture:getHeight())
   local logoHeight=self.logoTexture:getHeight()*logoScale

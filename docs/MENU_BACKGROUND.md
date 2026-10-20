@@ -1,6 +1,6 @@
 # Security-room main menu
 
-Project Version: 0.5.0-dev.7
+Project Version: 0.5.0-dev.8
 
 Compatible MINOR addition from 0.4.0-dev.1; public API major 1, appearance storage and consumer contracts are unchanged. This is development source, not a Workshop upload.
 
@@ -62,3 +62,7 @@ User-requested filing cabinets and bunker security details occupy the right wall
 ## Optional status-label compatibility (0.5.0-dev.7)
 
 The public PZOPT_MENU ISLabel is the audited exception to unknown-custom-renderer refusal. Its original renderer executes once; temporary instance draw interception supplies the shared title style and centers its live Small-font version/update line in reserved space beneath the title. The background layout subtracts that note lane before distributing normal rows, then fits title/note scale for crowded layouts. Callback, original text/status colors, glyph and tooltip ownership remain with the provider; height and methods restore on errors, which propagate. No provider API, Java dependency, external edits, network/save state or settings were added. Other custom renderers remain guarded. See [neutral contract and clean-room record](THIRD_PARTY_RESEARCH.md). Native PZ acceptance remains NOT TESTED.
+
+## Standard and ultrawide column bounds (0.5.0-dev.8)
+
+The column width is also capped by the available space before source X 695, the left edge of the outer CRT casing, leaving a viewport margin. This handles oversized native maxMenuItemWidth values from long translations/mod-added labels. The existing fit/truncation and responsive rows still control visible text; callbacks and native objects are unchanged. The source coordinate is an artwork layout constant, not a player setting. Offline regression reproduces the old 1024x768 bezel overlap and passes for normal/oversized widths at 4:3, standard 16:9 through 4K, 21:9 and 32:9. Actual PZ rendering remains NOT TESTED.
