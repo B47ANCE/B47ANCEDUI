@@ -27,7 +27,7 @@ No external source, algorithms, assets, strings, updater code, classes or runtim
 - [x] Source observation separated from implementation through a read-only scout.
 - [x] External code/assets imported: NONE; license-based reuse: NONE.
 - [x] Original synthetic fixture uses dummy title/status, not external source.
-- [x] No game/server launch, deployment or publication for this iteration.
+- [x] No game/server launch, deployment or publication during the original dev.7 research checkpoint; subsequent test distribution is recorded separately.
 - [x] Independent read-only compatibility/clean-room reviewer signoff: /root/panorama_geometry_review, 2026-10-19. Final own source/tests, neutral ledger and vanilla contracts reviewed; glyph finding resolved, no further concrete defects found. No external implementation was read by the reviewer. Limited engineering/source review only, not provider/PZ runtime acceptance or legal clearance.
 
 [TESTED: offline Lua 5.1] New fixture fails on the pre-fix dev.6 NativeMenus/MenuBackground and passes on dev.7. It checks title style, live note changes/colors, reserved rows, callbacks, glyph coordinates/scaling and unrelated texture pass-through, tooltip invocation, exception restoration, inactive-background delegation, scoping/idempotence and crowded layout. Current commands: `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py` and `git diff --check`. This is not MP or in-game evidence.

@@ -3,7 +3,7 @@
 ## [0.5.0-dev.8]
 - Compatible PATCH: cap the main-menu/logo column before the outer CRT casing, including long translated or mod-added labels at 1024x768. Existing fit/truncation and row scaling preserve actions and screen visibility.
 - Regression reproduces the prior bezel overlap; expanded standard 720p/1080p/1440p/4K and 4:3/21:9/32:9 matrices pass with normal and oversized menu-width requests. Native PZ/input and dedicated multiplayer remain NOT TESTED.
-- Owner-authorized Workshop MP testing publication includes the continuous decorated room, shared optional status-label style and menu music gain mute. Public API 1 and runtime dependencies unchanged.
+- Workshop MP testing upload verified on existing public item 3822582242 after PR 12 merge, including the continuous decorated room, shared optional status-label style and menu music gain mute. Exact source/package/stage and public description match; Steam unchanged by user choice. Public API 1 and runtime dependencies unchanged.
 
 ## [0.5.0-dev.7]
 - Compatible PATCH: adapt the optional public PZ Optimization main-menu label to the shared large text/underline style while invoking its original renderer and preserving actions, controller glyph and tooltip ownership.

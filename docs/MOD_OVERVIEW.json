@@ -4,7 +4,7 @@
   "name": "B47ANCE'd UI",
   "version": "0.5.0-dev.8",
   "reviewed": true,
-  "source_digest": "366a4ed0c4993bead70a99809d19fa8a746cfcd5c18dfbd7afdef7998e352bf4",
+  "source_digest": "7879d17155c8efe24e19acac0914b2652dfe24e29c9d0fc3811747aa166fb56f",
   "features": [
     {
       "status": "Source",
@@ -56,10 +56,10 @@
     },
     {
       "status": "Source",
-      "text": "Public Workshop MP test item 3822582242 updated to 0.3.0-dev.1 with source/package/stage parity and independent public description verification; native/dedicated NOT TESTED."
+      "text": "Public Workshop MP test item 3822582242 updated to 0.5.0-dev.8 with 52-file source/package/stage parity and exact independent public description verification; native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.5.0-dev.8 development source only; Workshop remains 0.3.0-dev.1. 0.5.0-dev.2 visual menu was observed in an isolated local game profile; 0.5.0-dev.8 audio, ultrawide layout and optional status-label integration runtime NOT TESTED. Other main-menu render replacements are skipped. Offline tests do not establish native, controller, split-screen or dedicated acceptance. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
+  "limits": "0.5.0-dev.8 public Workshop MP testing distribution verified. Standard 4:3/16:9 through 4K and 21:9/32:9 layout fixtures pass offline, including long-label casing bounds. Native rendering/input/controller, optional provider states, audible rain/thunder suppression, transition audio, split-screen, download and dedicated NOT TESTED. Historical dev.2 menu approval stays historical. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership. Steam left unchanged by user choice.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -75,7 +75,9 @@
     "docs/NATIVE_MENUS.md",
     "docs/MENU_BACKGROUND.md",
     "docs/MENU_ARTWORK.json",
-    "docs/THIRD_PARTY_RESEARCH.md"
+    "docs/THIRD_PARTY_RESEARCH.md",
+    "docs/WORKSHOP_SECURITY_ROOM_UPDATE.md",
+    "docs/WORKSHOP_UPDATE_0.5.0-dev.8_2026-10-19.json"
   ],
   "relations": []
 }

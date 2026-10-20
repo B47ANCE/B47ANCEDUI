@@ -101,6 +101,14 @@
     {
       "reference": "docs/WORKSHOP_MENU_UPDATE.md",
       "reason": "Completed 0.3.0-dev.1 MenuButton upload record retains its actual version, release source and hashes."
+    },
+    {
+      "reference": "docs/WORKSHOP_UPDATE_0.5.0-dev.8_2026-10-19.json",
+      "reason": "Immutable dated dev8 Workshop distribution receipt binds exact release commit, package/runtime hashes and public verification; not native/MP proof."
+    },
+    {
+      "reference": "docs/WORKSHOP_SECURITY_ROOM_UPDATE.md",
+      "reason": "Completed dated dev8 publication record retains exact version/source and commands; not a current version mirror for future iterations."
     }
   ]
 }

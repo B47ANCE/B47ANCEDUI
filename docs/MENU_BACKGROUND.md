@@ -2,7 +2,7 @@
 
 Project Version: 0.5.0-dev.8
 
-Compatible MINOR addition from 0.4.0-dev.1; public API major 1, appearance storage and consumer contracts are unchanged. This is development source, not a Workshop upload.
+Compatible MINOR addition from 0.4.0-dev.1; public API major 1, appearance storage and consumer contracts are unchanged. Current 0.5.0-dev.8 Workshop MP testing distribution is recorded in WORKSHOP_SECURITY_ROOM_UPDATE.md; native acceptance remains NOT TESTED.
 
 ## Behavior and ownership
 
