@@ -1,6 +1,6 @@
 # Validation
 
-Project Version: 0.5.0-dev.6
+Project Version: 0.5.0-dev.7
 
 Commands: `python -B scripts/check_versions.py`; `python -B tests/run_tests.py`.
 
@@ -53,3 +53,5 @@ Publication-preparation tooling adds deterministic packaging, CRC/member/source 
 0.5.0-dev.5 right extension [TESTED: offline]: current PNG alpha is decoded against four new aperture bounds; viewport fixtures retain both CRT casings and a separate left menu column. The right scene is shown as the viewport widens. Actual PZ rendering and input acceptance for this artwork remain NOT TESTED.
 
 0.5.0-dev.6 artwork [TESTED: offline]: decoded CRT alpha and room-hole boundaries, asset hash/CRC, source consistency and full regressions. Browser composited 32:9/standard-wide previews verify clean CRT edges and left/right decoration; raw-alpha preview coloration is not PZ runtime evidence. Native acceptance NOT TESTED.
+
+0.5.0-dev.7 optional status-label [TESTED: offline]: tests/test_menu_status.lua fails against pre-fix dev.6 code and passes against the current adapter/layout. Covers title zoom/accent, live release/download note text and state colors, reserved lane and crowded rows, unchanged callback, original renderer/tooltip calls, controller glyph coordinates/scaling and other-texture pass-through, inactive-background delegation, scoping/idempotence and exception method/height restoration. It loads no external module. Native PZ Optimization integration and updater paths remain [RUNTIME GATE] NOT TESTED; see THIRD_PARTY_RESEARCH.md.

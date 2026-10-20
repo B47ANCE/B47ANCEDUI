@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.0-dev.7]
+- Compatible PATCH: adapt the optional public PZ Optimization main-menu label to the shared large text/underline style while invoking its original renderer and preserving actions, controller glyph and tooltip ownership.
+- Move its live version/update subtext into a reserved centered small-text lane beneath the title. Fit crowded rows without overlapping following entries; preserve status colors and error propagation. No external code/assets or Java dependency added.
+- Offline regression/clean-room compatibility review; native PZ interaction and updater-state rendering NOT TESTED.
+
 ## [0.5.0-dev.6]
 - Compatible PATCH artwork refinement: add filing cabinets, archive boxes/binders, floor-plan noticeboard, keys, intercom and extinguisher on the right; shadowed footlocker/folders and a ventilation grille at the far left. Keep the menu area clear and room continuous.
 - Genuine CRT transparency checked in composited previews and offline PNG/regression tests. No menu behavior change; native PZ runtime for this artwork NOT TESTED.

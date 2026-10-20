@@ -1,6 +1,6 @@
 # Architecture and persistence
 
-Project Version: 0.5.0-dev.6
+Project Version: 0.5.0-dev.7
 
 Initial project creation establishes canonical VERSION and API 1; no prior UI project version exists. This is an extracted foundation, not fulfillment of the full-overhaul audit. Authority is client presentation only: no server module, gameplay ModData, custom network commands, inventory mutation or game-state ownership. Normal client Lua load paths expose the API. Dedicated servers may install the mod as a dependency but do not load client widgets; runtime verification is pending.
 
@@ -23,3 +23,7 @@ NativeMenus is a separate auto-loaded client adapter, requiring native MainScree
 0.5.0-dev.2: responsive, centered main-menu rows dynamically discover visible direct ISLabel/ISButton entries. Known native label renderers support enlarged text; foreign custom renderers retain their draw paths. Initial static is independently 1-60 seconds, then each monitor stays in its no-signal loop. See MENU_BACKGROUND.md for compatibility boundaries and offline evidence. New layout/timing runtime NOT TESTED.
 
 0.5.0-dev.3 mutes native music runtime gain while the security-room main menu renders; native exit restores the configured gain. Saved preferences and in-game/Esc audio are untouched. Audible storm suppression and audio restoration require runtime listening; NOT TESTED. See docs/MENU_BACKGROUND.md for source evidence and limits.
+
+## Optional status-label compatibility (0.5.0-dev.7)
+
+The public PZOPT_MENU ISLabel is the audited exception to unknown-custom-renderer refusal. Its original renderer executes once; temporary instance draw interception supplies the shared title style and centers its live Small-font version/update line in reserved space beneath the title. The background layout subtracts that note lane before distributing normal rows, then fits title/note scale for crowded layouts. Callback, original text/status colors, glyph and tooltip ownership remain with the provider; height and methods restore on errors, which propagate. No provider API, Java dependency, external edits, network/save state or settings were added. Other custom renderers remain guarded. See [neutral contract and clean-room record](THIRD_PARTY_RESEARCH.md). Native PZ acceptance remains NOT TESTED.

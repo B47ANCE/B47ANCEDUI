@@ -1,4 +1,4 @@
-Version 0.5.0-dev.6
+Version 0.5.0-dev.7
 
 MP testing build - dedicated multiplayer NOT TESTED
 
@@ -9,3 +9,5 @@ Development source only, not uploaded. Main-menu rendering, resolutions, control
 Temporarily mute native music gain on the security-room main menu; saved preferences remain intact and native exit restores configured gain. Audible rain/thunder suppression and restoration NOT TESTED.
 
 Add filing cabinets, archive boxes, noticeboard, keys, intercom and extinguisher on the right, plus a shadowed footlocker and vent on the far left.
+
+Optional PZ Optimization main-menu label now uses the shared title style. Move its live version/update subtext into a reserved centered line beneath the entry, preserving its original action/status/glyph/tooltip. External provider integration requires in-game testing; no external runtime dependency is added.

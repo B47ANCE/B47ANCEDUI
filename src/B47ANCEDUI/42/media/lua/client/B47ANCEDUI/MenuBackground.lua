@@ -91,7 +91,10 @@ function B.layout(screen,menuWidth,top,bottom)
  end)
  if #entries==0 then return end
  local available=math.max(1,bottom-top)
- local row=available/#entries
+ local noteHeight=math.min(getTextManager():getFontHeight(UIFont.Small)+4,available/(#entries*2))
+ local reserved=0
+ for _,child in ipairs(entries) do if child.b47MenuHasNote then reserved=reserved+noteHeight end end
+ local row=(available-reserved)/#entries
  local zoom=math.min(1.9,screen:getHeight()/600)
  for _,child in ipairs(entries) do
   local font=child.font or UIFont.Large
@@ -101,15 +104,20 @@ function B.layout(screen,menuWidth,top,bottom)
   zoom=math.min(zoom,(menuWidth-48)/math.max(1,width),row*.65/math.max(1,height))
  end
  zoom=math.max(.05,zoom)
- for i,child in ipairs(entries) do
+ local cursor=0
+ for _,child in ipairs(entries) do
   local text=child.translation or child.name or child.title or ''
   local font=child.font or UIFont.Large
   local scalable=child.b47NativeMenu==true
   child.b47MenuScale=scalable and zoom or nil
-  local width=math.min(menuWidth,math.max(1,getTextManager():MeasureStringX(font,text)*(scalable and zoom or 1)+4))
-  child:setX((menuWidth-width)/2);child:setY((i-1)*row)
-  child.b47MenuAssignedY=(i-1)*row
-  child:setWidth(width);child:setHeight(row)
+  local note=child.b47MenuHasNote and noteHeight or 0
+  child.b47MenuPrimaryHeight=note>0 and row or nil
+  child.b47MenuNoteHeight=note>0 and note or nil
+  local width=note>0 and menuWidth or math.min(menuWidth,math.max(1,getTextManager():MeasureStringX(font,text)*(scalable and zoom or 1)+4))
+  child:setX((menuWidth-width)/2);child:setY(cursor)
+  child.b47MenuAssignedY=cursor
+  child:setWidth(width);child:setHeight(row+note)
+  cursor=cursor+row+note
  end
  menu:setHeight(available)
 end

@@ -1,6 +1,6 @@
 # Security-room main menu
 
-Project Version: 0.5.0-dev.6
+Project Version: 0.5.0-dev.7
 
 Compatible MINOR addition from 0.4.0-dev.1; public API major 1, appearance storage and consumer contracts are unchanged. This is development source, not a Workshop upload.
 
@@ -58,3 +58,7 @@ The image-generator edit used the accepted 0.5.0-dev.4 panorama to add a broad r
 ## Decoration (0.5.0-dev.6)
 
 User-requested filing cabinets and bunker security details occupy the right wall. A low footlocker and vent occupy the far-left edge; the middle-left menu area is clear. The 2172x724 image retains the same mask coordinates and viewport crop. Raw alpha previews may expose colorful RGB stored in near-transparent edge pixels; actual compositing over the opaque screen/black underlay was visually checked and shows clean edges. No pixel surgery or external art was used. [TESTED: offline] PNG alpha/hash/CRC and existing regression suite; code-rendered black-background viewport previews. Actual PZ rendering for this asset remains NOT TESTED.
+
+## Optional status-label compatibility (0.5.0-dev.7)
+
+The public PZOPT_MENU ISLabel is the audited exception to unknown-custom-renderer refusal. Its original renderer executes once; temporary instance draw interception supplies the shared title style and centers its live Small-font version/update line in reserved space beneath the title. The background layout subtracts that note lane before distributing normal rows, then fits title/note scale for crowded layouts. Callback, original text/status colors, glyph and tooltip ownership remain with the provider; height and methods restore on errors, which propagate. No provider API, Java dependency, external edits, network/save state or settings were added. Other custom renderers remain guarded. See [neutral contract and clean-room record](THIRD_PARTY_RESEARCH.md). Native PZ acceptance remains NOT TESTED.
