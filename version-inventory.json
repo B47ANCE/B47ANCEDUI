@@ -121,6 +121,10 @@
     {
       "reference": "docs/MENU_SELECTED_PIPE_PROMPT.md",
       "reason": "Fixed dev11 selected artwork generation prompt/provenance retains its observed hash rather than tracking future versions."
+    },
+    {
+      "reference": "docs/WORKSHOP_PIPE_UPDATE.md; docs/WORKSHOP_UPDATE_0.5.0-dev.11_2026-10-19.json",
+      "reason": "Immutable dated dev11 distribution/source/package evidence; original source commit, versions and hashes remain fixed and are not future mirrors."
     }
   ]
 }
