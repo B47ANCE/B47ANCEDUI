@@ -4,6 +4,7 @@
 - Compatible PATCH: apply the user-selected room with the horizontal pipe extended straight across the left wall at its existing height. Use the approved generated PNG unchanged; retain the four transparent CRT openings and room composition.
 - Match CRT masks/crop to the selected artwork. Keep all four casings visible from 4:3 through 32:9 and place the dynamic logo/menu below the pipe, above the baseboard and before the vertical conduit.
 - Public API 1, callbacks, status ownership, 1-60 second startup static, no-signal loops and audio behavior remain unchanged. Authorized Workshop MP testing update; native rendering and dedicated acceptance NOT TESTED, G7/stable G8 BLOCKED.
+- Workshop update verified on existing public item 3822582242 after PR 14 merge: SteamCMD exit 0/commit-success, exact public description and 52-file source/ZIP/stage parity. Prior dev.8 package retained; Steam restart declined. No local deployment or game/server launch.
 
 ## [0.5.0-dev.10]
 - Compatible PATCH: regenerate the entire security room in one image-generation pass, with one wall, floor, conduit system and lighting scheme. No side-panel compositing; retain the quiet menu wall and bunker decorations.

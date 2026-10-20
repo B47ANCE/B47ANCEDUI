@@ -4,7 +4,7 @@
   "name": "B47ANCE'd UI",
   "version": "0.5.0-dev.11",
   "reviewed": true,
-  "source_digest": "2625a8235493ab60b8a21c18ccf9fcd107dfb0781a0c17037a41620370fdf018",
+  "source_digest": "a19953c21593d89d8b59435a81a15c8e591d57a22845a1d19bd25486120241b7",
   "features": [
     {
       "status": "Source",
@@ -60,10 +60,10 @@
     },
     {
       "status": "Source",
-      "text": "Public Workshop MP test item 3822582242 updated to 0.5.0-dev.8 with 52-file source/package/stage parity and exact independent public description verification; native/dedicated NOT TESTED."
+      "text": "Public Workshop MP test item 3822582242 updated to 0.5.0-dev.11 after PR 14, with 52-file source/ZIP/stage parity, SteamCMD commit-success and exact public description. Steam unchanged by user choice; native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.5.0-dev.11 development source only; Workshop remains 0.5.0-dev.8. Standard 4:3/16:9 through 4K and 21:9/32:9 wall-layout fixtures pass offline with normal/long labels. User dev8 screenshot demonstrates that earlier art/menu rendered, not dev11 or MP acceptance. Current native render/input/controller, font sizes, provider states, audio, download and dedicated acceptance NOT TESTED. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
+  "limits": "0.5.0-dev.11 Workshop MP test upload verified; native/dedicated acceptance NOT TESTED. Standard 4:3/16:9 through 4K and 21:9/32:9 wall-layout fixtures pass offline with normal/long labels. User dev8 screenshot demonstrates that earlier art/menu rendered, not dev11 or MP acceptance. Current native render/input/controller, font sizes, provider states, audio, download and dedicated acceptance NOT TESTED. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -84,7 +84,9 @@
     "docs/WORKSHOP_UPDATE_0.5.0-dev.8_2026-10-19.json",
     "docs/MENU_WALL_ART_PROMPT.md",
     "docs/MENU_ROOM_REGENERATION_PROMPT.md",
-    "docs/MENU_SELECTED_PIPE_PROMPT.md"
+    "docs/MENU_SELECTED_PIPE_PROMPT.md",
+    "docs/WORKSHOP_PIPE_UPDATE.md",
+    "docs/WORKSHOP_UPDATE_0.5.0-dev.11_2026-10-19.json"
   ],
   "relations": []
 }
