@@ -1,5 +1,35 @@
 # Changelog
 
+## [0.5.0-dev.8]
+- Compatible PATCH: cap the main-menu/logo column before the outer CRT casing, including long translated or mod-added labels at 1024x768. Existing fit/truncation and row scaling preserve actions and screen visibility.
+- Regression reproduces the prior bezel overlap; expanded standard 720p/1080p/1440p/4K and 4:3/21:9/32:9 matrices pass with normal and oversized menu-width requests. Native PZ/input and dedicated multiplayer remain NOT TESTED.
+- Owner-authorized Workshop MP testing publication includes the continuous decorated room, shared optional status-label style and menu music gain mute. Public API 1 and runtime dependencies unchanged.
+
+## [0.5.0-dev.7]
+- Compatible PATCH: adapt the optional public PZ Optimization main-menu label to the shared large text/underline style while invoking its original renderer and preserving actions, controller glyph and tooltip ownership.
+- Move its live version/update subtext into a reserved centered small-text lane beneath the title. Fit crowded rows without overlapping following entries; preserve status colors and error propagation. No external code/assets or Java dependency added.
+- Offline regression/clean-room compatibility review; native PZ interaction and updater-state rendering NOT TESTED.
+- Owner-authorized MP test publication preparation: explicit standard 720p/1080p/1440p/4K and 4:3/21:9/32:9 viewport checks, with current canonical Workshop description and changenotes. Release metadata/coverage only; runtime version unchanged.
+
+## [0.5.0-dev.6]
+- Compatible PATCH artwork refinement: add filing cabinets, archive boxes/binders, floor-plan noticeboard, keys, intercom and extinguisher on the right; shadowed footlocker/folders and a ventilation grille at the far left. Keep the menu area clear and room continuous.
+- Genuine CRT transparency checked in composited previews and offline PNG/regression tests. No menu behavior change; native PZ runtime for this artwork NOT TESTED.
+
+## [0.5.0-dev.5]
+- Compatible PATCH artwork/layout refinement: expand the continuous room view to the right of the desk, retaining one wall, paint boundary, pipe, floor perspective and lamp. The desk is reframed toward the center-left.
+- Retarget the four transparent CRT masks and left menu column; narrow crops keep the menu/desk group visible while ultrawide displays reveal more right scenery. API, actions, monitor timing and audio behavior unchanged.
+- Offline alpha, geometry, source and regression checks; PZ runtime for this artwork NOT TESTED.
+
+## [0.5.0-dev.4]
+- Compatible PATCH correction: recompose the whole room from the original desk artwork with one continuous back wall, pipe run, floor perspective and lamp. Remove the architecture that still made 0.5.0-dev.3 look spliced.
+- Update four genuine transparent CRT masks and keep the right CRT group visible during uniform cover cropping. Menu actions, static timing and audio behavior are unchanged.
+- Offline alpha, source, geometry and regression checks; actual PZ rendering for this revision NOT TESTED. The rejected 0.5.0-dev.3 source/CI checks did not prove visual continuity.
+
+## [0.5.0-dev.3]
+- Replace the side additions with one continuous security-room panorama. Uniform cover scaling fills 32:9 and narrower viewports without stretching the CRTs; the room has no panel joins or seam overlays.
+- Compatible PATCH refinement of the unreleased 0.5 UI: mute native menu music runtime gain while the security-room title screen renders. No saved audio options are changed; native menu exit restores the configured volume, and Esc/in-game rendering is excluded.
+- Offline gain/idempotence/options-change/Esc regression coverage. Audible rain/thunder suppression and return-to-game audio require runtime listening; NOT TESTED.
+
 ## [0.5.0-dev.2]
 - Each monitor independently runs initial static for 1-60 seconds, then stays in its subdued no-signal loop without recurring static bursts.
 - Compatible layout refinement: larger main-menu text centered beneath the logo, with responsive rows and automatic discovery of added/hidden/removed menu labels and buttons. Native/foreign actions retained.

@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.5.0-dev.2",
+  "version": "0.5.0-dev.8",
   "reviewed": true,
-  "source_digest": "f7d9b5767e009490776859b022cc149121f22c6428ff8b01dc79137d1facfd81",
+  "source_digest": "366a4ed0c4993bead70a99809d19fa8a746cfcd5c18dfbd7afdef7998e352bf4",
   "features": [
     {
       "status": "Source",
@@ -24,7 +24,23 @@
     },
     {
       "status": "Source",
-      "text": "Security-room main menu: four independent 1-60 second static startups then persistent no-signal loops; enlarged centered labels with visible direct mod-entry discovery and responsive rows, retaining callbacks."
+      "text": "Security-room main menu: four independent 1-60 second static startups then persistent no-signal loops; enlarged centered labels with visible direct mod-entry discovery and responsive rows, retaining callbacks. Menu/logo width is capped before the outer CRT casing for long translations/mod labels; standard 4:3/16:9 through 4K and 21:9/32:9 viewport fixtures pass offline."
+    },
+    {
+      "status": "Source",
+      "text": "Main-menu-only runtime music gain mute; saved options unchanged and native exit restores configured gain. Audible rain/thunder suppression NOT TESTED."
+    },
+    {
+      "status": "Source",
+      "text": "Continuous security room expanded to the right: desk reframed toward center-left, one wall/pipe/baseboard/floor perspective and lamp, uniform cover scaling through 32:9 with four transparent CRTs and a separate left menu. PZ runtime NOT TESTED."
+    },
+    {
+      "status": "Source",
+      "text": "Bunker/security artwork decoration: right filing cabinets, archive boxes, noticeboard, key rack, intercom/extinguisher; low footlocker/vent at far left with menu area clear."
+    },
+    {
+      "status": "Source",
+      "text": "Optional PZOPT_MENU title/status adapter: shared centered menu title, reserved live version/update line beneath, aligned controller glyph and original callback/render/status ownership; no external dependency or code reuse. Native integration NOT TESTED."
     },
     {
       "status": "Source",
@@ -43,7 +59,7 @@
       "text": "Public Workshop MP test item 3822582242 updated to 0.3.0-dev.1 with source/package/stage parity and independent public description verification; native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.5.0-dev.2 development source only; Workshop remains 0.3.0-dev.1. New background runtime NOT TESTED. Other main-menu render replacements are skipped. Offline tests do not establish native, controller, split-screen or dedicated acceptance. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
+  "limits": "0.5.0-dev.8 development source only; Workshop remains 0.3.0-dev.1. 0.5.0-dev.2 visual menu was observed in an isolated local game profile; 0.5.0-dev.8 audio, ultrawide layout and optional status-label integration runtime NOT TESTED. Other main-menu render replacements are skipped. Offline tests do not establish native, controller, split-screen or dedicated acceptance. G7/stable G8 BLOCKED. Lua-only local presentation; no gameplay ownership.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -58,7 +74,8 @@
     "docs/WORKSHOP_UPDATE_0.3.0-dev.1_2026-10-18.json",
     "docs/NATIVE_MENUS.md",
     "docs/MENU_BACKGROUND.md",
-    "docs/MENU_ARTWORK.json"
+    "docs/MENU_ARTWORK.json",
+    "docs/THIRD_PARTY_RESEARCH.md"
   ],
   "relations": []
 }

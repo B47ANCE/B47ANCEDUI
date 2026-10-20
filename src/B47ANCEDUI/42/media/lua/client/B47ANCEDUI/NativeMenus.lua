@@ -56,6 +56,68 @@ local function style(screen,label)
   return result
  end
 end
+-- Optional interoperability with a public menu widget, not an external dependency.
+-- Keep its renderer running once so its live version/update note stays authoritative.
+local function styleStatusLabel(screen,label)
+ local delegate=label.prerender
+ label.b47NativeMenu=true;label.b47MenuHasNote=true
+ label.b47AppearanceScope='B47ANCEDUI';label.playerNum=0
+ label.prerender=function(self,...)
+  if screen.inGame or not screen.b47MenuBackground then return delegate(self,...) end
+  local width,height=self:getWidth(),self:getHeight()
+  local fieldHeight=self.height
+  local noteHeight=self.b47MenuNoteHeight or math.min(getTextManager():getFontHeight(UIFont.Small)+4,height/3)
+  local primaryHeight=self.b47MenuPrimaryHeight or height-noteHeight
+  local zoom=self.b47MenuScale or 1
+  local full=self.translation or self.name or ''
+  local glyphSize=math.min(32,primaryHeight)
+  local glyphGap=math.min(UI_BORDER_SPACING or 4,primaryHeight/4)
+  local glyphSpace=self.joypadFocused and self.joypadTexture and 2*(glyphSize+glyphGap) or 0
+  local short=R.fit(full,math.max(1,width-glyphSpace)/zoom,self.font)
+  local titleWidth=getTextManager():MeasureStringX(self.font,short)*zoom
+  local titleX=(width-titleWidth)/2
+  local disabled=blocked(screen,self)
+  local active=not disabled and (self.joypadFocused or self:isMouseOver())
+  local c=U.Appearance.color(self,disabled and T.colors.disabled or active and T.colors.accent or T.colors.text)
+  if not self.tooltip or self.tooltip==self.b47NativeMenuFallbackTip then
+   self.b47NativeMenuFallbackTip=short~=full and full or nil;self.tooltip=self.b47NativeMenuFallbackTip
+  end
+  local text,centre,rect,zoomed=self.drawText,self.drawTextCentre,self.drawRect,self.drawTextZoomed
+  local rawText,rawCentre,rawRect=rawget(self,'drawText'),rawget(self,'drawTextCentre'),rawget(self,'drawRect')
+  local texture,rawTexture=self.drawTextureScaled,rawget(self,'drawTextureScaled')
+  local function draw(original,owner,value,x,y,red,green,blue,alpha,font)
+   if font==self.font and (value==full or value==self.name) then
+    return zoomed(owner,short,titleX,(primaryHeight-getTextManager():getFontHeight(font)*zoom)/2,zoom,c.r,c.g,c.b,c.a,font)
+   elseif font==UIFont.Small then
+    local noteZoom=math.min(1,noteHeight/(getTextManager():getFontHeight(font)+4))
+    local fitted=R.fit(value,math.max(1,width-4)/noteZoom,font)
+    local noteWidth=getTextManager():MeasureStringX(font,fitted)*noteZoom
+    return zoomed(owner,fitted,(width-noteWidth)/2,primaryHeight+(noteHeight-getTextManager():getFontHeight(font)*noteZoom)/2,noteZoom,red,green,blue,alpha,font)
+   end
+   return original(owner,value,x,y,red,green,blue,alpha,font)
+  end
+  self.drawText=function(owner,...)return draw(text,owner,...)end
+  self.drawTextCentre=function(owner,...)return draw(centre,owner,...)end
+  self.drawRect=function(owner,x,y,w,h,...)
+   if x<=0 and y==0 and w>=width and h>0 then return end -- native hover backing only
+   return rect(owner,x,y,w,h,...)
+  end
+  self.drawTextureScaled=function(owner,tex,x,y,w,h,...)
+   if self.joypadTexture and tex==self.joypadTexture then
+    return texture(owner,tex,titleX-glyphGap-glyphSize,(primaryHeight-glyphSize)/2,glyphSize,glyphSize,...)
+   end
+   return texture(owner,tex,x,y,w,h,...)
+  end
+  local ok,result=pcall(delegate,self,...)
+  self.drawText,self.drawTextCentre,self.drawRect=rawText,rawCentre,rawRect
+  self.drawTextureScaled=rawTexture
+  if self:getHeight()~=height then self:setHeight(height) end
+  self.height=fieldHeight
+  if not ok then error(result) end
+  if active then R.rect(self,titleX,math.max(0,primaryHeight-6),titleWidth,math.min(2,primaryHeight),T.colors.accent) end
+  return result
+ end
+end
 function N.apply(screen)
  if not screen or not screen.bottomPanel then return 0 end
  local count=0
@@ -71,13 +133,17 @@ function N.apply(screen)
   end
  end
  -- Main-menu mods commonly append native labels with their own callbacks.
- -- Only adopt known label renderers; never replace a foreign custom prerender.
- if screen.b47MenuBackground and screen.bottomPanel.getChildren then
+ -- Known native renderers are adopted directly. The public PZOPT_MENU widget has
+ -- an audited title-plus-status contract; preserve its custom renderer through a scoped wrapper.
+ if not screen.inGame and screen.b47MenuBackground and screen.bottomPanel.getChildren then
   for _,label in pairs(screen.bottomPanel:getChildren()) do
    if label.Type=='ISLabel' and not label.b47NativeMenu and not label.b47Styled
-    and label.onMouseDown and label.onMouseDown~=ISLabel.onMouseDown
-    and (label.prerender==nativeLabelPre or label.prerender==MainScreen.prerenderBottomPanelLabel) then
-    style(screen,label);count=count+1
+    and label.parent==screen.bottomPanel and label.onMouseDown and label.onMouseDown~=ISLabel.onMouseDown then
+    if label.internal=='PZOPT_MENU' and label.font==T.fonts.menu and type(label.prerender)=='function' then
+     styleStatusLabel(screen,label);count=count+1
+    elseif label.prerender==nativeLabelPre or label.prerender==MainScreen.prerenderBottomPanelLabel then
+     style(screen,label);count=count+1
+    end
    end
   end
  end

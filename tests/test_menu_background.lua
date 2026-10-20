@@ -1,6 +1,12 @@
 -- Offline integration fixture: rendering order, lifecycle and native invariants.
 local U=require 'B47ANCEDUI/API'
 local oldMain,oldEvents,oldTexture,oldClock,oldManager=MainScreen,Events,getTexture,getTimestampMs,UIManager
+local oldSound=getSoundManager
+local gain,calls=.7,0
+getSoundManager=function() return {
+ getMusicVolume=function()return gain end,
+ setMusicVolume=function(_,v)gain=v;calls=calls+1 end
+} end
 local events={}
 local function event() return {Add=function(f) events[#events+1]=f end} end
 Events={OnMainMenuEnter=event(),OnResetLua=event()}
@@ -67,19 +73,19 @@ assert(main.drawTextureScaled==draw,'Temporary logo draw override leaked')
 local artIndex,logoIndex
 for i,d in ipairs(draws)do
  if d.texture and d.texture.path and d.texture.path:find('SecurityRoom') then artIndex=i end
-  if d.texture==logo then logoIndex=i;assert(math.abs(d[1]+d[3]/2-264)<.001 and d[3]<=448.001) end
+  if d.texture==logo then logoIndex=i;assert(math.abs(d[1]+d[3]/2-(main.bottomPanel.x+main.bottomPanel.width/2))<.001 and d[3]<=448.001) end
 end
 assert(draws[1].kind=='rect' and artIndex and logoIndex>artIndex,'Layers in wrong order')
-assert(main.bottomPanel.x==40 and main.bottomPanel.y<400)
+assert(main.bottomPanel.x>=40 and main.bottomPanel.y<400)
 local item=main.bottomPanel.children[1]
-assert(math.abs(item.x+item.width/2-224)<.001 and item.b47MenuScale>1)
+assert(math.abs(item.x+item.width/2-main.bottomPanel.width/2)<.001 and item.b47MenuScale>1)
 -- A later-added item joins without another boot; hidden/removed entries free space.
 local extra=screen(false).bottomPanel.children[1]
 extra.name='OTHER MOD';extra.y=100;extra.getIsVisible=function(self)return not self.hidden end
 main.bottomPanel.children[2]=extra
 main:prerender()
 local twoHeight=item.height
-assert(extra.y>item.y and math.abs(extra.x+extra.width/2-224)<.001)
+assert(extra.y>item.y and math.abs(extra.x+extra.width/2-main.bottomPanel.width/2)<.001)
 extra.hidden=true;main:prerender();assert(item.height>twoHeight)
 extra.hidden=false;main:prerender();assert(item.height==twoHeight)
 main.bottomPanel.children[2]=nil;main:prerender();assert(item.height>twoHeight)
@@ -90,10 +96,43 @@ end
 main:prerender()
 local last=main.bottomPanel.children[40]
 assert(last.y+last.height<=main.bottomPanel.height+.001 and last.b47MenuScale<1)
-for _,size in ipairs({{1280,720},{1024,768},{3440,1440}})do
- local x,y,s=B.geometry(size[1],size[2]);assert(x>=0 and y>=0 and 1672*s<=size[1]+.001 and 941*s<=size[2]+.001)
+for _,size in ipairs({{1024,768},{1280,720},{1920,1008},{1920,1080},{2560,1440},{3840,2160},{2560,1080},{3440,1440},{5120,1440}})do
+ local w,h=size[1],size[2]
+ local x,y,s=B.geometry(w,h)
+ assert(x<=.001 and y<=.001 and x+2172*s>=w-.001 and y+724*s>=h-.001,'Panorama must cover viewport')
+ assert(x+695*s>=-.001 and x+1145*s<=w+.001 and y==0,'Retain CRT casings and overhead pipe')
+ for _,maxWidth in ipairs({240,2000}) do
+ local fitted=screen(false);fitted.width=w;fitted.height=h;fitted.maxMenuItemWidth=maxWidth
+ assert(B.apply(fitted));fitted.b47MenuBackground.elapsed=2;draws={};fitted:prerender()
+ local roomCount,monitors,leftmost,logoRect=0,0,math.huge,nil
+ for _,d in ipairs(draws)do
+  local name=d.texture and d.texture.path
+  if name and name:find('SecurityRoomPanorama') then
+   roomCount=roomCount+1;assert(math.abs(d[3]/d[4]-2172/724)<.001,'Do not stretch room or CRTs')
+  elseif name and name:find('Static') then
+   monitors=monitors+1;leftmost=math.min(leftmost,d[1])
+   assert(d[1]>=0 and d[2]>=0 and d[1]+d[3]<=w and d[2]+d[4]<=h,'CRT aperture cropped')
+  elseif d.texture==logo then
+   logoRect=d
+  end
+  assert(not name or not name:find('SecurityWing'),'No separate side additions')
+ end
+ assert(roomCount==1 and monitors==4,'Draw one continuous room and four feeds')
+ assert(fitted.bottomPanel.x>=0 and fitted.bottomPanel.x+fitted.bottomPanel.width<leftmost,'Keep navigation clear of CRTs')
+ assert(fitted.bottomPanel.x+fitted.bottomPanel.width<x+695*s,'Long labels must keep menu clear of outer CRT casing')
+ assert(logoRect and logoRect[1]>=0 and logoRect[2]>=0 and logoRect[1]+logoRect[3]<leftmost,'Keep logo visible and clear of CRTs')
+ assert(logoRect[1]+logoRect[3]<x+695*s,'Keep logo clear of outer CRT casing')
+ assert(logoRect[2]+logoRect[4]<fitted.bottomPanel.y,'Keep logo above menu')
+ assert(fitted.bottomPanel.y+fitted.bottomPanel.height<=h,'Keep complete menu inside viewport')
+ end
 end
+assert(gain==0 and calls==1,'Main menu must mute runtime music gain')
+main:prerender();assert(calls==1,'Do not repeatedly write unchanged gain')
+gain=.4;main:prerender();assert(gain==0 and calls==2,'Reapply after options volume preview')
+main.inGame=true;gain=.8;main:prerender();assert(gain==.8,'Never mute in-game/Esc audio')
+main.inGame=false
 throws=true;assert(not pcall(main.prerender,main));assert(main.drawTextureScaled==draw)
 MainScreen,Events,getTexture,getTimestampMs,UIManager=oldMain,oldEvents,oldTexture,oldClock,oldManager
+getSoundManager=oldSound
 package.loaded['OptionScreens/MainScreen']=oldMain
 print('PASS offline background lifecycle, timing, aspect fit, layering, fallback, Esc exclusion and native exception restoration')

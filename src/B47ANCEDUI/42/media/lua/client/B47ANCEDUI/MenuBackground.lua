@@ -7,13 +7,13 @@ if U.MenuBackground then return U.MenuBackground end
 local B={};U.MenuBackground=B
 local path='media/ui/B47ANCEDUI/'
 local nativePre=MainScreen.prerender
-local imageWidth,imageHeight=1672,941
+local imageWidth,imageHeight=2172,724
 -- Rectangles extend behind the opaque bezels; the artwork supplies rounded masks.
-local apertures={{791,157,280,200},{1157,157,278,200},{791,414,280,199},{1157,414,278,199}}
+local apertures={{739,173,148,101},{946,173,151,102},{739,312,148,100},{946,312,151,99}}
 local texture,frames
 local function loadArt()
  if texture then return true end
- local art=getTexture(path..'SecurityRoom.png')
+ local art=getTexture(path..'SecurityRoomPanorama.png')
  if not art then return false end
  local loaded={}
  for i=1,8 do
@@ -42,8 +42,12 @@ function B.sample(m,time)
  return noise and 'static' or 'signal',frame,(age*.13+m.offset)%1
 end
 function B.geometry(width,height)
- local scale=math.min(width/imageWidth,height/imageHeight)
- return (width-imageWidth*scale)/2,(height-imageHeight*scale)/2,scale
+ -- Uniform cover scaling, focused on the menu/desk group on narrow viewports.
+ -- Wider screens reveal the continuous room extension to the right.
+ local scale=math.max(width/imageWidth,height/imageHeight)
+ local x=math.min(0,math.max(width-imageWidth*scale,width/2-680*scale))
+ -- Keep the continuous overhead pipe and lamp visible; ultrawide crops floor.
+ return x,0,scale
 end
 function B.draw(screen,session,dt)
  session.elapsed=session.elapsed+math.max(0,math.min(tonumber(dt) or 0,100))/1000
@@ -87,7 +91,10 @@ function B.layout(screen,menuWidth,top,bottom)
  end)
  if #entries==0 then return end
  local available=math.max(1,bottom-top)
- local row=available/#entries
+ local noteHeight=math.min(getTextManager():getFontHeight(UIFont.Small)+4,available/(#entries*2))
+ local reserved=0
+ for _,child in ipairs(entries) do if child.b47MenuHasNote then reserved=reserved+noteHeight end end
+ local row=(available-reserved)/#entries
  local zoom=math.min(1.9,screen:getHeight()/600)
  for _,child in ipairs(entries) do
   local font=child.font or UIFont.Large
@@ -97,15 +104,20 @@ function B.layout(screen,menuWidth,top,bottom)
   zoom=math.min(zoom,(menuWidth-48)/math.max(1,width),row*.65/math.max(1,height))
  end
  zoom=math.max(.05,zoom)
- for i,child in ipairs(entries) do
+ local cursor=0
+ for _,child in ipairs(entries) do
   local text=child.translation or child.name or child.title or ''
   local font=child.font or UIFont.Large
   local scalable=child.b47NativeMenu==true
   child.b47MenuScale=scalable and zoom or nil
-  local width=math.min(menuWidth,math.max(1,getTextManager():MeasureStringX(font,text)*(scalable and zoom or 1)+4))
-  child:setX((menuWidth-width)/2);child:setY((i-1)*row)
-  child.b47MenuAssignedY=(i-1)*row
-  child:setWidth(width);child:setHeight(row)
+  local note=child.b47MenuHasNote and noteHeight or 0
+  child.b47MenuPrimaryHeight=note>0 and row or nil
+  child.b47MenuNoteHeight=note>0 and note or nil
+  local width=note>0 and menuWidth or math.min(menuWidth,math.max(1,getTextManager():MeasureStringX(font,text)*(scalable and zoom or 1)+4))
+  child:setX((menuWidth-width)/2);child:setY(cursor)
+  child.b47MenuAssignedY=cursor
+  child:setWidth(width);child:setHeight(row+note)
+  cursor=cursor+row+note
  end
  menu:setHeight(available)
 end
@@ -115,11 +127,18 @@ function B.apply(screen)
  screen.b47MenuBackground=B.newSession(getTimestampMs())
  screen.prerender=function(self,...)
   if self.inGame then return nativePre(self,...) end
+  -- Runtime gain only: MainScreenState.exit restores the configured music gain.
+  -- Never write saved options or mute world/UI sound categories.
+  local sound=getSoundManager()
+  if sound and sound:getMusicVolume()~=0 then sound:setMusicVolume(0) end
   B.draw(self,self.b47MenuBackground,UIManager.getMillisSinceLastRender())
   local w,h=self:getWidth(),self:getHeight()
   local margin=math.max(16,w*.025)
   local menu=self.bottomPanel
-  local menuWidth=math.max(self.maxMenuItemWidth or 0,w*.28)
+  local artX,_,artScale=B.geometry(w,h)
+  local columnLimit=math.max(1,artX+695*artScale-margin*2) -- clear the outer CRT casing, including long labels
+  local menuWidth=math.min(math.max(self.maxMenuItemWidth or 0,w*.28),480*artScale,columnLimit)
+  local menuX=math.max(margin,math.min(w-menuWidth-margin,artX+260*artScale-menuWidth/2))
   local logoScale=math.min(menuWidth/self.logoTexture:getWidth(),h*.34/self.logoTexture:getHeight())
   local logoHeight=self.logoTexture:getHeight()*logoScale
   local top=margin+logoHeight+margin*.7
@@ -130,14 +149,14 @@ function B.apply(screen)
   self.drawTextureScaled=function(owner,tex,tx,ty,tw,th,...)
    if tex==owner.logoTexture then
     tw,th=tex:getWidth()*logoScale,logoHeight
-    tx,ty=margin+(menuWidth-tw)/2,margin
+    tx,ty=menuX+(menuWidth-tw)/2,margin
    end
    return originalDraw(owner,tex,tx,ty,tw,th,...)
   end
   local ok,result=pcall(nativePre,self,...)
   self.drawTextureScaled=previousRaw
   if not ok then error(result) end
-  menu:setX(margin);menu:setY(top);menu:setWidth(menuWidth)
+  menu:setX(menuX);menu:setY(top);menu:setWidth(menuWidth)
   B.layout(self,menuWidth,top,h-margin)
   return result
  end

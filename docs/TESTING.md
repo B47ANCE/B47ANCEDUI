@@ -1,6 +1,6 @@
 # Validation
 
-Project Version: 0.5.0-dev.2
+Project Version: 0.5.0-dev.8
 
 Commands: `python -B scripts/check_versions.py`; `python -B tests/run_tests.py`.
 
@@ -43,3 +43,19 @@ Publication-preparation tooling adds deterministic packaging, CRC/member/source 
 0.5.0-dev.1 adds an instance-only main-menu background adapter and decorative four-monitor animation; see [design, API evidence and runtime checks](MENU_BACKGROUND.md). Public API major 1 is unchanged. Native actions/controller label identities are retained, but main-menu label widths/position and logo placement now fit the left column. Esc rendering is unchanged. No shared state, save mutation or networking. New integration runtime NOT TESTED; offline fixtures are not game evidence.
 
 0.5.0-dev.2: responsive, centered main-menu rows dynamically discover visible direct ISLabel/ISButton entries. Known native label renderers support enlarged text; foreign custom renderers retain their draw paths. Initial static is independently 1-60 seconds, then each monitor stays in its no-signal loop. See MENU_BACKGROUND.md for compatibility boundaries and offline evidence. New layout/timing runtime NOT TESTED.
+
+0.5.0-dev.3 mutes native music runtime gain while the security-room main menu renders; native exit restores the configured gain. Saved preferences and in-game/Esc audio are untouched. Audible storm suppression and audio restoration require runtime listening; NOT TESTED. See docs/MENU_BACKGROUND.md for source evidence and limits.
+
+0.5.0-dev.4 ultrawide [TESTED: offline]: one panorama uniformly covers viewports from 1024x768 through 5120x1440, four CRT apertures remain visible and source-aligned, and the logo/menu column stays clear of the CRTs. Actual PZ 32:9 rendering and resize remain [RUNTIME GATE] NOT TESTED.
+
+0.5.0-dev.4 replaces the rejected visual composition. Alpha checks inspect the entire PNG for unintended transparent holes, and the four new CRT mask rectangles are checked in all viewport fixtures. A single PNG and passing geometry tests alone do not establish coherent room perspective; full-width art/preview inspection is recorded separately in MENU_BACKGROUND.md. PZ runtime NOT TESTED.
+
+0.5.0-dev.5 right extension [TESTED: offline]: current PNG alpha is decoded against four new aperture bounds; viewport fixtures retain both CRT casings and a separate left menu column. The right scene is shown as the viewport widens. Actual PZ rendering and input acceptance for this artwork remain NOT TESTED.
+
+0.5.0-dev.6 artwork [TESTED: offline]: decoded CRT alpha and room-hole boundaries, asset hash/CRC, source consistency and full regressions. Browser composited 32:9/standard-wide previews verify clean CRT edges and left/right decoration; raw-alpha preview coloration is not PZ runtime evidence. Native acceptance NOT TESTED.
+
+0.5.0-dev.7 optional status-label [TESTED: offline]: tests/test_menu_status.lua fails against pre-fix dev.6 code and passes against the current adapter/layout. Covers title zoom/accent, live release/download note text and state colors, reserved lane and crowded rows, unchanged callback, original renderer/tooltip calls, controller glyph coordinates/scaling and other-texture pass-through, inactive-background delegation, scoping/idempotence and exception method/height restoration. It loads no external module. Native PZ Optimization integration and updater paths remain [RUNTIME GATE] NOT TESTED; see THIRD_PARTY_RESEARCH.md.
+
+0.5.0-dev.7 publication viewport matrix [TESTED: offline Windows, 2026-10-19]: 1024x768, 1280x720, 1920x1008, 1920x1080, 2560x1440, 3840x2160, 2560x1080, 3440x1440 and 5120x1440. `python -X utf8 -B tests/run_tests.py` checks full viewport cover, uniform image/CRT scaling, all four visible apertures and separate navigation column. This includes common standard displays and 21:9/32:9 ultrawides; actual PZ rendering/resizing remains NOT TESTED.
+
+0.5.0-dev.8 [TESTED: offline Windows, 2026-10-19]: the same nine viewport sizes are each exercised with maxMenuItemWidth 240 and 2000. Additional assertions check logo above the complete visible menu and both clear of the outer CRT casing. The oversized-width test first failed on dev.7 at 1024x768 with `Long labels must keep menu clear of outer CRT casing`, then passed after the column cap. Commands: `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py`, `git diff --check`. All PASS; no native PZ or dedicated runtime evidence inferred.
