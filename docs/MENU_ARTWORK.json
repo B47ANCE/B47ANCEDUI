@@ -23,7 +23,7 @@
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static6.png": "c87c64a549b6b808f09e632291f7c82f8c2f7b49e0bafb796e966d9b51822e61",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static7.png": "57cbd4aaca2abf88d4d29c5b60f1c5d648e519db998db0ba5c9fa0c6090c3f4c",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static8.png": "65137127a76a187573ad6d04c7f1f4f928b808ed387b0bd042cd4484ff6490cf",
-    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "8080c6adcc83c542da304311e8601c2619d5ddb5d9089fb628fd2d048ee6b09d"
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "44cd90bc4f931afc10d20cda17534d7fdbb0be500e16b7fc774cab2e087773e1"
   },
   "ultrawide": {
     "target_aspect": "32:9",
@@ -37,28 +37,28 @@
     ],
     "transparent_apertures": [
       [
-        744,
-        182,
-        882,
-        262
+        819,
+        196,
+        952,
+        278
       ],
       [
-        955,
-        180,
-        1090,
-        262
+        1023,
+        196,
+        1156,
+        275
       ],
       [
-        744,
-        321,
-        882,
-        402
+        819,
+        336,
+        952,
+        416
       ],
       [
-        954,
-        321,
-        1090,
-        402
+        1023,
+        336,
+        1156,
+        416
       ]
     ],
     "screen_centres_alpha": [
@@ -67,15 +67,48 @@
       0,
       0
     ],
-    "layout": "Continuous room with an expanded right field of view. Desk is reframed toward the center-left; the same wall paint boundary, pipe, baseboard and floor perspective continue into the open right area. Uniform top-aligned cover scaling focuses narrow crops on the menu/desk group and reveals more right scenery at ultrawide ratios. No separate panels.",
-    "origin": "Original built-in image edits of the owned room; current dev9 pipe refinement extends the highest run to the left image edge and removes the old left ascent/lower segment. Generated PNG used unchanged; no external artwork.",
-    "decoration": "Far-left vent and smaller footlocker/folders; clear wall for logo/menu. Right bunker furniture retained in the same composition.",
+    "layout": "Entire security room regenerated in one continuous image: common wall paint boundary, baseboard, tiled floor perspective, physically connected conduits and coherent amber lighting. Uniform top-aligned cover scaling retains the menu/CRT group on narrow viewports and reveals the right furnishings on ultrawide displays. No separate panels.",
+    "origin": "Original built-in image generation using the owned dev9 scene as a loose composition/style reference; full scene regenerated in one call. Selected PNG used unchanged; no external artwork or raster post-processing. Prompt and hash: MENU_ROOM_REGENERATION_PROMPT.md.",
+    "decoration": "Small far-left vent and low footlocker; quiet left menu wall. Desk with four CRTs, keyboard, mug, papers and radio. Right filing cabinets, archive boxes, noticeboard, keys, telephone and extinguisher, all regenerated together.",
     "menu_wall": {
-      "source_anchor_x": 405,
+      "source_anchor_x": 440,
       "top": 72,
       "bottom": 470,
       "logo_height_max_fraction": 0.34,
-      "note": "Lua lays out dynamic menu entries inside this clear wall; these are internal image coordinates."
-    }
+      "note": "Lua lays out dynamic menu entries inside this clear wall; these are internal image coordinates.",
+      "right": 645,
+      "source_width_max": 390
+    },
+    "crop_focus_x": 760,
+    "crt_casing_span": [
+      775,
+      1230
+    ],
+    "animation_rectangles": [
+      [
+        817,
+        194,
+        137,
+        86
+      ],
+      [
+        1021,
+        194,
+        137,
+        83
+      ],
+      [
+        817,
+        334,
+        137,
+        84
+      ],
+      [
+        1021,
+        334,
+        137,
+        84
+      ]
+    ]
   }
 }

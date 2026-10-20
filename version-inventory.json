@@ -113,6 +113,10 @@
     {
       "reference": "docs/MENU_WALL_ART_PROMPT.md",
       "reason": "Fixed dev9 artwork generation prompt/provenance record, retained with its observed asset hash rather than a future project-version mirror."
+    },
+    {
+      "reference": "docs/MENU_ROOM_REGENERATION_PROMPT.md",
+      "reason": "Fixed dev10 full-room generation prompt/provenance retains its observed asset hash; not a future project-version mirror."
     }
   ]
 }

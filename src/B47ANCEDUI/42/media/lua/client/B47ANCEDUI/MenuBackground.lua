@@ -9,7 +9,7 @@ local path='media/ui/B47ANCEDUI/'
 local nativePre=MainScreen.prerender
 local imageWidth,imageHeight=2172,724
 -- Rectangles extend behind the opaque bezels; the artwork supplies rounded masks.
-local apertures={{739,173,148,101},{946,173,151,102},{739,312,148,100},{946,312,151,99}}
+local apertures={{817,194,137,86},{1021,194,137,83},{817,334,137,84},{1021,334,137,84}}
 local texture,frames
 local function loadArt()
  if texture then return true end
@@ -45,7 +45,7 @@ function B.geometry(width,height)
  -- Uniform cover scaling, focused on the menu/desk group on narrow viewports.
  -- Wider screens reveal the continuous room extension to the right.
  local scale=math.max(width/imageWidth,height/imageHeight)
- local x=math.min(0,math.max(width-imageWidth*scale,width/2-680*scale))
+ local x=math.min(0,math.max(width-imageWidth*scale,width/2-760*scale))
  -- Keep the continuous overhead pipe and lamp visible; ultrawide crops floor.
  return x,0,scale
 end
@@ -136,9 +136,9 @@ function B.apply(screen)
   local margin=math.max(16,w*.025)
   local menu=self.bottomPanel
   local artX,artY,artScale=B.geometry(w,h)
-  local columnLimit=math.max(1,artX+695*artScale-margin*2) -- clear the outer CRT casing, including long labels
-  local menuWidth=math.min(math.max(self.maxMenuItemWidth or 0,w*.28),480*artScale,columnLimit)
-  local menuX=math.max(margin,math.min(w-menuWidth-margin,artX+405*artScale-menuWidth/2))
+  local columnLimit=math.max(1,artX+645*artScale-margin*2) -- keep long labels on the quiet wall before the pipe
+  local menuWidth=math.min(math.max(self.maxMenuItemWidth or 0,w*.28),390*artScale,columnLimit)
+  local menuX=math.max(margin,math.min(w-menuWidth-margin,artX+440*artScale-menuWidth/2))
   local wallTop=math.max(margin,artY+72*artScale)
   local wallBottom=math.min(h-margin,artY+470*artScale)
   local logoScale=math.min(menuWidth/self.logoTexture:getWidth(),(wallBottom-wallTop)*.34/self.logoTexture:getHeight())

@@ -1,6 +1,6 @@
 # Native main and Esc menu styling
 
-Project Version: 0.5.0-dev.9
+Project Version: 0.5.0-dev.10
 
 Dev.9 positions the main-menu logo and complete dynamic column inside the quiet wall in the new artwork; see MENU_BACKGROUND.md. This drawing/layout refinement retains native actions/controller objects and the Esc layout. Native acceptance for dev.9 NOT TESTED; Workshop remains dev.8.
 
@@ -33,3 +33,5 @@ Baseline ownership checks require native label type, known field/internal ID, di
 ## Optional status-label compatibility (0.5.0-dev.7)
 
 The public PZOPT_MENU ISLabel is the audited exception to unknown-custom-renderer refusal. Its original renderer executes once; temporary instance draw interception supplies the shared title style and centers its live Small-font version/update line in reserved space beneath the title. The background layout subtracts that note lane before distributing normal rows, then fits title/note scale for crowded layouts. The provider's joypad texture is positioned beside the centered title and bounded by the primary row; unrelated textures pass through. Callback, original text/status colors, glyph selection and tooltip ownership remain with the provider; height and methods restore on errors, which propagate. An already wrapped label delegates unchanged when the security-room background is inactive or in-game. No provider API, Java dependency, external edits, network/save state or settings were added. Other custom renderers remain guarded. See [neutral contract and clean-room record](THIRD_PARTY_RESEARCH.md). Native PZ acceptance remains NOT TESTED.
+
+0.5.0-dev.10 replaces the whole security-room artwork in a single generation pass. The background adapter retargets CRT masks/crop and fits the existing dynamic logo/menu column on the quiet wall at source X440/Y72-470, before X645. Native navigation identities, callbacks, provider status ownership and Esc behavior remain unchanged. See MENU_BACKGROUND.md and MENU_ROOM_REGENERATION_PROMPT.md. Current native PZ rendering NOT TESTED; no deployment or publication.

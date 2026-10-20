@@ -1,6 +1,8 @@
 # Validation
 
-Project Version: 0.5.0-dev.9
+Project Version: 0.5.0-dev.10
+
+0.5.0-dev.10 [TESTED: offline Windows, 2026-10-19]: `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py` and `git diff --check`. Full-room generated PNG SHA/CRC/decoded alpha checks, entire inset transparent CRT interiors, no other alpha-zero scenery holes, and all existing Lua/API/source/archive checks PASS. Retargeted masks and casing span X775-1230 pass all nine viewport sizes with maxMenuItemWidth240/2000. Menu/logo center X440 and right bound X645 keep the column on the quiet wall; wall bounds Y72-470 remain. Offline 1920x1080, 2560x720 (32:9) and 1024x768 compositions were inspected for scene continuity, screen edges and menu separation. At 1080p the column center is approximately X483, ending at Y701. Preview fonts are illustrative, not native PZ metrics. No new PZ/server launch, deployment or upload. Current native rendering/input and dedicated acceptance NOT TESTED; G7/stable G8 remain BLOCKED.
 
 0.5.0-dev.9 [TESTED: offline Windows, 2026-10-19]: `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py` and `git diff --check`. New assertions first fail on dev.8 at `Keep logo inside the empty wall`, then pass with X405/Y72-470 wall layout: logo above menu, all rows above baseboard, casing separation and full viewport cover across the same nine resolutions with width requests 240/2000. Existing crowded/status/callback/exception fixtures remain applicable. New artwork hash/CRC, decoded real CRT alpha and full-image no-extra-hole check PASS. Code-composited visual previews are offline only. Native dev.9 render/input NOT TESTED; no deployment/upload or new game/server launch.
 

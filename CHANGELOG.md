@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.0-dev.10]
+- Compatible PATCH: regenerate the entire security room in one image-generation pass, with one wall, floor, conduit system and lighting scheme. No side-panel compositing; retain the quiet menu wall and bunker decorations.
+- Retarget all four genuine transparent CRT apertures. Update the crop focus to retain the new monitor casings at 4:3 and fit the logo/menu within the quiet wall at source X440/Y72-470, before its conduit.
+- Strengthen alpha validation to check full inset glass interiors. Public API 1, native actions, dynamic entries, startup/static timing and audio behavior remain unchanged. Offline validation only; not deployed or uploaded. Workshop remains dev.8.
+
 ## [0.5.0-dev.9]
 - Pipe art refinement: extend one straight highest run to the left edge and remove its old left ascent/lower segment; retain a single coupled connection at the right. No Lua/layout or public API change.
 - Compatible PATCH: recenter logo/navigation on the open wall at source X405 and fit the complete dynamic column inside source Y72-470, above the baseboard. Limit logo height to 34% of that wall region; preserve aspect ratio, native actions and status-note rows.
