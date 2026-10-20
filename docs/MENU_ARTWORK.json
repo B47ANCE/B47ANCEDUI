@@ -23,7 +23,7 @@
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static6.png": "c87c64a549b6b808f09e632291f7c82f8c2f7b49e0bafb796e966d9b51822e61",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static7.png": "57cbd4aaca2abf88d4d29c5b60f1c5d648e519db998db0ba5c9fa0c6090c3f4c",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static8.png": "65137127a76a187573ad6d04c7f1f4f928b808ed387b0bd042cd4484ff6490cf",
-    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "24fddb9fe69d656d4dfebf5f42ff10cb6f758d8f30aa4d8f0841048354d27743"
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "8080c6adcc83c542da304311e8601c2619d5ddb5d9089fb628fd2d048ee6b09d"
   },
   "ultrawide": {
     "target_aspect": "32:9",
@@ -37,27 +37,27 @@
     ],
     "transparent_apertures": [
       [
-        743,
-        180,
+        744,
+        182,
         882,
-        263
+        262
       ],
       [
-        953,
+        955,
         180,
-        1092,
-        263
+        1090,
+        262
       ],
       [
-        743,
+        744,
         321,
         882,
         402
       ],
       [
-        953,
+        954,
         321,
-        1092,
+        1090,
         402
       ]
     ],
@@ -68,7 +68,7 @@
       0
     ],
     "layout": "Continuous room with an expanded right field of view. Desk is reframed toward the center-left; the same wall paint boundary, pipe, baseboard and floor perspective continue into the open right area. Uniform top-aligned cover scaling focuses narrow crops on the menu/desk group and reveals more right scenery at ultrawide ratios. No separate panels.",
-    "origin": "Original built-in image edits of the dev8 room: move far-left vent/locker, calm the menu wall and reroute the pipe continuously above it. Generated PNG used unchanged; no external artwork.",
+    "origin": "Original built-in image edits of the owned room; current dev9 pipe refinement extends the highest run to the left image edge and removes the old left ascent/lower segment. Generated PNG used unchanged; no external artwork.",
     "decoration": "Far-left vent and smaller footlocker/folders; clear wall for logo/menu. Right bunker furniture retained in the same composition.",
     "menu_wall": {
       "source_anchor_x": 405,

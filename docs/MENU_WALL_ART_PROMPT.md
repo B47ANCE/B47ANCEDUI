@@ -1,6 +1,6 @@
 # Menu wall artwork edit - 0.5.0-dev.9
 
-Built-in image_gen edit mode, original owned panorama plus user-supplied runtime screenshot as composition reference. No external-mod artwork or implementation used. Selected generated PNG is copied unchanged to `src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png`; SHA-256 `24fddb9fe69d656d4dfebf5f42ff10cb6f758d8f30aa4d8f0841048354d27743`. Earlier source remains in Git history. The screenshot is not shipped or committed.
+Built-in image_gen edit mode, original owned panorama plus user-supplied runtime screenshot as composition reference. No external-mod artwork or implementation used. Selected generated PNG is copied unchanged to `src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png`; SHA-256 `8080c6adcc83c542da304311e8601c2619d5ddb5d9089fb628fd2d048ee6b09d`. Earlier source remains in Git history. The screenshot is not shipped or committed.
 
 ## Initial edit prompt
 
@@ -10,13 +10,19 @@ Primary request: carefully rework ONLY the far-left decoration and left wall so 
 
 Critical invariants: preserve original 2172x724 canvas and camera/perspective. Preserve EVERY pixel/object position in x620 through the right edge: four CRT casings and exact screen aperture shapes/coordinates, desk, papers, mug, keyboard, all cables, lamp, pipes, filing cabinets, board, keys, phone and extinguisher. Keep the floor/baseboard geometry and right ultrawide room extension continuous and unchanged. In particular the four screen holes remain truly alpha-transparent at approximately [741,175,885,272], [948,175,1095,273], [741,314,885,409], [948,314,1095,408]. Do not replace screen holes with black paint or checkerboards. The entire room stays opaque except these existing CRT holes; preserve opacity and original pixel-art palette/style. No new words, logos, screens, characters or watermarks. Return the static background art only, with actual alpha in the four screen openings.
 
-## Selected refinement prompt
+## Initial pipe refinement prompt
 
 Use case: precise-object-edit. Make ONE tiny structural correction to this 2172x724 static pixel-art background: reconnect the interrupted overhead pipe on the left wall with a continuous plausible raised route above the clear logo/menu space. At the current left pipe end near source x165,y95, use a metal elbow to turn up to y20, run the same pipe horizontally across the upper wall to x590,y20, then turn down with another elbow and reconnect at the existing pipe/junction near x590,y95. This raised route must have consistent pipe thickness, lighting, couplers and perspective, with no open or floating cut ends. It stays ABOVE the future menu/logo region y72-490, except at the outer edges x165 and x590. Keep the central wall x230-570,y72-490 clear and calm. Do not create a framed panel; this is a thin existing industrial conduit rerouting around the free wall area.
 
 Change nothing else: same exact canvas, camera, pixel-art style, wall paint boundary, baseboard, floor, footlocker/vent, CRT casing positions/shapes, desk, right-hand filing cabinets and decorations. Preserve the four existing truly transparent CRT screen apertures exactly in position and shape; the rest of the room stays opaque. No UI text, logo, no-signal text, characters or watermark. Return static artwork only.
 
 ## Observed result and limits
+
+### Selected pipe-continuation correction
+
+Precise small pixel-art edit of this ORIGINAL 2172x724 reference. Fix the left pipe by EXTENDING ITS EXISTING HIGHEST HORIZONTAL RUN STRAIGHT LEFT to the canvas edge. Keep that highest run at EXACTLY its present height near the TOP BORDER (source y25, within the narrow strip y16-40). Remove ONLY its old left-side ascent near x170 and the old lower left segment at y95 between the left edge and x170, restoring the same wall texture/shadow behind the removed segments. The result is one single straight pipe along the very top-left edge, with the EXISTING right-hand down-turn near x600 still joining the main y95 conduit. Do NOT lower the pipe to y70/y95 across the left wall. No pipe may cross x230-570,y72-470, because that region holds the logo/menu. Same pipe diameter, metal highlight, couplers and realistic wall shadow; no floating ends, doubled lines or rectangle loop. Only this upper-left pipe routing changes. Preserve all other scene positions, 2172x724 dimensions, dark pixel-art style and perspective. Preserve the four real alpha-transparent CRT screen holes exactly; keep all remaining room scenery opaque. Keep desk, cabinets, noticeboard, vent, footlocker, lamp, keyboard, mug, papers, cables and baseboard/floor unchanged. No text, logos, UI, new objects or watermark. Static artwork only.
+
+This user-requested correction stays within the open dev9 artwork iteration. The high pipe now extends continuously from the left edge, with the old left ascent/lower run removed; the right-hand connection remains. Lua/menu coordinates and static timing are unchanged. Alpha bounds/hash were remeasured and composited previews refreshed.
 
 Prompts state desired invariants, not pixel-identity proof. Generation slightly changed texture/alpha edges; actual decoded zero-alpha bounds are recorded in MENU_ARTWORK.json and covered by existing animation rectangles. No zero-alpha scenery holes outside the four screens. The room is composited over its opaque black underlay. The final Lua wall bottom is inset to source Y470 to clear the edited baseboard; the prompt's Y490 denotes the larger art clearance area.
 

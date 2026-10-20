@@ -1,6 +1,7 @@
 # Changelog
 
 ## [0.5.0-dev.9]
+- Pipe art refinement: extend one straight highest run to the left edge and remove its old left ascent/lower segment; retain a single coupled connection at the right. No Lua/layout or public API change.
 - Compatible PATCH: recenter logo/navigation on the open wall at source X405 and fit the complete dynamic column inside source Y72-470, above the baseboard. Limit logo height to 34% of that wall region; preserve aspect ratio, native actions and status-note rows.
 - Rework original artwork: tuck vent/footlocker farther left, calm the wall behind the menu and route the overhead pipe continuously above it. Four transparent CRTs and continuous right-hand room retained.
 - New wall-bound regression fails on dev.8 and passes offline across the nine standard/ultrawide viewports with normal/oversized widths. Native rendering for this revision NOT TESTED; not deployed or uploaded. Workshop remains dev.8.
