@@ -135,13 +135,15 @@ function B.apply(screen)
   local w,h=self:getWidth(),self:getHeight()
   local margin=math.max(16,w*.025)
   local menu=self.bottomPanel
-  local artX,_,artScale=B.geometry(w,h)
+  local artX,artY,artScale=B.geometry(w,h)
   local columnLimit=math.max(1,artX+695*artScale-margin*2) -- clear the outer CRT casing, including long labels
   local menuWidth=math.min(math.max(self.maxMenuItemWidth or 0,w*.28),480*artScale,columnLimit)
-  local menuX=math.max(margin,math.min(w-menuWidth-margin,artX+260*artScale-menuWidth/2))
-  local logoScale=math.min(menuWidth/self.logoTexture:getWidth(),h*.34/self.logoTexture:getHeight())
+  local menuX=math.max(margin,math.min(w-menuWidth-margin,artX+405*artScale-menuWidth/2))
+  local wallTop=math.max(margin,artY+72*artScale)
+  local wallBottom=math.min(h-margin,artY+470*artScale)
+  local logoScale=math.min(menuWidth/self.logoTexture:getWidth(),(wallBottom-wallTop)*.34/self.logoTexture:getHeight())
   local logoHeight=self.logoTexture:getHeight()*logoScale
-  local top=margin+logoHeight+margin*.7
+  local top=wallTop+logoHeight+math.max(12,20*artScale)
   local originalDraw=self.drawTextureScaled
   local previousRaw=rawget(self,'drawTextureScaled')
   -- Only redirect this instance's logo draw during the native prerender call.
@@ -149,7 +151,7 @@ function B.apply(screen)
   self.drawTextureScaled=function(owner,tex,tx,ty,tw,th,...)
    if tex==owner.logoTexture then
     tw,th=tex:getWidth()*logoScale,logoHeight
-    tx,ty=menuX+(menuWidth-tw)/2,margin
+    tx,ty=menuX+(menuWidth-tw)/2,wallTop
    end
    return originalDraw(owner,tex,tx,ty,tw,th,...)
   end
@@ -157,7 +159,7 @@ function B.apply(screen)
   self.drawTextureScaled=previousRaw
   if not ok then error(result) end
   menu:setX(menuX);menu:setY(top);menu:setWidth(menuWidth)
-  B.layout(self,menuWidth,top,h-margin)
+  B.layout(self,menuWidth,top,wallBottom)
   return result
  end
  return true

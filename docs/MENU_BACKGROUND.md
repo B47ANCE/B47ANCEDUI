@@ -1,6 +1,6 @@
 # Security-room main menu
 
-Project Version: 0.5.0-dev.8
+Project Version: 0.5.0-dev.9
 
 Compatible MINOR addition from 0.4.0-dev.1; public API major 1, appearance storage and consumer contracts are unchanged. Current 0.5.0-dev.8 Workshop MP testing distribution is recorded in WORKSHOP_SECURITY_ROOM_UPDATE.md; native acceptance remains NOT TESTED.
 
@@ -66,3 +66,7 @@ The public PZOPT_MENU ISLabel is the audited exception to unknown-custom-rendere
 ## Standard and ultrawide column bounds (0.5.0-dev.8)
 
 The column width is also capped by the available space before source X 695, the left edge of the outer CRT casing, leaving a viewport margin. This handles oversized native maxMenuItemWidth values from long translations/mod-added labels. The existing fit/truncation and responsive rows still control visible text; callbacks and native objects are unchanged. The source coordinate is an artwork layout constant, not a player setting. Offline regression reproduces the old 1024x768 bezel overlap and passes for normal/oversized widths at 4:3, standard 16:9 through 4K, 21:9 and 32:9. Actual PZ rendering remains NOT TESTED.
+
+## Wall composition (0.5.0-dev.9)
+
+The user-supplied dev.8 runtime screenshot showed the column left of the open wall and its lower entries on the floor. The new art tucks the vent/locker farther left, calms the wall and reroutes the overhead pipe above it. Lua centers the column at source X405, with wall bounds Y72-470, a logo height cap of 34% of that region and a gap of max(12,20*artScale) before the dynamic rows. Width still respects the casing cap. These are internal drawing coordinates, with no gameplay/settings/schema change. At 1920x1080 the center is approximately X550 and the bottom Y701. Native objects/actions, mod entry discovery, status-note reservation and animation timing remain unchanged. New alpha bounds are measured in MENU_ARTWORK.json; unchanged animation rectangles cover them. Built-in image edit prompt/provenance: MENU_WALL_ART_PROMPT.md. Offline composition previews are not PZ runtime evidence. Not deployed/uploaded; Workshop remains dev.8.

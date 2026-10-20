@@ -1,6 +1,8 @@
 # Validation
 
-Project Version: 0.5.0-dev.8
+Project Version: 0.5.0-dev.9
+
+0.5.0-dev.9 [TESTED: offline Windows, 2026-10-19]: `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py` and `git diff --check`. New assertions first fail on dev.8 at `Keep logo inside the empty wall`, then pass with X405/Y72-470 wall layout: logo above menu, all rows above baseboard, casing separation and full viewport cover across the same nine resolutions with width requests 240/2000. Existing crowded/status/callback/exception fixtures remain applicable. New artwork hash/CRC, decoded real CRT alpha and full-image no-extra-hole check PASS. Code-composited visual previews are offline only. Native dev.9 render/input NOT TESTED; no deployment/upload or new game/server launch.
 
 Commands: `python -B scripts/check_versions.py`; `python -B tests/run_tests.py`.
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.0-dev.9]
+- Compatible PATCH: recenter logo/navigation on the open wall at source X405 and fit the complete dynamic column inside source Y72-470, above the baseboard. Limit logo height to 34% of that wall region; preserve aspect ratio, native actions and status-note rows.
+- Rework original artwork: tuck vent/footlocker farther left, calm the wall behind the menu and route the overhead pipe continuously above it. Four transparent CRTs and continuous right-hand room retained.
+- New wall-bound regression fails on dev.8 and passes offline across the nine standard/ultrawide viewports with normal/oversized widths. Native rendering for this revision NOT TESTED; not deployed or uploaded. Workshop remains dev.8.
+
 ## [0.5.0-dev.8]
 - Compatible PATCH: cap the main-menu/logo column before the outer CRT casing, including long translated or mod-added labels at 1024x768. Existing fit/truncation and row scaling preserve actions and screen visibility.
 - Regression reproduces the prior bezel overlap; expanded standard 720p/1080p/1440p/4K and 4:3/21:9/32:9 matrices pass with normal and oversized menu-width requests. Native PZ/input and dedicated multiplayer remain NOT TESTED.

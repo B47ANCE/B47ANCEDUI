@@ -1,6 +1,8 @@
 # Native main and Esc menu styling
 
-Project Version: 0.5.0-dev.8
+Project Version: 0.5.0-dev.9
+
+Dev.9 positions the main-menu logo and complete dynamic column inside the quiet wall in the new artwork; see MENU_BACKGROUND.md. This drawing/layout refinement retains native actions/controller objects and the Esc layout. Native acceptance for dev.9 NOT TESTED; Workshop remains dev.8.
 
 Compatible MINOR integration within public Lua API 1. Current 0.5.0-dev.8 Workshop MP test distribution is recorded in WORKSHOP_SECURITY_ROOM_UPDATE.md. Earlier no-package/upload statements below describe their original source checkpoints; native acceptance remains NOT TESTED.
 

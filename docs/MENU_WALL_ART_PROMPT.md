@@ -1,0 +1,23 @@
+# Menu wall artwork edit - 0.5.0-dev.9
+
+Built-in image_gen edit mode, original owned panorama plus user-supplied runtime screenshot as composition reference. No external-mod artwork or implementation used. Selected generated PNG is copied unchanged to `src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png`; SHA-256 `24fddb9fe69d656d4dfebf5f42ff10cb6f758d8f30aa4d8f0841048354d27743`. Earlier source remains in Git history. The screenshot is not shipped or committed.
+
+## Initial edit prompt
+
+Use case: precise-object-edit. Asset type: original pixel-art Project Zomboid security-room main-menu background. Image 1 is the EDIT TARGET, a 2172x724 continuous panoramic room with four transparent CRT apertures. Image 2 is ONLY supporting runtime layout reference showing the problem; never bake its white logo, menu labels, no-signal text, status text, cursor, legal buttons or any other UI into the artwork.
+
+Primary request: carefully rework ONLY the far-left decoration and left wall so the open wall reads as a deliberate quiet place for a centered logo and compact vertical menu. Tuck the footlocker and folders farther toward the far-left edge, with the vent aligned above that far-left decoration. The tall wall region approximately source x230-590, y30-495 must be clear, dark, softly readable weathered wall, slightly more even and calm in value, with no props or hard pipe details cutting across the future logo/menu. Continue the same wall paint boundary and baseboard naturally; do not add an artificial rectangular panel, frame, inset, vignette seam or UI backing. This is a small coherent composition refinement, not a new scene.
+
+Critical invariants: preserve original 2172x724 canvas and camera/perspective. Preserve EVERY pixel/object position in x620 through the right edge: four CRT casings and exact screen aperture shapes/coordinates, desk, papers, mug, keyboard, all cables, lamp, pipes, filing cabinets, board, keys, phone and extinguisher. Keep the floor/baseboard geometry and right ultrawide room extension continuous and unchanged. In particular the four screen holes remain truly alpha-transparent at approximately [741,175,885,272], [948,175,1095,273], [741,314,885,409], [948,314,1095,408]. Do not replace screen holes with black paint or checkerboards. The entire room stays opaque except these existing CRT holes; preserve opacity and original pixel-art palette/style. No new words, logos, screens, characters or watermarks. Return the static background art only, with actual alpha in the four screen openings.
+
+## Selected refinement prompt
+
+Use case: precise-object-edit. Make ONE tiny structural correction to this 2172x724 static pixel-art background: reconnect the interrupted overhead pipe on the left wall with a continuous plausible raised route above the clear logo/menu space. At the current left pipe end near source x165,y95, use a metal elbow to turn up to y20, run the same pipe horizontally across the upper wall to x590,y20, then turn down with another elbow and reconnect at the existing pipe/junction near x590,y95. This raised route must have consistent pipe thickness, lighting, couplers and perspective, with no open or floating cut ends. It stays ABOVE the future menu/logo region y72-490, except at the outer edges x165 and x590. Keep the central wall x230-570,y72-490 clear and calm. Do not create a framed panel; this is a thin existing industrial conduit rerouting around the free wall area.
+
+Change nothing else: same exact canvas, camera, pixel-art style, wall paint boundary, baseboard, floor, footlocker/vent, CRT casing positions/shapes, desk, right-hand filing cabinets and decorations. Preserve the four existing truly transparent CRT screen apertures exactly in position and shape; the rest of the room stays opaque. No UI text, logo, no-signal text, characters or watermark. Return static artwork only.
+
+## Observed result and limits
+
+Prompts state desired invariants, not pixel-identity proof. Generation slightly changed texture/alpha edges; actual decoded zero-alpha bounds are recorded in MENU_ARTWORK.json and covered by existing animation rectangles. No zero-alpha scenery holes outside the four screens. The room is composited over its opaque black underlay. The final Lua wall bottom is inset to source Y470 to clear the edited baseboard; the prompt's Y490 denotes the larger art clearance area.
+
+Offline browser composition uses the actual unmodified vanilla logo region extracted from its local UI24 atlas for preview only; it is not copied into the mod. Browser fonts and decorative no-signal labels are illustrative, not native engine pixels/input. Layout coordinates follow the Lua implementation. Dev.9 native validation remains NOT TESTED; no deployment or upload.

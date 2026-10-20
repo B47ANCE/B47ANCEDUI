@@ -103,6 +103,10 @@ for _,size in ipairs({{1024,768},{1280,720},{1920,1008},{1920,1080},{2560,1440},
  assert(x+695*s>=-.001 and x+1145*s<=w+.001 and y==0,'Retain CRT casings and overhead pipe')
  for _,maxWidth in ipairs({240,2000}) do
  local fitted=screen(false);fitted.width=w;fitted.height=h;fitted.maxMenuItemWidth=maxWidth
+ for i=1,12 do
+  local child=screen(false).bottomPanel.children[1];child.name='MENU '..i;child.y=i*50
+  child.b47MenuHasNote=i==8;fitted.bottomPanel.children[i]=child
+ end
  assert(B.apply(fitted));fitted.b47MenuBackground.elapsed=2;draws={};fitted:prerender()
  local roomCount,monitors,leftmost,logoRect=0,0,math.huge,nil
  for _,d in ipairs(draws)do
@@ -124,6 +128,13 @@ for _,size in ipairs({{1024,768},{1280,720},{1920,1008},{1920,1080},{2560,1440},
  assert(logoRect[1]+logoRect[3]<x+695*s,'Keep logo clear of outer CRT casing')
  assert(logoRect[2]+logoRect[4]<fitted.bottomPanel.y,'Keep logo above menu')
  assert(fitted.bottomPanel.y+fitted.bottomPanel.height<=h,'Keep complete menu inside viewport')
+ assert(logoRect[2]>=72*s-.001,'Keep logo inside the empty wall')
+ assert(fitted.bottomPanel.y+fitted.bottomPanel.height<=470*s+.001,'Keep menu above wall baseboard')
+ local finalEntry=fitted.bottomPanel.children[12]
+ assert(finalEntry.y+finalEntry.height<=fitted.bottomPanel.height+.001,'Keep full twelve-entry/status menu inside wall')
+ if maxWidth==240 then
+  assert(math.abs(logoRect[1]+logoRect[3]/2-(x+405*s))<.001,'Center logo/menu on the clear wall')
+ end
  end
 end
 assert(gain==0 and calls==1,'Main menu must mute runtime music gain')

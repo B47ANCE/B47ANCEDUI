@@ -109,6 +109,10 @@
     {
       "reference": "docs/WORKSHOP_SECURITY_ROOM_UPDATE.md",
       "reason": "Completed dated dev8 publication record retains exact version/source and commands; not a current version mirror for future iterations."
+    },
+    {
+      "reference": "docs/MENU_WALL_ART_PROMPT.md",
+      "reason": "Fixed dev9 artwork generation prompt/provenance record, retained with its observed asset hash rather than a future project-version mirror."
     }
   ]
 }

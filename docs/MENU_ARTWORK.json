@@ -23,7 +23,7 @@
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static6.png": "c87c64a549b6b808f09e632291f7c82f8c2f7b49e0bafb796e966d9b51822e61",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static7.png": "57cbd4aaca2abf88d4d29c5b60f1c5d648e519db998db0ba5c9fa0c6090c3f4c",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static8.png": "65137127a76a187573ad6d04c7f1f4f928b808ed387b0bd042cd4484ff6490cf",
-    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "1c42089ecce3c10f534f09e3f711b3742b3424d5824093a4cf948fb4309a5684"
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "24fddb9fe69d656d4dfebf5f42ff10cb6f758d8f30aa4d8f0841048354d27743"
   },
   "ultrawide": {
     "target_aspect": "32:9",
@@ -37,28 +37,28 @@
     ],
     "transparent_apertures": [
       [
-        741,
-        175,
-        885,
-        272
+        743,
+        180,
+        882,
+        263
       ],
       [
-        948,
-        175,
-        1095,
-        273
+        953,
+        180,
+        1092,
+        263
       ],
       [
-        741,
-        314,
-        885,
-        409
+        743,
+        321,
+        882,
+        402
       ],
       [
-        948,
-        314,
-        1095,
-        408
+        953,
+        321,
+        1092,
+        402
       ]
     ],
     "screen_centres_alpha": [
@@ -68,7 +68,14 @@
       0
     ],
     "layout": "Continuous room with an expanded right field of view. Desk is reframed toward the center-left; the same wall paint boundary, pipe, baseboard and floor perspective continue into the open right area. Uniform top-aligned cover scaling focuses narrow crops on the menu/desk group and reveals more right scenery at ultrawide ratios. No separate panels.",
-    "origin": "Original built-in image edit of the 0.5.0-dev.5 right-expanded room, adding user-requested security/bunker decoration. Source image used as generated; no external mod assets.",
-    "decoration": "Three filing cabinets, document boxes/binders, floor-plan noticeboard, key rack, intercom and extinguisher to the right; a low footlocker/folders and ventilation grille at the far left. Quiet middle-left menu area retained."
+    "origin": "Original built-in image edits of the dev8 room: move far-left vent/locker, calm the menu wall and reroute the pipe continuously above it. Generated PNG used unchanged; no external artwork.",
+    "decoration": "Far-left vent and smaller footlocker/folders; clear wall for logo/menu. Right bunker furniture retained in the same composition.",
+    "menu_wall": {
+      "source_anchor_x": 405,
+      "top": 72,
+      "bottom": 470,
+      "logo_height_max_fraction": 0.34,
+      "note": "Lua lays out dynamic menu entries inside this clear wall; these are internal image coordinates."
+    }
   }
 }
