@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.0-dev.3] - 2026-10-20
+
+- Promote the owner's saved main-menu placement to the built-in defaults: menu x18%, y14.5%, width27.9696133%, height52.5%; logo x4%, y26.5%, width22%, preserving native proportions.
+- New/missing/invalid profiles and Reset use the approved layout with viewport clamps. Existing valid target overrides keep priority; schema1 and preference files are unchanged. Compatible PATCH presentation adjustment within unreleased 0.6; public API major1 remains unchanged.
+- Offline regression first fails against the prior default and passes with exact approved placement, partial-profile precedence, reset/editor behavior and tiny/standard/ultrawide viewport/ratio clamps. This source iteration is not deployed or published; current running local test remains dev.2 with the owner's saved profile. Native defaults acceptance, project G7/stable G8 remain NOT TESTED/BLOCKED.
+
 ## [0.6.0-dev.2] - 2026-10-20
 
 - Theme the native settings/options screen with a near-black backdrop, rounded tab/button surfaces, subtle active-tab accents and scoped checkbox/slider colours. Reuse UI's local accent preference, default grey.

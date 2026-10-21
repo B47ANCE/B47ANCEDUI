@@ -5,7 +5,7 @@ Shared Lua-only interface components for B47ANCE'd Workshop mods in Project Zomb
 
 ## Features
 - Development source: native Options/settings styling with near-black surfaces, rounded tab/button headers and existing local accent colours. Native settings/input remain owned by PZ; custom renderers are guarded. Native acceptance NOT TESTED; not uploaded.
-- Development source: local main-menu layout editing with independent menu/logo move/resize, locked logo proportions, percentage sliders and Save/Cancel/Reset. Not uploaded; Workshop remains 0.5.0-dev.11.
+- Development source: owner-approved saved placement is the default for new/reset menu layouts; valid saved overrides keep priority. Local editing retains independent menu/logo move/resize, locked logo proportions, percentage sliders and Save/Cancel/Reset. Not uploaded; Workshop remains 0.5.0-dev.11.
 - Near-black native buttons, windows, lists, text inputs and context menus with restrained rounded corners.
 - Small and Normal button sizes; older Large requests use Normal.
 - Separate large-text MenuButton for consumer-owned menu navigation: transparent backing, no button frame, subtle accent text and underline on hover or controller focus.
@@ -28,7 +28,7 @@ UI does not require Quartermaster, Rooms, PC Framework or custom Java/JAR compon
 
 MP testing build - dedicated multiplayer NOT TESTED
 
-Offline Lua 5.1 contracts, syntax, source inventory, translation coverage and package integrity fixtures passed. The earlier 0.5.0-dev.2 menu visuals were observed in an isolated local game profile; 0.6.0-dev.2 ultrawide and inherited audio behavior, controller, split-screen, subscription/download and dedicated-server behavior are NOT TESTED. This is test distribution, not stable-release certification.
+Offline Lua 5.1 contracts, syntax, source inventory, translation coverage and package integrity fixtures passed. The earlier 0.5.0-dev.2 menu visuals were observed in an isolated local game profile; 0.6.0-dev.3 ultrawide and inherited audio behavior, controller, split-screen, subscription/download and dedicated-server behavior are NOT TESTED. This is test distribution, not stable-release certification.
 
 ## Configuration
 Consuming mods can expose the shared local appearance editor: background opacity, a #RRGGBB hex field and Red/Green/Blue sliders (0–255). Changes preview locally; Reset restores opacity 82 and grey #B0B0B0. Existing opacity-only settings retain their values. Values are isolated by mod and local player. Appearance settings do not change gameplay or server permissions. There are no shared-gameplay sandbox options in this presentation-only foundation.
@@ -46,4 +46,4 @@ Developed by B47ANCE'd Workshop. Original B47ANCE-owned shared code extracted fr
 
 ## Development background
 
-Version 0.6.0-dev.2 applies the selected left-wall pipe artwork with matching transparent CRT masks and standard/ultrawide crop. Existing title-screen music gain mute remains unchanged. Offline viewport checks cover 4:3, 16:9 at 720p/1080p/1440p/4K, 21:9 and 32:9 through 5120x1440. Native acceptance of this revision remains NOT TESTED.
+Version 0.6.0-dev.3 applies the selected left-wall pipe artwork with matching transparent CRT masks and standard/ultrawide crop. Existing title-screen music gain mute remains unchanged. Offline viewport checks cover 4:3, 16:9 at 720p/1080p/1440p/4K, 21:9 and 32:9 through 5120x1440. Native acceptance of this revision remains NOT TESTED.

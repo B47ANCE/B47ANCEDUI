@@ -66,6 +66,7 @@ local L=require 'B47ANCEDUI/MenuLayout'
 assert(main.b47LayoutButton and #main.children==2 and not B.apply(main))
 assert(MainScreen.prerender~=main.prerender and MainScreen.onKeyRelease~=main.onKeyRelease)
 local owned=main.prerender;main:prerender();local defaults=B.rectangles(main)
+assert(math.abs(defaults.menu.x-main:getWidth()*.18)<.001 and math.abs(defaults.logo.y-main:getHeight()*.265)<.001,'Editor must begin from the approved built-in placement')
 main:onJoypadDown(Joypad.YButton,data);assert(nativeJoy==1,'Vanilla Terms shortcut intercepted')
 main:onKeyRelease(99);assert(nativeKeys==1)
 main:onKeyRelease(Keyboard.KEY_F10);local state=main.b47LayoutEditing

@@ -1,8 +1,19 @@
 # Main-menu layout editor
 
-Project Version: 0.6.0-dev.2
+Project Version: 0.6.0-dev.3
 
-Compatible MINOR addition; public consumer API major 1 is unchanged. Development source only. Workshop remains 0.5.0-dev.11; this feature is not deployed or uploaded.
+Compatible MINOR feature with a PATCH default-placement adjustment; public consumer API major 1 is unchanged. Workshop remains 0.5.0-dev.11. This dev.3 revision is not deployed or uploaded; prior dev.2 local testing is recorded separately in TESTING.md.
+
+## Shipped defaults (0.6.0-dev.3)
+
+Compatible PATCH presentation adjustment within unreleased 0.6. The owner requested that the just-saved menu layout become the default; the schema-1 file was read as data, and these approved numbers were captured in source without copying the local file or changing player preferences:
+
+| Target | X | Y | Width | Height |
+| --- | --- | --- | --- | --- |
+| Menu | 18% | 14.5% | 27.9696133% | 52.5% |
+| Logo | 4% | 26.5% | 22% | Native texture proportions |
+
+They scale against the current viewport, using the same minima/bounds as saved overrides. At 1920x1080 the menu bounds are x345.6, y156.6, width537.01657536, height567; the logo starts x76.8, y286.2 with width422.4 and native-derived height. Clamps can reduce/reposition the logo on unusually wide/short displays. This replaces automatic wall anchoring: the logo and menu are independent, and scenery separation or above/below ordering is not enforced. Background crop, CRT animation, dynamic row fitting and callbacks remain unchanged. Reset still stores an empty schema; it does not bake defaults into a player's file, and Cancel retains the prior saved layout.
 
 ## Player controls
 
@@ -10,7 +21,7 @@ Choose **Edit menu layout** at the lower-left of the main menu, press **F10**, o
 
 The menu column and logo have separate selection frames. Drag a frame body to move it; drag its lower-right corner to resize it. Logo proportions remain locked. Select Menu or Logo in the properties panel to adjust horizontal position, vertical position, width and height with native percentage sliders. Changing either logo dimension scales it uniformly. Tab switches targets, arrow keys move the selected target by 2 pixels, and Shift+arrows resize it. Native slider/controller navigation provides larger-step adjustments.
 
-**Save layout** or Enter writes the local preferences and exits. **Cancel**, Escape or controller Back discards the draft. **Reset layout** previews the automatic wall layout; Save commits it, while Cancel restores the previous saved settings. A failed save keeps the editor open with feedback; Cancel remains available. The recovery button and properties panel are outside the editable rectangles. Players may deliberately overlap their logo/menu or place them over scenery; viewport clamps and Reset provide recovery.
+**Save layout** or Enter writes the local preferences and exits. **Cancel**, Escape or controller Back discards the draft. **Reset layout** previews the shipped owner-approved layout; Save commits it, while Cancel restores the previous saved settings. A failed save keeps the editor open with feedback; Cancel remains available. The recovery button and properties panel are outside the editable rectangles. Players may deliberately overlap their logo/menu or place them over scenery; viewport clamps and Reset provide recovery.
 
 Only completed Save writes preferences. Dragging, slider movement, rendering, Cancel and resolution changes do not write. Native navigation objects/actions remain in place; the owned overlay consumes pointer input while editing and temporarily takes the front-end controller focus. Initial child focus is explicitly highlighted. Capture and tooltips are released on close, screen replacement, game start, hidden navigation or renderer replacement. Focus is restored only if it still belongs to this editor, preserving a later modal's focus.
 
@@ -18,15 +29,15 @@ Only completed Save writes preferences. Dragging, slider movement, rendering, Ca
 
 `MenuLayout.lua` owns a data-only profile at `B47ANCEDUI/main-menu-layout.txt` under the engine cache/Lua directory, through existing exposed file-reader/writer APIs. It is one preference for this local installation's front-end, independent of per-consumer/player appearance settings. It is never a world/save, shared gameplay, server setting, network command or authority source. No sandbox option is appropriate for local menu coordinates.
 
-Schema 1 stores optional normalized menu x/y/width/height and logo x/y/width. Logo height is derived from the native texture aspect ratio. Untouched targets retain the current automatic wall layout. On each viewport, custom targets are resolved into pixels and clamped inside the screen without rewriting their stored values. Moving only one target leaves its peer automatic. Added/hidden/removed actionable menu entries and optional provider notes continue to fit inside the selected menu rectangle; individual actions, widget references, menu counts and child positions are not persisted. Compact rows can become very small by player choice; no minimum readability guarantee is claimed for arbitrarily crowded menus.
+Schema 1 stores optional normalized menu x/y/width/height and logo x/y/width. Logo height is derived from the native texture aspect ratio. Untouched targets use the owner-approved saved placement shipped in MenuBackground.defaultRectangles; existing valid targets keep priority independently. On each viewport, custom targets are resolved into pixels and clamped inside the screen without rewriting their stored values. Moving only one target leaves its peer automatic. Added/hidden/removed actionable menu entries and optional provider notes continue to fit inside the selected menu rectangle; individual actions, widget references, menu counts and child positions are not persisted. Compact rows can become very small by player choice; no minimum readability guarantee is claimed for arbitrarily crowded menus.
 
-The first line must be `schema=1`. Readers inspect at most 8 lines and accept only lines of at most 160 characters. They reject non-finite/out-of-range or incomplete rectangles, preserve a valid peer target, and never execute data. The native line reader's allocation for oversized lines is not bounded by this parser. Supported normalized values are 0–1, with positive dimensions. Pixel minima (menu 160×80, logo width 100, reduced for smaller viewports) and viewport maxima are internal drawing safeguards. Serialization preserves small positive values. Missing/invalid/unknown-schema files fall back to automatic placement. Reset saves the empty schema rather than deleting files. Older UI versions ignore this new file; existing appearance files remain untouched.
+The first line must be `schema=1`. Readers inspect at most 8 lines and accept only lines of at most 160 characters. They reject non-finite/out-of-range or incomplete rectangles, preserve a valid peer target, and never execute data. The native line reader's allocation for oversized lines is not bounded by this parser. Supported normalized values are 0–1, with positive dimensions. Pixel minima (menu 160×80, logo width 100, reduced for smaller viewports) and viewport maxima are internal drawing safeguards. Serialization preserves small positive values. Missing/invalid/unknown-schema files fall back to the shipped defaults. Reset saves the empty schema rather than deleting files. Older UI versions ignore this new file; existing appearance files remain untouched.
 
 Writer failures close the writer and retain the in-memory saved profile. No atomic durability guarantee is inferred from protected calls; silent native storage failures remain a runtime gate. A truncated profile recovers to valid targets/defaults on a later load.
 
 ## Implementation and verified source
 
-`MenuBackground.lua` separates automatic rectangle calculation from optional local overrides. It continues to call native prerender once, restoring the temporary logo-draw override on errors, then fits the dynamic menu column. Artwork, private animation RNG, 1–60 second static/no-signal timing, native music behavior and public API 1 remain unchanged.
+`MenuBackground.lua` separates the shipped default rectangles from optional local overrides. It continues to call native prerender once, restoring the temporary logo-draw override on errors, then fits the dynamic menu column. Artwork, private animation RNG, 1–60 second static/no-signal timing, native music behavior and public API 1 remain unchanged.
 
 `MenuLayoutEditor.lua` attaches one owned recovery button and temporary overlay to the recognized MainScreen instance. It wraps only that instance's key/controller entrypoints and delegates ordinary input. It does not modify MainScreen/ISUI classes or the global keyboard dispatcher. A competing renderer disables editing. There is no tick/world scan or custom Java/JAR dependency. Native title/status callbacks remain the consuming widget's responsibility.
 

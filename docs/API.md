@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.6.0-dev.2
+Project Version: 0.6.0-dev.3
 
 The native Options/settings adapter is internal and automatic when UI loads. Consumers still use API major 1 and style only their own widgets; it adds no consumer API, gameplay settings or dependency. It retains native option ownership and guards custom renderers. See [native settings scope](NATIVE_SETTINGS.md).
 
@@ -55,4 +55,4 @@ The public PZOPT_MENU ISLabel is the audited exception to unknown-custom-rendere
 
 ## Local main-menu layout (0.6.0-dev.1)
 
-MenuLayout resolves independent normalized menu/logo preferences over the existing automatic wall layout. MenuLayoutEditor supplies an owned overlay, drag/corner resize, native percentage sliders, keyboard/controller entry and Save/Cancel/Reset. Preferences are local-only, bounded data with a separate schema 1 file; appearance, gameplay/network state and public API major 1 are unchanged. The logo retains its aspect ratio; dynamic menu/status rows refit inside the selected area. Initial joypad child focus and capture/focus cleanup are explicit. No global UI class/key dispatcher replacement. See MENU_LAYOUT_EDITOR.md for controls, persistence and evidence. Native acceptance NOT TESTED; development source is not deployed or published.
+MenuLayout resolves independent normalized menu/logo preferences over the owner-approved saved placement, now the built-in default. Missing/invalid targets and Reset use those defaults; existing valid targets retain precedence, with no schema change or automatic preference write. MenuLayoutEditor supplies an owned overlay, drag/corner resize, native percentage sliders, keyboard/controller entry and Save/Cancel/Reset. Preferences are local-only, bounded data with a separate schema 1 file; appearance, gameplay/network state and public API major 1 are unchanged. The logo retains its aspect ratio; dynamic menu/status rows refit inside the selected area. Initial joypad child focus and capture/focus cleanup are explicit. No global UI class/key dispatcher replacement. See MENU_LAYOUT_EDITOR.md for controls, persistence and evidence. Native acceptance NOT TESTED; development source is not deployed or published.

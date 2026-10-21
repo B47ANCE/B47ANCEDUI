@@ -125,19 +125,11 @@ function B.layout(screen,menuWidth,top,bottom)
 end
 function B.defaultRectangles(screen)
  local w,h=screen:getWidth(),screen:getHeight()
- local margin=math.max(16,w*.025)
- local artX,artY,artScale=B.geometry(w,h)
- local columnLimit=math.max(1,artX+600*artScale-margin*2)
- local menuWidth=math.min(math.max(screen.maxMenuItemWidth or 0,w*.28),360*artScale,columnLimit)
- local menuX=math.max(margin,math.min(w-menuWidth-margin,artX+405*artScale-menuWidth/2))
- local wallTop=math.max(margin,artY+116*artScale)
- local wallBottom=math.min(h-margin,artY+470*artScale)
- local logoScale=math.min(menuWidth/screen.logoTexture:getWidth(),(wallBottom-wallTop)*.34/screen.logoTexture:getHeight())
- local logoHeight=screen.logoTexture:getHeight()*logoScale
- local logoWidth=screen.logoTexture:getWidth()*logoScale
- local top=wallTop+logoHeight+math.max(12,20*artScale)
- return {menu={x=menuX,y=top,w=menuWidth,h=wallBottom-top},
-  logo={x=menuX+(menuWidth-logoWidth)/2,y=wallTop,w=logoWidth,h=logoHeight}}
+ -- Owner-approved saved placement becomes the normalized starting/reset layout.
+ -- Existing local profiles still override each target independently.
+ local ratio=screen.logoTexture:getWidth()/screen.logoTexture:getHeight()
+ return {menu=Layout.fit('menu',{x=w*.18,y=h*.145,w=w*.279696133,h=h*.525},w,h,ratio),
+  logo=Layout.fit('logo',{x=w*.04,y=h*.265,w=w*.22},w,h,ratio)}
 end
 function B.rectangles(screen)
  return Layout.resolve(Editor.profile(screen),B.defaultRectangles(screen),screen:getWidth(),screen:getHeight(),

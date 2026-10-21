@@ -73,10 +73,12 @@ assert(main.drawTextureScaled==draw,'Temporary logo draw override leaked')
 local artIndex,logoIndex
 for i,d in ipairs(draws)do
  if d.texture and d.texture.path and d.texture.path:find('SecurityRoom') then artIndex=i end
-  if d.texture==logo then logoIndex=i;assert(math.abs(d[1]+d[3]/2-(main.bottomPanel.x+main.bottomPanel.width/2))<.001 and d[3]<=448.001) end
+  if d.texture==logo then
+   logoIndex=i;assert(math.abs(d[1]-main.width*.04)<.001 and math.abs(d[2]-main.height*.265)<.001 and math.abs(d[3]-main.width*.22)<.001)
+  end
 end
 assert(draws[1].kind=='rect' and artIndex and logoIndex>artIndex,'Layers in wrong order')
-assert(main.bottomPanel.x>=40 and main.bottomPanel.y<400)
+assert(math.abs(main.bottomPanel.x-main.width*.18)<.001 and math.abs(main.bottomPanel.y-main.height*.145)<.001)
 local item=main.bottomPanel.children[1]
 assert(math.abs(item.x+item.width/2-main.bottomPanel.width/2)<.001 and item.b47MenuScale>1)
 -- A later-added item joins without another boot; hidden/removed entries free space.
@@ -108,13 +110,13 @@ for _,size in ipairs({{1024,768},{1280,720},{1920,1008},{1920,1080},{2560,1440},
   child.b47MenuHasNote=i==8;fitted.bottomPanel.children[i]=child
  end
  assert(B.apply(fitted));fitted.b47MenuBackground.elapsed=2;draws={};fitted:prerender()
- local roomCount,monitors,leftmost,logoRect=0,0,math.huge,nil
+ local roomCount,monitors,logoRect=0,0,nil
  for _,d in ipairs(draws)do
   local name=d.texture and d.texture.path
   if name and name:find('SecurityRoomPanorama') then
    roomCount=roomCount+1;assert(math.abs(d[3]/d[4]-2172/724)<.001,'Do not stretch room or CRTs')
   elseif name and name:find('Static') then
-   monitors=monitors+1;leftmost=math.min(leftmost,d[1])
+   monitors=monitors+1
    assert(d[1]>=0 and d[2]>=0 and d[1]+d[3]<=w and d[2]+d[4]<=h,'CRT aperture cropped')
   elseif d.texture==logo then
    logoRect=d
@@ -122,21 +124,41 @@ for _,size in ipairs({{1024,768},{1280,720},{1920,1008},{1920,1080},{2560,1440},
   assert(not name or not name:find('SecurityWing'),'No separate side additions')
  end
  assert(roomCount==1 and monitors==4,'Draw one continuous room and four feeds')
- assert(fitted.bottomPanel.x>=0 and fitted.bottomPanel.x+fitted.bottomPanel.width<leftmost,'Keep navigation clear of CRTs')
- assert(fitted.bottomPanel.x+fitted.bottomPanel.width<x+600*s,'Long labels must stay on the quiet wall before the pipe')
- assert(logoRect and logoRect[1]>=0 and logoRect[2]>=0 and logoRect[1]+logoRect[3]<leftmost,'Keep logo visible and clear of CRTs')
- assert(logoRect[1]+logoRect[3]<x+600*s,'Keep logo on the quiet wall before the pipe')
- assert(logoRect[2]+logoRect[4]<fitted.bottomPanel.y,'Keep logo above menu')
- assert(fitted.bottomPanel.y+fitted.bottomPanel.height<=h,'Keep complete menu inside viewport')
- assert(logoRect[2]>=116*s-.001,'Keep logo below the continuous wall pipe')
- assert(fitted.bottomPanel.y+fitted.bottomPanel.height<=470*s+.001,'Keep menu above wall baseboard')
+ assert(math.abs(fitted.bottomPanel.x-w*.18)<.001 and math.abs(fitted.bottomPanel.y-h*.145)<.001,'Use approved saved menu position')
+ assert(math.abs(fitted.bottomPanel.width-w*.279696133)<.001 and math.abs(fitted.bottomPanel.height-h*.525)<.001,'Use approved saved menu size')
+ assert(logoRect and math.abs(logoRect[1]-w*.04)<.001 and math.abs(logoRect[2]-h*.265)<.001 and math.abs(logoRect[3]-w*.22)<.001,'Use independent approved logo placement')
+ assert(math.abs(logoRect[3]/logoRect[4]-2)<.001,'Keep native logo proportions')
+ assert(fitted.bottomPanel.y+fitted.bottomPanel.height<=h and fitted.bottomPanel.x+fitted.bottomPanel.width<=w,'Keep complete menu inside viewport')
  local finalEntry=fitted.bottomPanel.children[12]
- assert(finalEntry.y+finalEntry.height<=fitted.bottomPanel.height+.001,'Keep full twelve-entry/status menu inside wall')
- if maxWidth==240 then
-  assert(math.abs(logoRect[1]+logoRect[3]/2-(x+405*s))<.001,'Center logo/menu on the clear wall')
- end
+ assert(finalEntry.y+finalEntry.height<=fitted.bottomPanel.height+.001,'Keep full twelve-entry/status menu inside chosen menu bounds')
  end
 end
+local L=require 'B47ANCEDUI/MenuLayout'
+local reference=screen(false);reference.width=1920;reference.height=1080
+local defaults=B.defaultRectangles(reference)
+assert(math.abs(defaults.menu.x-345.6)<.001 and math.abs(defaults.menu.y-156.6)<.001)
+assert(math.abs(defaults.menu.w-537.01657536)<.001 and defaults.menu.h==567)
+assert(math.abs(defaults.logo.x-76.8)<.001 and math.abs(defaults.logo.y-286.2)<.001 and math.abs(defaults.logo.w-422.4)<.001)
+for _,profile in ipairs({{},L.parse({'schema=1'}),L.parse({'schema=2','menu=0,0,1,1'}),L.parse({'schema=1','menu=broken','logo=nan,0,1'})}) do
+ local rects=L.resolve(profile,defaults,1920,1080,2)
+ assert(rects.menu.x==defaults.menu.x and rects.logo.y==defaults.logo.y,'Empty/reset/corrupt/future profiles must use shipped defaults')
+end
+for _,kind in ipairs({'menu','logo'}) do
+ local profile={[kind]={x=.6,y=.1,w=.2,h=.3}}
+ local custom=L.resolve(profile,defaults,1920,1080,2);local peer=kind=='menu' and 'logo' or 'menu'
+ assert(custom[kind].x==1920*.6 and custom[kind].w==1920*.2,'Existing override lost precedence')
+ assert(custom[peer].x==defaults[peer].x and custom[peer].y==defaults[peer].y,'Partial override moved its default peer')
+end
+for _,size in ipairs({{1,1},{120,60},{320,200},{1024,768},{1920,1080},{5120,1440},{7680,1080}}) do
+ for _,ratio in ipairs({.5,1,2,4}) do
+  reference.width=size[1];reference.height=size[2]
+  reference.logoTexture={getWidth=function()return ratio*300 end,getHeight=function()return 300 end}
+  local rects=B.defaultRectangles(reference)
+  for _,rect in pairs(rects) do assert(rect.x>=0 and rect.y>=0 and rect.w>0 and rect.h>0 and rect.x+rect.w<=reference.width+.001 and rect.y+rect.h<=reference.height+.001) end
+  assert(math.abs(rects.logo.w/rects.logo.h-ratio)<.001,'Default logo clamp lost proportions')
+ end
+end
+defaults.menu.x=0;assert(B.defaultRectangles(main).menu.x==main.width*.18,'Caller mutated the shipped defaults')
 assert(gain==0 and calls==1,'Main menu must mute runtime music gain')
 main:prerender();assert(calls==1,'Do not repeatedly write unchanged gain')
 gain=.4;main:prerender();assert(gain==0 and calls==2,'Reapply after options volume preview')

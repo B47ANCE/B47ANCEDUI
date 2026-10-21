@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.6.0-dev.2",
+  "version": "0.6.0-dev.3",
   "reviewed": true,
-  "source_digest": "bc51c4eebbfa5493be56dd11f74218713e9a6b07f60e7adfb3933e0fa0bb4f5d",
+  "source_digest": "f8a4579077e976ce92727959b6f87a97744ba38bbe5654e1ffbfb46a29b01b83",
   "features": [
     {
       "status": "Source",
@@ -24,7 +24,7 @@
     },
     {
       "status": "Source",
-      "text": "Security-room main menu: four independent 1-60 second static startups then persistent no-signal loops; enlarged centered labels with visible direct mod-entry discovery and responsive rows, retaining callbacks. Menu/logo width is capped before the outer CRT casing for long translations/mod labels; standard 4:3/16:9 through 4K and 21:9/32:9 viewport fixtures pass offline."
+      "text": "Security-room main menu: four independent 1-60 second static startups then persistent no-signal loops; dynamic native/mod-added menu rows fit the chosen menu rectangle while retaining callbacks. Artwork/crop remains uniform through32:9; independent menu/logo defaults and existing overrides use viewport clamps. Offline fixtures only for this revision."
     },
     {
       "status": "Source",
@@ -40,11 +40,15 @@
     },
     {
       "status": "Source",
-      "text": "Dev.11 selected pipe artwork: existing horizontal conduit extends across the left wall; logo/menu center405, wallY116-470/right600, cropfocus680 and measured CRT masks. User-selected PNG unchanged; standard/ultrawide offline tests, native rendering NOT TESTED."
+      "text": "Dev.11 selected pipe artwork retained unchanged: horizontal conduit across the left wall, cropfocus680 and measured CRT masks. Old center405/wallY116-470 anchors are superseded by the approved saved default layout in dev.3; art/runtime provenance remains historical."
     },
     {
       "status": "Source",
       "text": "Local main-menu layout editor: independent menu/logo move/resize, aspect lock, native percentage sliders and Save/Cancel/Reset. Normalized schema1 preferences; F10/controller X access, capture/focus cleanup and dynamic mod-entry fitting. Offline tests only; native acceptance NOT TESTED."
+    },
+    {
+      "status": "Source",
+      "text": "Owner-approved saved main-menu/logo placement is the shipped default for new/missing/invalid/reset layouts: normalized menu18/14.5/27.9696133/52.5%, logo4/26.5/22% with native proportions. Valid local overrides keep priority; schema1 and user files unchanged. Offline viewport/ratio/precedence/editor tests pass; native defaults acceptance NOT TESTED."
     },
     {
       "status": "Source",
@@ -71,7 +75,7 @@
       "text": "Public Workshop MP test item 3822582242 updated to 0.5.0-dev.11 after PR 14, with 52-file source/ZIP/stage parity, SteamCMD commit-success and exact public description. Steam unchanged by user choice; native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.6.0-dev.2 development source; Workshop remains 0.5.0-dev.11. Menu layout and native-settings contract doubles PASS offline. Settings retain native display/audio/keybinding logic by source; no engine options/input validation. Native drawing, keyboard/controller/focus, file reload, resolution changes, provider integration and performance NOT TESTED. G6 NOT TESTED; G7/stable G8 BLOCKED. No deployment/launch/package/upload. No gameplay authority or shared sandbox configuration.",
+  "limits": "0.6.0-dev.3 development source; Workshop remains 0.5.0-dev.11. Approved saved layout promoted to defaults with viewport clamps and existing-override precedence; offline suites PASS. Historicaldev.2 copied55 matching files and launched local PZ; user saved layout, but clean-vanilla/controller/settings/dedicated acceptance is not established. Dev.3 defaults native acceptance NOT TESTED; G6 NOT TESTED, G7/stableG8 BLOCKED. No dev.3 deployment/launch/package/upload. Client presentation only, no gameplay authority/shared sandbox settings.",
   "evidence": [
     "README.md",
     "docs/API.md",

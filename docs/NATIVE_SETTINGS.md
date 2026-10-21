@@ -1,6 +1,6 @@
 # Native settings presentation
 
-Project Version: 0.6.0-dev.2
+Project Version: 0.6.0-dev.3
 
 The native Options screen uses a near-black backdrop and restrained grey surfaces. Tab headers and ordinary buttons have small rounded corners; the active tab has an accent underline. Checkmarks, slider thumbs and controller-focused control borders use UI's existing local accent preference, default `#B0B0B0`. Text-entry backgrounds retain native drawing/clipping. The settings backdrop stays nearly opaque for readability. This is an internal native-screen adapter, not a new public API or replacement settings implementation.
 

@@ -1,6 +1,6 @@
 # Architecture and persistence
 
-Project Version: 0.6.0-dev.2
+Project Version: 0.6.0-dev.3
 
 NativeSettings adds an instance-scoped Options palette/drawing adapter. Native settings retain their original values, callbacks, fonts/geometry, tabs, page stencils, display confirmation, audio rollback and input ownership. Supported late additions are adopted through owned container addChild delegates, with bounded initial traversal. Custom renderers and colour swatches remain guarded; shared dropdown popup fields/methods restore after themed draw/error and detached controls stop receiving drawing changes. Accent is UI's local slot 0; no gameplay state, new settings storage or public API changes. See NATIVE_SETTINGS.md for scope, evidence and runtime gates.
 
@@ -32,4 +32,4 @@ The public PZOPT_MENU ISLabel is the audited exception to unknown-custom-rendere
 
 ## Local main-menu layout (0.6.0-dev.1)
 
-MenuLayout resolves independent normalized menu/logo preferences over the existing automatic wall layout. MenuLayoutEditor supplies an owned overlay, drag/corner resize, native percentage sliders, keyboard/controller entry and Save/Cancel/Reset. Preferences are local-only, bounded data with a separate schema 1 file; appearance, gameplay/network state and public API major 1 are unchanged. The logo retains its aspect ratio; dynamic menu/status rows refit inside the selected area. Initial joypad child focus and capture/focus cleanup are explicit. No global UI class/key dispatcher replacement. See MENU_LAYOUT_EDITOR.md for controls, persistence and evidence. Native acceptance NOT TESTED; development source is not deployed or published.
+MenuLayout resolves independent normalized menu/logo preferences over the owner-approved saved placement, now the built-in default. Missing/invalid targets and Reset use those defaults; existing valid targets retain precedence, with no schema change or automatic preference write. MenuLayoutEditor supplies an owned overlay, drag/corner resize, native percentage sliders, keyboard/controller entry and Save/Cancel/Reset. Preferences are local-only, bounded data with a separate schema 1 file; appearance, gameplay/network state and public API major 1 are unchanged. The logo retains its aspect ratio; dynamic menu/status rows refit inside the selected area. Initial joypad child focus and capture/focus cleanup are explicit. No global UI class/key dispatcher replacement. See MENU_LAYOUT_EDITOR.md for controls, persistence and evidence. Native acceptance NOT TESTED; development source is not deployed or published.

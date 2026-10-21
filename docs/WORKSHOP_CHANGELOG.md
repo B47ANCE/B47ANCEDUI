@@ -1,6 +1,8 @@
-Version 0.6.0-dev.2
+Version 0.6.0-dev.3
 
 MP testing build - dedicated multiplayer NOT TESTED
+
+Development source only: make the owner's saved main-menu/logo placement the shipped defaults. New/missing/invalid layouts and Reset use the approved normalized rectangles; existing valid target overrides remain unchanged. Preserve native logo proportions and viewport clamps, schema1, user files, dynamic menu rows and artwork/audio/animation. Offline tests PASS; native default acceptance NOT TESTED. This revision is not uploaded; Workshop remains 0.5.0-dev.11.
 
 Development source only: style the native Options screen with a near-black backdrop, rounded tab/button surfaces, active-tab underline and existing local accent colours. Preserve fonts, layout, native settings callbacks/input and colour swatches; guard custom mod panels and shared dropdown ownership. Offline tests PASS; native display/audio/keybinding/controller acceptance NOT TESTED. Not uploaded; Workshop remains 0.5.0-dev.11.
 
