@@ -7,7 +7,9 @@ require 'ISUI/ISTickBox'
 require 'ISUI/ISVolumeControl'
 require 'ISUI/ISMegaVolumeControl'
 require 'RadioCom/ISUIRadio/ISSliderPanel'
+local Lifecycle=require 'B47ANCEDUI/OptionsLifecycle'
 local U=B47ANCEDUI;local T,R,A=U.Theme,U.Renderer,U.Appearance
+if U.NativeSettings then return U.NativeSettings end
 local S={};U.NativeSettings=S
 local appearanceOwner={b47AppearanceScope='B47ANCEDUI',playerNum=0}
 local function scoped(w,c) return A.color(appearanceOwner,c) end
@@ -200,16 +202,12 @@ adopt=function(w,root,depth,budget)
  if kind=='root' or kind=='panel' or kind=='tabs' then container(w,root,depth,budget) end
 end
 function S.apply(root)
- if not root or root.Type~='MainOptions' or root.prerender~=MainOptions.prerender or root.render~=MainOptions.render
-  or not root.tabs or root.tabs.Type~='ISTabPanel' then return false end
+ if not root or root.Type~='MainOptions' or not root.tabs or root.tabs.Type~='ISTabPanel' then return false end
+ if root.b47NativeSettingsOwner==root then
+  adopt(root.tabs,root,0,{left=4096});return true
+ end
+ if not Lifecycle.nativeRenderer(root) then return false end
  adopt(root,root,0,{left=4096});return true
 end
-local function current()
- local screen=MainScreen.instance
- S.apply(screen and screen.mainOptions or MainOptions.instance)
-end
-Events.OnMainMenuEnter.Add(current)
-Events.OnGameStart.Add(current)
-Events.OnResetLua.Add(current)
-current()
+Lifecycle.register('native-settings',S.apply)
 return S

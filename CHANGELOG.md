@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.7.0-dev.3] - 2026-10-21
+
+- Fix Options remaining vanilla when its construction is deferred until opening. Observe each native Options instance's create/draw completion and attach styling/Interface page once per tab panel, including rebuilt tabs.
+- Preserve native action/return/error behavior, custom-renderer guards, settings values, controller ownership and global classes. Compatible PATCH within 0.7; API major1, saved formats/defaults and unsaved-exit protection remain unchanged.
+- Regression reproduces missed deferred attachment before the fix. Offline/native evidence and runtime limits are recorded in TESTING.md; no new deployment/launch/publication in this development checkpoint.
+
 ## [0.7.0-dev.2] - 2026-10-20
 
 - Confirm unsaved layout changes before Cancel, Escape, controller B or switching away. Keep editing is the safe default; Discard changes closes without writing. Both layout editors include unfinished/invalid numeric fields in dirty detection and preserve drafts while the popup is open.

@@ -1,8 +1,10 @@
-Version 0.7.0-dev.2
+Version 0.7.0-dev.3
 
 MP testing build - dedicated multiplayer NOT TESTED
 
 Development source only; NOT uploaded. Workshop remains 0.5.0-dev.11.
+
+Fix native Options remaining vanilla when its build is deferred until opening. Attach styling and Interface after completed construction/draw, once per current tab panel; preserve native settings/returns/errors and custom-renderer boundaries. Offline regression passes; post-fix native acceptance NOT TESTED.
 
 Guard unsaved layout exits with Keep editing / Discard changes, including unfinished numeric entries and switching editors. Default to Keep; preserve drafts/focus and prevent underlying controller slider updates. Clean/reverted layouts and successful Save close directly. Native popup input NOT TESTED.
 

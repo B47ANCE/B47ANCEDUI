@@ -83,4 +83,18 @@ local page=root.b47InterfacePage;page:prerender();assert(stencil==1 and page.b47
 page.b47WorkspaceButton.onclick();assert(screen.b47HudEditing);W.close(screen)
 root.apply();root.back();assert(applied==1 and back==1)
 screen.inGame=true;page:prerender();assert(not page.b47WorkspaceButton.enable and not W.open(screen))
+-- Deferred creation and rebuilding must add exactly one Interface page per tabs.
+local deferred=ISPanel:new(0,0,900,700);deferred.Type='MainOptions';deferred.addPage=root.addPage
+deferred.mainPanel={identity='deferred-native'};deferred.addY=99
+deferred.create=function(self)self.tabs={};return 'created' end
+MainScreen.instance.mainOptions=deferred;local Lifecycle=U.OptionsLifecycle;Lifecycle.current()
+assert(not deferred.b47InterfacePage and not deferred.tabs)
+assert(deferred:create()=='created' and deferred.b47InterfacePage and #deferred.tabs==1)
+assert(deferred.addY==99 and deferred.mainPanel.identity=='deferred-native')
+local originalPage=deferred.b47InterfacePage;deferred:prerender();assert(deferred.b47InterfacePage==originalPage and #deferred.tabs==1)
+deferred:create();assert(deferred.b47InterfacePage~=originalPage and #deferred.tabs==1 and deferred.b47InterfaceTabs==deferred.tabs)
+local rebuiltPage=deferred.b47InterfacePage;deferred:prerender();assert(deferred.b47InterfacePage==rebuiltPage and #deferred.tabs==1)
+deferred.tabs={};assert(deferred.b47InterfaceTabs~=deferred.tabs)
+deferred:prerender();assert(deferred.b47InterfaceTabs==deferred.tabs and #deferred.tabs==1,'Bypassed create was not detected on draw')
+MainScreen.instance.mainOptions=nil
 print('PASS OFFLINE safe workspace canvas/input, batch edits, reset/provider retention, aspect/axis sizing, popup/focus/cleanup and native Options page ownership')

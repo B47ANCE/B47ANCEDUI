@@ -1,6 +1,6 @@
 # Options and safe HUD layout workspace
 
-Project Version: 0.7.0-dev.2
+Project Version: 0.7.0-dev.3
 
 The 0.7 series is a compatible MINOR addition from 0.6.0-dev.3; dev.2 adds compatible PATCH protection for unsaved exits. Public API major 1, existing appearance storage, main-menu schema 1 and the owner-approved menu/logo defaults remain compatible. No current package, deployment, launch or Workshop upload is part of this iteration.
 
@@ -83,3 +83,7 @@ Optional fields: `editable=false` for reference-only samples, `resizeWidth=false
 The same owned Keep editing / Discard changes confirmation guards both editors. Dirty state includes saved-data differences, meaningful pending/invalid numeric text, and explicit replacement intent after Reset on a future/error profile. Opening the prompt never commits or writes pending text. Keep preserves the draft and text; Discard closes without Save. Saved or unchanged/reverted profiles close directly. A write failure leaves changes unsaved and still protected by confirmation.
 
 The prompt is a child scrim/panel of the editor root rather than a detached gameplay dialog. It owns pointer/wheel input and keyboard/controller routing, clears underlying slider child focus, measures its text/buttons and follows viewport changes. Keep restores the selected native child focus. Duplicate/stale actions are inert. Normal Cancel/Escape/B and switching away are guarded; forced owner replacement, hidden-screen/modal invalidation or game entry cleans up both roots without prompting against a missing owner. No new state/network/schema/sandbox setting. Native popup acceptance remains NOT TESTED.
+
+## Interface page readiness (0.7.0-dev.3)
+
+The shared OptionsLifecycle observer now adds the Interface page after native tabs are constructed, including providers that defer construction until Options opens. Its marker belongs to that tabs generation, so a replacement panel receives one new page; ordinary draws never add duplicate pages. Native stencil/controller setup and root mainPanel/addY are retained. Native settings styling uses the same readiness observer; no provider dependency is required. Offline delayed/rebuilt page tests pass. Actual native tab/keyboard/controller acceptance remains NOT TESTED.

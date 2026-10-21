@@ -630,6 +630,32 @@
       "statement": "Analog update checks the slider own joyfocus and joypadFocused fields rather than the root focus owner. Editor confirmation clears underlying child focus before taking controller input.",
       "verified_on": "2026-10-20",
       "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "MainOptions completed native tabs construction",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/OptionScreens/MainOptions.lua",
+      "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96",
+      "lines": [
+        329,
+        347
+      ],
+      "statement": "create resets native key metadata and constructs/attaches a new tabs panel. addPage248\u2013270 targets that panel and installs scrolling/controller/stencil behavior. Observation of tabs readiness is separate from native repeat-build cleanup guarantees.",
+      "verified_on": "2026-10-21",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "MainScreen native Options construction checkpoint",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/OptionScreens/MainScreen.lua",
+      "sha256": "f89d351830fcb0050cfc10bc7a7e1a216a260b4731fe0ac34da9bcd4269352e5",
+      "lines": [
+        177,
+        187
+      ],
+      "statement": "Native MainScreen allocates Options and later calls create at694. Another provider may defer that construction; the source-only native event order alone is insufficient proof of ready tabs at attachment time.",
+      "verified_on": "2026-10-21",
+      "runtime": "NOT TESTED"
     }
   ]
 }

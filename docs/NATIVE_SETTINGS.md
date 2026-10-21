@@ -1,6 +1,6 @@
 # Native settings presentation
 
-Project Version: 0.7.0-dev.2
+Project Version: 0.7.0-dev.3
 
 The native Options screen uses a near-black backdrop and restrained grey surfaces. Tab headers and ordinary buttons have small rounded corners; the active tab has an accent underline. Checkmarks, slider thumbs and controller-focused control borders use UI's existing local accent preference, default `#B0B0B0`. Text-entry backgrounds retain native drawing/clipping. The settings backdrop stays nearly opaque for readability. This is an internal native-screen adapter, not a new public API or replacement settings implementation.
 
@@ -29,3 +29,13 @@ This is client-local presentation with no shared gameplay ownership, networking,
 ## Interface page (0.7.0-dev.1)
 
 OptionsInterface now adds a native page through MainOptions.addPage for the existing accent/appearance editor and safe HUD layout workspace. It restores mainPanel/addY after construction, preserves native page/controller/stencil paths and keeps existing settings controls/Apply/Back unchanged. Its HUD button is disabled in-game; return to the frontend to edit static previews. User-approved safe previews replace unsafe construction of live player/world HUDs. Page labels use fallback translation keys. See UI_WORKSPACE.md for support, persistence, provider API and runtime gates. Offline owned-page/action/stencil fixtures PASS; native Options/controller acceptance NOT TESTED.
+
+## Deferred construction correction (0.7.0-dev.3)
+
+The developer's 0.7.0-dev.2 local test reported vanilla settings/Options despite source/deployment hash parity. Current diagnostic evidence showed deferred hidden-screen construction and a later full native build. The old adapter ran only at module/menu/game/reset checkpoints, required root.tabs, and silently missed a screen built after those checkpoints. An independent delayed-construction regression fails before the fix with `Deferred Options creation left the screen vanilla`.
+
+OptionsLifecycle now observes each MainOptions instance, wrapping only its existing create/prerender delegates. Callbacks run after completed construction or drawing, once per current tabs identity; this also catches a builder that invokes a saved native construction function without calling the instance create wrapper. Native multi-return values, including nil tails, and errors are preserved. There is a bounded per-frame readiness check, not a widget-tree scan or timer. Listener failures release the reentrancy guard and propagate. Global classes are unchanged.
+
+NativeSettings recognizes only the observer's own prerender wrapper when validating an otherwise native renderer. Unfamiliar root renderers remain refused; native child/swatch/custom-panel guards remain. Existing styled roots adopt a new native tabs panel once. OptionsInterface keys its page marker to the current tabs panel, adds one page after readiness, and restores native mainPanel/addY. A bounded diagnostic reports styling/interface attachment booleans after tabs readiness; attachment alone does not prove the final pixels or input behavior.
+
+Source-only Build42.21/Steam25485521 evidence and neutral third-party observations: STYLE_SOURCE_EVIDENCE.json and THIRD_PARTY_RESEARCH.md. Offline tests cover latecreate, saved construction during prerender, rebuilds, idempotence, returns, native failure and foreign-renderer refusal. User-facing Apply/Back/display/audio/keybinding/controller behavior remains native. Native post-fix opening/closing/tabs/controller acceptance is NOT TESTED; project G7/stable G8 remain BLOCKED. No new deployment/launch/upload at this source checkpoint.

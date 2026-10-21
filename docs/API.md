@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.7.0-dev.2
+Project Version: 0.7.0-dev.3
 
 The native Options/settings adapter is internal and automatic when UI loads. Consumers still use API major 1 and style only their own widgets; it adds no consumer API, gameplay settings or dependency. It retains native option ownership and guards custom renderers. See [native settings scope](NATIVE_SETTINGS.md).
 
@@ -66,3 +66,5 @@ Fields include localized `labelKey`, required `preview(parent)`, `default={x,y,w
 The native Options Interface page and main-menu Edit in-game UI button open the owned black canvas. Main-menu layout, HUD layout and appearance retain separate local files; only edited supported assets affect native runtime geometry. Public API major1 remains compatible. Native event/input/controller acceptance is NOT TESTED.
 
 Both owned layout editors now guard voluntary unsaved exits with Keep editing / Discard changes. This is internal editor behavior, not a new public API or preference format. Existing facade methods remain compatible; native input acceptance is pending. See MENU_LAYOUT_EDITOR.md and UI_WORKSPACE.md.
+
+The 0.7.0-dev.3 internal OptionsLifecycle helper attaches native styling and the Interface page after deferred construction/rebuilt tabs. It adds no public consumer API, dependency or profile schema; native settings and custom renderer boundaries remain. See NATIVE_SETTINGS.md for the reproduced timing defect and runtime gates.

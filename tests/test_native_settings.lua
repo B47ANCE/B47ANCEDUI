@@ -156,4 +156,45 @@ controls[1]:prerender();controls[1].parent=nil
 local replacementColor={r=.7,g=.2,b=.8,a=.9};controls[1].backgroundColor=replacementColor
 controls[1]:prerender();controls[1]:render();assert(controls[1].backgroundColor==replacementColor,'Detached restoration overwrote the new owner palette')
 assert(main.prerender==nativePre and main.render==nativeRender and cbCalls==1)
+-- Reproduce deferred Options creation: lifecycle fires before tabs exist.
+local deferred=root();local builtTabs=deferred.tabs;deferred.tabs=nil;deferred.children={};builtTabs.parent=nil
+deferred.create=function(self)self.tabs=builtTabs;self:addChild(builtTabs);return 'native-created',nil,'tail' end
+MainScreen.instance={mainOptions=deferred}
+for _,fn in ipairs(handlers) do fn() end
+assert(not deferred.b47NativeSettingsOwner,'Fixture unexpectedly built deferred Options')
+local first,middle,last=deferred:create()
+assert(first=='native-created' and middle==nil and last=='tail','Construction observer changed native returns')
+assert(deferred.b47NativeSettingsOwner==deferred and builtTabs.b47NativeSettingsOwner==deferred,'Deferred Options creation left the screen vanilla')
+local Lifecycle=U.OptionsLifecycle;local attempts=0
+Lifecycle.register('fixture-count',function()attempts=attempts+1 end)
+local savedDeferredPre=deferred.prerender;local seen=attempts
+for i=1,5 do deferred:prerender() end
+assert(attempts==seen and deferred.prerender==savedDeferredPre,'Ready callbacks repeated every frame')
+local rebuilt=root().tabs;deferred.tabs=rebuilt;deferred:addChild(rebuilt);deferred:prerender()
+assert(rebuilt.b47NativeSettingsOwner==deferred and attempts==seen+1,'Rebuilt tabs not observed')
+deferred:prerender();assert(attempts==seen+1)
+-- Some deferred builders call a saved construction function inside prerender.
+local lazy=root();local lazyTabs=lazy.tabs;lazy.children={};lazy.tabs=nil;lazyTabs.parent=nil
+local classPre=main.prerender
+main.prerender=function(self,...)
+ if self==lazy and not self.tabs then self.tabs=lazyTabs;self:addChild(lazyTabs) end
+ return classPre(self,...)
+end
+MainScreen.instance={mainOptions=lazy};for _,fn in ipairs(handlers)do fn()end
+assert(not lazy.b47NativeSettingsOwner)
+assert(lazy:prerender()=='native-pre' and lazy.b47NativeSettingsOwner==lazy and lazyTabs.b47NativeSettingsOwner==lazy)
+main.prerender=classPre
+-- An unknown instance renderer is still guarded after observation.
+local guarded=root();guarded.prerender=function()return 'custom-pre',nil,'tail'end
+assert(Lifecycle.observe(guarded) and not guarded.b47NativeSettingsOwner)
+local a,b,c=guarded:prerender();assert(a=='custom-pre' and b==nil and c=='tail' and not guarded.b47NativeSettingsOwner)
+local failure=root();failure.tabs=nil;failure.create=function()error('native construction failure')end
+Lifecycle.observe(failure);assert(not pcall(failure.create,failure) and not failure.b47NativeSettingsOwner)
+local failedListener
+Lifecycle.register('fixture-listener-error',function(owner)if owner==failedListener then error('listener failure')end end)
+failedListener=root();local retry=failedListener
+assert(not pcall(Lifecycle.observe,retry) and not retry.b47OptionsLifecycle.busy,'Listener failure was swallowed or left observer busy')
+failedListener=nil;assert(Lifecycle.observe(retry) and retry.b47NativeSettingsOwner==retry)
+package.loaded['B47ANCEDUI/NativeSettings']=nil
+assert(require('B47ANCEDUI/NativeSettings')==S and #handlers==3,'Reload stacked lifecycle registrations')
 print('PASS OFFLINE native settings instances, geometry/fonts, callbacks/stencil, lifecycle/late children, scoped popup restoration, live accents and native value ownership')

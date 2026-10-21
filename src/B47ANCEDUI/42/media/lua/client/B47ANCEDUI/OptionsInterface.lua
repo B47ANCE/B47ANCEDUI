@@ -3,14 +3,16 @@ require 'B47ANCEDUI/API'
 require 'B47ANCEDUI/UILayoutEditor'
 require 'OptionScreens/MainScreen'
 require 'OptionScreens/MainOptions'
+local Lifecycle=require 'B47ANCEDUI/OptionsLifecycle'
 local U=B47ANCEDUI;if U.OptionsInterface then return U.OptionsInterface end
 local O={};U.OptionsInterface=O
 local function tr(key) return getText('UI_B47ANCEDUI_'..key) end
 function O.attach(root)
- if not root or root.Type~='MainOptions' or root.b47InterfacePage or not root.tabs or not root.addPage then return false end
+ if not root or root.Type~='MainOptions' or not root.tabs or not root.addPage then return false end
+ if root.b47InterfacePage and root.b47InterfaceTabs==root.tabs then return false end
  local previous,addY=root.mainPanel,root.addY
  local page=root:addPage(tr('InterfaceTab'));root.mainPanel=previous;root.addY=addY
- root.b47InterfacePage=page;page.b47AppearanceScope='B47ANCEDUI';page.playerNum=0;U.skin(page,'panel')
+ root.b47InterfacePage=page;root.b47InterfaceTabs=root.tabs;page.b47AppearanceScope='B47ANCEDUI';page.playerNum=0;U.skin(page,'panel')
  local function button(key,callback)
   local b=U.Button:new(0,0,200,32,tr(key),page,callback);b:initialise();b:instantiate();page:addChild(b);return b
  end
@@ -38,6 +40,5 @@ function O.attach(root)
  end
  return true
 end
-local function current() O.attach(MainScreen.instance and MainScreen.instance.mainOptions or MainOptions.instance) end
-Events.OnMainMenuEnter.Add(current);Events.OnGameStart.Add(current);Events.OnResetLua.Add(current);current()
+Lifecycle.register('interface-page',O.attach)
 return O

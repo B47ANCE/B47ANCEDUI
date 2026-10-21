@@ -33,3 +33,21 @@ No external source, algorithms, assets, strings, updater code, classes or runtim
 [TESTED: offline Lua 5.1] New fixture fails on the pre-fix dev.6 NativeMenus/MenuBackground and passes on dev.7. It checks title style, live note changes/colors, reserved rows, callbacks, glyph coordinates/scaling and unrelated texture pass-through, tooltip invocation, exception restoration, inactive-background delegation, scoping/idempotence and crowded layout. Current commands: `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py` and `git diff --check`. This is not MP or in-game evidence.
 
 [RUNTIME GATE] Test with the installed menu provider: resize/font scales, hover/controller navigation and glyphs, opening/returning, release/update/download/error/restart notes and other menu mods/load order. Provider changes outside this observed contract remain UNKNOWN. G7/stable G8 stay BLOCKED under project integration gates.
+
+## Deferred Options construction — 2026-10-21 / UI 0.7.0-dev.3
+
+Purpose: explain vanilla-looking Options after UI dev.2 deployment despite matching owned files. Scope is readiness and exposed native member identity; not external implementation reuse. Existing metadata provenance remains PZ Optimization, account xD3I, Workshop3805285544, release25/commitd1bbdcf, target4a0e9546ec. Human author/reuse license and independent redistribution permission remain UNKNOWN. No reuse rights are inferred.
+
+[VERIFIED: local runtime observation] Provider diagnostics reported hidden Options construction deferred until opening and later full MainOptions construction. The user reported vanilla settings; there is no post-fix visual proof. No raw logs, player identifiers or private paths are copied here.
+
+[VERIFIED: bounded read-only scout, source only] The installed public native-method hook scope is media/lua/client/pzopt/pzopt_optimizations_options.lua3193–3281, SHA2563fff351a4da3e9540307e47125b5aad719d78028a7ba10ef9c9924c02f82a233. Neutral member contract: class create can defer a hidden screen, while first toUI/visible transition completes native construction. No root prerender/render replacement was observed within this bounded scope. Full behavior outside this scope remains UNKNOWN. The production writer received only neutral member/timing facts, no external source or pseudocode.
+
+Independent design: observe the team's native MainOptions instance completion through existing create/prerender delegates; dispatch own styling/page callbacks once tabs exist and once per tabs identity. This is based on vanilla MainOptions.create329–347 and own UI requirements, uses no external identifier, field, method/API, algorithm, updater, class dependency or runtime component. External source/assets/text imported: NONE. External/vanilla files modified: NONE. No license-based reuse or bundled third-party attribution obligation is claimed.
+
+- [x] Narrow provenance/behavior question and unknown license status recorded.
+- [x] Read-only scout separated from production writer; only neutral observations supplied.
+- [x] Original generic lifecycle implementation and synthetic delayed-construction fixtures; no external implementation imported.
+- [x] Independent limited clean-room/source signoff: /root/panorama_geometry_review,2026-10-21. Own production/tests and vanilla contracts reviewed; no confirmed blocker or imported external expression found. This is engineering/source review, not legal clearance.
+- [x] No new game/server launch, deployment, external change or upload at this development checkpoint.
+
+[TESTED: offline Lua5.1] Deferred-construction regression fails on pre-fix dev.2 and passes with the observer; saved-create draw path, rebuilds, callback/page idempotence, native returns/errors and guarded custom renderers pass. [RUNTIME GATE] Actual post-fix Options opening, tabs, Apply/Back/display/audio/keybinding/controller behavior and provider integration NOT TESTED. G7/stable G8 remain BLOCKED.
