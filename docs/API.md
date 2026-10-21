@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.8.0-dev.3
+Project Version: 0.9.0-dev.1
 
 The native Options/settings adapter is internal and automatic when UI loads. Consumers still use API major 1 and style only their own widgets; it adds no consumer API, gameplay settings or dependency. It retains native option ownership and guards custom renderers. See [native settings scope](NATIVE_SETTINGS.md).
 
@@ -10,14 +10,17 @@ Client only. `local API=require 'B47ANCEDUI/API'`; `API.requireVersion(1)` retur
 
 | API | Contract |
 |---|---|
-| `UI.WindowShell/Panel/Button/IconButton/ScrollList/TextInput/NumberInput/Toggle:new(...)` | Same arguments and lifecycle as the corresponding native factory in Controls; returned native instance is styled and tagged with consumer scope. Caller initializes/instantiates/adds/removes it. |
+| `UI.WindowShell/Panel/Button/IconButton/ScrollList/TextInput/NumberInput/Toggle/Slider:new(...)` | Same arguments and lifecycle as the corresponding native factory in Controls; returned native instance is styled and tagged with consumer scope. Caller initializes/instantiates/adds/removes it. |
 | `UI.skin(widget,kind,role)` / `skinChildren(parent)` | Owned instances only; idempotent styling. Never pass unknown third-party trees or native global classes. Kinds include window/panel/button/menuButton/list/input/dropdown/label; role primary/destructive optional. |
+| `UI.Slider.style(widget)` | Opt an owned ISSliderPanel into shared palettes and bounded track/thumb visuals; native range/value/step/input callbacks remain owned by the caller. Custom pagination must retain its own geometry. |
+| `UI.StyleEditor.open(owner)` | Open the singleton local preset editor; returns its panel, or nil when another preview owner holds the lease. Explicit Save/Cancel with unsaved confirmation; player inherited from owner. |
+| `UI.Styles.setFamily(widget,family)` / `.color(widget,originalThemeToken,family?)` / `.number(widget,key,fallback,family?)` | Opt owned custom rendering into a supported family and resolve colors/numeric values. Scoped facade tags consumer ownership. Families/limits/inheritance: STYLE_PRESETS.md. Returned color data is read-only-by-contract; copied/arbitrary RGB remains provider-owned. Missing/invalid numeric token uses fallback. No profile write API is promised. |
 | `UI.Dropdown.style(widget)` | Style an existing native combobox. |
 | `UI.MenuButton:new(x,y,width,title,target,onclick,...)` | Dedicated main/pause/Esc-style navigation. Native ISButton instance/input/lifecycle, native Large font, left-aligned text, minimum height 56 growing to font height +24, transparent surface and no button border. Hover/selected/controller focus use scoped accent text and a 2px underline beneath the label only. Caller supplies localized text and owns the action. Regular controls remain Small/Normal. |
 | `UI.MenuButton.style(widget)` / `UI.Theme.menuMetrics()` | Style an unstyled owned native ISButton without resizing; already-menu styling is idempotent, mixing with an already styled ordinary control errors. Metrics return a fresh height/font/padding record. Native dimensions apply for styled instances; caller must allow enough height. MenuButton is not a third ordinary size, and `Button.sized("large",...)` remains the compatibility alias to Normal. |
 | `UI.Button.sized(size,x,y,width,title,target,onclick,...)` | Two opt-in sizes: `small` / `normal`, minimum heights 24/32, horizontal padding 8/12, corner radii 3/4. Legacy `large` requests resolve to Normal; no distinct third size remains. Height grows with native font metrics. Same native lifecycle/callback arguments; also available on IconButton/Toggle. Unknown IDs error. |
 | `UI.Button.setSize(widget,size)` / `UI.Theme.buttonSize(size)` | Opt-in height/font/padding/radius update; returns widget. Theme returns a fresh caller-owned metric record. Existing `:new(...)` dimensions and legacy `Theme.metrics().button` stay unchanged. |
-| `UI.Theme.colors/fonts/spacing`, `Theme.metrics()` | Shared design tokens/read-only-by-contract. Font metrics cached. Do not mutate shared tables per app. Arbitrary fonts/themes are not provided. |
+| `UI.Theme.colors/fonts/spacing`, `Theme.metrics()` | Shared design tokens/read-only-by-contract. Font metrics cached. Do not mutate shared tables per app. Fonts remain native/caller-owned; component presets resolve through Styles/Renderer without mutating these defaults. |
 | `UI.Renderer.rect/border/text/fit/icon/background`, `UI.Table.prepare/draw` | Shared drawing/table helpers, same retained native arguments; text/rows and callbacks supplied by application. No gameplay data fetching. |
 | `UI.Layout.place(widget,x,y,width,height)` / `.scrollbar(list)` | Explicit geometry, disables competing native right/bottom anchors. `UI.bounds(window,playerNum)` clamps origin; oversized-window reflow remains caller-owned. |
 | `UI.TabBar.add/select`, `UI.SectionHeader.draw`, `UI.SearchField.attach` | Native-semantic styled controls; SearchField returns entry/clear/layout handles. Caller owns search and translated labels. |
@@ -77,3 +80,5 @@ The 0.8.0-dev.2 HUD editor correction changes internal pointer/exit routing only
 
 
 The 0.8.0-dev.3 main-menu Quit confirmation skin is internal instance presentation only. Public API1 and saved schemas/defaults remain compatible; native modal text/geometry/actions/focus are retained. See NATIVE_MENUS.md.
+
+The 0.9 preset addition is compatible API1. Shared native/API controls and Renderer resolve the current local preset automatically; explicit family metadata governs generic palettes, and explicit row/tick/progress draw families remain separate. Private ComponentStyles/StylePresets modules are not supported consumer entry points. Existing Appearance methods continue to edit/read their own legacy preferences; explicit presets take precedence when rendered. See [editable preset contracts](STYLE_PRESETS.md).

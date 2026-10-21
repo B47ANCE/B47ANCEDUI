@@ -1,6 +1,6 @@
 # Options and safe HUD layout workspace
 
-Project Version: 0.8.0-dev.3
+Project Version: 0.9.0-dev.1
 
 Current 0.8.0-dev.2 adds compatible PATCH fixes for HUD editor input/exit handling to the 0.8 Options workspace. The 0.7 series introduced safe HUD previews and shared unsaved-exit confirmation. Public API major 1, existing appearance storage, main-menu schema 1 and the owner-approved menu/logo defaults remain compatible. No current package, deployment, launch or Workshop upload is part of this iteration.
 
@@ -101,3 +101,7 @@ The new fixed canvas covers preview children and validates actual asset bounds b
 [TESTED offline Windows] Existing suites plus `test_hud_editor_input.lua` cover native-shaped dropdown ordering, Return release, unpaired/dismissal click-through, fixed-canvas body/edge/corner dragging, overlap order, blank/out-of-bounds/zero-delta events, scaled coordinates with nonzero owner offset, outside/lost release, height-only/fixed/reference-only definitions, explicit Save/Cancel/Escape, pending invalid entries, Keep/Discard, modal draft/prompt/focus retention, stale callbacks, shared popup ownership and actual owner teardown. The old tests' hidePopup double incorrectly cleared expanded; it now mirrors native removal-only semantics, and callers explicitly clear expansion.
 
 [RUNTIME GATE] The user reports mouse dropdown selection closing the workspace on the locally deployed dev.3 build. Current console evidence has no correlated owned-editor exception; the exact engine mouse-event sequence remains unverified. The deterministic close paths above are source/offline findings, not a claim that the mouse symptom is reproduced in PZ. Check native dropdown pointer/controller opening/selecting/outside dismissal, no click-through to Save/Cancel/sliders, body and all enabled grips, empty canvas, outside-window release, unsaved Cancel/Escape Keep/Discard, focus recovery and save/reopen after separately authorized deployment. No deployment/launch/publication in this source checkpoint; native SP/controller acceptance NOT TESTED, project G7/stable G8 BLOCKED. See STYLE_SOURCE_EVIDENCE.json.
+
+## Separate style editing (0.9.0-dev.1)
+
+Options → Interface also opens the style preset inspector. Visual presets are separate from layout geometry, providers and saved schema1 menu/HUD files. It reuses the existing unsaved guard with a style-specific message, and preserves pending invalid fields, explicit Save and popup-first exits. The new full-viewport veil blocks underlying Options actions; its sample area is scrollable and inspector styling is protected. No new gameplay HUD construction is added. See STYLE_PRESETS.md; native input/render acceptance NOT TESTED.

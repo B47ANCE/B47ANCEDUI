@@ -1,6 +1,6 @@
 # Native settings presentation
 
-Project Version: 0.8.0-dev.3
+Project Version: 0.9.0-dev.1
 
 The Options screen now uses the sidebar/search/card workspace described in [OPTIONS_LAYOUT.md](OPTIONS_LAYOUT.md). `NativeSettings.lua` remains its palette adapter: near-black surfaces, restrained rounded native controls, grey default accent `#B0B0B0` and guarded native/provider ownership. `OptionsLayout.lua` adds instance geometry/navigation after palette and Interface attachment. It replaces the recognized native tab strip with category navigation, while preserving the original tabs/pages/controls/actions underneath. The palette-only statements below describe NativeSettings, not the aggregate workspace layout.
 
@@ -39,3 +39,7 @@ OptionsLifecycle now observes each MainOptions instance, wrapping only its exist
 NativeSettings recognizes only the observer's own prerender wrapper when validating an otherwise native renderer. Unfamiliar root renderers remain refused; native child/swatch/custom-panel guards remain. Existing styled roots adopt a new native tabs panel once. OptionsInterface keys its page marker to the current tabs panel, adds one page after readiness, and restores native mainPanel/addY. A bounded diagnostic reports styling/interface attachment booleans after tabs readiness; attachment alone does not prove the final pixels or input behavior.
 
 Source-only Build42.21/Steam25485521 evidence and neutral third-party observations: STYLE_SOURCE_EVIDENCE.json and THIRD_PARTY_RESEARCH.md. Offline tests cover latecreate, saved construction during prerender, rebuilds, idempotence, returns, native failure and foreign-renderer refusal. User-facing Apply/Back/display/audio/keybinding/controller behavior remains native. Native post-fix opening/closing/tabs/controller acceptance is NOT TESTED; project G7/stable G8 remain BLOCKED. No new deployment/launch/upload at this source checkpoint.
+
+## Editable presets (0.9.0-dev.1)
+
+Verified adopted instances resolve their component family in the new local preset book. Palette defaults restore before each override refresh; unknown/custom controls and live color swatches keep existing guards. Native slider pagination captures the native bar/knob before bounded visual changes; detach restores native geometry and stops overrides. Native volume rendering remains a distinct family, never a replacement generic slider. No values, callbacks, range/step math or native game-option persistence change. Managed tooltips customize their backing/border only; rich contents remain native. See STYLE_PRESETS.md. Native acceptance NOT TESTED.

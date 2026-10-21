@@ -28,6 +28,7 @@ layout.execute((ROOT/'tests/test_menu_layout_editor.lua').read_text())
 layout.execute((ROOT/'tests/test_ui_workspace.lua').read_text())
 layout.execute((ROOT/'tests/test_editor_exit.lua').read_text())
 layout.execute((ROOT/'tests/test_hud_editor_input.lua').read_text())
+layout.execute((ROOT/'tests/test_style_editor.lua').read_text())
 hud=LuaRuntime(unpack_returned_tuples=True)
 hud.globals().package.path=(ROOT/'src/B47ANCEDUI/42/media/lua/client').as_posix()+'/?.lua;'+hud.globals().package.path
 hud.globals().B47ANCEDUI_FIXTURE_ONLY=True
@@ -45,3 +46,8 @@ options.globals().B47ANCEDUI_FIXTURE_ONLY=True
 options.execute((ROOT/'tests/test_api.lua').read_text())
 options.execute((ROOT/'tests/test_options_layout.lua').read_text())
 print('Offline only. Native SP/controller/split-screen/dedicated NOT TESTED.')
+styles=LuaRuntime(unpack_returned_tuples=True)
+styles.globals().package.path=(ROOT/'src/B47ANCEDUI/42/media/lua/client').as_posix()+'/?.lua;'+styles.globals().package.path
+styles.globals().B47ANCEDUI_FIXTURE_ONLY=True
+styles.execute((ROOT/'tests/test_api.lua').read_text())
+styles.execute((ROOT/'tests/test_style_presets.lua').read_text())

@@ -2,7 +2,7 @@ require 'ISUI/ISModalDialog'
 require 'B47ANCEDUI/Controls'
 local U=B47ANCEDUI;local D={};U.Dialog=D
 function D.decorate(dialog,playerNum,owner)
- dialog.b47AppearanceOpaque=true;dialog.playerNum=playerNum
+ dialog.b47AppearanceOpaque=true;dialog.playerNum=playerNum;dialog.b47StyleFamily='dialog'
  dialog.b47AppearanceScope=dialog.b47AppearanceScope or U.Appearance.scope(owner)
  U.skin(dialog,'panel');U.skinChildren(dialog)
  -- Text-only owned modals use a bounded, scrollable body. Native text-entry

@@ -17,9 +17,11 @@ function O.attach(root)
   local b=U.Button:new(0,0,200,32,tr(key),page,callback);b:initialise();b:instantiate();page:addChild(b);return b
  end
  local appearance=button('InterfaceAppearance',function()U.AppearanceEditor.open(page)end)
+ local styles=button('StyleTitle',function()U.StyleEditor.open(page)end)
  local editor=button('EditInGameUI',function()U.UILayoutEditor.open(MainScreen.instance)end)
  page.joypadButtonsY={};page.allJoypadButtons={};page.joypadButtons={};page.joypadIndex=1;page.joypadIndexY=1
- page:insertNewLineOfButtons(appearance);page:insertNewLineOfButtons(editor)
+ page:insertNewLineOfButtons(appearance);page:insertNewLineOfButtons(styles);page:insertNewLineOfButtons(editor)
+ page.b47StyleButton=styles
  page.b47AppearanceButton=appearance;page.b47WorkspaceButton=editor
  local pre=page.prerender
  page.prerender=function(self,...)
@@ -27,16 +29,17 @@ function O.attach(root)
   local width=math.min(640,math.max(1,self:getWidth()-48));local x=(self:getWidth()-width)/2
   local y=24+font*5
   U.Layout.place(appearance,x,y,math.min(320,width),buttonHeight)
-  U.Layout.place(editor,x,y+buttonHeight+12,math.min(320,width),buttonHeight)
+  U.Layout.place(styles,x,y+buttonHeight+12,math.min(320,width),buttonHeight)
+  U.Layout.place(editor,x,y+(buttonHeight+12)*2,math.min(320,width),buttonHeight)
   editor:setEnable(MainScreen.instance and not MainScreen.instance.inGame and true or false)
   pre(self,...)
   local RR,T=U.Renderer,U.Theme
   RR.text(self,tr('InterfaceTitle'),x,24,T.colors.text,UIFont.Medium)
   RR.text(self,RR.fit(tr('InterfaceLocalNotice'),width),x,30+font*2,T.colors.muted)
   RR.text(self,RR.fit(tr('AccentHex')..' '..U.Appearance.getAccent(0,'B47ANCEDUI'),width),x,34+font*3,T.colors.text)
-  RR.text(self,RR.fit(tr(editor.enable and 'InterfaceEditorNotice' or 'InterfaceMenuOnly'),width),x,y+buttonHeight*2+30,T.colors.muted)
-  RR.text(self,RR.fit(tr('HudOverridesNotice'),width),x,y+buttonHeight*2+font+34,T.colors.muted)
-  self:setScrollHeight(y+buttonHeight*2+font*2+48)
+  RR.text(self,RR.fit(tr(editor.enable and 'InterfaceEditorNotice' or 'InterfaceMenuOnly'),width),x,y+buttonHeight*3+42,T.colors.muted)
+  RR.text(self,RR.fit(tr('HudOverridesNotice'),width),x,y+buttonHeight*3+font+46,T.colors.muted)
+  self:setScrollHeight(y+buttonHeight*3+font*2+60)
  end
  return true
 end

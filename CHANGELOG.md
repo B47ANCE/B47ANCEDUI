@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.9.0-dev.1] - 2026-10-21
+
+- Add editable local style presets with shared component values, optional per-mod overrides and independent preset bindings. Duplicate, rename, delete, inherit and reset component styles from Options → Interface → UI Style Presets.
+- Preview supported native/API controls live; edit hex colors, opacity, corners, borders and slider track/thumb dimensions. Save verifies the two-slot data journal; Cancel/Escape/controller Back protect unsaved changes and restore the saved style. Existing appearance/menu/HUD formats, native values/callbacks/geometry and API major1 stay compatible.
+- Compatible MINOR presentation addition. Custom renderers opt in; font/spacing/layout/gameplay remain outside the style store. Offline evidence and native runtime gates are recorded in TESTING.md; no deploy, launch, package, merge or upload.
+
 ## [0.8.0-dev.3] - 2026-10-21
 
 - Theme the native main-menu Quit to desktop Yes/No confirmation with shared near-black rounded surfaces, neutral text and existing local accent. Preserve original dialog/button geometry, text, callbacks, focus, destruction and input behavior.

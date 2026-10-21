@@ -57,6 +57,14 @@
     {
       "path": "docs/OPTIONS_LAYOUT.md",
       "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/STYLE_PRESETS.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/STYLE_PRESETS_SOURCE.json",
+      "pattern": "^  \"project_version\": \"(?P<version>[^\"]+)\""
     }
   ],
   "changelog": {
@@ -97,6 +105,11 @@
       "category": "compatibility",
       "reference": "UILayout.lua:schema=1",
       "reason": "Separate installation-local HUD geometry data, independent of main-menu schema, gameplay saves and project/API versions."
+    },
+    {
+      "category": "compatibility",
+      "reference": "StylePresets.lua:schema=1",
+      "reason": "Separate installation-local style preset journal, independent of API/project/menu/HUD formats."
     }
   ],
   "historical": [

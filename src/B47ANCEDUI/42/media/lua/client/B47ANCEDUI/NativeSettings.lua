@@ -11,8 +11,7 @@ local Lifecycle=require 'B47ANCEDUI/OptionsLifecycle'
 local U=B47ANCEDUI;local T,R,A=U.Theme,U.Renderer,U.Appearance
 if U.NativeSettings then return U.NativeSettings end
 local S={};U.NativeSettings=S
-local appearanceOwner={b47AppearanceScope='B47ANCEDUI',playerNum=0}
-local function scoped(w,c) return A.color(appearanceOwner,c) end
+local function scoped(w,c) return U.ComponentStyles.color(w,c) end
 local function copy(w,c) return T.copy(scoped(w,c)) end
 local function native(w,class)
  return class and w.Type==class.Type and w.prerender==class.prerender and w.render==class.render
@@ -22,10 +21,11 @@ local function owned(w,root)
  return false
 end
 local function colors(w,kind)
+ U.ComponentStyles.restore(w)
  w.borderColor=copy(w,T.colors.border)
  if kind=='root' then w.backgroundColor=T.copy(T.colors.window);w.backgroundColor.a=.99
  elseif kind=='tabs' then w.backgroundColor=T.copy(T.colors.panel);w.backgroundColor.a=0
- elseif kind=='panel' then return
+ elseif kind=='panel' then U.ComponentStyles.prepare(w,kind);return
  else
   w.backgroundColor=copy(w,kind=='button' and T.colors.raised or T.colors.panel)
   w.backgroundColorMouseOver=copy(w,T.colors.hover)
@@ -40,6 +40,7 @@ local function colors(w,kind)
   w.sliderBarColor=copy(w,w.joypadFocused and T.colors.selected or T.colors.raised);w.sliderBarBorderColor=copy(w,T.colors.border)
   w.sliderColor=copy(w,T.colors.accent);w.sliderMouseOverColor=copy(w,T.colors.accentHover);w.sliderBorderColor=copy(w,T.colors.strong)
  end
+ U.ComponentStyles.prepare(w,kind)
 end
 local function before(w,fn)
  local delegate=w.prerender
@@ -72,12 +73,12 @@ local function popupFrame(delegate,self,...)
  -- The native popup is shared with every combo. Borrow its palette for this
  -- draw only; restore even on failure or after another screen takes ownership.
  local saved={};for i,key in ipairs(popupFields) do saved[i]=self[key] end
- self.backgroundColor=T.copy(T.colors.panel);self.backgroundColor.a=.99
+ self.backgroundColor=copy(combo,T.colors.panel);self.backgroundColor.a=.99
  self.borderColor=copy(combo,T.colors.border)
  local rawBorder=rawget(self,'drawRectBorderStatic');local border=self.drawRectBorderStatic
  self.drawRectBorderStatic=function(popup,x,y,width,height,alpha,red,green,blue,...)
   if x==-1 and y==-1 and width==popup:getWidth()+2 and height==popup:getHeight()+2 then
-   local c=T.colors.border;red,green,blue=c.r,c.g,c.b
+   local c=scoped(combo,T.colors.border);red,green,blue=c.r,c.g,c.b
   end
   return border(popup,x,y,width,height,alpha,red,green,blue,...)
  end
@@ -177,11 +178,15 @@ adopt=function(w,root,depth,budget)
  elseif native(w,ISVolumeControl) or native(w,ISMegaVolumeControl) then kind='volume'
  else return end -- Custom panels/renderers and their subtrees retain ownership.
  w.b47NativeSettingsOwner=root;w.b47AppearanceScope='B47ANCEDUI'
+ w.b47StyleFamily=({root='window',combo='dropdown'})[kind]or kind
+ if kind=='slider'then U.ComponentStyles.slider(w,function(self)return owned(self,root)end)end
  local saved,last={},{};for i,key in ipairs(paletteFields) do saved[i]=w[key] end
  local function restore(self)
   for i,key in ipairs(paletteFields) do
    if last[i]~=nil and self[key]==last[i] then self[key]=saved[i] end
   end
+  self.b47StyleSaved=nil
+  if kind=='slider'then U.ComponentStyles.geometry(self)end
  end
  before(w,function(self)
   if not owned(self,root) then restore(self);return end

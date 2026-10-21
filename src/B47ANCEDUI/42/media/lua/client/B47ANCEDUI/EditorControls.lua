@@ -5,6 +5,7 @@ local U=B47ANCEDUI;local C={};U.EditorControls=C
 local function text(key) return getText('UI_B47ANCEDUI_'..key) end
 local function focused(entry) return entry.isFocused and entry:isFocused() end
 function C.styleSlider(s)
+ s.b47StyleFamily='slider'
  if s.b47EditorSlider then return s end;s.b47EditorSlider=true
  local paginate=s.paginate
  s.paginate=function(self,...)
@@ -12,6 +13,7 @@ function C.styleSlider(s)
   local w,h=self:getWidth(),self:getHeight()
   self.sliderBarDim={x=8,y=h/2-2,w=math.max(1,w-16),h=4}
   self.sliderDim={x=6,y=4,w=12,h=math.max(8,h-8)}
+  U.ComponentStyles.captureSlider(self)
  end
  s:setDoButtons(false)
  local down,up,out=s.onMouseDown,s.onMouseUp,s.onMouseUpOutside
@@ -24,11 +26,13 @@ function C.styleSlider(s)
  s.onMouseUpOutside=function(self,...) out(self,...);self:setCapture(false);return true end
  local pre=s.prerender
  s.prerender=function(self,...)
+  U.ComponentStyles.restore(self)
   local T,A=U.Theme,U.Appearance
   self.sliderColor=A.color(self,self.disabled and T.colors.disabled or T.colors.accent)
   self.sliderMouseOverColor=A.color(self,T.colors.accentHover)
   self.sliderBarColor=A.color(self,self.joypadFocused and T.colors.selected or T.colors.raised)
   self.sliderBarBorderColor=T.colors.border;self.sliderBorderColor=T.colors.border
+  U.ComponentStyles.prepare(self,'slider')
   return pre(self,...)
  end
  return s
@@ -169,7 +173,7 @@ function C.requestExit(state,release,close)
  panel.onJoypadDirUp=function()end;panel.onJoypadDirDown=function()end
  shield.prerender=function(self)
   local width,height=state.root:getWidth(),state.root:getHeight();local font=getTextManager():getFontHeight(UIFont.Small)
-  local pw=math.max(1,math.min(520,width-32));local lines=U.Tooltip.wrap(text('UnsavedMessage'),math.max(1,pw-32),UIFont.Small)
+  local pw=math.max(1,math.min(520,width-32));local lines=U.Tooltip.wrap(text(state.exitMessageKey or 'UnsavedMessage'),math.max(1,pw-32),UIFont.Small)
   local titleHeight=getTextManager():getFontHeight(UIFont.Medium);local bodyY=24+titleHeight
   local bh=math.max(32,font+12);local ph=bodyY+#lines*(font+4)+16+bh+12
   U.Layout.place(self,0,0,width,height);U.Layout.place(panel,(width-pw)/2,math.max(0,(height-ph)/2),pw,ph)

@@ -1,6 +1,6 @@
 # Native main and Esc menu styling
 
-Project Version: 0.8.0-dev.3
+Project Version: 0.9.0-dev.1
 
 The native Options screen has a separate internal palette/drawing adapter in this development revision. It preserves native settings and input behavior; it does not apply large text-only menu navigation to the ordinary settings buttons. See [settings integration](NATIVE_SETTINGS.md). Native acceptance remains NOT TESTED.
 
