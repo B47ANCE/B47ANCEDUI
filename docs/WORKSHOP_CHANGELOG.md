@@ -1,8 +1,10 @@
-Version 0.7.0-dev.1
+Version 0.7.0-dev.2
 
 MP testing build - dedicated multiplayer NOT TESTED
 
 Development source only; NOT uploaded. Workshop remains 0.5.0-dev.11.
+
+Guard unsaved layout exits with Keep editing / Discard changes, including unfinished numeric entries and switching editors. Default to Keep; preserve drafts/focus and prevent underlying controller slider updates. Clean/reverted layouts and successful Save close directly. Native popup input NOT TESTED.
 
 Add an Interface page to the actual native Options screen for accent/appearance and a safe in-game UI layout workspace. Preserve native settings, tabs and Apply/Back behavior. Add Edit in-game UI to the main menu: black canvas, clearly labeled synthetic previews, no loaded character/world.
 

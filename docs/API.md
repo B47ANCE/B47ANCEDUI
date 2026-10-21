@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.7.0-dev.1
+Project Version: 0.7.0-dev.2
 
 The native Options/settings adapter is internal and automatic when UI loads. Consumers still use API major 1 and style only their own widgets; it adds no consumer API, gameplay settings or dependency. It retains native option ownership and guards custom renderers. See [native settings scope](NATIVE_SETTINGS.md).
 
@@ -64,3 +64,5 @@ MenuLayout resolves independent normalized menu/logo preferences over the owner-
 Fields include localized `labelKey`, required `preview(parent)`, `default={x,y,w,h}`, `resizable`, optional `resizeWidth/resizeHeight`, `minWidth/minHeight`, fixed `aspect`, owned `resize(widget,width,height)` and `dispose(preview)`. Aspect cannot be combined with a disabled resize axis. Providers must use synthetic data, owned children and safe cleanup; they may not construct a player/world HUD in the frontend. No automatic third-party discovery is provided. See [complete provider contract, built-in support and persistence](UI_WORKSPACE.md).
 
 The native Options Interface page and main-menu Edit in-game UI button open the owned black canvas. Main-menu layout, HUD layout and appearance retain separate local files; only edited supported assets affect native runtime geometry. Public API major1 remains compatible. Native event/input/controller acceptance is NOT TESTED.
+
+Both owned layout editors now guard voluntary unsaved exits with Keep editing / Discard changes. This is internal editor behavior, not a new public API or preference format. Existing facade methods remain compatible; native input acceptance is pending. See MENU_LAYOUT_EDITOR.md and UI_WORKSPACE.md.

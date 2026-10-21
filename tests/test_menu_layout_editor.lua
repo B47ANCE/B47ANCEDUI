@@ -38,7 +38,16 @@ ISTextEntryBox.unfocus=function(self)self.focused=false end
 ISTextEntryBox.isFocused=function(self)return self.focused end
 ISTextEntryBox.setEditable=function(self,v)self.editable=v end
 ISPanelJoypad.insertNewLineOfButtons=function(self,...)self.joypadButtonsY[#self.joypadButtonsY+1]={...}end
-ISPanelJoypad.restoreJoypadFocus=function(self)self.initialFocus=self.joypadButtonsY[1][1]end
+ISPanelJoypad.restoreJoypadFocus=function(self,data)
+ local child=self.joypadButtonsY[self.joypadIndexY or 1][self.joypadIndex or 1]
+ self.initialFocus=child;child.joypadFocused=true;child.joyfocus=data
+end
+ISPanelJoypad.clearJoypadFocus=function(self)
+ for _,row in ipairs(self.joypadButtonsY) do for _,b in ipairs(row) do b.joypadFocused=false end end
+end
+ISPanelJoypad.setJoypadFocus=function(self,child)
+ for _,row in ipairs(self.joypadButtonsY) do for i,b in ipairs(row) do b.joypadFocused=b==child;if b==child then self.joypadIndex=i end end end
+end
 ISPanelJoypad.onJoypadDown=function(self,key)self.delegatedKey=key end
 function ISSliderPanel:new(x,y,w,h,target,callback)
  local s=ISPanel:new(x,y,w,h);setmetatable(s,{__index=self});s.target=target;s.callback=callback;return s
@@ -109,7 +118,8 @@ E.select(main,'menu');main:onKeyRelease(Keyboard.KEY_RIGHT);assert(B.rectangles(
 local width=B.rectangles(main).menu.w;isShiftKeyDown=function()return true end
 main:onKeyRelease(Keyboard.KEY_RIGHT);assert(B.rectangles(main).menu.w>width);isShiftKeyDown=nil
 main:onKeyRelease(Keyboard.KEY_TAB);assert(state.selected=='logo')
-main:onKeyRelease(Keyboard.KEY_ESCAPE);assert(not main.b47LayoutEditing and writes==0 and data.focus==main)
+main:onKeyRelease(Keyboard.KEY_ESCAPE);assert(state.exitPrompt);state.exitPrompt.discard()
+assert(not main.b47LayoutEditing and writes==0 and data.focus==main)
 assert(B.rectangles(main).menu.x==defaults.menu.x and #main.children==3)
 main:onJoypadDown(Joypad.XButton,data);state=main.b47LayoutEditing
 assert(state and nativeJoy==1);state.sliders[1]:setCurrentValue(20);local selected=B.rectangles(main).menu.x
@@ -119,6 +129,7 @@ main:onKeyRelease(Keyboard.KEY_F10);state=main.b47LayoutEditing;E.reset(main)
 getFileWriter=function()error('blocked')end
 assert(not E.save(main) and state.saveFailed and main.b47LayoutEditing and L.get().menu)
 state.panel:prerender();state.panel:onJoypadDown(Joypad.BButton,data)
+assert(state.exitPrompt);state.exitPrompt.discard()
 assert(not main.b47LayoutEditing and math.abs(B.rectangles(main).menu.x-selected)<.001)
 getFileWriter=writer;main:onKeyRelease(Keyboard.KEY_F10);state=main.b47LayoutEditing
 E.reset(main);assert(E.save(main) and not L.get().menu and B.rectangles(main).menu.x==defaults.menu.x)

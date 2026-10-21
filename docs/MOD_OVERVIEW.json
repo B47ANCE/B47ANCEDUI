@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.7.0-dev.1",
+  "version": "0.7.0-dev.2",
   "reviewed": true,
-  "source_digest": "ae0331cd56338e8e9331dd351fe3daafb71da9f97347b6ad3fd5f7e599c8bd55",
+  "source_digest": "ae3eb0662f73002341a11e160370fccdee7783c1e5fcfbdda34f9ac99a71fe43",
   "features": [
     {
       "status": "Source",
@@ -85,9 +85,13 @@
     {
       "status": "Source",
       "text": "Shared compact inspectors: larger slider thumbs/steps, numeric percentages, eight-edge/corner grips for freely resizable assets, batched clamping, pending-field target/reset guards and explicit popup/capture/focus cleanup. Offline fixtures PASS; native input NOT TESTED."
+    },
+    {
+      "status": "Source",
+      "text": "Owned confirmation before voluntary unsaved layout exits: Keep editing defaults safely, Discard writes nothing; pending/invalid inputs, Reset and editor switching are guarded. Underlying slider child focus is cleared; popup/capture/focus cleanup is bounded. Offline tests PASS; native input NOT TESTED."
     }
   ],
-  "limits": "0.7.0-dev.1 development source; Workshop remains 0.5.0-dev.11. Offline suites PASS:62 runtime files/57 keys/29 English-fallback locales. Safe previews and supported explicit HUD overrides only; clock/moodles reference-only, unknown mods opt in, controller player layouts skipped. Native Options/input/HUD restoration/split-screen/persistence NOT TESTED. Historical dev.2 local startup is not current acceptance. G6 NOT TESTED, project G7/stable G8 BLOCKED. No current deployment/launch/package/upload. Client-local presentation with no gameplay authority or shared sandbox settings.",
+  "limits": "0.7.0-dev.2 development source; Workshop remains 0.5.0-dev.11. Offline suites PASS:62 runtime files/61 keys/29 English-fallback locales. Safe previews and supported explicit HUD overrides only; clock/moodles reference-only, unknown mods opt in, controller player layouts skipped. Native Options/input/HUD restoration/split-screen/persistence NOT TESTED. Historical dev.2 local startup is not current acceptance. G6 NOT TESTED, project G7/stable G8 BLOCKED. No current deployment/launch/package/upload. Client-local presentation with no gameplay authority or shared sandbox settings.",
   "evidence": [
     "README.md",
     "docs/API.md",

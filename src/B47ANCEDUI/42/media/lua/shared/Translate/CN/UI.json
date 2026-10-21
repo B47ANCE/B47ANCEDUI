@@ -55,5 +55,9 @@
   "UI_B47ANCEDUI_AssetHotbar": "Hotbar",
   "UI_B47ANCEDUI_AssetMinimap": "Minimap",
   "UI_B47ANCEDUI_AssetClock": "Clock (reference)",
-  "UI_B47ANCEDUI_AssetMoodles": "Moodles (reference)"
+  "UI_B47ANCEDUI_AssetMoodles": "Moodles (reference)",
+  "UI_B47ANCEDUI_UnsavedTitle": "Unsaved changes",
+  "UI_B47ANCEDUI_UnsavedMessage": "Discard your unsaved layout changes?",
+  "UI_B47ANCEDUI_KeepEditing": "Keep editing",
+  "UI_B47ANCEDUI_DiscardChanges": "Discard changes"
 }

@@ -40,6 +40,7 @@ local function release(state)
 end
 function E.cancel(screen)
  local state=screen.b47LayoutEditing;if not state then return end
+ C.dismissExit(state,false)
  release(state);U.Tooltip.dispose(state.root);state.root:setVisible(false);state.root:setCapture(false)
  screen:removeChild(state.root);state.root.parent=nil;screen.b47LayoutEditing=nil
  if E.activeScreen==screen then E.activeScreen=nil end
@@ -50,22 +51,29 @@ function E.cancel(screen)
  end
  if screen.b47LayoutButton then screen.b47LayoutButton:setVisible(E.available(screen) and true or false) end
 end
+function E.requestClose(screen,afterClose)
+ local state=screen.b47LayoutEditing
+ local function close() E.cancel(screen);if afterClose then afterClose() end end
+ if not state then close();return true end
+ return C.requestExit(state,release,close)
+end
 function E.ownerChanged(screen)
  if E.activeScreen and (E.activeScreen~=screen or not E.available(E.activeScreen)) then E.cancel(E.activeScreen) end
 end
 function E.save(screen)
- local state=screen.b47LayoutEditing;if not state then return false end
+ local state=screen.b47LayoutEditing;if not state or state.exitPrompt then return false end
  if not commit(screen) then state.inputInvalid=true;sizePanel(screen,state);return false end
  if not L.save(state.draft) then state.saveFailed=true;sizePanel(screen,state);return false end
  E.cancel(screen);return true
 end
 function E.reset(screen)
- local state=screen.b47LayoutEditing;if not state then return end
+ local state=screen.b47LayoutEditing;if not state or state.exitPrompt then return end
  release(state);for _,row in ipairs(state.rows) do row.dirty=false end
  state.draft={};state.saveFailed=false;state.inputInvalid=false;E.refresh(screen)
 end
 change=function(screen,rect)
  local state=screen.b47LayoutEditing
+ if not state or state.exitPrompt then return end
  state.draft=L.setRect(state.draft,state.selected,rect,screen:getWidth(),screen:getHeight(),ratio(screen))
  state.saveFailed=false;state.inputInvalid=false;E.refresh(screen)
 end
@@ -82,7 +90,7 @@ function E.refresh(screen)
  if state.saveButton then sizePanel(screen,state) end
 end
 function E.select(screen,kind)
- local state=screen.b47LayoutEditing;if not state then return end
+ local state=screen.b47LayoutEditing;if not state or state.exitPrompt then return false end
  if not commit(screen) then state.inputInvalid=true;sizePanel(screen,state);return false end
  C.release(state.rows);state.selected=kind;E.refresh(screen)
  state.frames[kind]:bringToTop();state.panel:bringToTop()
@@ -107,7 +115,7 @@ end
 function E.open(screen,joypad)
  if screen.b47LayoutEditing then return screen.b47LayoutEditing end
  if not E.available(screen) then return end
- local state={draft=L.get(),selected='menu',frames={},sliders={},rows={}}
+ local state={draft=L.get(),baseline=L.get(),selected='menu',frames={},sliders={},rows={}}
  screen.b47LayoutEditing=state;E.activeScreen=screen
  local root=ISPanel:new(0,0,screen:getWidth(),screen:getHeight());root.background=false
  root:initialise();root:instantiate();state.root=root
@@ -133,6 +141,7 @@ function E.open(screen,joypad)
    self:setCapture(true);return true
   end
   local function move(self,dx,dy)
+   if state.exitPrompt then return true end
    local drag=self.drag
    if drag then
     drag.dx=drag.dx+dx;drag.dy=drag.dy+dy
@@ -165,7 +174,7 @@ function E.open(screen,joypad)
   state.rows[i]=row;state.sliders[i]=row.slider
  end
  state.saveButton=button('LayoutSave',function() E.save(screen) end)
- state.cancelButton=button('LayoutCancel',function() E.cancel(screen) end)
+ state.cancelButton=button('LayoutCancel',function() E.requestClose(screen) end)
  state.resetButton=button('LayoutReset',function() E.reset(screen) end)
  p.joypadButtonsY={};p.allJoypadButtons={};p.joypadButtons={};p.joypadIndexY=1;p.joypadIndex=1
  p:insertNewLineOfButtons(state.menuButton,state.logoButton)
@@ -173,7 +182,8 @@ function E.open(screen,joypad)
  p:insertNewLineOfButtons(state.saveButton,state.cancelButton,state.resetButton)
  local joy=p.onJoypadDown
  p.onJoypadDown=function(self,key,...)
-  if key==Joypad.BButton then E.cancel(screen) elseif joy then return joy(self,key,...) end
+  if state.exitPrompt then return state.exitPrompt.panel:onJoypadDown(key,...) end
+  if key==Joypad.BButton then E.requestClose(screen) elseif joy then return joy(self,key,...) end
  end
  local pre=p.prerender
  p.prerender=function(self,...)
@@ -200,7 +210,8 @@ function E.key(screen,key)
   if key==K.KEY_F10 and E.available(screen) then E.open(screen);return true end
   return false
  end
- if key==K.KEY_ESCAPE then E.cancel(screen)
+ if C.exitKey(state,key) then return true end
+ if key==K.KEY_ESCAPE then E.requestClose(screen)
  elseif C.typing(state.rows) then
   local row=C.typing(state.rows)
   if key==K.KEY_RETURN and row.commit() then row.entry:unfocus();E.refresh(screen) end

@@ -604,6 +604,32 @@
       "statement": "Observed clock geometry access is read-only evidence. Mutable Clock/Moodles geometry remains UNKNOWN, so frontend samples are reference-only.",
       "verified_on": "2026-10-20",
       "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "ISPanelJoypad child focus clear/restore for confirmation",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISPanelJoypad.lua",
+      "sha256": "8e7a2afbe11bb826bd3a2b8e08501790adba772171fd5e747af6cc520a60f060",
+      "lines": [
+        643,
+        680
+      ],
+      "statement": "Panel focus transfer alone does not clear focused descendants. clearJoypadFocus explicitly clears each selected child; restoreJoypadFocus re-highlights the current child when Keep editing returns.",
+      "verified_on": "2026-10-20",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "ISSliderPanel own-child analog input predicate",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/RadioCom/ISUIRadio/ISSliderPanel.lua",
+      "sha256": "cadab9df43df0fe25f093c048f5706951ac1bdfb946a12b74feae5a890e16bb8",
+      "lines": [
+        120,
+        132
+      ],
+      "statement": "Analog update checks the slider own joyfocus and joypadFocused fields rather than the root focus owner. Editor confirmation clears underlying child focus before taking controller input.",
+      "verified_on": "2026-10-20",
+      "runtime": "NOT TESTED"
     }
   ]
 }

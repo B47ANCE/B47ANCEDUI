@@ -19,6 +19,7 @@ local function release(state)
 end
 function W.close(screen)
  local state=screen.b47HudEditing;if not state then return end
+ C.dismissExit(state,false)
  release(state);U.Tooltip.dispose(state.root);state.root:setVisible(false)
  if state.selector.expanded then state.selector:hidePopup();state.selector.expanded=false end
  for _,frame in pairs(state.frames) do
@@ -35,9 +36,14 @@ function W.close(screen)
   updateJoypadFocus(state.joypad)
  end
 end
+function W.requestClose(screen)
+ local state=screen.b47HudEditing;if not state then return true end
+ return C.requestExit(state,release,function()W.close(screen)end)
+end
 local layout,refresh
 local function changed(screen,rect)
- local state=screen.b47HudEditing;local def=state.assets[state.selected]
+ local state=screen.b47HudEditing;if not state or state.exitPrompt then return end
+ local def=state.assets[state.selected]
  if not def.editable then return end
  state.draft=P.set(state.draft,def.id,rect,screen:getWidth(),screen:getHeight(),def)
  state.error=nil;refresh(screen)
@@ -57,7 +63,7 @@ local function commit(screen)
  end)
 end
 function W.select(screen,index)
- local state=screen.b47HudEditing;if not state or not state.assets[index] then return end
+ local state=screen.b47HudEditing;if not state or state.exitPrompt or not state.assets[index] then return false end
  if not commit(screen) then state.selector.selected=state.selected;state.error='InvalidPercent';return false end
  release(state);state.selected=index;state.selector.selected=index;state.error=nil
  state.frames[state.assets[index].id]:bringToTop();state.panel:bringToTop();refresh(screen)
@@ -95,14 +101,14 @@ layout=function(screen)
  refresh(screen)
 end
 function W.save(screen)
- local state=screen.b47HudEditing;if not state then return false end
+ local state=screen.b47HudEditing;if not state or state.exitPrompt then return false end
  if not commit(screen) then state.error='InvalidPercent';return false end
  local ok,why=P.save(state.draft,state.replaceFuture)
  if not ok then state.error=why=='future' and 'LayoutFuture' or 'LayoutSaveFailed';return false end
  W.close(screen);return true
 end
 function W.reset(screen)
- local state=screen.b47HudEditing;if not state then return end
+ local state=screen.b47HudEditing;if not state or state.exitPrompt then return end
  release(state)
  for _,row in ipairs(state.rows) do row.dirty=false end
  for _,def in ipairs(state.assets) do if def.editable then state.draft[def.id]=nil end end
@@ -112,9 +118,11 @@ function W.open(screen,joypad)
  if not W.available(screen) then return end
  if screen.b47HudEditing then return screen.b47HudEditing end
  W.attach(screen)
- if U.MenuLayoutEditor then U.MenuLayoutEditor.cancel(screen) end
+ if screen.b47LayoutEditing then
+  U.MenuLayoutEditor.requestClose(screen,function()W.open(screen,joypad)end);return screen.b47HudEditing
+ end
  local draft,status=P.get();local assets=R.list();if #assets==0 then return end
- local state={draft=draft,status=status,assets=assets,selected=1,frames={},rows={}}
+ local state={draft=draft,baseline=P.copy(draft),status=status,assets=assets,selected=1,frames={},rows={}}
  screen.b47HudEditing=state;W.activeScreen=screen
  local root=ISPanel:new(0,0,screen:getWidth(),screen:getHeight());root:initialise();root:instantiate();state.root=root
  root.prerender=function(self)
@@ -145,6 +153,7 @@ function W.open(screen,joypad)
    return true
   end
   local function move(self,dx,dy)
+   if state.exitPrompt then return true end
    if frame.drag then
     local drag=frame.drag;drag.dx=drag.dx+dx/state.scale;drag.dy=drag.dy+dy/state.scale
     changed(screen,P.drag(drag.start,drag.dx,drag.dy,drag.edge,screen:getWidth(),screen:getHeight(),def))
@@ -174,7 +183,7 @@ function W.open(screen,joypad)
  local function button(key,callback)
   local b=U.Button:new(0,0,1,30,tr(key),panel,callback);b:initialise();b:instantiate();panel:addChild(b);return b
  end
- state.save=button('LayoutSave',function()W.save(screen)end);state.cancel=button('LayoutCancel',function()W.close(screen)end)
+ state.save=button('LayoutSave',function()W.save(screen)end);state.cancel=button('LayoutCancel',function()W.requestClose(screen)end)
  state.reset=button('ResetHudOverrides',function()W.reset(screen)end)
  panel.joypadButtonsY={};panel.allJoypadButtons={};panel.joypadButtons={};panel.joypadIndex=1;panel.joypadIndexY=1
  panel:insertNewLineOfButtons(selector)
@@ -182,8 +191,9 @@ function W.open(screen,joypad)
  panel:insertNewLineOfButtons(state.save,state.cancel,state.reset)
  local joy=panel.onJoypadDown
  panel.onJoypadDown=function(self,key,...)
+  if state.exitPrompt then return state.exitPrompt.panel:onJoypadDown(key,...) end
   if key==Joypad.BButton then
-   if selector.expanded then selector:hidePopup();selector.expanded=false else W.close(screen) end
+   if selector.expanded then selector:hidePopup();selector.expanded=false else W.requestClose(screen) end
   elseif joy then return joy(self,key,...) end
  end
  local pre=panel.prerender
@@ -205,11 +215,12 @@ end
 function W.key(screen,key)
  local state=screen.b47HudEditing;if not state then return false end
  if not W.available(screen) then W.close(screen);return false end
+ if C.exitKey(state,key) then return true end
  if state.selector.expanded then
   if key==Keyboard.KEY_ESCAPE then state.selector:hidePopup();state.selector.expanded=false end
   return true
  end
- if key==Keyboard.KEY_ESCAPE then W.close(screen);return true end
+ if key==Keyboard.KEY_ESCAPE then W.requestClose(screen);return true end
  local typing=C.typing(state.rows)
  if typing then if key==Keyboard.KEY_RETURN and typing.commit() then typing.entry:unfocus();refresh(screen) end;return true end
  if key==Keyboard.KEY_RETURN then W.save(screen)

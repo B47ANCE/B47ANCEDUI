@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.7.0-dev.2] - 2026-10-20
+
+- Confirm unsaved layout changes before Cancel, Escape, controller B or switching away. Keep editing is the safe default; Discard changes closes without writing. Both layout editors include unfinished/invalid numeric fields in dirty detection and preserve drafts while the popup is open.
+- Unchanged or successfully saved layouts close directly. Own popup input/focus/capture/cleanup stays within the frontend editor; forced owner/game lifecycle teardown remains unconditional. Compatible PATCH behavior within the 0.7 development iteration; API major1 and saved formats/defaults unchanged.
+- Offline regression and native runtime evidence are recorded in TESTING.md; no deployment, launch, packaging or publication.
+
 ## [0.7.0-dev.1] - 2026-10-20
 
 - Add an Interface page to the native Options screen and a main-menu workspace for editing supported in-game UI layouts with safe static previews, without constructing players or loading a world.

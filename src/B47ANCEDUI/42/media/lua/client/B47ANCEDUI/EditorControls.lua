@@ -101,6 +101,91 @@ function C.release(rows)
   row.entry:unfocus()
  end
 end
+local function same(a,b)
+ if type(a)~=type(b) then return false end
+ if type(a)=='number' then return math.abs(a-b)<.00000001 end
+ if type(a)~='table' then return a==b end
+ for key,value in pairs(a) do if not same(value,b[key]) then return false end end
+ for key in pairs(b) do if a[key]==nil then return false end end
+ return true
+end
+function C.unsaved(state)
+ if not same(state.baseline,state.draft) or state.replaceFuture and (state.status=='future' or state.status=='read-error') then return true end
+ for _,row in ipairs(state.rows) do
+  if row.enabled and row.dirty then
+   local value=tonumber(row.entry:getInternalText());local current=row.slider.currentValue or 0
+   if not value or value~=value or value<0 or value>100 or not (same(value,current) or same(value,tonumber(string.format('%.2f',current)))) then return true end
+  end
+ end
+ return false
+end
+function C.dismissExit(state,keep)
+ local prompt=state.exitPrompt;if not prompt then return end;state.exitPrompt=nil
+ local restoreInput=not state.joypad or state.joypad.focus==prompt.panel
+ if state.joypad then prompt.panel:clearJoypadFocus(state.joypad) end
+ U.Tooltip.dispose(prompt.shield);prompt.shield:setVisible(false);state.root:removeChild(prompt.shield);prompt.shield.parent=nil
+ if state.joypad and state.joypad.focus==prompt.panel then
+  state.joypad.focus=state.panel;updateJoypadFocus(state.joypad)
+  if keep then state.panel:restoreJoypadFocus(state.joypad) end
+ end
+ if keep and restoreInput and not (UIManager.isModalVisible and UIManager.isModalVisible()) and prompt.entry and prompt.entry.editable~=false then prompt.entry:focus() end
+end
+function C.exitKey(state,key)
+ local prompt=state.exitPrompt;if not prompt then return false end
+ if key==Keyboard.KEY_ESCAPE then prompt.keep()
+ elseif key==Keyboard.KEY_LEFT then prompt.choose(1)
+ elseif key==Keyboard.KEY_RIGHT then prompt.choose(2)
+ elseif key==Keyboard.KEY_TAB then prompt.choose(prompt.selected%2+1)
+ elseif key==Keyboard.KEY_RETURN then prompt.activate() end
+ return true
+end
+function C.requestExit(state,release,close)
+ if state.exitPrompt then return false end
+ if not C.unsaved(state) then close();return true end
+ local typing=C.typing(state.rows);release(state);U.Tooltip.dispose(state.root)
+ if state.selector and state.selector.expanded then state.selector:hidePopup();state.selector.expanded=false end
+ local prompt={entry=typing and typing.entry,selected=1};state.exitPrompt=prompt
+ local shield=ISPanel:new(0,0,state.root:getWidth(),state.root:getHeight());shield.background=false
+ shield:initialise();shield:instantiate();state.root:addChild(shield);prompt.shield=shield
+ for _,name in ipairs({'onMouseDown','onMouseUp','onMouseDoubleClick','onRightMouseDown','onRightMouseUp','onMouseWheel','onMouseMove'}) do shield[name]=function()return true end end
+ local panel=ISPanelJoypad:new(0,0,1,1);panel.playerNum=0;panel.b47AppearanceScope='B47ANCEDUI';panel.b47AppearanceOpaque=true
+ panel:initialise();panel:instantiate();U.skin(panel,'panel');shield:addChild(panel);prompt.panel=panel
+ prompt.keep=function()if state.exitPrompt==prompt then C.dismissExit(state,true) end end
+ prompt.discard=function()if state.exitPrompt==prompt then C.dismissExit(state,false);close() end end
+ local function button(key,action,role)
+  local b=U.Button:new(0,0,1,1,text(key),panel,action);b:initialise();b:instantiate();b.b47Role=role;panel:addChild(b);return b
+ end
+ prompt.buttons={button('KeepEditing',prompt.keep),button('DiscardChanges',prompt.discard,'destructive')}
+ panel.joypadButtonsY={};panel.allJoypadButtons={};panel.joypadButtons={};panel.joypadIndexY=1;panel.joypadIndex=1
+ panel:insertNewLineOfButtons(unpack(prompt.buttons))
+ prompt.choose=function(index)
+  prompt.selected=index
+  for i,b in ipairs(prompt.buttons) do b.b47Selected=i==index end
+  if state.joypad then panel:setJoypadFocus(prompt.buttons[index],state.joypad) end
+ end
+ prompt.activate=function()if prompt.selected==2 then prompt.discard() else prompt.keep() end end
+ panel.onJoypadDown=function(_,key)if key==Joypad.BButton then prompt.keep() elseif key==Joypad.AButton then prompt.activate() end end
+ panel.onJoypadDirLeft=function()prompt.choose(1)end;panel.onJoypadDirRight=function()prompt.choose(2)end
+ panel.onJoypadDirUp=function()end;panel.onJoypadDirDown=function()end
+ shield.prerender=function(self)
+  local width,height=state.root:getWidth(),state.root:getHeight();local font=getTextManager():getFontHeight(UIFont.Small)
+  local pw=math.max(1,math.min(520,width-32));local lines=U.Tooltip.wrap(text('UnsavedMessage'),math.max(1,pw-32),UIFont.Small)
+  local titleHeight=getTextManager():getFontHeight(UIFont.Medium);local bodyY=24+titleHeight
+  local bh=math.max(32,font+12);local ph=bodyY+#lines*(font+4)+16+bh+12
+  U.Layout.place(self,0,0,width,height);U.Layout.place(panel,(width-pw)/2,math.max(0,(height-ph)/2),pw,ph)
+  for i,b in ipairs(prompt.buttons) do U.Layout.place(b,12+(i-1)*(pw-12)/2,ph-bh-12,(pw-36)/2,bh) end
+  prompt.lines=lines;prompt.font=font;prompt.bodyY=bodyY
+  self:drawRect(0,0,width,height,.7,0,0,0)
+ end
+ local pre=panel.prerender
+ panel.prerender=function(self,...)
+  pre(self,...);U.Renderer.text(self,text('UnsavedTitle'),16,12,U.Theme.colors.text,UIFont.Medium)
+  for i,line in ipairs(prompt.lines or {}) do U.Renderer.text(self,line,16,prompt.bodyY+(i-1)*(prompt.font+4),U.Theme.colors.muted) end
+ end
+ shield:bringToTop();shield:prerender()
+ if state.joypad then state.panel:clearJoypadFocus(state.joypad);state.joypad.focus=panel;updateJoypadFocus(state.joypad) end
+ prompt.choose(1);return false
+end
 function C.edges(w,x,y,resizable)
  if not resizable then return false end
  local zone=math.min(12,w:getWidth()/3,w:getHeight()/3)
