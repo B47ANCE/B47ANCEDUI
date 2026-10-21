@@ -2,10 +2,11 @@
 require 'B47ANCEDUI/Controls'
 require 'B47ANCEDUI/Dialog'
 require 'B47ANCEDUI/Clipboard'
+require 'B47ANCEDUI/LayoutAssets'
 local U=B47ANCEDUI
 U.AppearanceEditor={open=function(owner) return require('B47ANCEDUI/AppearanceEditor').open(owner) end}
 U.apiVersion=1
-U.version='0.6.0-dev.3'
+U.version='0.7.0-dev.1'
 function U.requireVersion(version)
  assert(version==U.apiVersion,'B47ANCEDUI: unsupported public API version '..tostring(version))
  return U
@@ -29,6 +30,7 @@ function U.forMod(id,options)
  api.Dialog={decorate=function(dialog,player,owner) return U.Dialog.decorate(own(dialog),player,owner) end,
   confirm=function(player,text,labels,callback,owner) return U.Dialog.confirm(player,text,labels,callback,owner,id) end}
  api.AppearanceEditor={open=function(owner) own(owner);return U.AppearanceEditor.open(owner) end}
+ api.LayoutAssets=U.LayoutAssets.scoped(id)
  api.Tooltip=setmetatable({inspect=function(player,text,owner) return U.Tooltip.inspect(player,text,owner,id) end},{__index=U.Tooltip})
  consumers[id]=api;return api
 end

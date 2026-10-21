@@ -1,6 +1,6 @@
 # Native settings presentation
 
-Project Version: 0.6.0-dev.3
+Project Version: 0.7.0-dev.1
 
 The native Options screen uses a near-black backdrop and restrained grey surfaces. Tab headers and ordinary buttons have small rounded corners; the active tab has an accent underline. Checkmarks, slider thumbs and controller-focused control borders use UI's existing local accent preference, default `#B0B0B0`. Text-entry backgrounds retain native drawing/clipping. The settings backdrop stays nearly opaque for readability. This is an internal native-screen adapter, not a new public API or replacement settings implementation.
 
@@ -16,7 +16,7 @@ The tab adapter intercepts only the native header textures, preserving native sc
 
 ## State and configuration
 
-This is client-local presentation with no shared gameplay ownership, networking, server module, save migration or sandbox configuration. Accent resolution uses UI's existing `B47ANCEDUI` local slot 0; no preference file is written by styling. Other consumers' appearance preferences remain separate. There are no new player-facing strings: native translations and font metrics remain authoritative. Public API major 1 is unchanged.
+This is client-local presentation with no shared gameplay ownership, networking, server module, save migration or sandbox configuration. Accent resolution uses UI's existing `B47ANCEDUI` local slot 0; no preference file is written by styling. Other consumers' appearance preferences remain separate. The styling adapter itself adds no labels: native translations and font metrics remain authoritative. The separate Interface page adds localized keys with explicit unreviewed English fallback. Public API major 1 is unchanged.
 
 ## Evidence and runtime gates
 
@@ -25,3 +25,7 @@ This is client-local presentation with no shared gameplay ownership, networking,
 [TESTED — offline Windows, 2026-10-20] `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py`, `git diff --check`. Isolated Lua 5.1 contract doubles cover unchanged geometry/fonts/callbacks/value ownership/controller row references; original page stencil calls; late controls, recreation, custom-renderer/swatch refusal; active versus hovered tabs; detached controls; shared popup ownership, live accent colour and exception restoration; volume shim cleanup. Existing suites also pass. These doubles do not execute native Apply/rollback logic or simulate engine input.
 
 [RUNTIME GATE — NOT TESTED] Open Options from the title screen and Esc menu; check every native tab at small/large fonts, translations and standard/ultrawide resolutions. Check tab overflow, wheel/stencil clipping, dropdown search/capture/ownership on another screen, disabled states, slider release outside bounds and mouse/keyboard/controller focus. Rebind/cancel a key; test audio preview then Back/rollback; change display mode and revert its confirmation; verify Accept/Apply/Back, restart prompts and mod option panels. Native drawing performance remains unmeasured. G6 NOT TESTED; project G7/stable G8 remain BLOCKED. No package, deployment, game/server launch or Workshop upload was performed for this source iteration.
+
+## Interface page (0.7.0-dev.1)
+
+OptionsInterface now adds a native page through MainOptions.addPage for the existing accent/appearance editor and safe HUD layout workspace. It restores mainPanel/addY after construction, preserves native page/controller/stencil paths and keeps existing settings controls/Apply/Back unchanged. Its HUD button is disabled in-game; return to the frontend to edit static previews. User-approved safe previews replace unsafe construction of live player/world HUDs. Page labels use fallback translation keys. See UI_WORKSPACE.md for support, persistence, provider API and runtime gates. Offline owned-page/action/stencil fixtures PASS; native Options/controller acceptance NOT TESTED.

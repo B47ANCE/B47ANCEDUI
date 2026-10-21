@@ -26,7 +26,17 @@ local function extend(class)
  class.drawRect=function()end;class.drawRectBorder=function()end;class.drawText=function()end
  class.drawTextZoomed=function()end;class.drawTextCentre=function()end;class.drawTextureScaled=function()end
 end
-for _,class in ipairs({ISPanel,ISPanelJoypad,ISButton,ISSliderPanel})do extend(class)end
+for _,class in ipairs({ISPanel,ISPanelJoypad,ISButton,ISSliderPanel,ISTextEntryBox,ISComboBox})do extend(class)end
+ISButton.setEnable=function(self,v)self.enable=v end
+function ISTextEntryBox:new(text,x,y,w,h)
+ local s=ISPanel:new(x,y,w,h);setmetatable(s,{__index=self});s.text=text;return s
+end
+ISTextEntryBox.setText=function(self,text)self.text=text;if self.onTextChangeFunction then self.onTextChangeFunction()end end
+ISTextEntryBox.getInternalText=function(self)return self.text end
+ISTextEntryBox.focus=function(self)self.focused=true end
+ISTextEntryBox.unfocus=function(self)self.focused=false end
+ISTextEntryBox.isFocused=function(self)return self.focused end
+ISTextEntryBox.setEditable=function(self,v)self.editable=v end
 ISPanelJoypad.insertNewLineOfButtons=function(self,...)self.joypadButtonsY[#self.joypadButtonsY+1]={...}end
 ISPanelJoypad.restoreJoypadFocus=function(self)self.initialFocus=self.joypadButtonsY[1][1]end
 ISPanelJoypad.onJoypadDown=function(self,key)self.delegatedKey=key end
@@ -36,6 +46,11 @@ end
 ISSliderPanel.setValues=function(self,a,b,step)self.minimum=a;self.maximum=b;self.step=step end
 ISSliderPanel.setCurrentValue=function(self,v,ignore)self.currentValue=v;if not ignore then self.callback(self.target,v,self)end end
 ISSliderPanel.deactivateToolTip=function(self)self.tipClosed=true end
+ISSliderPanel.paginate=function(self)self.sliderDim={x=0,y=0,w=5,h=self:getHeight()};self.sliderBarDim={x=0,y=self:getHeight()/2,w=self:getWidth(),h=2}end
+ISSliderPanel.setDoButtons=function(self,v)self.doButtons=v;self:paginate()end
+ISSliderPanel.onMouseDown=function(self)self.dragInside=true;return true end
+ISSliderPanel.onMouseUp=function(self)self.dragInside=false;return true end
+ISSliderPanel.onMouseUpOutside=ISSliderPanel.onMouseUp
 local modal=false
 UIManager={getMillisSinceLastRender=function()return 16 end,isModalVisible=function()return modal end}
 local nativeKeys,nativeJoy,nativeCalls=0,0,0
@@ -45,8 +60,9 @@ package.loaded['OptionScreens/MainScreen']=MainScreen
 ISLabel={onMouseDown=function()end};package.loaded['ISUI/ISLabel']=ISLabel
 getTexture=function(path)return {path=path}end;getTimestampMs=function()return 1234 end
 getSoundManager=function()return {getMusicVolume=function()return 0 end}end
-local gameStart
-Events={OnMainMenuEnter={Add=function()end},OnResetLua={Add=function()end},OnGameStart={Add=function(f)gameStart=f end}}
+local gameCallbacks={}
+local function gameStart()for _,f in ipairs(gameCallbacks)do f()end end
+Events={OnMainMenuEnter={Add=function()end},OnResetLua={Add=function()end},OnGameStart={Add=function(f)gameCallbacks[#gameCallbacks+1]=f end}}
 local function makeScreen()
  local s=ISPanel:new(0,0,1920,1080);s.Type='MainScreen';s.prerender=MainScreen.prerender
  s.onKeyRelease=MainScreen.onKeyRelease;s.onJoypadDown=MainScreen.onJoypadDown;s.delay=-1;s.maxMenuItemWidth=240
@@ -63,17 +79,17 @@ local data={focus=main};JoypadState={getMainMenuJoypad=function()return data end
 local focusUpdates=0;updateJoypadFocus=function()focusUpdates=focusUpdates+1 end
 local B=require 'B47ANCEDUI/MenuBackground';local E=B47ANCEDUI.MenuLayoutEditor
 local L=require 'B47ANCEDUI/MenuLayout'
-assert(main.b47LayoutButton and #main.children==2 and not B.apply(main))
+assert(main.b47LayoutButton and main.b47HudLayoutButton and #main.children==3 and not B.apply(main))
 assert(MainScreen.prerender~=main.prerender and MainScreen.onKeyRelease~=main.onKeyRelease)
 local owned=main.prerender;main:prerender();local defaults=B.rectangles(main)
 assert(math.abs(defaults.menu.x-main:getWidth()*.18)<.001 and math.abs(defaults.logo.y-main:getHeight()*.265)<.001,'Editor must begin from the approved built-in placement')
 main:onJoypadDown(Joypad.YButton,data);assert(nativeJoy==1,'Vanilla Terms shortcut intercepted')
 main:onKeyRelease(99);assert(nativeKeys==1)
 main:onKeyRelease(Keyboard.KEY_F10);local state=main.b47LayoutEditing
-assert(state and state==E.open(main) and #main.children==3 and data.focus==state.panel)
+assert(state and state==E.open(main) and #main.children==4 and data.focus==state.panel)
 assert(state.panel.initialFocus==state.menuButton and #state.panel.joypadButtonsY==6,'Initial controller control not visibly focused')
 assert(not main.b47LayoutButton.visible and state.root:onMouseDown() and state.root:onMouseDoubleClick())
-local frame=state.frames.menu;frame:onMouseDown(5,5);assert(frame.capture)
+local frame=state.frames.menu;frame:onMouseDown(30,30);assert(frame.capture)
 frame:onMouseMove(70,30);frame:onMouseMoveOutside(10,20);frame:onMouseUpOutside()
 local moved=B.rectangles(main)
 assert(math.abs(moved.menu.x-defaults.menu.x-80)<.001 and math.abs(moved.menu.y-defaults.menu.y-50)<.001)
@@ -83,13 +99,18 @@ frame:onMouseDown(frame:getWidth()-1,frame:getHeight()-1);frame:onMouseMove(80,4
 local resized=B.rectangles(main);assert(resized.logo.w>defaults.logo.w and math.abs(resized.logo.w/resized.logo.h-2)<.001 and resized.menu.x==menuX)
 state.sliders[4]:setCurrentValue(25);assert(math.abs(B.rectangles(main).logo.h/main:getHeight()-.25)<.001)
 assert(writes==0,'Editor preview wrote preferences before Save')
+state.rows[1].entry:setText('invalid');assert(state.rows[1].dirty)
 E.reset(main);assert(not state.draft.menu and not state.draft.logo and B.rectangles(main).menu.x==defaults.menu.x)
+assert(not state.rows[1].dirty and not state.rows[1].invalid,'Reset retained a pending numeric edit')
+E.select(main,'menu');state.rows[1].entry:setText('60');state.rows[3].entry:setText('10')
+assert(E.select(main,'logo') and math.abs(B.rectangles(main).menu.x-main:getWidth()*.6)<.001,'Numeric fields clamped before batch commit')
+E.reset(main)
 E.select(main,'menu');main:onKeyRelease(Keyboard.KEY_RIGHT);assert(B.rectangles(main).menu.x>defaults.menu.x)
 local width=B.rectangles(main).menu.w;isShiftKeyDown=function()return true end
 main:onKeyRelease(Keyboard.KEY_RIGHT);assert(B.rectangles(main).menu.w>width);isShiftKeyDown=nil
 main:onKeyRelease(Keyboard.KEY_TAB);assert(state.selected=='logo')
 main:onKeyRelease(Keyboard.KEY_ESCAPE);assert(not main.b47LayoutEditing and writes==0 and data.focus==main)
-assert(B.rectangles(main).menu.x==defaults.menu.x and #main.children==2)
+assert(B.rectangles(main).menu.x==defaults.menu.x and #main.children==3)
 main:onJoypadDown(Joypad.XButton,data);state=main.b47LayoutEditing
 assert(state and nativeJoy==1);state.sliders[1]:setCurrentValue(20);local selected=B.rectangles(main).menu.x
 main:onKeyRelease(Keyboard.KEY_RETURN);assert(not main.b47LayoutEditing and writes==1 and L.get().menu and data.focus==main)

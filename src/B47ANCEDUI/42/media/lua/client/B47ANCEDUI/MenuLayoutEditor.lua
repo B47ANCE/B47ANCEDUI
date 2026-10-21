@@ -3,13 +3,15 @@ require 'B47ANCEDUI/API'
 require 'ISUI/ISPanelJoypad'
 require 'RadioCom/ISUIRadio/ISSliderPanel'
 local L=require 'B47ANCEDUI/MenuLayout'
+local C=require 'B47ANCEDUI/EditorControls'
 local U=B47ANCEDUI
 if U.MenuLayoutEditor then return U.MenuLayoutEditor end
 local E={};U.MenuLayoutEditor=E
+local sizePanel,change
 local function tr(key) return getText('UI_B47ANCEDUI_'..key) end
 local function visible(w) return w and (not w.getIsVisible or w:getIsVisible()) end
 function E.available(screen)
- return screen and not screen.inGame and screen.b47MenuBackground and visible(screen)
+ return screen and not screen.inGame and not screen.b47HudEditing and screen.b47MenuBackground and visible(screen)
   and (not MainScreen or not MainScreen.instance or MainScreen.instance==screen)
   and screen.prerender==screen.b47MenuBackgroundRenderer
   and visible(screen.bottomPanel) and (screen.delay or 0)<=0
@@ -22,16 +24,23 @@ function E.profile(screen)
 end
 local function ratio(screen) return screen.logoTexture:getWidth()/screen.logoTexture:getHeight() end
 local function resolved(screen) return U.MenuBackground.rectangles(screen) end
+local function commit(screen)
+ local state=screen.b47LayoutEditing
+ return C.commit(state.rows,function(values,changed)
+  local rect=resolved(screen)[state.selected];local w,h=screen:getWidth(),screen:getHeight()
+  if changed[1] then rect.x=values[1]/100*w end;if changed[2] then rect.y=values[2]/100*h end
+  if changed[3] then rect.w=values[3]/100*w end
+  if changed[4] then if state.selected=='logo' then if not changed[3] then rect.w=values[4]/100*h*ratio(screen) end else rect.h=values[4]/100*h end end
+  change(screen,rect)
+ end)
+end
 local function release(state)
  for _,frame in pairs(state.frames) do frame.drag=nil;frame:setCapture(false) end
- for _,slider in ipairs(state.sliders) do
-  slider.dragInside=false;slider:setCapture(false)
-  if slider.deactivateToolTip then slider:deactivateToolTip() end
- end
+ C.release(state.rows)
 end
 function E.cancel(screen)
  local state=screen.b47LayoutEditing;if not state then return end
- release(state);state.root:setVisible(false);state.root:setCapture(false)
+ release(state);U.Tooltip.dispose(state.root);state.root:setVisible(false);state.root:setCapture(false)
  screen:removeChild(state.root);state.root.parent=nil;screen.b47LayoutEditing=nil
  if E.activeScreen==screen then E.activeScreen=nil end
  if state.joypad and state.joypad.focus==state.panel then
@@ -46,17 +55,19 @@ function E.ownerChanged(screen)
 end
 function E.save(screen)
  local state=screen.b47LayoutEditing;if not state then return false end
- if not L.save(state.draft) then state.saveFailed=true;return false end
+ if not commit(screen) then state.inputInvalid=true;sizePanel(screen,state);return false end
+ if not L.save(state.draft) then state.saveFailed=true;sizePanel(screen,state);return false end
  E.cancel(screen);return true
 end
 function E.reset(screen)
  local state=screen.b47LayoutEditing;if not state then return end
- release(state);state.draft={};state.saveFailed=false;E.refresh(screen)
+ release(state);for _,row in ipairs(state.rows) do row.dirty=false end
+ state.draft={};state.saveFailed=false;state.inputInvalid=false;E.refresh(screen)
 end
-local function change(screen,rect)
+change=function(screen,rect)
  local state=screen.b47LayoutEditing
  state.draft=L.setRect(state.draft,state.selected,rect,screen:getWidth(),screen:getHeight(),ratio(screen))
- state.saveFailed=false;E.refresh(screen)
+ state.saveFailed=false;state.inputInvalid=false;E.refresh(screen)
 end
 function E.refresh(screen)
  local state=screen.b47LayoutEditing;if not state then return end
@@ -65,25 +76,30 @@ function E.refresh(screen)
   local rect=rects[kind];U.Layout.place(frame,rect.x,rect.y,rect.w,rect.h)
  end
  local rect=rects[state.selected];local w,h=screen:getWidth(),screen:getHeight()
- state.sliders[1].currentValue=rect.x/w*100;state.sliders[2].currentValue=rect.y/h*100
- state.sliders[3].currentValue=rect.w/w*100;state.sliders[4].currentValue=rect.h/h*100
+ local values={rect.x/w*100,rect.y/h*100,rect.w/w*100,rect.h/h*100}
+ for i,row in ipairs(state.rows) do row.sync(values[i]) end
  state.menuButton.b47Selected=state.selected=='menu';state.logoButton.b47Selected=state.selected=='logo'
+ if state.saveButton then sizePanel(screen,state) end
 end
 function E.select(screen,kind)
  local state=screen.b47LayoutEditing;if not state then return end
- state.selected=kind;E.refresh(screen)
+ if not commit(screen) then state.inputInvalid=true;sizePanel(screen,state);return false end
+ C.release(state.rows);state.selected=kind;E.refresh(screen)
+ state.frames[kind]:bringToTop();state.panel:bringToTop()
+ return true
 end
-local function sizePanel(screen,state)
+sizePanel=function(screen,state)
  local w,h=screen:getWidth(),screen:getHeight();local p=state.panel
- local font=getTextManager():getFontHeight(UIFont.Small);local button=math.max(24,font+10)
- local header=font*3+button+32;local footer=button+font+24
- local slider=math.min(button,math.max(12,(h-24-header-footer)/4-font-10))
- local row=font+slider+10;local height=header+4*row+footer;local width=math.min(400,w-24)
+ local font=getTextManager():getFontHeight(UIFont.Small);local button=math.max(30,font+10)
+ local message=state.inputInvalid or state.saveFailed or state.selected=='logo'
+ local header=font*2+button+26;local footer=button+24+(message and font+6 or 0)
+ local slider=math.min(32,math.max(20,(h-24-header-footer)/4-font-14))
+ local row=font+slider+14;local height=header+4*row+footer;local width=math.min(400,w-24)
  U.Layout.place(p,math.max(12,w-width-12),12,width,math.min(height,h-24))
- U.Layout.place(state.menuButton,12,font*3+22,(width-30)/2,button)
- U.Layout.place(state.logoButton,18+(width-30)/2,font*3+22,(width-30)/2,button)
+ U.Layout.place(state.menuButton,12,font*2+18,(width-30)/2,button)
+ U.Layout.place(state.logoButton,18+(width-30)/2,font*2+18,(width-30)/2,button)
  state.rowY=header;state.rowHeight=row;state.font=font
- for i,s in ipairs(state.sliders) do U.Layout.place(s,12,header+(i-1)*row+font+2,width-24,slider) end
+ for i,control in ipairs(state.rows) do control.layout(12,header+(i-1)*row,width-24,slider) end
  local y=header+4*row;local bw=(width-40)/3
  for i,b in ipairs({state.saveButton,state.cancelButton,state.resetButton}) do U.Layout.place(b,12+(i-1)*(bw+8),y,bw,button) end
  state.messageY=y+button+5
@@ -91,7 +107,7 @@ end
 function E.open(screen,joypad)
  if screen.b47LayoutEditing then return screen.b47LayoutEditing end
  if not E.available(screen) then return end
- local state={draft=L.get(),selected='menu',frames={},sliders={}}
+ local state={draft=L.get(),selected='menu',frames={},sliders={},rows={}}
  screen.b47LayoutEditing=state;E.activeScreen=screen
  local root=ISPanel:new(0,0,screen:getWidth(),screen:getHeight());root.background=false
  root:initialise();root:instantiate();state.root=root
@@ -99,6 +115,7 @@ function E.open(screen,joypad)
  root.onMouseDown=function() return true end;root.onMouseUp=function() return true end
  root.onMouseDoubleClick=function() return true end
  root.onRightMouseDown=function() return true end;root.onRightMouseUp=function() return true end
+ root.onMouseWheel=function() return true end
  root.prerender=function(self)
   if not E.available(screen) then E.cancel(screen);return end
   self:drawRect(0,0,self:getWidth(),self:getHeight(),.12,0,0,0)
@@ -107,14 +124,12 @@ function E.open(screen,joypad)
   local frame=ISPanel:new(0,0,1,1);frame.background=false;frame:initialise();frame:instantiate();root:addChild(frame)
   state.frames[kind]=frame
   frame.prerender=function(self)
-   local c=U.Appearance.color(self,U.Theme.colors.accent)
-   self:drawRectBorder(0,0,self:getWidth(),self:getHeight(),state.selected==kind and 1 or .45,c.r,c.g,c.b)
-   self:drawRect(self:getWidth()-16,self:getHeight()-16,16,16,.7,c.r,c.g,c.b)
+   C.outline(self,state.selected==kind,true)
   end
   frame.onMouseDown=function(self,x,y)
-   E.select(screen,kind)
+   if not E.select(screen,kind) then return true end
    local rect=resolved(screen)[kind]
-   self.drag={start=rect,dx=0,dy=0,resize=x>=self:getWidth()-20 and y>=self:getHeight()-20}
+   self.drag={start=rect,dx=0,dy=0,resize=C.edges(self,x,y,true)}
    self:setCapture(true);return true
   end
   local function move(self,dx,dy)
@@ -138,8 +153,8 @@ function E.open(screen,joypad)
  end
  state.menuButton=button('LayoutMenu',function() E.select(screen,'menu') end)
  state.logoButton=button('LayoutLogo',function() E.select(screen,'logo') end)
- for i=1,4 do
-  local s=ISSliderPanel:new(0,0,1,1,p,function(_,value)
+ for i,key in ipairs({'LayoutX','LayoutY','LayoutWidth','LayoutHeight'}) do
+  local row=C.row(p,key,function(value)
    local rect=resolved(screen)[state.selected];local w,h=screen:getWidth(),screen:getHeight()
    if i==1 then rect.x=value/100*w elseif i==2 then rect.y=value/100*h
    elseif i==3 then rect.w=value/100*w
@@ -147,24 +162,14 @@ function E.open(screen,joypad)
    else rect.h=value/100*h end
    change(screen,rect)
   end)
-  s:initialise();s:instantiate();s:setValues(0,100,.5,5,true);p:addChild(s);U.skin(s,'panel');state.sliders[i]=s
-  local sliderPre=s.prerender
-  s.prerender=function(self,...)
-   local T=U.Theme
-   self.sliderColor=U.Appearance.color(self,T.colors.accent)
-   self.sliderMouseOverColor=U.Appearance.color(self,T.colors.accentHover)
-   self.sliderBarColor=U.Appearance.color(self,self.joypadFocused and T.colors.selected or T.colors.raised)
-   self.sliderBarBorderColor=T.colors.border
-   self.buttonColor=T.colors.raised;self.buttonMouseOverColor=T.colors.hover;self.buttonBorderColor=T.colors.border
-   return sliderPre(self,...)
-  end
+  state.rows[i]=row;state.sliders[i]=row.slider
  end
  state.saveButton=button('LayoutSave',function() E.save(screen) end)
  state.cancelButton=button('LayoutCancel',function() E.cancel(screen) end)
  state.resetButton=button('LayoutReset',function() E.reset(screen) end)
  p.joypadButtonsY={};p.allJoypadButtons={};p.joypadButtons={};p.joypadIndexY=1;p.joypadIndex=1
  p:insertNewLineOfButtons(state.menuButton,state.logoButton)
- for _,s in ipairs(state.sliders) do p:insertNewLineOfButtons(s) end
+ for _,row in ipairs(state.rows) do p:insertNewLineOfButtons(row.minus,row.slider,row.plus,row.entry) end
  p:insertNewLineOfButtons(state.saveButton,state.cancelButton,state.resetButton)
  local joy=p.onJoypadDown
  p.onJoypadDown=function(self,key,...)
@@ -175,12 +180,8 @@ function E.open(screen,joypad)
   pre(self,...);local R,T=U.Renderer,U.Theme;local width=self:getWidth()-24;local f=state.font
   R.text(self,R.fit(tr('LayoutTitle'),width,UIFont.Small),12,8,T.colors.text,UIFont.Small)
   R.text(self,R.fit(tr('LayoutHelp'),width,UIFont.Small),12,10+f,T.colors.muted,UIFont.Small)
-  R.text(self,R.fit(tr('LayoutKeys'),width,UIFont.Small),12,12+f*2,T.colors.muted,UIFont.Small)
-  for i,key in ipairs({'LayoutX','LayoutY','LayoutWidth','LayoutHeight'}) do
-   local text=tr(key)..' '..string.format('%.1f%%',state.sliders[i].currentValue)
-   R.text(self,R.fit(text,width,UIFont.Small),12,state.rowY+(i-1)*state.rowHeight,T.colors.text,UIFont.Small)
-  end
-  local message=state.saveFailed and 'LayoutSaveFailed' or state.selected=='logo' and 'LayoutAspect' or nil
+  C.drawRows(self,state.rows)
+  local message=state.inputInvalid and 'InvalidPercent' or state.saveFailed and 'LayoutSaveFailed' or state.selected=='logo' and 'LayoutAspect' or nil
   if message then R.text(self,R.fit(tr(message),width,UIFont.Small),12,state.messageY,state.saveFailed and T.colors.needed or T.colors.muted,UIFont.Small) end
  end
  sizePanel(screen,state);screen:addChild(root);root:bringToTop();E.refresh(screen)
@@ -200,6 +201,9 @@ function E.key(screen,key)
   return false
  end
  if key==K.KEY_ESCAPE then E.cancel(screen)
+ elseif C.typing(state.rows) then
+  local row=C.typing(state.rows)
+  if key==K.KEY_RETURN and row.commit() then row.entry:unfocus();E.refresh(screen) end
  elseif key==K.KEY_RETURN then E.save(screen)
  elseif key==K.KEY_TAB then E.select(screen,state.selected=='menu' and 'logo' or 'menu')
  else
@@ -244,6 +248,6 @@ function E.attach(screen)
  E.update(screen)
 end
 if Events and Events.OnGameStart then
- Events.OnGameStart.Add(function() if E.activeScreen then E.cancel(E.activeScreen) end end)
+ Events.OnGameStart.Add(function() if E.activeScreen then E.activeScreen.b47LayoutEditing.previousFocus=nil;E.cancel(E.activeScreen) end end)
 end
 return E

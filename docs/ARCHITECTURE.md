@@ -1,6 +1,6 @@
 # Architecture and persistence
 
-Project Version: 0.6.0-dev.3
+Project Version: 0.7.0-dev.1
 
 NativeSettings adds an instance-scoped Options palette/drawing adapter. Native settings retain their original values, callbacks, fonts/geometry, tabs, page stencils, display confirmation, audio rollback and input ownership. Supported late additions are adopted through owned container addChild delegates, with bounded initial traversal. Custom renderers and colour swatches remain guarded; shared dropdown popup fields/methods restore after themed draw/error and detached controls stop receiving drawing changes. Accent is UI's local slot 0; no gameplay state, new settings storage or public API changes. See NATIVE_SETTINGS.md for scope, evidence and runtime gates.
 
@@ -33,3 +33,11 @@ The public PZOPT_MENU ISLabel is the audited exception to unknown-custom-rendere
 ## Local main-menu layout (0.6.0-dev.1)
 
 MenuLayout resolves independent normalized menu/logo preferences over the owner-approved saved placement, now the built-in default. Missing/invalid targets and Reset use those defaults; existing valid targets retain precedence, with no schema change or automatic preference write. MenuLayoutEditor supplies an owned overlay, drag/corner resize, native percentage sliders, keyboard/controller entry and Save/Cancel/Reset. Preferences are local-only, bounded data with a separate schema 1 file; appearance, gameplay/network state and public API major 1 are unchanged. The logo retains its aspect ratio; dynamic menu/status rows refit inside the selected area. Initial joypad child focus and capture/focus cleanup are explicit. No global UI class/key dispatcher replacement. See MENU_LAYOUT_EDITOR.md for controls, persistence and evidence. Native acceptance NOT TESTED; development source is not deployed or published.
+
+## Options and local HUD geometry (0.7.0-dev.1)
+
+OptionsInterface adds one owned page through native MainOptions.addPage, restoring the root's page pointer/addY and retaining native stencils/controller setup. Its two actions open appearance or the safe HUD workspace. It neither replaces Apply/Back nor writes native game settings.
+
+UILayout stores a separate data-only schema1 profile; LayoutAssets exposes provider-scoped register/resolve/apply through API1. HUDPreviews builds original synthetic panels, never gameplay widgets. UILayoutEditor owns a black root, scaled canvas, transparent hit overlays and compact inspector. EditorControls shares final-bounds native slider pagination, larger thumbs, steps and batched numeric entry with the existing menu editor. Existing defaults/schema/files remain unchanged.
+
+HUDLayoutRuntime requires native registration modules before its callbacks and applies explicit saved geometry after restoration. Bounded current local-player slots and exact widget types guard bindings; controller layouts are skipped. The instance-owned hotbar delegate reapplies position after native recentering, without a new global tick/file read. Minimap userPosition changes only for a configured override; mechanics retains native content-dependent width. Fixed native sizes and reference-only clock/moodles remain explicit. No gameplay state, server sandbox option, network message or save mutation is introduced. Unknown provider records survive normal saves; future/error/overflow files require explicit Reset before replacement. Native layout.ini is never edited; its ordinary persistence can retain geometry after our override is released. Full contract/evidence: UI_WORKSPACE.md. Native SP/split-screen/controller and dedicated acceptance remain NOT TESTED.

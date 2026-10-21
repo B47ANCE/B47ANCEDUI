@@ -1,6 +1,6 @@
 # Main-menu layout editor
 
-Project Version: 0.6.0-dev.3
+Project Version: 0.7.0-dev.1
 
 Compatible MINOR feature with a PATCH default-placement adjustment; public consumer API major 1 is unchanged. Workshop remains 0.5.0-dev.11. This dev.3 revision is not deployed or uploaded; prior dev.2 local testing is recorded separately in TESTING.md.
 
@@ -48,3 +48,9 @@ Writer failures close the writer and retain the in-memory saved profile. No atom
 [TESTED: offline Windows] `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py`, `git diff --check`. New fixtures cover bounded malformed/future profiles, independent defaults/overrides, nine viewport sizes, proportional logos, reload/reset, no per-frame writes, write/read/close failures, pointer move/outside-release/resize callbacks, keyboard and controller delegation/initial focus, Save/Cancel, viewport change/capture release,40mod-added rows, native modal focus, hidden/replaced screens and game-start cleanup. A large-font compact-menu row regression failed against the old 0.05 zoom floor and passes with responsive fitting. These are owned-code fixtures with UI doubles; they are not native engine input or rendering proof.
 
 [RUNTIME GATE] Native drag capture and outside release, click shielding, hover/audio, keyboard event ordering, controller graph/visible focus/restore, actual file persistence/reload, language/font scales, resolution changes, optional provider states, modded menu interactions and entering/leaving a save/server remain NOT TESTED. G6 NOT TESTED; project G7/stable G8 remain BLOCKED. No deployment, game/server launch, packaging or publication is authorized by this development request.
+
+## Shared inspector update (0.7.0-dev.1)
+
+The approved built-in menu/logo placement and schema1 preferences remain unchanged. EditorControls now supplies 32px preferred controls, a 12px thumb, separate larger step buttons, numeric 0–100 percentage fields and edge/corner handles. Native slider paginate caches thumb/bar geometry during width changes, before inherited height changes; explicitly paginating after final bounds fixes the stale 1px thumb. Inspector height follows measured rows/footer rather than reserving unused bottom space. Smaller viewports/font scales reduce control height as needed.
+
+Multiple pending numeric properties commit as one rectangle before clamping, including aspect-aware logo height. Switching targets first commits valid old-target edits; invalid input prevents retargeting/save. Reset explicitly discards pending fields; capture cancellation alone preserves them. Enter in a focused field commits it and refreshes the resolved percentage without saving the whole editor. Existing Save/Cancel, native input ownership, dynamic menu rows and focus/capture lifecycle remain. The separate HUD workspace uses the same controls; see UI_WORKSPACE.md. Offline regression fixtures pass; native input/appearance acceptance remains NOT TESTED.

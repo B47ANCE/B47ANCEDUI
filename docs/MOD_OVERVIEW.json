@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.6.0-dev.3",
+  "version": "0.7.0-dev.1",
   "reviewed": true,
-  "source_digest": "f8a4579077e976ce92727959b6f87a97744ba38bbe5654e1ffbfb46a29b01b83",
+  "source_digest": "ae0331cd56338e8e9331dd351fe3daafb71da9f97347b6ad3fd5f7e599c8bd55",
   "features": [
     {
       "status": "Source",
@@ -68,14 +68,26 @@
     },
     {
       "status": "Planned",
-      "text": "Live CCTV camera feeds, full vanilla UI overhaul and general window-layout editing remain unimplemented."
+      "text": "Live CCTV camera feeds, full vanilla UI overhaul and automatic adoption of arbitrary window layouts remain planned."
     },
     {
       "status": "Source",
       "text": "Public Workshop MP test item 3822582242 updated to 0.5.0-dev.11 after PR 14, with 52-file source/ZIP/stage parity, SteamCMD commit-success and exact public description. Steam unchanged by user choice; native/dedicated NOT TESTED."
+    },
+    {
+      "status": "Source",
+      "text": "Actual native Options Interface page opens appearance or safe HUD editing while preserving native tabs/settings/stencil/Apply/Back. Native acceptance NOT TESTED."
+    },
+    {
+      "status": "Source",
+      "text": "Main-menu black-canvas HUD workspace with ten built-in static samples, eight supported native geometry bindings and two reference-only assets. Scoped public provider register/resolve/apply API and separate schema1 local profile preserve unavailable-provider records. Mechanics height-only, fixed native sizes retained, controller player layouts skipped; no frontend world/player construction. Native runtime NOT TESTED."
+    },
+    {
+      "status": "Source",
+      "text": "Shared compact inspectors: larger slider thumbs/steps, numeric percentages, eight-edge/corner grips for freely resizable assets, batched clamping, pending-field target/reset guards and explicit popup/capture/focus cleanup. Offline fixtures PASS; native input NOT TESTED."
     }
   ],
-  "limits": "0.6.0-dev.3 development source; Workshop remains 0.5.0-dev.11. Approved saved layout promoted to defaults with viewport clamps and existing-override precedence; offline suites PASS. Historicaldev.2 copied55 matching files and launched local PZ; user saved layout, but clean-vanilla/controller/settings/dedicated acceptance is not established. Dev.3 defaults native acceptance NOT TESTED; G6 NOT TESTED, G7/stableG8 BLOCKED. No dev.3 deployment/launch/package/upload. Client presentation only, no gameplay authority/shared sandbox settings.",
+  "limits": "0.7.0-dev.1 development source; Workshop remains 0.5.0-dev.11. Offline suites PASS:62 runtime files/57 keys/29 English-fallback locales. Safe previews and supported explicit HUD overrides only; clock/moodles reference-only, unknown mods opt in, controller player layouts skipped. Native Options/input/HUD restoration/split-screen/persistence NOT TESTED. Historical dev.2 local startup is not current acceptance. G6 NOT TESTED, project G7/stable G8 BLOCKED. No current deployment/launch/package/upload. Client-local presentation with no gameplay authority or shared sandbox settings.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -100,7 +112,8 @@
     "docs/WORKSHOP_PIPE_UPDATE.md",
     "docs/WORKSHOP_UPDATE_0.5.0-dev.11_2026-10-19.json",
     "docs/MENU_LAYOUT_EDITOR.md",
-    "docs/NATIVE_SETTINGS.md"
+    "docs/NATIVE_SETTINGS.md",
+    "docs/UI_WORKSPACE.md"
   ],
   "relations": []
 }

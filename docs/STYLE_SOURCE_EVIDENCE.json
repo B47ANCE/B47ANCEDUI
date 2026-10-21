@@ -461,6 +461,149 @@
       "statement": "Native input uses static background/border drawing and keyboard focus; settings retain these methods and fonts.",
       "verified_on": "2026-10-20",
       "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "ISSliderPanel cached pagination and owned hit geometry",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/RadioCom/ISUIRadio/ISSliderPanel.lua",
+      "sha256": "cadab9df43df0fe25f093c048f5706951ac1bdfb946a12b74feae5a890e16bb8",
+      "lines": [
+        22,
+        97
+      ],
+      "statement": "paginate caches height in thumb/bar geometry; setWidth paginates before an inherited later setHeight. Owned editors must paginate after final bounds. Native value/input methods remain authoritative.",
+      "verified_on": "2026-10-20",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "MainOptions native page construction",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/OptionScreens/MainOptions.lua",
+      "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96",
+      "lines": [
+        248,
+        274
+      ],
+      "statement": "addPage builds a scrolling stencil-enabled native page and changes mainPanel/addY; the additive Interface page restores those root construction pointers.",
+      "verified_on": "2026-10-20",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "Player data creation and layout restore",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/PlayerData/ISPlayerDataObject.lua",
+      "sha256": "c5d4d34be88d7171bfb1c697d64667d88ec55a97b9382c3d5d0456976e1e35a7",
+      "lines": [
+        27,
+        155
+      ],
+      "statement": "Player-backed HUD construction is unsafe in the frontend. Native window registration restores geometry during creation; local overrides apply afterward. Primary native layout registration does not establish secondary-player runtime correctness.",
+      "verified_on": "2026-10-20",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "ISPlayerData rebuild and event registration",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/PlayerData/ISPlayerData.lua",
+      "sha256": "daa34c1d4722c26814f6dde49eaf12eea89386662240fdb0cd5b48de77864d21",
+      "lines": [
+        158,
+        206
+      ],
+      "statement": "Native createPlayerData rebuilds active player UI and registers creation/resolution callbacks. Adapter requires the module before its own hooks and bounds scans to four current local UI slots.",
+      "verified_on": "2026-10-20",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "ISLayoutManager synchronous restoration",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISLayoutManager.lua",
+      "sha256": "5f784c617fb9a491f297858e662194b0ffc2b87d944e5e2365a08d0d58dd8494",
+      "lines": [
+        6,
+        12
+      ],
+      "statement": "RegisterWindow calls TryRestore synchronously. UI does not edit layout.ini or manager private tables; native ordinary persistence may retain geometry after overrides are released.",
+      "verified_on": "2026-10-20",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "ISResizeWidget absolute dimensions",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISResizeWidget.lua",
+      "sha256": "c3ed0c5b1470a5e17128080344799c6ddd6fe194163650fab8d640d57a8050ce",
+      "lines": [
+        9,
+        34
+      ],
+      "statement": "resizeFunction(target,width,height) receives absolute requested dimensions after native restrictions; generic setWidth/setHeight is used only without that callback.",
+      "verified_on": "2026-10-20",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "Native mechanics height-only resize",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/Vehicles/ISUI/ISVehicleMechanics.lua",
+      "sha256": "372baa7b9f65fb9a0fe02e91ebdff68ef135add0199d592934d86f766aadd700",
+      "lines": [
+        30,
+        39
+      ],
+      "statement": "updateLayout computes content-dependent width. createChildren line138 sets resizeWidget.yonly; constructor lines1504-1519 uses width800/minimumHeight600. The adapter preserves width and exposes height only.",
+      "verified_on": "2026-10-20",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "Native hotbar recurring positioning",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/Hotbar/ISHotbar.lua",
+      "sha256": "5260ae8b0a73fbc06514f4cbebe163de848aa30546a0436ad59afa2d23d90048",
+      "lines": [
+        209,
+        243
+      ],
+      "statement": "setSizeAndPosition derives slot width and centers the bar; update invokes it repeatedly. An owned current-instance post-delegate applies only an explicit saved position without changing native width.",
+      "verified_on": "2026-10-20",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "Minimap user position path",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/Maps/ISMiniMap.lua",
+      "sha256": "3cb66d04f9e839776b9e17d7eb670cad2b357fa02f1961c75273aef309b3e2d7",
+      "lines": [
+        452,
+        529
+      ],
+      "statement": "Minimap prerender calls setPosition. Explicit userPosition selects the user-origin path with native clamping; no generic width/height resizing is inferred.",
+      "verified_on": "2026-10-20",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "Chat player-dependent construction and resize",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/Chat/ISChat.lua",
+      "sha256": "0386ca1cd4bb936ea6a3591dc13f77f1ef830764c6b8a8ee2ded92559b16b483",
+      "lines": [
+        80,
+        98
+      ],
+      "statement": "Native resize widgets retain chat layout callbacks/minima. Chat construction requires player/session state and is never invoked by the frontend preview.",
+      "verified_on": "2026-10-20",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "Clock reads do not prove mutation",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISButtonPrompt.lua",
+      "sha256": "d33a47a82a1ac26e0b120c6c1770cd72c56b698bc897174a864897926095e13d",
+      "lines": [
+        53,
+        61
+      ],
+      "statement": "Observed clock geometry access is read-only evidence. Mutable Clock/Moodles geometry remains UNKNOWN, so frontend samples are reference-only.",
+      "verified_on": "2026-10-20",
+      "runtime": "NOT TESTED"
     }
   ]
 }

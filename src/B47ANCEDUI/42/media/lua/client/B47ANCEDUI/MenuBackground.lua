@@ -7,6 +7,7 @@ if U.MenuBackground then return U.MenuBackground end
 local B={};U.MenuBackground=B
 local Layout=require 'B47ANCEDUI/MenuLayout'
 local Editor=require 'B47ANCEDUI/MenuLayoutEditor'
+local Workspace=require 'B47ANCEDUI/UILayoutEditor'
 local path='media/ui/B47ANCEDUI/'
 local nativePre=MainScreen.prerender
 local imageWidth,imageHeight=2172,724
@@ -141,6 +142,7 @@ function B.apply(screen)
   or screen.prerender~=nativePre or not loadArt() then return false end
  screen.b47MenuBackground=B.newSession(getTimestampMs())
  screen.prerender=function(self,...)
+  Workspace.update(self)
   Editor.update(self)
   if self.inGame then return nativePre(self,...) end
   -- Runtime gain only: MainScreenState.exit restores the configured music gain.
@@ -168,7 +170,7 @@ function B.apply(screen)
   return result
  end
  screen.b47MenuBackgroundRenderer=screen.prerender
- Editor.attach(screen)
+ Editor.attach(screen);Workspace.attach(screen)
  return true
 end
 local function applyCurrent() B.apply(MainScreen.instance) end

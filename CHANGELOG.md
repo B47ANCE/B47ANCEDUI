@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0-dev.1] - 2026-10-20
+
+- Add an Interface page to the native Options screen and a main-menu workspace for editing supported in-game UI layouts with safe static previews, without constructing players or loading a world.
+- Add provider-scoped layout registration, a separate local HUD profile and supported native runtime geometry adapters. Preserve the saved main-menu defaults, schema1 profile and native Options behavior. Reference-only assets are explicitly marked.
+- Rework editor sliders, numeric percentage inputs, resize grips and compact inspector spacing. Refresh native slider pagination after final bounds to fix stale 1px thumb geometry.
+- Compatible MINOR presentation/API addition; public API major1 remains compatible. Validation and native input/runtime limits are documented with this iteration; no deployment, launch, package or publication requested.
+
 ## [0.6.0-dev.3] - 2026-10-20
 
 - Promote the owner's saved main-menu placement to the built-in defaults: menu x18%, y14.5%, width27.9696133%, height52.5%; logo x4%, y26.5%, width22%, preserving native proportions.

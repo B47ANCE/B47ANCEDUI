@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.6.0-dev.3
+Project Version: 0.7.0-dev.1
 
 The native Options/settings adapter is internal and automatic when UI loads. Consumers still use API major 1 and style only their own widgets; it adds no consumer API, gameplay settings or dependency. It retains native option ownership and guards custom renderers. See [native settings scope](NATIVE_SETTINGS.md).
 
@@ -37,7 +37,7 @@ Appearance migration is a read fallback only; new explicit saves write `B47ANCED
 
 The editor saves after changed slider release, valid hex Enter/focus loss, Reset and Close. Drag/typing previews do not write per frame. Reset restores both defaults; Close/B saves the last valid colour and returns focus. A reported writer failure leaves the editor open once; Close again retries and permits session-only dismissal if persistence still fails. Native silent I/O failures cannot be guaranteed detectable.
 
-MenuButton remains the presentation component for consumer-owned navigation; constructing it does not trigger a native action. Starting in 0.4.0-dev.1, the separately auto-loaded NativeMenus adapter applies the same text/underline style to verified native main/Esc navigation labels. It preserves label identity, native geometry/font, localized names, controller rows and original callbacks. Native labels keep their existing row heights rather than the factory's opt-in minimum 56. See NATIVE_MENUS.md; NativeMenus is an internal adapter, not a supported consumer load entry point. Native menus use appearance scope B47ANCEDUI, local slot 0; consumers' independent settings are unchanged. CCTV, whole-game theming, arbitrary fonts, universal No Click and automatic layout editing remain unimplemented.
+MenuButton remains the presentation component for consumer-owned navigation; constructing it does not trigger a native action. Starting in 0.4.0-dev.1, the separately auto-loaded NativeMenus adapter applies the same text/underline style to verified native main/Esc navigation labels. It preserves label identity, native geometry/font, localized names, controller rows and original callbacks. Native labels keep their existing row heights rather than the factory's opt-in minimum 56. See NATIVE_MENUS.md; NativeMenus is an internal adapter, not a supported consumer load entry point. Native menus use appearance scope B47ANCEDUI, local slot 0; consumers' independent settings are unchanged. Live CCTV, whole-game theming, arbitrary fonts, universal No Click and automatic adoption of arbitrary window layouts remain unimplemented.
 
 The current style uses near-black surfaces, editable accents (neutral grey by default) and restrained corners. Rounded fill/border helpers use cached, bounded Lua scanlines through native drawRect; instance wrappers round only exact backing bounds. Textures and decorative subrectangles retain native geometry. Texture clipping, antialiasing and rounded hit testing are not provided; native rectangular hit areas remain. Native performance, pixels and input require runtime acceptance. These technical presentation tokens need no shared gameplay sandbox options.
 
@@ -56,3 +56,11 @@ The public PZOPT_MENU ISLabel is the audited exception to unknown-custom-rendere
 ## Local main-menu layout (0.6.0-dev.1)
 
 MenuLayout resolves independent normalized menu/logo preferences over the owner-approved saved placement, now the built-in default. Missing/invalid targets and Reset use those defaults; existing valid targets retain precedence, with no schema change or automatic preference write. MenuLayoutEditor supplies an owned overlay, drag/corner resize, native percentage sliders, keyboard/controller entry and Save/Cancel/Reset. Preferences are local-only, bounded data with a separate schema 1 file; appearance, gameplay/network state and public API major 1 are unchanged. The logo retains its aspect ratio; dynamic menu/status rows refit inside the selected area. Initial joypad child focus and capture/focus cleanup are explicit. No global UI class/key dispatcher replacement. See MENU_LAYOUT_EDITOR.md for controls, persistence and evidence. Native acceptance NOT TESTED; development source is not deployed or published.
+
+## Safe HUD layout providers (0.7.0-dev.1)
+
+`UI.LayoutAssets` is an additive API 1 facade scoped to the consumer registered by forMod. `register(localKey,definition)` adds an original safe static preview and bounded normalized defaults; `resolve(localKey,width,height)` returns pixel geometry; `apply(localKey,ownedWidget,left,top,width,height)` applies only an explicit saved override after the consumer's own native construction/restoration. Invalid/missing viewport or unsupported/missing override returns nil/false. Duplicate/invalid registrations error. Widget visibility and gameplay state remain owned by the consumer. Definitions and returned rectangles are copied.
+
+Fields include localized `labelKey`, required `preview(parent)`, `default={x,y,w,h}`, `resizable`, optional `resizeWidth/resizeHeight`, `minWidth/minHeight`, fixed `aspect`, owned `resize(widget,width,height)` and `dispose(preview)`. Aspect cannot be combined with a disabled resize axis. Providers must use synthetic data, owned children and safe cleanup; they may not construct a player/world HUD in the frontend. No automatic third-party discovery is provided. See [complete provider contract, built-in support and persistence](UI_WORKSPACE.md).
+
+The native Options Interface page and main-menu Edit in-game UI button open the owned black canvas. Main-menu layout, HUD layout and appearance retain separate local files; only edited supported assets affect native runtime geometry. Public API major1 remains compatible. Native event/input/controller acceptance is NOT TESTED.

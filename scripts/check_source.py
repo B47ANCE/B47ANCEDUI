@@ -27,6 +27,8 @@ def validate():
     keys.update('UI_B47ANCEDUI_'+k for k in ('ResetAppearance','Close','WindowOpacity','AccentHex','Red','Green','Blue','InvalidHex','SaveFailed'))
     # MenuLayoutEditor's concatenated keys use explicit English fallback in all locales.
     keys.update('UI_B47ANCEDUI_'+k for k in ('EditMenuLayout', 'LayoutTitle', 'LayoutMenu', 'LayoutLogo', 'LayoutX', 'LayoutY', 'LayoutWidth', 'LayoutHeight', 'LayoutSave', 'LayoutCancel', 'LayoutReset', 'LayoutHelp', 'LayoutKeys', 'LayoutAspect', 'LayoutSaveFailed', 'LayoutShortcut'))
+    # Owned editor/workspace prefixes: explicit English fallback, not translated claims.
+    keys.update('UI_B47ANCEDUI_'+k for k in ('InvalidPercent', 'InterfaceTab', 'InterfaceTitle', 'InterfaceAppearance', 'InterfaceLocalNotice', 'InterfaceEditorNotice', 'InterfaceMenuOnly', 'EditInGameUI', 'HudEditorTitle', 'HudPreviewNotice', 'HudProperties', 'HudPropertiesHelp', 'ResetHudOverrides', 'LayoutFuture', 'HudReferenceOnly', 'HudResizeHelp', 'HudMoveOnly', 'HudOverridesNotice', 'PreviewUnavailable', 'SampleContent', 'AssetInventory', 'AssetLoot', 'AssetCharacter', 'AssetMechanics', 'AssetChat', 'AssetEquipment', 'AssetHotbar', 'AssetMinimap', 'AssetClock', 'AssetMoodles'))
     assert set(english)==keys,(set(english),keys)
     locales=[]
     for p in translations.glob('*/UI.json'):

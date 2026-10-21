@@ -1,0 +1,79 @@
+# Options and safe HUD layout workspace
+
+Project Version: 0.7.0-dev.1
+
+Compatible MINOR addition from 0.6.0-dev.3. Public API major 1, existing appearance storage, main-menu schema 1 and the owner-approved menu/logo defaults remain compatible. No current package, deployment, launch or Workshop upload is part of this iteration.
+
+## Player controls
+
+The actual native **Options** screen retains its existing pages, values, Apply/Back behavior, display confirmation, audio rollback and keybinding controls. Its new **Interface** page opens the existing hex/RGB appearance editor or the HUD layout workspace. The existing near-black native settings styling remains in place. The HUD workspace is also available through **Edit in-game UI** beside the main-menu layout button.
+
+The workspace opens an opaque black screen containing clearly labeled **static previews**. The user explicitly approved these safe samples: no character, inventory, world, chat session or native map is constructed. These samples illustrate layout rather than reproduce every native screen's contents. Built-ins and explicitly registered provider previews are shown; arbitrary unknown mod windows are not automatically discovered.
+
+Select a preview or choose it in the inspector. Drag its body to move it; highlighted edges/corners resize supported dimensions. The inspector has four percentage rows with larger slider thumbs, separate minus/plus buttons (0.5 percentage-point steps), and numeric fields. Numeric input accepts finite 0–100 values; the asset's minimum size and viewport bounds then clamp the result. Multiple pending fields commit together before clamping. Invalid entries keep the workspace open and prevent selection/save until corrected or reset. Height edits preserve an aspect-locked provider's proportions. Tab selects the next asset; arrows move, Shift+arrows resize supported axes; Enter saves unless a numeric field has focus. Escape/controller B closes an expanded asset popup first, then cancels the workspace. These input paths have offline fixtures, not native dispatch acceptance.
+
+Save writes the HUD profile and closes only after the writer reports success. Cancel restores the saved profile without writing. Reset overrides discards pending fields and removes registered editable overrides from the draft; Save is still required. Unknown/unavailable provider records are preserved. Reset releases this mod's override; native layout.ini or another mod may retain previously saved geometry, so it does not promise to reset the native window itself.
+
+The scaled preview canvas represents the full current screen. Pointer deltas are divided by its scale before updating normalized geometry. The inspector sits outside the canvas and has a measured footer rather than a reserved blank section. Reference previews have disabled geometry fields. Editor captures, native slider flags, numeric focus, owned dropdown popup and owned children are released on close, resolution change, modal takeover, owner replacement or game entry. Focus is restored only while this editor still owns it.
+
+## Supported built-ins
+
+| Asset | Preview editing | Native binding |
+|---|---|---|
+| Inventory / nearby loot | Move, width, height | ISPlayerData.playerInventory / lootInventory, exact ISInventoryPage |
+| Character and health | Move | characterInfo, exact ISCharacterInfoWindow; native size retained |
+| Vehicle mechanics | Move, height | mechanicsUI, exact ISVehicleMechanics; native width/content layout retained, native minimum height respected |
+| Chat | Move, width, height | Primary ISChat.instance after chat initialization |
+| Equipment | Move | equipped, exact ISEquippedItem; native size retained |
+| Hotbar | Move | playerHotbar, exact ISHotbar; native slot-dependent size retained |
+| Minimap | Move | miniMap, exact ISMiniMapOuter; native size retained and userPosition enabled only for an explicit override |
+| Clock / moodles | Reference only | Exposed geometry mutation APIs are not verified; no runtime changes |
+
+HUDLayoutRuntime requires native registration modules before registering its own create/game-start/resolution/chat-init callbacks. It applies only explicit saved overrides after native restoration, to at most four current local-player data slots. It leaves visibility, inventory contents, pinning, controller rows and callbacks with the native UI. Controller-owned player layouts are skipped. A single installation-wide normalized profile is resolved within each mouse-driven player's viewport; independent per-player HUD profiles are not implemented.
+
+The native hotbar recenters every update. Its verified current instance therefore delegates setSizeAndPosition once, then reapplies saved position while that instance still belongs to the same local player. There is no global class patch, new tick event, world scan or per-frame file read. Removing its saved override restores the native positioning path. Native resize callbacks receive absolute width/height; native axis restrictions and widget minima are respected. Application providers are responsible for their own runtime lifecycle and call the public apply method on their owned widgets.
+
+## Local persistence and configuration
+
+The separate cache/Lua data file is `B47ANCEDUI/in-game-layout.txt`:
+
+```text
+schema=1
+B47ANCEDUI.inventory=0.1,0.2,0.32,0.3
+Provider.window=0.2,0.1,0.25,0.4
+```
+
+IDs are ASCII scoped names, at most 96 characters. Values are normalized x/y/width/height; sizes must be positive. Reading inspects at most 130 records, accepts lines up to 240 characters, and protects an oversized profile against truncated saves. The format accepts up to 128 asset records; registration supports up to 64 current definitions including built-ins. Unknown valid records survive normal saves. Missing/invalid entries use preview defaults, but defaults alone never force native HUD geometry. Future-schema, read-error and overflow profiles refuse normal Save until explicit Reset acknowledges replacement. Save writes sorted data and advances the cache only after successful write/close; failed calls close the writer. Native silent storage failures and atomic crash durability are not established.
+
+These are local presentation preferences, not gameplay state, player saves, server configuration or network messages. No shared-gameplay sandbox settings are appropriate. Coordinates, registration bounds and minima are technical presentation constraints. Existing menu and appearance files are neither migrated nor overwritten. Older UI builds ignore the separate HUD file. Join/reconnect and player recreation reapply local geometry through the same native creation events; actual event ordering/acceptance remains a runtime gate.
+
+## Public provider contract
+
+```lua
+local UI=require('B47ANCEDUI/API').requireVersion(1).forMod('Provider')
+UI.LayoutAssets.register('window', {
+    labelKey='UI_Provider_Window',
+    default={x=.1,y=.1,w=.3,h=.3},
+    resizable=true, minWidth=240, minHeight=160,
+    preview=function(parent)
+        local sample=UI.Panel:new(0,0,240,160)
+        sample:initialise()
+        sample:instantiate()
+        return sample
+    end,
+})
+-- After constructing/restoring an owned real window:
+UI.LayoutAssets.apply('window', window, viewportLeft, viewportTop, viewportWidth, viewportHeight)
+```
+
+Local keys contain no dot; the facade prefixes its registered consumer ID. Duplicate IDs, invalid labels/defaults/callbacks/dimensions and excess registrations fail explicitly. Definitions are copied; resolve returns pixel geometry for preview/default/profile use. apply returns false without an explicit saved override, editable definition, valid finite positive viewport or required widget geometry methods. The owning provider must decide when to apply after its own restoration.
+
+Optional fields: `editable=false` for reference-only samples, `resizeWidth=false` / `resizeHeight=false` to limit axes, `aspect` for a fixed ratio, `resize(widget,width,height)` for an owned resize callback, and `dispose(preview)` for non-child preview resources. Aspect and disabled-axis constraints cannot be combined. A preview factory must return an initialized owned Lua UI child or unattached widget; it must use safe synthetic data and must not construct gameplay/native world UI, fetch a player, open popups, register events/UIManager roots or write preferences. Keep partial resources under the supplied frame and clean any external resources before throwing. Failed factories show an explicit placeholder and diagnostic; an attached successful preview receives dispose exactly once on close, and children leave with the owned frame. Providers remain trusted Lua code, not a security sandbox. UI never copies or edits external mod implementations.
+
+## Evidence and remaining gates
+
+[VERIFIED: installed vanilla Lua, Steam build 25485521 / target 42.21] Native addPage/stencil/controller setup, text-entry focus, slider pagination, player-data restoration, resize callback dimensions, hotbar positioning and minimap userPosition paths are fingerprinted in STYLE_SOURCE_EVIDENCE.json. Native mechanics uses a y-only resize widget and recomputes width from content. Clock reads do not prove mutable geometry.
+
+[TESTED: offline Windows, Lua 5.1 doubles] `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py`, `git diff --check` pass. Fixtures cover profile corruption/future/read/write/overflow, unavailable-provider retention, copy isolation, five viewport ratios, scoped registration, saved-override-only native application, axis/minimum/callback preservation, local-player/controller/stale-instance guards, scaled canvas drag/resize, batch numeric edits, invalid selection, Reset/Cancel/Save, provider aspect/failure/disposal, slider pagination/capture, popup-first cancellation, resolution/modal cleanup and native Options page/action ownership. There are 62 runtime files and 57 translation keys across 29 locales with explicit unreviewed English fallback.
+
+[RUNTIME GATE] Actual native dragging/outside capture, keyboard Enter dispatch, controller focus/popup flow, fonts/languages, settings Apply/Back/display/audio/keybinding acceptance, HUD construction/restoration, split-screen, file reload, hotbar/minimap behavior, provider compatibility and native performance are NOT TESTED for this source. Historical dev.2 local startup does not validate these additions. G6 NOT TESTED; project G7 and stable-release G8 remain BLOCKED. No deployment/launch/upload performed for 0.7.0-dev.1.

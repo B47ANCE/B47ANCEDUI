@@ -113,7 +113,18 @@ function L.setRect(profile,kind,rect,width,height,ratio)
 end
 function L.drag(profile,kind,start,dx,dy,resize,width,height,ratio)
  local rect={x=start.x,y=start.y,w=start.w,h=start.h}
- if resize then
+ if type(resize)=='table' then
+  local edge=resize
+  rect.w=start.w+(edge.right and dx or edge.left and -dx or 0)
+  rect.h=start.h+(edge.bottom and dy or edge.top and -dy or 0)
+  if kind=='logo' then
+   if not edge.left and not edge.right then rect.w=rect.h*ratio
+   elseif (edge.top or edge.bottom) and math.abs(dy*ratio)>math.abs(dx) then rect.w=rect.h*ratio end
+  end
+  rect=L.fit(kind,rect,width,height,ratio)
+  if edge.left then rect.x=start.x+start.w-rect.w end
+  if edge.top then rect.y=start.y+start.h-rect.h end
+ elseif resize then
   if kind=='logo' then
    local delta=math.abs(dx)>=math.abs(dy*ratio) and dx or dy*ratio
    rect.w=rect.w+delta
