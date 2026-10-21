@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.6.0-dev.1",
+  "version": "0.6.0-dev.2",
   "reviewed": true,
-  "source_digest": "2f35a2bda3bafd0cc1efa0cba96f61b3e9d6ce5a0a099f34c1644170c7e85f61",
+  "source_digest": "bc51c4eebbfa5493be56dd11f74218713e9a6b07f60e7adfb3933e0fa0bb4f5d",
   "features": [
     {
       "status": "Source",
@@ -48,6 +48,10 @@
     },
     {
       "status": "Source",
+      "text": "Native Options/settings presentation: near-black backdrop, rounded tab/button surfaces, active-tab underline and existing local accent. Instance-only palette/drawing retains native fonts/geometry/callbacks/options, page stencil and input ownership; custom renderers and swatches guarded, shared dropdown temporary palette restores. Native acceptance NOT TESTED."
+    },
+    {
+      "status": "Source",
       "text": "Optional PZOPT_MENU title/status adapter: shared centered menu title, reserved live version/update line beneath, aligned controller glyph and original callback/render/status ownership; no external dependency or code reuse. Native integration NOT TESTED."
     },
     {
@@ -67,7 +71,7 @@
       "text": "Public Workshop MP test item 3822582242 updated to 0.5.0-dev.11 after PR 14, with 52-file source/ZIP/stage parity, SteamCMD commit-success and exact public description. Steam unchanged by user choice; native/dedicated NOT TESTED."
     }
   ],
-  "limits": "0.6.0-dev.1 development source; Workshop remains 0.5.0-dev.11. Local menu editor/model fixtures, default and customized viewport clamps, persistence/error and input-callback tests PASS offline. Native drag/keyboard/controller/focus/click shielding, real file reload, resolution transitions and provider integration NOT TESTED. G6 NOT TESTED; G7/stable G8 BLOCKED. No deployment/launch/package/upload. No gameplay authority or shared sandbox configuration.",
+  "limits": "0.6.0-dev.2 development source; Workshop remains 0.5.0-dev.11. Menu layout and native-settings contract doubles PASS offline. Settings retain native display/audio/keybinding logic by source; no engine options/input validation. Native drawing, keyboard/controller/focus, file reload, resolution changes, provider integration and performance NOT TESTED. G6 NOT TESTED; G7/stable G8 BLOCKED. No deployment/launch/package/upload. No gameplay authority or shared sandbox configuration.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -91,7 +95,8 @@
     "docs/MENU_SELECTED_PIPE_PROMPT.md",
     "docs/WORKSHOP_PIPE_UPDATE.md",
     "docs/WORKSHOP_UPDATE_0.5.0-dev.11_2026-10-19.json",
-    "docs/MENU_LAYOUT_EDITOR.md"
+    "docs/MENU_LAYOUT_EDITOR.md",
+    "docs/NATIVE_SETTINGS.md"
   ],
   "relations": []
 }

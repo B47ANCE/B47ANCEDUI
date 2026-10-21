@@ -25,4 +25,9 @@ layout.globals().B47ANCEDUI_FIXTURE_ONLY=True
 layout.execute((ROOT/'tests/test_api.lua').read_text())
 layout.execute((ROOT/'tests/test_menu_layout.lua').read_text())
 layout.execute((ROOT/'tests/test_menu_layout_editor.lua').read_text())
+settings=LuaRuntime(unpack_returned_tuples=True)
+settings.globals().package.path=(ROOT/'src/B47ANCEDUI/42/media/lua/client').as_posix()+'/?.lua;'+settings.globals().package.path
+settings.globals().B47ANCEDUI_FIXTURE_ONLY=True
+settings.execute((ROOT/'tests/test_api.lua').read_text())
+settings.execute((ROOT/'tests/test_native_settings.lua').read_text())
 print('Offline only. Native SP/controller/split-screen/dedicated NOT TESTED.')

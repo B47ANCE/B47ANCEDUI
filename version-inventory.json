@@ -45,6 +45,10 @@
     {
       "path": "docs/MENU_LAYOUT_EDITOR.md",
       "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/NATIVE_SETTINGS.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {

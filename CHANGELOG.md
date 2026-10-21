@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0-dev.2] - 2026-10-20
+
+- Theme the native settings/options screen with a near-black backdrop, rounded tab/button surfaces, subtle active-tab accents and scoped checkbox/slider colours. Reuse UI's local accent preference, default grey.
+- Preserve native fonts, layout, control identities, callbacks, tab scrolling/clipping, controller rows, display confirmation, audio preview/rollback and keybinding ownership. Keep colour swatches and custom renderers untouched; adopt supported late-added native controls without a per-frame tree scan.
+- Borrow the shared dropdown popup palette only during settings-owned drawing and restore on success/error. Lua-only client presentation; no option writes/networking introduced.
+- Offline contracts cover styling/lifecycle/ownership and error restoration. Native SP/input/controller/display/audio acceptance NOT TESTED; G7/stable G8 remain BLOCKED. No package, deploy, game/server launch or Workshop upload.
+
 ## [0.6.0-dev.1]
 - Compatible MINOR: player-local main-menu layout editor with independent menu/logo movement and resize, aspect-locked logo, viewport bounds and normalized saved placement. Existing users keep the automatic wall layout until they customize it.
 - Edit menu layout control, F10 and main-menu controller X access; drag/corner handles, percentage sliders, keyboard nudges, Save/Cancel and reversible Reset. Controller Y retains its vanilla Terms of Service action.

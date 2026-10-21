@@ -1,6 +1,8 @@
 # Architecture and persistence
 
-Project Version: 0.6.0-dev.1
+Project Version: 0.6.0-dev.2
+
+NativeSettings adds an instance-scoped Options palette/drawing adapter. Native settings retain their original values, callbacks, fonts/geometry, tabs, page stencils, display confirmation, audio rollback and input ownership. Supported late additions are adopted through owned container addChild delegates, with bounded initial traversal. Custom renderers and colour swatches remain guarded; shared dropdown popup fields/methods restore after themed draw/error and detached controls stop receiving drawing changes. Accent is UI's local slot 0; no gameplay state, new settings storage or public API changes. See NATIVE_SETTINGS.md for scope, evidence and runtime gates.
 
 Initial project creation establishes canonical VERSION and API 1; no prior UI project version exists. This is an extracted foundation, not fulfillment of the full-overhaul audit. Authority is client presentation only: no server module, gameplay ModData, custom network commands, inventory mutation or game-state ownership. Normal client Lua load paths expose the API. Dedicated servers may install the mod as a dependency but do not load client widgets; runtime verification is pending.
 

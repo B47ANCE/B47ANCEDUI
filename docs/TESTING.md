@@ -1,6 +1,8 @@
 # Validation
 
-Project Version: 0.6.0-dev.1
+Project Version: 0.6.0-dev.2
+
+0.6.0-dev.2 [TESTED: offline Windows, 2026-10-20]: `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py`, `git diff --check` PASS. New isolated native-settings contract doubles preserve fonts/geometry, callbacks, control values and controller references; page stencil delegation; lifecycle/late additions; custom renderer/colour-swatch refusal; active versus hovered tabs; detached drawing; shared dropdown ownership/palette/error restoration; live accents and volume drawing cleanup. Runtime inventory 55 files; unchanged 27 keys across 29 locales, explicit unreviewed English fallback. Native Apply/audio rollback/display/keybinding logic is retained by source, not executed by these doubles. Installed Lua inspection recorded in STYLE_SOURCE_EVIDENCE.json. Native PZ/input/controller/performance NOT TESTED; G6 NOT TESTED, project G7/stable G8 BLOCKED. No package/deploy/launch/upload. See NATIVE_SETTINGS.md.
 
 0.6.0-dev.1 [TESTED: offline Windows, 2026-10-20]: version/syntax/source/translation/archive/API/native-menu suites and new MenuLayout/MenuLayoutEditor fixtures PASS. Commands: `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py`, `git diff --check`. New tests cover independent default/custom rectangles, nine viewport sizes, aspect lock, bounded malformed/future data, reload/reset/read/write failures, pointer callbacks, Save/Cancel, keyboard/controller focus/delegation, compact 40-row/large-font fitting, viewport/modal/hidden-owner/recreation/game-start cleanup. The compact large-font test first failed against the old 0.05 zoom floor. Runtime inventory 54 files; 27 keys across 29 locales with explicit unreviewed English fallback. Native PZ rendering/input/file reload and dedicated acceptance NOT TESTED. No new game launch, package, deployment or upload. See MENU_LAYOUT_EDITOR.md.
 

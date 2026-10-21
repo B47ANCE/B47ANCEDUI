@@ -1,6 +1,6 @@
 # Main-menu layout editor
 
-Project Version: 0.6.0-dev.1
+Project Version: 0.6.0-dev.2
 
 Compatible MINOR addition; public consumer API major 1 is unchanged. Development source only. Workshop remains 0.5.0-dev.11; this feature is not deployed or uploaded.
 

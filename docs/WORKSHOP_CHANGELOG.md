@@ -1,6 +1,8 @@
-Version 0.6.0-dev.1
+Version 0.6.0-dev.2
 
 MP testing build - dedicated multiplayer NOT TESTED
+
+Development source only: style the native Options screen with a near-black backdrop, rounded tab/button surfaces, active-tab underline and existing local accent colours. Preserve fonts, layout, native settings callbacks/input and colour swatches; guard custom mod panels and shared dropdown ownership. Offline tests PASS; native display/audio/keybinding/controller acceptance NOT TESTED. Not uploaded; Workshop remains 0.5.0-dev.11.
 
 Development source only; not uploaded. Workshop remains 0.5.0-dev.11. Add local main-menu layout editing: independent menu/logo move/resize, proportional logo, percentage sliders, normalized saved settings and Save/Cancel/Reset. F10/controller X access; native pointer/controller acceptance NOT TESTED.
 

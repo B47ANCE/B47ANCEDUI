@@ -1,6 +1,8 @@
 # Native main and Esc menu styling
 
-Project Version: 0.6.0-dev.1
+Project Version: 0.6.0-dev.2
+
+The native Options screen has a separate internal palette/drawing adapter in this development revision. It preserves native settings and input behavior; it does not apply large text-only menu navigation to the ordinary settings buttons. See [settings integration](NATIVE_SETTINGS.md). Native acceptance remains NOT TESTED.
 
 Dev.9 positions the main-menu logo and complete dynamic column inside the quiet wall in the new artwork; see MENU_BACKGROUND.md. This drawing/layout refinement retains native actions/controller objects and the Esc layout. Native acceptance for dev.9 NOT TESTED; Workshop remains dev.8.
 
