@@ -727,6 +727,38 @@
       "statement": "Vanilla tests UIManager.getUI():contains(ISComboBox.SharedPopup.javaObject) separately before switching pages. HUD editor requires that registration plus exact popup/parentCombo/expanded ownership before treating a captured dropdown as owned input. Whether global isModalVisible includes capture is UNKNOWN from inspected Lua; simultaneous foreign modal is a runtime gate.",
       "verified_on": "2026-10-21",
       "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "Main-menu Quit confirmation styling",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/OptionScreens/MainScreen.lua",
+      "sha256": "f89d351830fcb0050cfc10bc7a7e1a216a260b4731fe0ac34da9bcd4269352e5",
+      "lines": [
+        1355,
+        1374,
+        1463,
+        1501,
+        1913,
+        1916
+      ],
+      "statement": "Native menu actions call quitToDesktopFunc on MainScreen class; modal may be class-owned. Controller A directly dispatches native class menu handler. Native builder/confirmation own modal text, registration, focus, destruction and Yes/No behavior.",
+      "verified_on": "2026-10-21",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "Main-menu Quit confirmation styling",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISModalDialog.lua",
+      "sha256": "084d21246c03e54f8fe2a0dd16fb19f83e9ee347aa400c2d974e536f31f692dc",
+      "lines": [
+        8,
+        96,
+        160,
+        205
+      ],
+      "statement": "Native Yes/No buttons have internal identifiers, target modal and onClick delegate; drawing uses native backing/text, destroy restores focus, and gain-focus binds A/B. Instance palette/rounding can preserve actions and geometry.",
+      "verified_on": "2026-10-21",
+      "runtime": "NOT TESTED"
     }
   ]
 }

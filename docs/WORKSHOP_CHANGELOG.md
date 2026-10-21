@@ -1,4 +1,6 @@
-Version 0.8.0-dev.2
+Version 0.8.0-dev.3
+
+- Development main-menu Quit to desktop confirmation now uses shared near-black rounded surfaces and local accent; native Yes/No actions/focus/geometry retained. Native acceptance NOT TESTED; not uploaded.
 
 - Development HUD editor input fix: explicit Save/Cancel/Escape exits, shared unsaved confirmation, direct preview movement/resizing, inert empty canvas, guarded dropdown dismissal and retained modal drafts. Native dispatch NOT TESTED; not uploaded.
 

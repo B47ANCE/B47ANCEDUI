@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.8.0-dev.2
+Project Version: 0.8.0-dev.3
 
 The native Options/settings adapter is internal and automatic when UI loads. Consumers still use API major 1 and style only their own widgets; it adds no consumer API, gameplay settings or dependency. It retains native option ownership and guards custom renderers. See [native settings scope](NATIVE_SETTINGS.md).
 
@@ -74,3 +74,6 @@ The 0.8 Options workspace is internal presentation: searchable categories, cards
 
 
 The 0.8.0-dev.2 HUD editor correction changes internal pointer/exit routing only: fixed preview hit surface, explicit Save, existing shared unsaved Cancel/Escape confirmation and draft retention during temporary modals. Public API1/provider contracts, approved defaults and local saved schemas stay compatible. Native dispatch acceptance remains NOT TESTED.
+
+
+The 0.8.0-dev.3 main-menu Quit confirmation skin is internal instance presentation only. Public API1 and saved schemas/defaults remain compatible; native modal text/geometry/actions/focus are retained. See NATIVE_MENUS.md.

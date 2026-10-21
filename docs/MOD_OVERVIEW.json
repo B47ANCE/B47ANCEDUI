@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.8.0-dev.2",
+  "version": "0.8.0-dev.3",
   "reviewed": true,
-  "source_digest": "a545d408f537fdd77a36c7fb6652813a66555d7251249fef7fc3c2dbf89a7126",
+  "source_digest": "bcaecb1e24e119303f18ad8bea56e5ece56d6fe784c4ec839e1dc3c5761ec410",
   "features": [
     {
       "status": "Source",
@@ -101,9 +101,13 @@
     {
       "status": "Source",
       "text": "HUD editor input correction: fixed hit-test canvas supports direct preview moves/allowed grip resizes and inert blank clicks; explicit Save and shared unsaved Cancel/Escape guard. Dropdown pointer-release guards, stale-root protection and modal draft retention; native click routing NOT TESTED."
+    },
+    {
+      "status": "Source",
+      "text": "Main-menu native Quit to desktop confirmation skin: near-black rounded dialog/buttons and local accent, strict native instance/callback/text guards. Existing frontend layout observes class/instance fields; native text/geometry/actions/focus retained, in-game/custom dialogs excluded. Native acceptance NOT TESTED."
     }
   ],
-  "limits": "0.8.0-dev.2 development source; Workshop remains 0.5.0-dev.11. Offline suites PASS:65 runtime files/74 keys/29 English-fallback locales. Safe previews and supported explicit HUD overrides only; clock/moodles reference-only, unknown mods opt in, controller player layouts skipped. Native Options/input/HUD restoration/split-screen/persistence NOT TESTED. Historical dev.2 local startup is not current acceptance. G6 NOT TESTED, project G7/stable G8 BLOCKED. No current deployment/launch/package/upload. Client-local presentation with no gameplay authority or shared sandbox settings. User reported dev.2 local Options visually vanilla; deferred-construction gap reproduced/fixed in source, post-fix native acceptance pending.",
+  "limits": "0.8.0-dev.3 development source; Workshop remains 0.5.0-dev.11. Offline suites PASS:65 runtime files/74 keys/29 English-fallback locales. Safe previews and supported explicit HUD overrides only; clock/moodles reference-only, unknown mods opt in, controller player layouts skipped. Native Options/input/HUD restoration/split-screen/persistence NOT TESTED. Historical dev.2 local startup is not current acceptance. G6 NOT TESTED, project G7/stable G8 BLOCKED. No current deployment/launch/package/upload. Client-local presentation with no gameplay authority or shared sandbox settings. User reported dev.2 local Options visually vanilla; deferred-construction gap reproduced/fixed in source, post-fix native acceptance pending.",
   "evidence": [
     "README.md",
     "docs/API.md",

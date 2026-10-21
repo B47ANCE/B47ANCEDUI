@@ -1,6 +1,6 @@
 # Architecture and persistence
 
-Project Version: 0.8.0-dev.2
+Project Version: 0.8.0-dev.3
 
 NativeSettings adds an instance-scoped Options palette/drawing adapter. Native settings retain their original values, callbacks, fonts/geometry, tabs, page stencils, display confirmation, audio rollback and input ownership. Supported late additions are adopted through owned container addChild delegates, with bounded initial traversal. Custom renderers and colour swatches remain guarded; shared dropdown popup fields/methods restore after themed draw/error and detached controls stop receiving drawing changes. Accent is UI's local slot 0; no gameplay state, new settings storage or public API changes. See NATIVE_SETTINGS.md for scope, evidence and runtime gates.
 
@@ -51,3 +51,6 @@ OptionsLayout/OptionsLayoutModel (0.8) own only local navigation, geometry and a
 
 
 The HUD editor separates owner lifetime from temporary modal availability. One owned fixed canvas routes validated hits above static provider children; only its captured drags update draft geometry. Popup-dismissal pointer guards and explicit button actions prevent implicit exits; native button/controller delegates remain. Modal suspension retains drafts/prompts, while real owner/game teardown cleans up. No shared state, network, sandbox or persistence format changes; see UI_WORKSPACE.md.
+
+
+NativeMenus now observes the current native quit-dialog reference at its existing frontend layout checkpoint. Both native class-owned and instance-owned fields are recognized; strict native modal/button/callback/text checks precede instance-only shared styling. There is no replacement confirmation, input dispatcher, gameplay ownership or new scan/event. Custom dialogs and in-game quit stay outside this scope; inactive background adapter means no detection. See NATIVE_MENUS.md.

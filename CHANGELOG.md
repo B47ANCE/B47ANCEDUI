@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.8.0-dev.3] - 2026-10-21
+
+- Theme the native main-menu Quit to desktop Yes/No confirmation with shared near-black rounded surfaces, neutral text and existing local accent. Preserve original dialog/button geometry, text, callbacks, focus, destruction and input behavior.
+- Reuse the existing frontend layout checkpoint to recognize native class-owned or instance-owned quit dialogs, including controller creation. Unknown/custom dialogs and in-game quit stay outside this adapter. Compatible PATCH; API1/schemas/defaults unchanged. Offline evidence/runtime gates in TESTING.md. No deploy/launch/package/merge/upload.
+
 ## [0.8.0-dev.2] - 2026-10-21
 
 - Fix implicit HUD editor exits after dropdown Enter and temporary modal activity. Cancel/Escape/controller Back use the same shared unsaved confirmation; Save remains explicit, and blank canvas clicks do nothing.
