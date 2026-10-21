@@ -41,6 +41,10 @@
     {
       "path": "docs/MENU_BACKGROUND.md",
       "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/MENU_LAYOUT_EDITOR.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {
@@ -71,6 +75,11 @@
       "category": "compatibility",
       "reference": "API.lua:apiVersion",
       "reason": "Independent public Lua API major."
+    },
+    {
+      "category": "compatibility",
+      "reference": "MenuLayout.lua:schema=1",
+      "reason": "Independent local main-menu layout data format; not the project version or gameplay/save schema."
     }
   ],
   "historical": [

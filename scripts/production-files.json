@@ -6,6 +6,8 @@
   "42/media/lua/client/B47ANCEDUI/Controls.lua",
   "42/media/lua/client/B47ANCEDUI/Dialog.lua",
   "42/media/lua/client/B47ANCEDUI/MenuBackground.lua",
+  "42/media/lua/client/B47ANCEDUI/MenuLayout.lua",
+  "42/media/lua/client/B47ANCEDUI/MenuLayoutEditor.lua",
   "42/media/lua/client/B47ANCEDUI/NativeMenus.lua",
   "42/media/lua/client/B47ANCEDUI/Renderer.lua",
   "42/media/lua/client/B47ANCEDUI/RowTooltip.lua",

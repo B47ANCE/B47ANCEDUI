@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.0-dev.1]
+- Compatible MINOR: player-local main-menu layout editor with independent menu/logo movement and resize, aspect-locked logo, viewport bounds and normalized saved placement. Existing users keep the automatic wall layout until they customize it.
+- Edit menu layout control, F10 and main-menu controller X access; drag/corner handles, percentage sliders, keyboard nudges, Save/Cancel and reversible Reset. Controller Y retains its vanilla Terms of Service action.
+- Dynamic mod-added entries/status notes continue fitting inside the chosen menu rectangle. Local data-only profile; no shared gameplay state, networking, server sandbox setting or public API major change.
+- Native mouse/controller/keyboard/resolution-change acceptance NOT TESTED. Development source only; no deployment, game launch or Workshop upload. Published Workshop build remains 0.5.0-dev.11.
+
 ## [0.5.0-dev.11]
 - Compatible PATCH: apply the user-selected room with the horizontal pipe extended straight across the left wall at its existing height. Use the approved generated PNG unchanged; retain the four transparent CRT openings and room composition.
 - Match CRT masks/crop to the selected artwork. Keep all four casings visible from 4:3 through 32:9 and place the dynamic logo/menu below the pipe, above the baseboard and before the vertical conduit.

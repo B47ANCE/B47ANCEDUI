@@ -9,5 +9,21 @@
   "UI_B47ANCEDUI_Blue": "Blue",
   "UI_B47ANCEDUI_InvalidHex": "Enter six hex digits: #RRGGBB.",
   "UI_B47ANCEDUI_SaveFailed": "Could not save. Close again for session-only changes.",
-  "UI_B47ANCEDUI_NoSignal": "NO SIGNAL"
+  "UI_B47ANCEDUI_NoSignal": "NO SIGNAL",
+  "UI_B47ANCEDUI_EditMenuLayout": "Edit menu layout",
+  "UI_B47ANCEDUI_LayoutTitle": "Main menu layout",
+  "UI_B47ANCEDUI_LayoutMenu": "Menu",
+  "UI_B47ANCEDUI_LayoutLogo": "Logo",
+  "UI_B47ANCEDUI_LayoutX": "Horizontal position",
+  "UI_B47ANCEDUI_LayoutY": "Vertical position",
+  "UI_B47ANCEDUI_LayoutWidth": "Width",
+  "UI_B47ANCEDUI_LayoutHeight": "Height",
+  "UI_B47ANCEDUI_LayoutSave": "Save layout",
+  "UI_B47ANCEDUI_LayoutCancel": "Cancel",
+  "UI_B47ANCEDUI_LayoutReset": "Reset layout",
+  "UI_B47ANCEDUI_LayoutHelp": "Drag to move; use the lower-right corner to resize.",
+  "UI_B47ANCEDUI_LayoutKeys": "Tab: target | Arrows: move | Shift+arrows: resize",
+  "UI_B47ANCEDUI_LayoutAspect": "Logo proportions stay locked.",
+  "UI_B47ANCEDUI_LayoutSaveFailed": "Could not save layout. Retry, or cancel to restore it.",
+  "UI_B47ANCEDUI_LayoutShortcut": "Edit menu layout (F10 / controller X)."
 }

@@ -25,6 +25,8 @@ def validate():
     english=json.loads((translations/'EN/UI.json').read_text())
     # AppearanceEditor's concatenated prefix is explicitly enumerated.
     keys.update('UI_B47ANCEDUI_'+k for k in ('ResetAppearance','Close','WindowOpacity','AccentHex','Red','Green','Blue','InvalidHex','SaveFailed'))
+    # MenuLayoutEditor's concatenated keys use explicit English fallback in all locales.
+    keys.update('UI_B47ANCEDUI_'+k for k in ('EditMenuLayout', 'LayoutTitle', 'LayoutMenu', 'LayoutLogo', 'LayoutX', 'LayoutY', 'LayoutWidth', 'LayoutHeight', 'LayoutSave', 'LayoutCancel', 'LayoutReset', 'LayoutHelp', 'LayoutKeys', 'LayoutAspect', 'LayoutSaveFailed', 'LayoutShortcut'))
     assert set(english)==keys,(set(english),keys)
     locales=[]
     for p in translations.glob('*/UI.json'):

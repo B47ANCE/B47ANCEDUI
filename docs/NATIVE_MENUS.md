@@ -1,6 +1,6 @@
 # Native main and Esc menu styling
 
-Project Version: 0.5.0-dev.11
+Project Version: 0.6.0-dev.1
 
 Dev.9 positions the main-menu logo and complete dynamic column inside the quiet wall in the new artwork; see MENU_BACKGROUND.md. This drawing/layout refinement retains native actions/controller objects and the Esc layout. Native acceptance for dev.9 NOT TESTED; Workshop remains dev.8.
 
@@ -37,3 +37,7 @@ The public PZOPT_MENU ISLabel is the audited exception to unknown-custom-rendere
 0.5.0-dev.10 replaces the whole security-room artwork in a single generation pass. The background adapter retargets CRT masks/crop and fits the existing dynamic logo/menu column on the quiet wall at source X440/Y72-470, before X645. Native navigation identities, callbacks, provider status ownership and Esc behavior remain unchanged. See MENU_BACKGROUND.md and MENU_ROOM_REGENERATION_PROMPT.md. Current native PZ rendering NOT TESTED; no deployment or publication.
 
 0.5.0-dev.11 applies the user-selected pipe-only artwork. Main-menu positioning follows its quiet wall at source X405/Y116-470/right600, below the horizontal conduit. Four masks and the uniform crop match this composition. Navigation objects/actions, optional status ownership, public API and Esc behavior remain unchanged. See MENU_BACKGROUND.md and MENU_SELECTED_PIPE_PROMPT.md. Native PZ rendering for dev.11 NOT TESTED.
+
+## Local main-menu layout (0.6.0-dev.1)
+
+MenuLayout resolves independent normalized menu/logo preferences over the existing automatic wall layout. MenuLayoutEditor supplies an owned overlay, drag/corner resize, native percentage sliders, keyboard/controller entry and Save/Cancel/Reset. Preferences are local-only, bounded data with a separate schema 1 file; appearance, gameplay/network state and public API major 1 are unchanged. The logo retains its aspect ratio; dynamic menu/status rows refit inside the selected area. Initial joypad child focus and capture/focus cleanup are explicit. No global UI class/key dispatcher replacement. See MENU_LAYOUT_EDITOR.md for controls, persistence and evidence. Native acceptance NOT TESTED; development source is not deployed or published.

@@ -23,6 +23,7 @@ for _,name in ipairs({'ISPanel','ISCollapsableWindowJoypad','ISButton','ISScroll
  local path=name=='ISSliderPanel' and 'RadioCom/ISUIRadio/ISSliderPanel' or 'ISUI/'..name
  package.loaded[path]=_G[name]
 end
+if B47ANCEDUI_FIXTURE_ONLY then return end
 local files={['LegacyOwnerAppearance0.txt']='opacity=65',['LegacyOwnerAppearance1.txt']='opacity=73'}
 local closed,writeCount=0,0
 getFileReader=function(name,create)

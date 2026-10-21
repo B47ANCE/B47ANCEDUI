@@ -1,6 +1,8 @@
-Version 0.5.0-dev.11
+Version 0.6.0-dev.1
 
 MP testing build - dedicated multiplayer NOT TESTED
+
+Development source only; not uploaded. Workshop remains 0.5.0-dev.11. Add local main-menu layout editing: independent menu/logo move/resize, proportional logo, percentage sliders, normalized saved settings and Save/Cancel/Reset. F10/controller X access; native pointer/controller acceptance NOT TESTED.
 
 Apply the selected security-room background with one straight horizontal pipe extending across the left wall at its existing height. Fit the logo/menu below the pipe and above the baseboard; retarget the four transparent animated CRTs and standard/ultrawide crop. Native rendering for dev.11 NOT TESTED.
 
