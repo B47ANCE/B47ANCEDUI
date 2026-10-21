@@ -1,6 +1,6 @@
 # Architecture and persistence
 
-Project Version: 0.8.0-dev.1
+Project Version: 0.8.0-dev.2
 
 NativeSettings adds an instance-scoped Options palette/drawing adapter. Native settings retain their original values, callbacks, fonts/geometry, tabs, page stencils, display confirmation, audio rollback and input ownership. Supported late additions are adopted through owned container addChild delegates, with bounded initial traversal. Custom renderers and colour swatches remain guarded; shared dropdown popup fields/methods restore after themed draw/error and detached controls stop receiving drawing changes. Accent is UI's local slot 0; no gameplay state, new settings storage or public API changes. See NATIVE_SETTINGS.md for scope, evidence and runtime gates.
 
@@ -48,3 +48,6 @@ OptionsLifecycle (0.7.0-dev.3) resolves the construction gap between menu-entry 
 
 
 OptionsLayout/OptionsLayoutModel (0.8) own only local navigation, geometry and a literal search index around the original settings graph. Native GameOption/control/parent/controller-row identities stay intact; no option setters/network/persistence are introduced. Verified scalar pages get decorative cards, specialized native pages keep their content with overflow reveal, and custom renderers stay guarded. Details/evidence/gates: OPTIONS_LAYOUT.md.
+
+
+The HUD editor separates owner lifetime from temporary modal availability. One owned fixed canvas routes validated hits above static provider children; only its captured drags update draft geometry. Popup-dismissal pointer guards and explicit button actions prevent implicit exits; native button/controller delegates remain. Modal suspension retains drafts/prompts, while real owner/game teardown cleans up. No shared state, network, sandbox or persistence format changes; see UI_WORKSPACE.md.

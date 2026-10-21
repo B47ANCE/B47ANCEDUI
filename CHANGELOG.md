@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.8.0-dev.2] - 2026-10-21
+
+- Fix implicit HUD editor exits after dropdown Enter and temporary modal activity. Cancel/Escape/controller Back use the same shared unsaved confirmation; Save remains explicit, and blank canvas clicks do nothing.
+- Use one fixed canvas input surface to hit-test real preview rectangles in visible order, move assets directly and resize supported edges/corners. Preserve reference-only/axis/aspect limits, saved schemas/defaults and provider ownership.
+- Guard popup dismissal/release click-through and stale UI callbacks; retain drafts during temporary modal focus and clean up only on actual owner/game teardown. Compatible PATCH within 0.8; offline regression/runtime limits in TESTING.md. No deployment, launch, package, merge or upload.
+
 ## [0.8.0-dev.1] - 2026-10-21
 
 - Redesign native Options with a searchable header, category sidebar, responsive section cards, contextual native help and a fixed Back/Apply/Accept footer. Use the existing editable grey accent.

@@ -8,20 +8,43 @@ if U.UILayoutEditor then return U.UILayoutEditor end
 local W={};U.UILayoutEditor=W
 local function tr(key) return getText('UI_B47ANCEDUI_'..key) end
 local function visible(w) return w and (not w.getIsVisible or w:getIsVisible()) end
-function W.available(screen)
+local function ownerAlive(screen)
  return screen and screen.Type=='MainScreen' and not screen.inGame and visible(screen)
   and (not MainScreen or not MainScreen.instance or MainScreen.instance==screen)
-  and not (UIManager.isModalVisible and UIManager.isModalVisible())
+end
+local function ownedPopup(state)
+ local box=state and state.selector;local popup=box and box.popup
+ return box and box.expanded and popup and popup==ISComboBox.SharedPopup and popup.parentCombo==box
+  and popup.javaObject and UIManager.getUI and UIManager.getUI():contains(popup.javaObject)
+end
+local function modal(state)
+ -- Native captured dropdowns are a distinct owned input state. Do not treat
+ -- their registered shared popup as an unexplained external editor teardown.
+ if ownedPopup(state)then return false end
+ return UIManager.isModalVisible and UIManager.isModalVisible()
+end
+function W.available(screen)return ownerAlive(screen) and not modal()end
+local function inputAllowed(screen,state)
+ return screen.b47HudEditing==state and ownerAlive(screen) and not modal(state) and not state.exitPrompt
+end
+local function closeSelector(state)
+ local box=state.selector
+ if box and box.expanded then
+  -- The shared native popup may have been borrowed by another combo.
+  if not box.popup or box.popup.parentCombo==box then box:hidePopup()end
+  box.expanded=false;box.sawMouseDown=false
+ end
 end
 local function release(state)
  C.release(state.rows)
- for _,frame in pairs(state.frames) do frame.drag=nil;frame.hit:setCapture(false) end
+ state.drag=nil
+ if state.canvas then state.canvas:setCapture(false)end
 end
 function W.close(screen)
  local state=screen.b47HudEditing;if not state then return end
  C.dismissExit(state,false)
  release(state);U.Tooltip.dispose(state.root);state.root:setVisible(false)
- if state.selector.expanded then state.selector:hidePopup();state.selector.expanded=false end
+ closeSelector(state)
  for _,frame in pairs(state.frames) do
   if frame.definition.dispose and frame.preview then
    local ok,err=pcall(frame.definition.dispose,frame.preview)
@@ -38,13 +61,17 @@ function W.close(screen)
 end
 function W.requestClose(screen)
  local state=screen.b47HudEditing;if not state then return true end
+ if not inputAllowed(screen,state)then return false end
  return C.requestExit(state,release,function()W.close(screen)end)
 end
 local layout,refresh
 local function changed(screen,rect)
- local state=screen.b47HudEditing;if not state or state.exitPrompt then return end
+ local state=screen.b47HudEditing;if not state or not inputAllowed(screen,state) then return end
  local def=state.assets[state.selected]
  if not def.editable then return end
+ local before=R.resolve(def.id,screen:getWidth(),screen:getHeight(),state.draft)
+ local fit=P.fit(rect,screen:getWidth(),screen:getHeight(),def.minWidth,def.minHeight,def.aspect)
+ if math.abs(before.x-fit.x)<.00000001 and math.abs(before.y-fit.y)<.00000001 and math.abs(before.w-fit.w)<.00000001 and math.abs(before.h-fit.h)<.00000001 then refresh(screen);return end
  state.draft=P.set(state.draft,def.id,rect,screen:getWidth(),screen:getHeight(),def)
  state.error=nil;refresh(screen)
 end
@@ -63,10 +90,13 @@ local function commit(screen)
  end)
 end
 function W.select(screen,index)
- local state=screen.b47HudEditing;if not state or state.exitPrompt or not state.assets[index] then return false end
+ local state=screen.b47HudEditing;if not state or not inputAllowed(screen,state) or not state.assets[index] then return false end
  if not commit(screen) then state.selector.selected=state.selected;state.error='InvalidPercent';return false end
  release(state);state.selected=index;state.selector.selected=index;state.error=nil
- state.frames[state.assets[index].id]:bringToTop();state.panel:bringToTop();refresh(screen)
+ local id=state.assets[index].id
+ for i,value in ipairs(state.order)do if value==id then table.remove(state.order,i);break end end
+ state.order[#state.order+1]=id
+ state.frames[id]:bringToTop();state.canvas:bringToTop();state.panel:bringToTop();refresh(screen)
  return true
 end
 refresh=function(screen)
@@ -98,17 +128,18 @@ layout=function(screen)
  state.messageY=by+button+8;state.font=font
  state.scale=math.max(.001,math.min(math.max(1,px-24)/w,math.max(1,h-76)/h))
  state.canvasX=12;state.canvasY=60;state.width=w;state.height=h
+ U.Layout.place(state.canvas,state.canvasX,state.canvasY,w*state.scale,h*state.scale)
  refresh(screen)
 end
 function W.save(screen)
- local state=screen.b47HudEditing;if not state or state.exitPrompt then return false end
+ local state=screen.b47HudEditing;if not state or not inputAllowed(screen,state) or state.selector.expanded then return false end
  if not commit(screen) then state.error='InvalidPercent';return false end
  local ok,why=P.save(state.draft,state.replaceFuture)
  if not ok then state.error=why=='future' and 'LayoutFuture' or 'LayoutSaveFailed';return false end
  W.close(screen);return true
 end
 function W.reset(screen)
- local state=screen.b47HudEditing;if not state or state.exitPrompt then return end
+ local state=screen.b47HudEditing;if not state or not inputAllowed(screen,state) or state.selector.expanded then return end
  release(state)
  for _,row in ipairs(state.rows) do row.dirty=false end
  for _,def in ipairs(state.assets) do if def.editable then state.draft[def.id]=nil end end
@@ -122,7 +153,7 @@ function W.open(screen,joypad)
   U.MenuLayoutEditor.requestClose(screen,function()W.open(screen,joypad)end);return screen.b47HudEditing
  end
  local draft,status=P.get();local assets=R.list();if #assets==0 then return end
- local state={draft=draft,baseline=P.copy(draft),status=status,assets=assets,selected=1,frames={},rows={}}
+ local state={draft=draft,baseline=P.copy(draft),status=status,assets=assets,selected=1,frames={},rows={},order={}}
  screen.b47HudEditing=state;W.activeScreen=screen
  local root=ISPanel:new(0,0,screen:getWidth(),screen:getHeight());root:initialise();root:instantiate();state.root=root
  root.prerender=function(self)
@@ -136,6 +167,7 @@ function W.open(screen,joypad)
  for _,def in ipairs(assets) do
   local frame=ISPanel:new(0,0,1,1);frame.background=false;frame.definition=def;frame:initialise();frame:instantiate();root:addChild(frame)
   state.frames[def.id]=frame
+  state.order[#state.order+1]=def.id
   local ok,widget=pcall(def.preview,frame)
   if ok and type(widget)=='table' and (widget.parent==nil or widget.parent==frame) and widget.setWidth and widget.setHeight then
    frame.preview=widget;if widget.parent~=frame then frame:addChild(widget) end
@@ -147,28 +179,57 @@ function W.open(screen,joypad)
    C.outline(self,state.assets[state.selected].id==def.id,def.editable and def.resizable and def)
    if frame.previewError then U.Renderer.text(self,tr('PreviewUnavailable'),4,4,U.Theme.colors.needed) end
   end
-  hit.onMouseDown=function(self,x,y)
-   for index,asset in ipairs(assets) do if asset.id==def.id then if not W.select(screen,index) then return true end;break end end
-   if def.editable then frame.drag={start=selectedRect(screen),dx=0,dy=0,edge=C.edges(self,x,y,def.resizable and def)};self:setCapture(true) end
-   return true
-  end
-  local function move(self,dx,dy)
-   if state.exitPrompt then return true end
-   if frame.drag then
-    local drag=frame.drag;drag.dx=drag.dx+dx/state.scale;drag.dy=drag.dy+dy/state.scale
-    changed(screen,P.drag(drag.start,drag.dx,drag.dy,drag.edge,screen:getWidth(),screen:getHeight(),def))
-   end
-   return true
-  end
-  hit.onMouseMove=move;hit.onMouseMoveOutside=move
-  local function up(self) frame.drag=nil;self:setCapture(false);return true end
-  hit.onMouseUp=up;hit.onMouseUpOutside=up
  end
+ -- One fixed input surface sits above every static preview and below the
+ -- inspector. Provider children never intercept drags and moving the selected
+ -- frame cannot move the drag's coordinate system underneath the pointer.
+ local canvas=ISPanel:new(0,0,1,1);canvas.background=false;canvas:initialise();canvas:instantiate();root:addChild(canvas);state.canvas=canvas
+ canvas.onMouseDown=function(self,x,y)
+  if not inputAllowed(screen,state) or state.selector.expanded or state.popupPointerBlock then return true end
+  if type(x)~='number' or type(y)~='number' or x<0 or y<0 or x>=self:getWidth() or y>=self:getHeight()then return true end
+  local rx,ry=x+state.canvasX,y+state.canvasY
+  for i=#state.order,1,-1 do
+   local frame=state.frames[state.order[i]];local lx,ly=rx-frame.x,ry-frame.y
+   if lx>=0 and ly>=0 and lx<frame:getWidth() and ly<frame:getHeight()then
+    local def=frame.definition
+    for index,asset in ipairs(assets)do if asset.id==def.id then if not W.select(screen,index)then return true end;break end end
+    if def.editable then
+     state.drag={definition=def,start=selectedRect(screen),dx=0,dy=0,edge=C.edges(frame.hit,lx,ly,def.resizable and def)}
+     self:setCapture(true)
+    end
+    return true
+   end
+  end
+  return true -- Blank canvas is inert, including click/double-click/release.
+ end
+ local function move(self,dx,dy)
+  if not inputAllowed(screen,state) or state.selector.expanded or state.popupPointerBlock then state.drag=nil;self:setCapture(false);return true end
+  local drag=state.drag
+  if drag then
+   drag.dx=drag.dx+dx/state.scale;drag.dy=drag.dy+dy/state.scale
+   changed(screen,P.drag(drag.start,drag.dx,drag.dy,drag.edge,screen:getWidth(),screen:getHeight(),drag.definition))
+  end
+  return true
+ end
+ canvas.onMouseMove=move;canvas.onMouseMoveOutside=move
+ local function up(self)state.drag=nil;self:setCapture(false);return true end
+ canvas.onMouseUp=up;canvas.onMouseUpOutside=up
+ for _,name in ipairs({'onMouseDoubleClick','onRightMouseDown','onRightMouseUp','onMouseWheel'})do canvas[name]=function()return true end end
  local panel=ISPanelJoypad:new(0,0,1,1);panel.b47AppearanceScope='B47ANCEDUI';panel.playerNum=0;panel.b47AppearanceOpaque=true
  panel:initialise();panel:instantiate();U.skin(panel,'panel');root:addChild(panel);state.panel=panel
- local selector=ISComboBox:new(0,0,1,30,panel,function(_,box)W.select(screen,box.selected)end)
+ local selector=ISComboBox:new(0,0,1,30,panel,function(_,box)if screen.b47HudEditing==state then W.select(screen,box.selected)end end)
  selector:initialise();selector:instantiate();U.Dropdown.style(selector);panel:addChild(selector);state.selector=selector
  for _,def in ipairs(assets) do selector:addOption(getText(def.labelKey)) end;selector.selected=1
+ local show,hide=selector.showPopup,selector.hidePopup
+ selector.showPopup=function(self,...)
+  if not inputAllowed(screen,state)then self.expanded=false;return end
+  release(state);return show(self,...)
+ end
+ selector.hidePopup=function(self,...)
+  self.sawMouseDown=false;state.popupPointerBlock=true
+  if self.popup and self.popup.parentCombo~=self then self.expanded=false;return end
+  return hide(self,...)
+ end
  for i,key in ipairs({'LayoutX','LayoutY','LayoutWidth','LayoutHeight'}) do
   state.rows[i]=C.row(panel,key,function(value)
    local rect=selectedRect(screen)
@@ -181,10 +242,36 @@ function W.open(screen,joypad)
   end)
  end
  local function button(key,callback)
-  local b=U.Button:new(0,0,1,30,tr(key),panel,callback);b:initialise();b:instantiate();panel:addChild(b);return b
+  local b=U.Button:new(0,0,1,30,tr(key),panel,function()
+   if inputAllowed(screen,state) and not selector.expanded then callback()end
+  end);b:initialise();b:instantiate();panel:addChild(b);return b
  end
  state.save=button('LayoutSave',function()W.save(screen)end);state.cancel=button('LayoutCancel',function()W.requestClose(screen)end)
  state.reset=button('ResetHudOverrides',function()W.reset(screen)end)
+ -- A popup dismissal may deliver a release to underlying widgets. Require a
+ -- matching down on this owned button; a popup/outside press cannot arm it.
+ local function guardButton(b)
+  local down,up,out=b.onMouseDown,b.onMouseUp,b.onMouseUpOutside
+  b.onMouseDown=function(self,...)
+   if not inputAllowed(screen,state) or selector.expanded or state.popupPointerBlock then self.b47Armed=false;self.pressed=false;return true end
+   self.b47Armed=true;if down then return down(self,...)end;return true
+  end
+  b.onMouseUp=function(self,...)
+   local armed=self.b47Armed;self.b47Armed=false
+   if not armed or not inputAllowed(screen,state) or selector.expanded or state.popupPointerBlock then self.pressed=false;return true end
+   if up then return up(self,...)end;return true
+  end
+  b.onMouseUpOutside=function(self,...)self.b47Armed=false;if out then return out(self,...)end;self.pressed=false;return true end
+ end
+ for _,b in ipairs({state.save,state.cancel,state.reset})do guardButton(b)end
+ for _,row in ipairs(state.rows)do
+  guardButton(row.minus);guardButton(row.plus)
+  local down=row.slider.onMouseDown
+  row.slider.onMouseDown=function(self,...)
+   if not inputAllowed(screen,state) or selector.expanded or state.popupPointerBlock then return true end
+   return down(self,...)
+  end
+ end
  panel.joypadButtonsY={};panel.allJoypadButtons={};panel.joypadButtons={};panel.joypadIndex=1;panel.joypadIndexY=1
  panel:insertNewLineOfButtons(selector)
  for _,row in ipairs(state.rows) do panel:insertNewLineOfButtons(row.minus,row.slider,row.plus,row.entry) end
@@ -214,7 +301,8 @@ function W.open(screen,joypad)
 end
 function W.key(screen,key)
  local state=screen.b47HudEditing;if not state then return false end
- if not W.available(screen) then W.close(screen);return false end
+ if not ownerAlive(screen) then W.close(screen);return false end
+ if modal(state)then release(state);return true end
  if C.exitKey(state,key) then return true end
  if state.selector.expanded then
   if key==Keyboard.KEY_ESCAPE then state.selector:hidePopup();state.selector.expanded=false end
@@ -223,8 +311,7 @@ function W.key(screen,key)
  if key==Keyboard.KEY_ESCAPE then W.requestClose(screen);return true end
  local typing=C.typing(state.rows)
  if typing then if key==Keyboard.KEY_RETURN and typing.commit() then typing.entry:unfocus();refresh(screen) end;return true end
- if key==Keyboard.KEY_RETURN then W.save(screen)
- elseif key==Keyboard.KEY_TAB then W.select(screen,state.selected%#state.assets+1)
+ if key==Keyboard.KEY_TAB then W.select(screen,state.selected%#state.assets+1)
  else
   local dx=key==Keyboard.KEY_LEFT and -2 or key==Keyboard.KEY_RIGHT and 2 or 0
   local dy=key==Keyboard.KEY_UP and -2 or key==Keyboard.KEY_DOWN and 2 or 0
@@ -236,8 +323,20 @@ function W.key(screen,key)
  return true
 end
 function W.update(screen)
- if W.activeScreen and (W.activeScreen~=screen or not W.available(W.activeScreen)) then W.close(W.activeScreen) end
+ if W.activeScreen and (W.activeScreen~=screen or not ownerAlive(W.activeScreen)) then W.close(W.activeScreen) end
  local state=screen.b47HudEditing
+ if state then
+  if state.drag and isMouseButtonDown and not isMouseButtonDown(0)then state.drag=nil;state.canvas:setCapture(false)end
+  if state.popupPointerBlock and isMouseButtonDown and not isMouseButtonDown(0)then state.popupPointerBlock=false end
+  if modal(state)then
+   if not state.suspended then
+    release(state);closeSelector(state);state.panel:clearJoypadFocus(state.joypad);state.suspended=true
+   end
+  elseif state.suspended then
+   state.suspended=nil;refresh(screen)
+   if state.joypad and state.joypad.focus==state.panel then state.panel:restoreJoypadFocus(state.joypad)end
+  end
+ end
  if state and (state.width~=screen:getWidth() or state.height~=screen:getHeight()) then release(state);layout(screen) end
  local b=screen.b47HudLayoutButton
  if b then
@@ -254,7 +353,8 @@ function W.attach(screen)
  local key,joy=screen.onKeyRelease,screen.onJoypadDown
  screen.onKeyRelease=function(self,value,...) if W.key(self,value) then return end;if key then return key(self,value,...) end end
  screen.onJoypadDown=function(self,value,...)
-  if self.b47HudEditing and not W.available(self) then W.close(self) end
+  if self.b47HudEditing and not ownerAlive(self) then W.close(self) end
+  if self.b47HudEditing and modal(self.b47HudEditing)then release(self.b47HudEditing);return end
   if self.b47HudEditing then return self.b47HudEditing.panel:onJoypadDown(value,...) end
   if joy then return joy(self,value,...) end
  end

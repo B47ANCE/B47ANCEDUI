@@ -68,7 +68,8 @@ state=W.open(screen);W.reset(screen);assert(C.unsaved(state));W.key(screen,Keybo
 screen:setWidth(1024);screen:setHeight(768);state.root:prerender();prompt.shield:prerender()
 assert(screen.b47HudEditing==state and prompt.shield:getWidth()==1024 and prompt.panel.x>=0)
 local other={};focus.focus=other;modal=true;state.root:prerender()
-assert(not screen.b47HudEditing and not state.exitPrompt and prompt.shield.parent==nil and focus.focus==other and writes==2)
+assert(screen.b47HudEditing==state and state.exitPrompt==prompt and prompt.shield.parent==state.root and focus.focus==other and writes==2)
+modal=false;state.root:prerender();assert(state.exitPrompt==prompt);W.close(screen);assert(prompt.shield.parent==nil)
 modal=false;focus.focus=screen;state=E.open(screen);state.rows[2].entry:setText('invalid');state.cancelButton.onclick();prompt=state.exitPrompt
 screen.inGame=true;screen:prerender();assert(not screen.b47LayoutEditing and not state.exitPrompt and prompt.shield.parent==nil)
 assert(C.unsaved({baseline={},draft={},rows={},status='future',replaceFuture=true}),'Future-schema reset intent was lost')

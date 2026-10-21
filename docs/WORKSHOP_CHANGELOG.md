@@ -1,4 +1,6 @@
-Version 0.8.0-dev.1
+Version 0.8.0-dev.2
+
+- Development HUD editor input fix: explicit Save/Cancel/Escape exits, shared unsaved confirmation, direct preview movement/resizing, inert empty canvas, guarded dropdown dismissal and retained modal drafts. Native dispatch NOT TESTED; not uploaded.
 
 - Development Options workspace: searchable header, category sidebar, responsive native section cards, editable grey accent and fixed native Back/Apply/Accept actions. Native settings values and behavior preserved; specialized/provider content keeps native internals. Native input/controller acceptance NOT TESTED. Not uploaded; Workshop remains0.5.0-dev.11.
 

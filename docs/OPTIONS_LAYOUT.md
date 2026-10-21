@@ -1,6 +1,6 @@
 # Options workspace
 
-Project Version: 0.8.0-dev.1
+Project Version: 0.8.0-dev.2
 
 The owner-provided reference guides a near-black Options layout: header search, left category sidebar with original primitive icons and subtitles, a native category heading, rounded section cards and fixed Back / Apply / Accept actions. The shared local accent remains editable and defaults to grey. No reference pixels, third-party code or external assets are copied.
 

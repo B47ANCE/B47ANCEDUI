@@ -656,6 +656,77 @@
       "statement": "Native MainScreen allocates Options and later calls create at694. Another provider may defer that construction; the source-only native event order alone is insufficient proof of ready tabs at attachment time.",
       "verified_on": "2026-10-21",
       "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "HUD editor dropdown ordering/ownership",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISComboBox.lua",
+      "sha256": "3c313fe9c30711fef341bc4358d3d66e6f38591c224f5fe92e7c77db508f2e66",
+      "lines": [
+        123,
+        154,
+        185,
+        229,
+        335,
+        391
+      ],
+      "statement": "Native selection clears expanded and removes shared captured popup before onchange. hidePopup alone does not clear expanded. Per-instance guards preserve another combo popup and consume dismissal gesture; exact engine click-through remains NOT TESTED.",
+      "verified_on": "2026-10-21",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "Explicit native button pointer/controller activation",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISButton.lua",
+      "sha256": "5a4101bb351f3fc5d20de884b0d15692d9048d72ceff0d8b4e0420800fac3011",
+      "lines": [
+        33,
+        78
+      ],
+      "statement": "Native down arms pressed; up/outside-up consume/reset it; double-click routes through down. forceClick is separate controller activation. Owned HUD buttons preserve delegates and require a matching safe pointer down.",
+      "verified_on": "2026-10-21",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "Fixed canvas local coordinates and capture",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISUIElement.lua",
+      "sha256": "2de4720f995ae35e76a1465c6690ad17fe272e33dec3b106e49c475310440f8f",
+      "lines": [
+        339,
+        350,
+        588,
+        593
+      ],
+      "statement": "Widget getMouseX/Y are local (absolute offset/own scroll subtracted). Fixed canvas input uses native callback local coordinates and pointer deltas, not moving-frame positions. setCapture is an exposed Lua delegate.",
+      "verified_on": "2026-10-21",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "Mouse release predicate",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISCollapsableWindow.lua",
+      "sha256": "3ac31699bb9eedc26e3ac5d6c2fa4f964857e0a954b2cff4d6ddb54aed0e607d",
+      "lines": [
+        214,
+        214
+      ],
+      "statement": "Installed vanilla Lua calls global isMouseButtonDown(0/1/2). HUD canvas uses left-button state to clear lost capture/dismissal guard without timers.",
+      "verified_on": "2026-10-21",
+      "runtime": "NOT TESTED"
+    },
+    {
+      "symbol": "Owned registered combo popup distinction",
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/OptionScreens/MainOptions.lua",
+      "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96",
+      "lines": [
+        4032,
+        4055
+      ],
+      "statement": "Vanilla tests UIManager.getUI():contains(ISComboBox.SharedPopup.javaObject) separately before switching pages. HUD editor requires that registration plus exact popup/parentCombo/expanded ownership before treating a captured dropdown as owned input. Whether global isModalVisible includes capture is UNKNOWN from inspected Lua; simultaneous foreign modal is a runtime gate.",
+      "verified_on": "2026-10-21",
+      "runtime": "NOT TESTED"
     }
   ]
 }
