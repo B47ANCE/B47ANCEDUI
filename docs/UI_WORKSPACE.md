@@ -1,6 +1,6 @@
 # Options and safe HUD layout workspace
 
-Project Version: 0.7.0-dev.3
+Project Version: 0.8.0-dev.1
 
 The 0.7 series is a compatible MINOR addition from 0.6.0-dev.3; dev.2 adds compatible PATCH protection for unsaved exits. Public API major 1, existing appearance storage, main-menu schema 1 and the owner-approved menu/logo defaults remain compatible. No current package, deployment, launch or Workshop upload is part of this iteration.
 
@@ -87,3 +87,6 @@ The prompt is a child scrim/panel of the editor root rather than a detached game
 ## Interface page readiness (0.7.0-dev.3)
 
 The shared OptionsLifecycle observer now adds the Interface page after native tabs are constructed, including providers that defer construction until Options opens. Its marker belongs to that tabs generation, so a replacement panel receives one new page; ordinary draws never add duplicate pages. Native stencil/controller setup and root mainPanel/addY are retained. Native settings styling uses the same readiness observer; no provider dependency is required. Offline delayed/rebuilt page tests pass. Actual native tab/keyboard/controller acceptance remains NOT TESTED.
+
+
+The 0.8 actual Options screen now presents Interface within the shared category sidebar/search/card shell. Interface actions and the safe HUD workspace are unchanged; this does not construct live HUDs from the frontend or change saved schemas/defaults. See OPTIONS_LAYOUT.md.

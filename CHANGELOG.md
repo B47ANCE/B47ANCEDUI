@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.8.0-dev.1] - 2026-10-21
+
+- Redesign native Options with a searchable header, category sidebar, responsive section cards, contextual native help and a fixed Back/Apply/Accept footer. Use the existing editable grey accent.
+- Preserve native option/control/callback identities, values, parent graph and controller rows. Search jumps to existing settings; specialized/provider pages keep native content with horizontal overflow access. Native dirty/display confirmation, audio rollback, key capture and apply/persistence delegates remain unchanged.
+- Compatible MINOR presentation addition; public API major1 and saved menu/HUD schema1/defaults unchanged. Offline validation and untested native input/render/controller gates are recorded in TESTING.md. No deployment, launch, packaging, merge or upload.
+
 ## [0.7.0-dev.3] - 2026-10-21
 
 - Fix Options remaining vanilla when its construction is deferred until opening. Observe each native Options instance's create/draw completion and attach styling/Interface page once per tab panel, including rebuilt tabs.

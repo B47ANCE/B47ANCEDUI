@@ -53,6 +53,10 @@
     {
       "path": "docs/UI_WORKSPACE.md",
       "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/OPTIONS_LAYOUT.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {

@@ -1,8 +1,8 @@
 # Native settings presentation
 
-Project Version: 0.7.0-dev.3
+Project Version: 0.8.0-dev.1
 
-The native Options screen uses a near-black backdrop and restrained grey surfaces. Tab headers and ordinary buttons have small rounded corners; the active tab has an accent underline. Checkmarks, slider thumbs and controller-focused control borders use UI's existing local accent preference, default `#B0B0B0`. Text-entry backgrounds retain native drawing/clipping. The settings backdrop stays nearly opaque for readability. This is an internal native-screen adapter, not a new public API or replacement settings implementation.
+The Options screen now uses the sidebar/search/card workspace described in [OPTIONS_LAYOUT.md](OPTIONS_LAYOUT.md). `NativeSettings.lua` remains its palette adapter: near-black surfaces, restrained rounded native controls, grey default accent `#B0B0B0` and guarded native/provider ownership. `OptionsLayout.lua` adds instance geometry/navigation after palette and Interface attachment. It replaces the recognized native tab strip with category navigation, while preserving the original tabs/pages/controls/actions underneath. The palette-only statements below describe NativeSettings, not the aggregate workspace layout.
 
 ## Ownership and compatibility
 

@@ -30,6 +30,7 @@ def validate():
     # Owned editor/workspace prefixes: explicit English fallback, not translated claims.
     keys.update('UI_B47ANCEDUI_'+k for k in ('UnsavedTitle','UnsavedMessage','KeepEditing','DiscardChanges'))
     keys.update('UI_B47ANCEDUI_'+k for k in ('InvalidPercent', 'InterfaceTab', 'InterfaceTitle', 'InterfaceAppearance', 'InterfaceLocalNotice', 'InterfaceEditorNotice', 'InterfaceMenuOnly', 'EditInGameUI', 'HudEditorTitle', 'HudPreviewNotice', 'HudProperties', 'HudPropertiesHelp', 'ResetHudOverrides', 'LayoutFuture', 'HudReferenceOnly', 'HudResizeHelp', 'HudMoveOnly', 'HudOverridesNotice', 'PreviewUnavailable', 'SampleContent', 'AssetInventory', 'AssetLoot', 'AssetCharacter', 'AssetMechanics', 'AssetChat', 'AssetEquipment', 'AssetHotbar', 'AssetMinimap', 'AssetClock', 'AssetMoodles'))
+    keys.update('UI_B47ANCEDUI_'+k for k in ('OptionsTitle', 'OptionsSearch', 'OptionsSearchHelp', 'OptionsDisplayHelp', 'OptionsUIHelp', 'OptionsAudioHelp', 'OptionsKeysHelp', 'OptionsAccessHelp', 'OptionsControllerHelp', 'OptionsMPHelp', 'OptionsOtherHelp', 'OptionsSection', 'OptionsNoResults'))
     assert set(english)==keys,(set(english),keys)
     locales=[]
     for p in translations.glob('*/UI.json'):

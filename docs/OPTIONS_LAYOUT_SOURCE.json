@@ -1,0 +1,90 @@
+{
+  "game_version": "42.21",
+  "steam_build": "25485521",
+  "verified_on": "2026-10-21",
+  "status": "VERIFIED source only",
+  "runtime": "NOT TESTED",
+  "evidence": [
+    {
+      "path": "media/lua/client/OptionScreens/MainOptions.lua",
+      "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96",
+      "lines": [
+        74,
+        327,
+        3306,
+        3358,
+        3903,
+        4110
+      ],
+      "statement": "Native factories/pages/stencil, section labels, native actions/rollback, centering, controller routing and Return/Escape. Only scalar native content is card-reflowed; key/controller pages retain native internals."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISTabPanel.lua",
+      "sha256": "9a687431a143131a002f1057ac860fbecc19c796312fdf16d37192e00afb21b5",
+      "lines": [
+        55,
+        221,
+        411,
+        507
+      ],
+      "statement": "Native render draws tab/body chrome and dragging state; sidebar mode suppresses that owned instance chrome while child pages and their own stencil/render paths remain native. Zero-height tab hit region and native activation by view id preserve visibility/callback routing."
+    },
+    {
+      "path": "media/lua/client/OptionScreens/GameOption.lua",
+      "sha256": "e7494223c5695e595ae0e1ea61224f29ed67d7ecb2610f4dfdb1388169d68141",
+      "lines": [
+        198,
+        251
+      ],
+      "statement": "GameOptions.options stores original GameOption/control refs; apply/store/restoreOriginal/toUI exist. restoreOriginal is open-time rollback, not a verified factory reset."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISPanelJoypad.lua",
+      "sha256": "8e7a2afbe11bb826bd3a2b8e08501790adba772171fd5e747af6cc520a60f060",
+      "lines": [
+        448,
+        535,
+        643,
+        680,
+        731,
+        744
+      ],
+      "statement": "Native control directions precede unhandled boundary propagation; focus clear/restore; ensureVisible reveals vertically only."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISUIElement.lua",
+      "sha256": "2de4720f995ae35e76a1465c6690ad17fe272e33dec3b106e49c475310440f8f",
+      "lines": [
+        709,
+        765,
+        1389,
+        1399,
+        1622,
+        1625,
+        1723,
+        1732
+      ],
+      "statement": "Boundary descendant callbacks; addScrollBars replaces existing bars; native horizontal extent/offset. Owned horizontal bar attached without replacing vertical bar."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISTextEntryBox.lua",
+      "sha256": "94d10e1583f68bcba635cd93f7921df85be4d8223ca8a99c67e00c650bf5d3e1",
+      "lines": [
+        16,
+        23,
+        150,
+        172
+      ],
+      "statement": "Text change calls onTextChangeFunction(target,self); command submit hook, focus/unfocus and text length forwards are native Lua methods."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISScrollBar.lua",
+      "sha256": "0d8c0c95afea326de4fb1d261d2e5a9aaa6319416f26c294c0f9154af82198fd",
+      "lines": [
+        299,
+        423
+      ],
+      "statement": "Native scrollbar constructor and render own horizontal position/extent handling."
+    }
+  ]
+}

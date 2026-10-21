@@ -1,6 +1,6 @@
 # Architecture and persistence
 
-Project Version: 0.7.0-dev.3
+Project Version: 0.8.0-dev.1
 
 NativeSettings adds an instance-scoped Options palette/drawing adapter. Native settings retain their original values, callbacks, fonts/geometry, tabs, page stencils, display confirmation, audio rollback and input ownership. Supported late additions are adopted through owned container addChild delegates, with bounded initial traversal. Custom renderers and colour swatches remain guarded; shared dropdown popup fields/methods restore after themed draw/error and detached controls stop receiving drawing changes. Accent is UI's local slot 0; no gameplay state, new settings storage or public API changes. See NATIVE_SETTINGS.md for scope, evidence and runtime gates.
 
@@ -45,3 +45,6 @@ HUDLayoutRuntime requires native registration modules before its callbacks and a
 The 0.7.0-dev.2 exit guard stays in EditorControls and the two owned editors. Each snapshots saved data on open; voluntary exits compare draft and pending text, then open an owned child scrim/panel if needed. Keep is the default; Discard performs existing unconditional teardown without writes. Capture, tooltips, numeric and underlying child-controller focus are released for the prompt; native child focus/pending text return on Keep. No detached UIManager/modal root is introduced. Save success and forced lifecycle teardown use unconditional cleanup; duplicate/stale callbacks cannot close a later editor. Existing saved formats, gameplay/network ownership, defaults and public API remain unchanged.
 
 OptionsLifecycle (0.7.0-dev.3) resolves the construction gap between menu-entry events and a later native Options build. It registers the existing menu/game/reset checkpoints once, observes only the selected MainOptions instance, and delegates create/prerender before dispatching callbacks once per tabs identity. NativeSettings validates the observer's original native renderer; OptionsInterface marks the current tabs generation. This is local presentation lifecycle state, with no gameplay authority, sandbox configuration, persistent data, network messages, timers or global class patch. Multi-return values/error behavior and reentrancy cleanup are preserved; readiness diagnostics contain only attachment booleans.
+
+
+OptionsLayout/OptionsLayoutModel (0.8) own only local navigation, geometry and a literal search index around the original settings graph. Native GameOption/control/parent/controller-row identities stay intact; no option setters/network/persistence are introduced. Verified scalar pages get decorative cards, specialized native pages keep their content with overflow reveal, and custom renderers stay guarded. Details/evidence/gates: OPTIONS_LAYOUT.md.

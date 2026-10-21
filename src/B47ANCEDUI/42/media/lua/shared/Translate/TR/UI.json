@@ -59,5 +59,18 @@
   "UI_B47ANCEDUI_UnsavedTitle": "Unsaved changes",
   "UI_B47ANCEDUI_UnsavedMessage": "Discard your unsaved layout changes?",
   "UI_B47ANCEDUI_KeepEditing": "Keep editing",
-  "UI_B47ANCEDUI_DiscardChanges": "Discard changes"
+  "UI_B47ANCEDUI_DiscardChanges": "Discard changes",
+  "UI_B47ANCEDUI_OptionsTitle": "GAME OPTIONS",
+  "UI_B47ANCEDUI_OptionsSearch": "Search settings...",
+  "UI_B47ANCEDUI_OptionsSearchHelp": "Search setting names and help. Up/Down selects a result; Enter opens it; Escape closes search.",
+  "UI_B47ANCEDUI_OptionsDisplayHelp": "Graphics, display and performance",
+  "UI_B47ANCEDUI_OptionsUIHelp": "HUD, menus and text",
+  "UI_B47ANCEDUI_OptionsAudioHelp": "Sound, music and voice",
+  "UI_B47ANCEDUI_OptionsKeysHelp": "Keyboard and mouse",
+  "UI_B47ANCEDUI_OptionsAccessHelp": "Visual and input assistance",
+  "UI_B47ANCEDUI_OptionsControllerHelp": "Gamepad setup",
+  "UI_B47ANCEDUI_OptionsMPHelp": "Online settings",
+  "UI_B47ANCEDUI_OptionsOtherHelp": "Additional settings and tools",
+  "UI_B47ANCEDUI_OptionsSection": "Configure this section",
+  "UI_B47ANCEDUI_OptionsNoResults": "No matching settings"
 }

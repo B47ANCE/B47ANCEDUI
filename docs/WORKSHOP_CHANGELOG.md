@@ -1,4 +1,6 @@
-Version 0.7.0-dev.3
+Version 0.8.0-dev.1
+
+- Development Options workspace: searchable header, category sidebar, responsive native section cards, editable grey accent and fixed native Back/Apply/Accept actions. Native settings values and behavior preserved; specialized/provider content keeps native internals. Native input/controller acceptance NOT TESTED. Not uploaded; Workshop remains0.5.0-dev.11.
 
 MP testing build - dedicated multiplayer NOT TESTED
 

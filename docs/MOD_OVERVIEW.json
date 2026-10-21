@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.7.0-dev.3",
+  "version": "0.8.0-dev.1",
   "reviewed": true,
-  "source_digest": "8709091665be413f9d217332fb1d2da07ac2daa05e9a5cf18a3f23b15aa1d7b3",
+  "source_digest": "e9362585e83332ad24109fe5cd51d9e3ffccbaf970749ade95f5529c8fdf784a",
   "features": [
     {
       "status": "Source",
@@ -93,9 +93,13 @@
     {
       "status": "Source",
       "text": "Deferred Options lifecycle correction: instance create/post-prerender observation attaches native styling and one Interface page per tabs generation. Native returns/errors and custom-renderer guards remain; no global class/provider dependency. Failed dev.2 visual acceptance reproduced offline; post-fix native render/input NOT TESTED."
+    },
+    {
+      "status": "Source",
+      "text": "Native Options workspace: searchable header, category sidebar, rounded responsive section cards, original primitive icons/native help and fixed Back/Apply/Accept controls. Native options/parents/controller rows preserved; specialized native content scrolls horizontally, unknown renderers guarded. Offline fixtures only; native acceptance NOT TESTED."
     }
   ],
-  "limits": "0.7.0-dev.3 development source; Workshop remains 0.5.0-dev.11. Offline suites PASS:63 runtime files/61 keys/29 English-fallback locales. Safe previews and supported explicit HUD overrides only; clock/moodles reference-only, unknown mods opt in, controller player layouts skipped. Native Options/input/HUD restoration/split-screen/persistence NOT TESTED. Historical dev.2 local startup is not current acceptance. G6 NOT TESTED, project G7/stable G8 BLOCKED. No current deployment/launch/package/upload. Client-local presentation with no gameplay authority or shared sandbox settings. User reported dev.2 local Options visually vanilla; deferred-construction gap reproduced/fixed in source, post-fix native acceptance pending.",
+  "limits": "0.8.0-dev.1 development source; Workshop remains 0.5.0-dev.11. Offline suites PASS:65 runtime files/74 keys/29 English-fallback locales. Safe previews and supported explicit HUD overrides only; clock/moodles reference-only, unknown mods opt in, controller player layouts skipped. Native Options/input/HUD restoration/split-screen/persistence NOT TESTED. Historical dev.2 local startup is not current acceptance. G6 NOT TESTED, project G7/stable G8 BLOCKED. No current deployment/launch/package/upload. Client-local presentation with no gameplay authority or shared sandbox settings. User reported dev.2 local Options visually vanilla; deferred-construction gap reproduced/fixed in source, post-fix native acceptance pending.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -121,7 +125,9 @@
     "docs/WORKSHOP_UPDATE_0.5.0-dev.11_2026-10-19.json",
     "docs/MENU_LAYOUT_EDITOR.md",
     "docs/NATIVE_SETTINGS.md",
-    "docs/UI_WORKSPACE.md"
+    "docs/UI_WORKSPACE.md",
+    "docs/OPTIONS_LAYOUT.md",
+    "docs/OPTIONS_LAYOUT_SOURCE.json"
   ],
   "relations": []
 }
