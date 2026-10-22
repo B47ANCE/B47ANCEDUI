@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.9.0-dev.3] - 2026-10-22
+
+- Restore Options categories/search after native dropdown dismissal by checking actual expanded popup ownership and UIManager membership instead of its stale visible flag.
+- Keep supported settings within the window using compact section selection and measured row pages, with native widget/value/callback identities and hidden/disabled policy preserved. Remove false separator overflow and position genuinely needed fallback horizontal bars at the bottom. Sidebar categories fit or use explicit navigation pages, without a scrollbar.
+- Compatible PATCH; API1 and profile formats/defaults unchanged. Native dev.2 screenshot exposed missing categories and unnecessary scrolling; new fit/input regressions and runtime gates are recorded in TESTING.md.
+
 ## [0.9.0-dev.2] - 2026-10-22
 
 - Fix frontend rendering failure from unsupported global next() in the installed Kahlua runtime. Use one private pairs-based table-presence helper across styling, presets, editor pending/reset checks, tooltips and Options snapshots. No global compatibility shim or suppressed exception.

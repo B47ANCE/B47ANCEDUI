@@ -24,6 +24,8 @@ function W:setWidth(v)self.width=v end
 function W:setHeight(v)self.height=v end
 function W:setAnchorsTBLR()end
 function W:setVisible(v)self.visible=v end
+function W:setEnable(v)self.enable=v end
+function W:isReallyVisible()return self:isVisible()and(not self.parent or self.parent:isReallyVisible())end
 function W:isVisible()return self.visible~=false end
 function W:setTooltip(v)self.tooltip=v end
 function W:setTitle(v)self.title=v end
@@ -45,7 +47,7 @@ function W:setYScroll(v)self.scrollY=v end
 function W:getYScroll()return self.scrollY end
 function W:setXScroll(v)self.scrollX=v end
 function W:getXScroll()return self.scrollX end
-function W:insertNewLineOfButtons(w)self.joypadButtonsY[#self.joypadButtonsY+1]={w}end
+function W:insertNewLineOfButtons(...)self.joypadButtonsY[#self.joypadButtonsY+1]={...}end
 function W:getJoypadFocus()local row=self.joypadButtonsY[self.joypadIndexY or 1];return row and row[self.joypadIndex or 1]end
 function W:clearJoypadFocus()self.cleared=true end
 function W:restoreJoypadFocus()self.restored=true end
@@ -62,6 +64,9 @@ function W:render()end
 local function class(name)local c=setmetatable({Type=name},{__index=W});_G[name]=c;package.loaded['ISUI/'..name]=c;return c end
 class('ISPanelJoypad');class('ISLabel');class('ISButton');class('ISTextEntryBox');class('ISComboBox');class('ISTabPanel')
 function ISTextEntryBox:new(text,x,y,w,h)local v=W.new(self,x,y,w,h);v.text=text;return v end
+function ISComboBox:new(x,y,w,h,target,onChange) local v=W.new(self,x,y,w,h);v.options={};v.target=target;v.onChange=onChange;return v end
+function ISComboBox:clear()self.options={};self.selected=1 end
+function ISComboBox:addOption(value)self.options[#self.options+1]=value end
 class('ISScrollBar')
 function ISScrollBar:new(parent,vertical)local v=W.new(self,0,0,14,14);v.vertical=vertical;return v end
 function ISTabPanel:activateViewById(id)
@@ -154,7 +159,7 @@ r.modal={};r.backButton:setVisible(false);r.saveButton.enable=false;O.layout(r);
 assert(not s.nav:isVisible() and not s.search:isVisible() and not r.backButton:isVisible() and r.saveButton.enable==false)
 r.modal=nil;r:prerender();assert(s.nav:isVisible())
 -- Sidebar wheel agrees with native pages; boundary focus leaves native rows alone.
-s.nav.extent=2000;s.nav:onMouseWheel(1);assert(s.nav.scrollY==-40)
+s.nav.extent=2000;s.nav:onMouseWheel(1);assert(s.nav.scrollY==0)
 s.nav:onMouseWheel(-1);assert(s.nav.scrollY==0)
 s.nav:prerender();assert(s.nav.stencil);s.nav:render();assert(not s.nav.stencil)
 local data={focus=p};r.tabs.activeView=v;r.tabs:onJoypadDirUp_Descendant(p,data);assert(data.focus==s.nav and p.cleared)
@@ -198,7 +203,114 @@ font=42;readonly.width=1280;readonly.height=720;O.layout(readonly)
 local rs=readonly.b47OptionsShell
 rs.index={};for i=1,12 do rs.index[i]={text='Match '..i,category='Audio',view=v}end
 O.search(readonly,'Match')
-assert(#rs.results<8)
+assert(#rs.results>0 and #rs.results<=8)
 for _,button in ipairs(rs.resultButtons)do if button:isVisible()then assert(button.y+button.height<=readonly.height-rs.chrome.footer)end end
 font=14
-print('PASS OFFLINE Options cards/sidebar/search/native identities, 7 resolutions x 4 fonts, footer, native fallback scrolling, controller boundary, modal/Return guards and late discovery; native runtime NOT TESTED')
+-- The native shared popup can remain visible after UIManager removal. This
+-- used to hide the entire sidebar/search and block category activation.
+local popupRegistered=false
+local stalePopup=W:new(0,0,100,100);stalePopup.javaObject={};stalePopup.parentCombo={expanded=true}
+ISComboBox.SharedPopup=stalePopup
+UIManager={getUI=function()return {contains=function(_,object)return popupRegistered and object==stalePopup.javaObject end}end}
+local regression=root();local display,dv=page(regression,'UI_optionscreen_display')
+local displayLabel=ISLabel:new(100,40,200,24);displayLabel.name='Display setting';display:addChild(displayLabel)
+local displayControl=ISComboBox:new(320,40,260,24);display:addChild(displayControl)
+regression.gameOptions.options={{name='display',control=displayControl}}
+local second,sv=page(regression,'UI_optionscreen_audio')
+assert(O.attach(regression));local shell=regression.b47OptionsShell;regression:prerender()
+assert(shell.nav:isVisible()and shell.search:isVisible(),'Dismissed shared popup hid categories/search')
+shell.categories[2].onclick(shell.nav,shell.categories[2]);assert(regression.tabs.activeView==sv,'Removed popup blocked category action')
+popupRegistered=true;shell.categories[1].onclick(shell.nav,shell.categories[1]);assert(regression.tabs.activeView==sv,'Live popup allowed underlying category action')
+regression:prerender();assert(shell.nav:isVisible()and shell.search:isVisible(),'Open dropdown erased navigation')
+popupRegistered=false;shell.categories[1].onclick(shell.nav,shell.categories[1]);assert(regression.tabs.activeView==dv)
+ISComboBox.SharedPopup=nil
+-- Native row widgets, values, hidden/disabled intent and controller graphs
+-- survive section/page changes; all displayed bounds fit without scrollbars.
+function W:setJoypadFocus(child)
+ for y,row in ipairs(self.joypadButtonsY)do
+  local x=0;for _,w in ipairs(row)do if w:isReallyVisible()then x=x+1;if w==child then self.joypadIndexY=y;self.joypadIndex=x;self.selectedFocus=w;return true end end end
+ end
+ return false
+end
+function W:setJoypadFocusTopLeft(data)
+ for _,row in ipairs(self.joypadButtonsY)do for _,w in ipairs(row)do if w:isReallyVisible()then return self:setJoypadFocus(w,data)end end end
+end
+local fit=root();fit.width=1344;fit.height=864
+local form,view=page(fit,'UI_optionscreen_display');form:addScrollBars()
+local nativeRows=form.joypadButtonsY;local controls,labels,headings={},{},{}
+for section,count in ipairs({6,6,40})do
+ local h=ISLabel:new(40,section*2000,300,24);h.name='Section '..section;h.font=UIFont.Medium;form:addChild(h);headings[#headings+1]=h
+ local separator=W:new(0,section*2000+26,2000,2);separator.Type='HorizontalLine';form:addChild(separator)
+ for i=1,count do
+  local yy=section*2000+40+i*40
+  local l=ISLabel:new(100,yy,200,24);l.name='Setting '..section..' '..i;form:addChild(l);labels[#labels+1]=l
+  local control=ISComboBox:new(320,yy,260,24);control.selected=i;control.options={'Native choice'};form:addChild(control)
+  controls[#controls+1]=control;fit.gameOptions.options[#fit.gameOptions.options+1]={name=l.name,control=control}
+  form:insertNewLineOfButtons(control)
+ end
+end
+controls[1]:setVisible(false);controls[2].enable=false
+local oldBar=ISScrollBar:new(form,false);form.hscroll=oldBar;form:addChild(oldBar)
+local applyCount=0;local savedValues
+fit.saveButton.onclick=function()
+ savedValues={};for _,option in ipairs(fit.gameOptions.options)do savedValues[#savedValues+1]=option.control.selected end
+ applyCount=applyCount+1
+end
+local nativeApply=fit.saveButton.onclick;local nativeOptions=fit.gameOptions.options
+assert(O.attach(fit));assert(not form.hscroll and oldBar.parent==nil,'Hidden full-width separator left a horizontal scrollbar')
+local function bounds()
+ assert(form.b47OptionsRows.fits and form:getScrollHeight()==form:getHeight()and form:getScrollWidth()==form:getWidth())
+ assert(form:getXScroll()==0 and form:getYScroll()==0 and not form.vscroll:isVisible())
+ for _,w in ipairs(form.b47OptionsRows.list)do if w:isVisible()then
+  assert(w.x>=0 and w.y>=0 and w.x+w.width<=form.width+.001 and w.y+w.height<=form.height+.001,'Paged row escaped its viewport')
+ end end
+ for _,h in ipairs(headings)do assert(not h:isVisible(),'Native section heading escaped page layout')end
+end
+for _,size in ipairs({{1024,768},{1280,720},{1344,864},{1920,1080},{2560,1440},{3440,1440},{5120,1440}})do
+ for _,f in ipairs({14,24,32,42})do
+  font=f;fit.width=size[1];fit.height=size[2];O.layout(fit)
+  local d=form.b47OptionsRows
+  for si,plan in ipairs(d.plans)do for pi=1,#plan.pages do O.select(fit,si,pi);bounds()end end
+ end
+end
+font=14;fit.width=1344;fit.height=864;O.layout(fit)
+O.select(fit,1,1);assert(not controls[1]:isVisible()and controls[2].enable==false)
+O.select(fit,3,1);controls[1]:setVisible(true);assert(not controls[1]:isVisible(),'Native visibility update leaked a row from another section')
+O.select(fit,1,1);assert(controls[1]:isVisible(),'Native visibility intent was lost while paged out')
+O.select(fit,3,2);local focusData={focus=form};form.joyfocus=focusData
+O.select(fit,3,1);assert(form.selectedFocus and form.selectedFocus:isReallyVisible(),'Controller focus stayed on a hidden row')
+local target=controls[#controls];O.search(fit,'Setting 3 40');local hit=fit.b47OptionsShell.results[1]
+assert(hit and hit.control==target);O.jump(fit,hit)
+assert(form.b47OptionsRows.section==3 and form.b47OptionsRows.page==form.b47OptionsRows.locations[target].page and target:isVisible())
+bounds();assert(form.joypadButtonsY==nativeRows and fit.gameOptions.options==nativeOptions and fit.saveButton.onclick==nativeApply)
+fit.saveButton.onclick();assert(applyCount==1 and #savedValues==#controls and savedValues[#controls]==40,'Hidden settings disappeared from native Apply')
+-- Multiple controls sharing a native row keep their spacing and callbacks.
+local compoundRoot=root();compoundRoot.width=1344;compoundRoot.height=864
+local compoundPage=page(compoundRoot,'UI_optionscreen_audio')
+local compoundLabel=ISLabel:new(100,40,200,24);compoundLabel.name='Compound choice';compoundPage:addChild(compoundLabel)
+local first=ISComboBox:new(320,40,200,24);local second=ISComboBox:new(540,40,160,24)
+compoundPage:addChild(first);compoundPage:addChild(second)
+compoundRoot.gameOptions.options={{name='first',control=first},{name='second',control=second}}
+assert(O.attach(compoundRoot)and compoundPage.b47OptionsRows.fits)
+for _,width in ipairs({1024,1344,1920})do
+ compoundRoot.width=width;O.layout(compoundRoot)
+ assert(second.x-first.x==220 and first.y==second.y and first.width==200 and second.width==160)
+ assert(first.x>=0 and second.x+second.width<=compoundPage.width)
+end
+-- More categories remain reachable through explicit navigation pages, without
+-- a sidebar scrollbar or tiny text.
+for i=1,35 do page(fit,'Provider '..i)end
+fit:prerender();local fs=fit.b47OptionsShell
+assert(fs.navPages>1 and not fs.nav.vscroll)
+for pi=1,fs.navPages do
+ fs.navPage=pi;O.layout(fit)
+ for _,b in ipairs(fs.categories)do if b:isVisible()then assert(b.y>=0 and b.y+b.height<=fs.navPrevious.y)end end
+end
+-- A real native-only fallback can still require horizontal access. Its bar
+-- must be at the viewport bottom and disappear once actual content fits.
+local fallbackRoot=root();local fallbackPage=page(fallbackRoot,'Custom provider')
+local long=W:new(1400,20,200,30);long.Type='CustomWidget';fallbackPage:addChild(long)
+assert(O.attach(fallbackRoot)and fallbackPage.hscroll)
+assert(fallbackPage.hscroll.y+fallbackPage.hscroll.height==fallbackPage.height)
+long:setX(20);O.layout(fallbackRoot);assert(not fallbackPage.hscroll)
+print('PASS OFFLINE Options contained sections/pages, visible categories/search, popup ownership, native identities/visibility/Apply, 7 sizes x 4 fonts, footer, genuine fallback scrolling and controller focus; native runtime NOT TESTED')

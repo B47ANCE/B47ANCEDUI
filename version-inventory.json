@@ -164,6 +164,10 @@
     {
       "reference": "docs/WORKSHOP_PIPE_UPDATE.md; docs/WORKSHOP_UPDATE_0.5.0-dev.11_2026-10-19.json",
       "reason": "Immutable dated dev11 distribution/source/package evidence; original source commit, versions and hashes remain fixed and are not future mirrors."
+    },
+    {
+      "reference": "docs/OPTIONS_LAYOUT_SOURCE.json:options_fit_correction",
+      "reason": "Dated dev.2 symptom/dev.3 correction and Build42.21 source fingerprints retain their original investigation versions; not future project-version mirrors."
     }
   ]
 }

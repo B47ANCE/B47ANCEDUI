@@ -1,6 +1,6 @@
 # Editable UI style presets
 
-Project Version: 0.9.0-dev.2
+Project Version: 0.9.0-dev.3
 
 Open **Options → Interface → UI Style Presets**. Select the shared preset or a registered mod, then a component and property. Hex colors accept six digits with optional `#`; numeric properties have a bounded slider and text field. Empty values inherit. Duplicate, rename or delete presets (the default cannot be deleted), inherit one property, reset one component, or remove a mod's preset binding with Follow shared preset. Reset removes that component's explicit values only; inherited all-component/shared values still apply.
 
@@ -50,3 +50,7 @@ local radius=UI.Styles.number(myOwnedWidget,'radius',4)
 [RUNTIME GATE] Actual PZ pixels, mouse/keyboard/controller dispatch, split-screen, file reload/failure recovery, custom-provider integration and performance remain NOT TESTED. G6 NOT TESTED; project G7/stable G8 BLOCKED. This iteration is source-only: no deployment, launch, package, merge or Workshop upload.
 
 0.9.0-dev.2 compatibility correction: the actual dev.1 frontend failed in ComponentStyles.prepare at its global next call. The installed Kahlua runtime does not provide that callable. One private pairs-based presence helper now handles all style/preset/editor/tooltip/Options checks; every behavioral test VM disables global next and the reproduction fails before the fix. Names, schema1 journal records, colors/geometry defaults and API1 are unchanged. Native post-fix acceptance remains pending. The earlier dev.1 offline pass is historical and did not establish Kahlua compatibility.
+
+Post-fix dev.2 local deployment/limited startup on 2026-10-22:68 source/destination hashes match, saved preferences preserved, responding game window, Options styling/interface attachment true and no UI exception trace in the fresh console at observation. This is startup evidence, not full visual/input/preset/controller or persistence acceptance. Existing engine modifications and unrelated warnings remain; see TESTING.md.
+
+The subsequent user screenshot of the dev.2 local test showed blank Options categories and overflowing rows. This is failed Options visual acceptance despite successful startup; dev.3 corrects those separate layout defects in source. Preset rendering/input acceptance remains NOT TESTED.

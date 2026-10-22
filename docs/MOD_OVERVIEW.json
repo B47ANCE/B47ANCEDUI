@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.9.0-dev.2",
+  "version": "0.9.0-dev.3",
   "reviewed": true,
-  "source_digest": "49878b4ffe5dcc9a8bc69979e78e0b2861ec316249872ead2d7476771fefb6bc",
+  "source_digest": "e40b6a9d92dfdd40780db16ed5df6def3ef0267109f22087cbce32305acc9452",
   "features": [
     {
       "status": "Source",
@@ -96,7 +96,7 @@
     },
     {
       "status": "Source",
-      "text": "Native Options workspace: searchable header, category sidebar, rounded responsive section cards, original primitive icons/native help and fixed Back/Apply/Accept controls. Native options/parents/controller rows preserved; specialized native content scrolls horizontally, unknown renderers guarded. Offline fixtures only; native acceptance NOT TESTED."
+      "text": "Native Options workspace: persistent searchable header/categories, section selector and measured contained row pages with original native controls. Crowded categories page explicitly; only genuine specialized/provider overflow scrolls. Native option/Apply/parent/controller/visibility ownership retained. Dismissed-popup and separator regressions PASS offline; native post-fix acceptance NOT TESTED."
     },
     {
       "status": "Source",
@@ -115,7 +115,7 @@
       "text": "Kahlua startup compatibility correction: private pairs-based presence helper replaces all eight unsupported global-next calls; full behavioral suite uses next=nil and active source is guarded. Actual dev.1 frontend failure reproduced offline; post-fix native acceptance pending."
     }
   ],
-  "limits": "0.9.0-dev.2 development source; Workshop remains 0.5.0-dev.11. Offline suites PASS:68 runtime files/141 keys/29 English-fallback locales. Safe previews and supported explicit HUD overrides only; clock/moodles reference-only, unknown mods opt in, controller player layouts skipped. Native Options/input/HUD restoration/split-screen/persistence NOT TESTED. Historical dev.2 local startup is not current acceptance. G6 NOT TESTED, project G7/stable G8 BLOCKED. No current deployment/launch/package/upload. Client-local presentation with no gameplay authority or shared sandbox settings. User reported dev.2 local Options visually vanilla; deferred-construction gap reproduced/fixed in source, post-fix native acceptance pending. Actual 0.9.0-dev.1 frontend rendering FAILED at unsupported global next; 0.9.0-dev.2 fixes the reproduced cause offline, with post-fix native acceptance pending.",
+  "limits": "0.9.0-dev.3 source-only correction; Workshop remains 0.5.0-dev.11. Offline suites PASS: 68 runtime files / 144 keys / 29 English-fallback locales. Safe previews and explicit supported HUD overrides only; clock/moodles reference-only, unknown mods opt in, controller player layouts skipped. Actual dev.1 rendering failed at global next; preceding dev.2 source 88b019c deployed with 68/68 hash parity and limited startup without UI exceptions. Subsequent user screenshot showed blank Options categories/overflow: failed visual acceptance. Dev.3 fixes those separate defects offline; it is not deployed or runtime accepted. Native Options/input/HUD restoration/split-screen/persistence/controller and dedicated NOT TESTED. G6 NOT TESTED; project G7/stable G8 BLOCKED. No new package/upload. Client-local presentation without gameplay authority/shared sandbox settings.",
   "evidence": [
     "README.md",
     "docs/API.md",

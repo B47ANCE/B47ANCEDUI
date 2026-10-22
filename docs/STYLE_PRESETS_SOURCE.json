@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "project_version": "0.9.0-dev.2",
+  "project_version": "0.9.0-dev.3",
   "date": "2026-10-21",
   "game_target": "Build 42.21",
   "steam_build": "25485521",
@@ -125,5 +125,24 @@
     "result": "FAILED native frontend rendering",
     "regression": "Constrained offline Lua5.1 VM with global next=nil fails at the same source call before the fix; all behavioral suites pass after pairs-based helper replacement",
     "post_fix_runtime": "NOT TESTED"
+  },
+  "post_fix_startup_observation": {
+    "date": "2026-10-22",
+    "project_version": "0.9.0-dev.2",
+    "runtime_source_commit": "88b019c5bfaf404e036adfa72de5f8301043ce5b",
+    "game": "Build42.21.0/4a0e9546ec",
+    "environment": "Local frontend, existing PZ Optimization engine overrides; not pristine vanilla",
+    "deployment": "68/68 SHA256 file parity; default profile and preferences preserved",
+    "observed": true,
+    "ui_exception_traces": 0,
+    "previous_next_exception_present": false,
+    "unrelated_warnings": [
+      "PZ Optimization GC JSON parsing",
+      "historical missing vanilla font textures"
+    ],
+    "result": "Limited frontend startup observation without UI exception traces; subsequent user screenshot showed blank Options categories/overflow and failed visual acceptance.",
+    "interactive_input_persistence_controller": "NOT TESTED",
+    "dedicated": "NOT TESTED",
+    "upload": "NOT PERFORMED"
   }
 }

@@ -86,5 +86,61 @@
       ],
       "statement": "Native scrollbar constructor and render own horizontal position/extent handling."
     }
-  ]
+  ],
+  "options_fit_correction": {
+    "verified_on": "2026-10-22",
+    "project_version_observed": "0.9.0-dev.2",
+    "correction_version": "0.9.0-dev.3",
+    "user_runtime_symptom": "Blank categories/search and overflowing Display settings in a 1344x864 Options window at 1920x1080",
+    "regression": "Identical dismissed-popup test fails on source88b019c and passes on current source",
+    "post_fix_runtime": "NOT TESTED",
+    "findings": [
+      "ISComboBox.hidePopup removes the shared popup from UIManager without clearing visible. Require parent expansion plus actual UIManager membership for blocking; drawing navigation is independent of ordinary dropdown use.",
+      "HorizontalLine decorations retain native full-window widths even when their renderer is suppressed; ignore them for overflow measurement.",
+      "ISUIElement.getScrollAreaHeight subtracts hscroll height when hscroll exists, even if hidden; remove unused bars on fitting pages.",
+      "ISPanelJoypad.getVisibleElements uses isReallyVisible; retained native rows skip controls hidden through the owned section/page gate.",
+      "Section/page controller selection uses native setJoypadFocus/setJoypadFocusTopLeft after clearJoypadFocus; native GameOption/Apply collections remain unchanged."
+    ],
+    "additional_evidence": [
+      {
+        "path": "media/lua/client/ISUI/ISComboBox.lua",
+        "sha256": "3c313fe9c30711fef341bc4358d3d66e6f38591c224f5fe92e7c77db508f2e66",
+        "symbols": {
+          "function ISComboBox:hidePopup": [
+            207
+          ],
+          "function ISComboBoxPopup:onMouseUp": [
+            133
+          ]
+        }
+      },
+      {
+        "path": "media/lua/client/ISUI/ISUIElement.lua",
+        "sha256": "2de4720f995ae35e76a1465c6690ad17fe272e33dec3b106e49c475310440f8f",
+        "symbols": {
+          "function ISUIElement:removeFromUIManager": [
+            1373
+          ],
+          "function ISUIElement:getScrollAreaHeight": [
+            1747
+          ]
+        }
+      },
+      {
+        "path": "media/lua/client/ISUI/ISPanelJoypad.lua",
+        "sha256": "8e7a2afbe11bb826bd3a2b8e08501790adba772171fd5e747af6cc520a60f060",
+        "symbols": {
+          "function ISPanelJoypad.getVisibleElements": [
+            371
+          ],
+          "function ISPanelJoypad:setJoypadFocus(": [
+            643
+          ],
+          "function ISPanelJoypad:setJoypadFocusTopLeft": [
+            659
+          ]
+        }
+      }
+    ]
+  }
 }

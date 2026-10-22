@@ -17,6 +17,17 @@ local function children(page)
  table.sort(out,function(a,b)return a:getY()==b:getY() and a:getX()<b:getX() or a:getY()<b:getY()end)
  return out
 end
+local function show(w,on)
+ if not w.b47OptionsVisibility then
+  local set=w.setVisible;w.b47OptionsWanted=w:isVisible();w.b47OptionsVisibility=set
+  w.setVisible=function(self,value)
+   self.b47OptionsWanted=value
+   return set(self,value and not self.b47OptionsPagedOut)
+  end
+ end
+ w.b47OptionsPagedOut=not on
+ return w.b47OptionsVisibility(w,w.b47OptionsWanted and on)
+end
 local specs={
  {'UI_optionscreen_display','OptionsDisplayHelp','display'},
  {'UI_optionscreen_UI','OptionsUIHelp','ui'},
@@ -71,7 +82,7 @@ local function snapshot(root,view)
  for _,c in ipairs(sections)do for _,row in ipairs(c.rows)do if not row.control then return end end end
  local original={}
  for _,w in ipairs(list)do original[#original+1]={w=w,x=w:getX(),y=w:getY(),width=w:getWidth(),height=w:getHeight()}end
- p.b47OptionsRows={sections=sections,list=list,cards={},root=root,original=original}
+ p.b47OptionsRows={sections=sections,list=list,cards={},root=root,original=original,section=1,page=1}
  for _,w in ipairs(list)do
   if w==MainOptions.translatorPane and not w.b47OptionsPaginate then
    w.b47OptionsPaginate=true;local paginate=w.paginate
@@ -107,104 +118,89 @@ local function snapshot(root,view)
   local data=self.b47OptionsRows
   if data and data.active then
    for _,c in ipairs(data.cards)do
-    R.roundedRect(self,0,c.y,self:getWidth()-16,c.h,T.colors.panel,6)
-    R.roundedBorder(self,0,c.y,self:getWidth()-16,c.h,T.colors.border,6)
-    if not c.heading then R.text(self,R.fit(c.title,c.titleW,UIFont.Medium),c.x,c.y+c.pad,T.colors.text,UIFont.Medium)end
-    if c.summary then R.text(self,tr('OptionsSection'),c.x,c.y+c.pad+getTextManager():getFontHeight(UIFont.Medium)+8,T.colors.muted)end
-    if c.tip then
-     R.roundedRect(self,c.tipX,c.y+c.pad,c.tipW,c.h-c.pad*2,T.colors.raised,4)
-     local yy=c.y+c.pad*2
-     for _,line in ipairs(c.tip)do R.text(self,line,c.tipX+c.pad,yy,T.colors.muted);yy=yy+data.font+3 end
-    end
+    R.roundedRect(self,0,c.y,self:getWidth()-1,c.h,T.colors.panel,6)
+    R.roundedBorder(self,0,c.y,self:getWidth()-1,c.h,T.colors.border,6)
    end
   end
   return unpack(result,1,result.n)
  end
 end
-local function wrapText(text,width,font,limit)
- local lines,line={},''
- text=string.gsub(tostring(text or ''),'<[^>]*>',' ')
- for word in string.gmatch(text,'%S+')do
-  local nextLine=line=='' and word or line..' '..word
-  if getTextManager():MeasureStringX(font,nextLine)>width and line~='' then
-   lines[#lines+1]=R.fit(line,width,font);line=word
-   if #lines>=limit-1 then break end
-  else line=nextLine end
- end
- if line~=''then lines[#lines+1]=R.fit(line,width,font)end
- return lines
-end
 local function cards(root,p)
  local d=p.b47OptionsRows;if not d then return end
- local f=getTextManager():getFontHeight(UIFont.Small);d.font=f;d.cards={};d.active=true
- local y=0;local width=p:getWidth()-16
- for _,section in ipairs(d.sections)do
-  local controlW=0
-  for _,row in ipairs(section.rows)do for _,v in ipairs(row.items)do if v.w~=row.label then controlW=math.max(controlW,v.width)end end end
-  controlW=math.min(controlW,width-math.max(14,f)*2)
-  local col=M.columns(width,f,controlW);local pad=col.pad
-  local card={title=section.title,heading=section.heading,y=y,pad=pad,x=pad,titleW=col.summaryW>0 and col.summaryW or width-pad*2,summary=col.summaryW>0}
-  local rowY=y+pad
-  if col.summaryW==0 then rowY=rowY+getTextManager():getFontHeight(UIFont.Medium)+pad end
-  if section.heading then
-   place(section.heading,pad,y+pad,card.titleW,section.heading:getHeight())
-   section.heading.originalX=pad
+ local f=getTextManager():getFontHeight(UIFont.Small);d.cards={};d.locations={};d.plans={}
+ local width=p:getWidth();local available=math.max(1,p:getHeight());local fits=true
+ for si,section in ipairs(d.sections)do
+  local controlW=0;local groups={}
+  for ri,row in ipairs(section.rows)do
+   local left,right
+   for _,v in ipairs(row.items)do if v.w~=row.label then left=math.min(left or v.x,v.x);right=math.max(right or 0,v.x+v.width)end end
+   groups[ri]=left or 0;controlW=math.max(controlW,(right or 0)-(left or 0))
   end
-  local tip
-  for _,row in ipairs(section.rows)do
-   local height=row.control==MainOptions.translatorPane and row.control:getHeight() or row.height
-   local h=math.max(height,f+14);local cx=col.controlX
-   if col.stacked then
-    cx=pad
-    if row.label then place(row.label,pad,rowY,width-pad*2,math.max(f+4,row.label:getHeight()));rowY=rowY+math.max(f+6,row.label:getHeight())end
-   elseif row.label then
-    place(row.label,col.labelX,rowY,col.labelW,h)
-   end
-   if row.label and not row.label.tooltip then row.label:setTooltip(label(row.label))end
-   for _,v in ipairs(row.items)do
-    if v.w~=row.label then
-     local cw=math.min(v.width,width-pad-cx)
-     -- Compound slider panels retain their internal slider/value-label geometry.
-     if v.w.Type=='ISPanel' and cw<v.width then
-      -- The whole compound is wider than the viewport: keep native pagination
-      -- and expose horizontal scrolling rather than crush its nested slider.
-      cx=pad;cw=v.width
-     end
-     local vh=v.w==MainOptions.translatorPane and height or v.height
-     place(v.w,cx,rowY+(h-vh)/2,cw,vh)
-     tip=tip or (type(v.w.tooltip)=='string' and v.w.tooltip or nil)
-    end
-   end
-   rowY=rowY+h+6
+  local col=M.columns(width,f,math.min(controlW,width-28));local pad=col.pad
+  -- Section selection supplies the heading; reserve the body for native rows.
+  col.summaryW=0;col.tipW=0;col.controlX=width-pad-controlW;col.labelX=pad
+  col.labelW=col.controlX-col.labelX-pad;col.stacked=col.labelW<math.max(160,10*f)
+  if col.stacked then col.controlX=pad end
+  local heights={}
+  for ri,row in ipairs(section.rows)do
+   local height=row.control==MainOptions.translatorPane and row.control:getHeight()or row.height
+   local h=math.max(height,f+6)
+   heights[ri]=h+4+(col.stacked and row.label and math.max(f+4,row.label:getHeight())or 0)
+   if controlW>width-pad*2 then fits=false end
   end
-  card.h=math.max(rowY-y+pad,card.summary and f*5+pad*2 or 1)
-  if col.tipW>0 and tip then
-   card.tipX=col.tipX;card.tipW=col.tipW
-   card.tip=wrapText(tip,col.tipW-pad*2,UIFont.Small,math.max(1,math.floor((card.h-pad*4)/(f+3))))
-  end
-  d.cards[#d.cards+1]=card;y=y+card.h+pad
+  local pages,locations=M.pages(heights,math.max(1,available-pad*2))
+  if not pages then fits=false;break end
+  d.plans[si]={pages=pages,heights=heights,col=col,groups=groups}
+  for ri,row in ipairs(section.rows)do for _,v in ipairs(row.items)do d.locations[v.w]={section=si,page=locations[ri]}end end
  end
- p:setScrollHeight(y)
- local extent=p:getWidth()
- for _,w in ipairs(d.list)do extent=math.max(extent,w:getX()+w:getWidth()+16)end
- if extent>p:getWidth() and not p.hscroll then
-  p.hscroll=ISScrollBar:new(p,false);p.hscroll:initialise();p:addChild(p.hscroll)
+ if not fits then
+  d.active=false;d.fits=false
+  for _,v in ipairs(d.original)do show(v.w,true);place(v.w,v.x,v.y,v.width,v.height)end
+  local extent=0;for _,v in ipairs(d.original)do extent=math.max(extent,v.y+v.height+16)end
+  p:setScrollHeight(extent);if p.vscroll then p.vscroll:setVisible(extent>p:getHeight())end
+  return false
  end
- if p.hscroll then p:setScrollWidth(extent)end
+ d.fits=true;d.active=true;d.section=math.max(1,math.min(#d.sections,d.section or 1))
+ local plan=d.plans[d.section];d.page=math.max(1,math.min(#plan.pages,d.page or 1))
+ for _,w in ipairs(d.list)do show(w,false)end
+ local col=plan.col;local pad=col.pad;local rowY=pad
+ for _,ri in ipairs(plan.pages[d.page].rows)do
+  local row=d.sections[d.section].rows[ri];local labelH=col.stacked and row.label and math.max(f+4,row.label:getHeight())or 0
+  local height=plan.heights[ri]-labelH-4
+  if row.label then
+   place(row.label,col.stacked and pad or col.labelX,rowY,col.stacked and width-pad*2 or col.labelW,col.stacked and labelH or height)
+   if not row.label.tooltip then row.label:setTooltip(label(row.label))end
+  end
+  local cy=rowY+labelH
+  for _,v in ipairs(row.items)do
+   if v.w~=row.label then
+    local h=v.w==MainOptions.translatorPane and v.w:getHeight()or v.height
+    place(v.w,col.controlX+v.x-plan.groups[ri],cy+(height-h)/2,v.width,h)
+   end
+   show(v.w,true)
+  end
+  rowY=rowY+plan.heights[ri]
+ end
+ d.cards={{y=0,h=available-1}}
+ p:setScrollHeight(p:getHeight());p:setScrollWidth(p:getWidth());p:setXScroll(0);p:setYScroll(0)
+ if p.vscroll then p.vscroll:setVisible(false)end
+ if p.hscroll then p:removeChild(p.hscroll);p.hscroll=nil end
+ return true
 end
 local function fallback(root,p)
  if p.Type~='ISPanelJoypad' or p.onJoypadDown~=MainOptions.onJoypadDownCurrentTab then return end
  -- Keep specialized/provider content at its native coordinates. A horizontal
  -- scrollbar and focus reveal make a wider native canvas reachable in the shell.
- if not p.hscroll then
-  p.hscroll=ISScrollBar:new(p,false);p.hscroll:initialise();p:addChild(p.hscroll)
- end
  local list=children(p);local left=0
  for _,w in ipairs(list)do left=math.min(left,w:getX())end
  if left<0 then for _,w in ipairs(list)do w:setX(w:getX()-left+16)end end
  local extent=p:getWidth()
- for _,w in ipairs(list)do extent=math.max(extent,w:getX()+w:getWidth()+24)end
+ for _,w in ipairs(list)do if w.Type~='HorizontalLine' and w:isVisible()then extent=math.max(extent,w:getX()+w:getWidth()+24)end end
  p:setScrollWidth(extent)
+ if extent>p:getWidth()then
+  if not p.hscroll then p.hscroll=ISScrollBar:new(p,false);p.hscroll:initialise();p:addChild(p.hscroll)end
+  p.hscroll:setVisible(true);place(p.hscroll,0,p:getHeight()-17,math.max(1,p:getWidth()-(p.vscroll and 17 or 0)),17)
+ elseif p.hscroll then p:removeChild(p.hscroll);p.hscroll=nil;p:setXScroll(0)end
  if not p.b47OptionsReveal and p.ensureVisible then
   p.b47OptionsReveal=true;local ensure=p.ensureVisible
   p.ensureVisible=function(self,...)
@@ -222,13 +218,27 @@ local function fallback(root,p)
 end
 local function blocked(root)
  local popup=ISComboBox.SharedPopup
- return root.modal~=nil or MainOptions.setKeybindDialog~=nil or (popup and popup:isVisible())
+ local box=popup and popup.parentCombo
+ local open=box and box.expanded and popup.javaObject and UIManager and UIManager.getUI and UIManager.getUI():contains(popup.javaObject)
+ return root.modal~=nil or MainOptions.setKeybindDialog~=nil or open
+end
+function O.select(root,section,page,target)
+ if blocked(root)then return end
+ local p=root.tabs.activeView and root.tabs.activeView.view;local d=p and p.b47OptionsRows
+ if not d then return end
+ local data=p.joyfocus;local focused=data and data.focus==p
+ if focused then p:clearJoypadFocus(data)end
+ d.section=section or d.section;d.page=page or 1;O.layout(root)
+ if focused then
+  if not target or not p:setJoypadFocus(target,data)then p:setJoypadFocusTopLeft(data)end
+ end
 end
 local function activate(root,view)
  if blocked(root)then return end
  local shell=root.b47OptionsShell;local data=shell and shell.nav.joyfocus
  local fromNavigation=data and data.focus==shell.nav
  root.tabs:activateViewById(view.id)
+ O.layout(root)
  if fromNavigation then
   shell.nav:clearJoypadFocus(data);shell.search:unfocus()
   data.focus=view.view;updateJoypadFocus(data);view.view:restoreJoypadFocus(data)
@@ -240,8 +250,12 @@ function O.jump(root,entry)
  local p=entry.view.view
  if entry.control and p then
   local w=entry.control;while w.parent and w.parent~=p do w=w.parent end
-  p:setYScroll(M.scroll(w:getY(),p:getScrollHeight(),p:getHeight()))
-  if p.hscroll then p:setXScroll(math.min(0,math.max(p:getWidth()-p:getScrollWidth(),16-w:getX())))end
+  local d=p.b47OptionsRows;local location=d and d.locations and d.locations[w]
+  if location and d.fits then O.select(root,location.section,location.page,entry.control)
+  else
+   p:setYScroll(M.scroll(w:getY(),p:getScrollHeight(),p:getHeight()))
+   if p.hscroll then p:setXScroll(math.min(0,math.max(p:getWidth()-p:getScrollWidth(),16-w:getX())))end
+  end
  end
  root.b47OptionsShell.search:unfocus();root.b47OptionsShell.search:setText('')
  O.search(root,'')
@@ -280,6 +294,7 @@ end
 local function index(root)
  local s=root.b47OptionsShell;s.index={};s.nav.joypadButtonsY={};s.nav.allJoypadButtons={};s.nav.joypadButtons={}
  s.nav:insertNewLineOfButtons(s.search)
+ s.nav:insertNewLineOfButtons(s.sectionBox,s.pagePrevious,s.pageNext)
  for _,b in ipairs(s.resultButtons)do s.nav:insertNewLineOfButtons(b)end
  for i,view in ipairs(root.tabs.viewList)do
   local b=s.categories[i]
@@ -289,9 +304,10 @@ local function index(root)
     local on=root.tabs.activeView==self.b47View;local c=on and T.colors.selected or self.mouseOver and T.colors.hover or T.colors.window
     R.roundedRect(self,0,0,self:getWidth(),self:getHeight(),c,5)
     if on then R.roundedBorder(self,0,0,self:getWidth(),self:getHeight(),T.colors.accent,5)end
-    local ss=spec(self.b47View);icon(self,ss[3],12,15)
-    R.text(self,R.fit(self.b47View.name,self:getWidth()-72,UIFont.Medium),48,8,T.colors.text,UIFont.Medium)
-    R.text(self,R.fit(tr(ss[2]),self:getWidth()-62),48,12+getTextManager():getFontHeight(UIFont.Medium),T.colors.muted)
+    local ss=spec(self.b47View);icon(self,ss[3],12,math.max(4,(self:getHeight()-23)/2))
+    local textY=self.b47Subtitles and 8 or math.max(2,(self:getHeight()-getTextManager():getFontHeight(UIFont.Medium))/2)
+    R.text(self,R.fit(self.b47View.name,self:getWidth()-72,UIFont.Medium),48,textY,T.colors.text,UIFont.Medium)
+    if self.b47Subtitles then R.text(self,R.fit(tr(ss[2]),self:getWidth()-62),48,12+getTextManager():getFontHeight(UIFont.Medium),T.colors.muted)end
     R.text(self,'>',self:getWidth()-20,14,T.colors.muted);R.focus(self)
    end
   end
@@ -300,7 +316,7 @@ local function index(root)
   s.index[#s.index+1]={view=view,text=view.name,category=view.name}
   local p=view.view
   if p and p.b47OptionsRows and s.dirtyPages and s.dirtyPages[p]then
-   for _,v in ipairs(p.b47OptionsRows.original)do if v.w.parent==p then place(v.w,v.x,v.y,v.width,v.height)end end
+   for _,v in ipairs(p.b47OptionsRows.original)do if v.w.parent==p then show(v.w,true);place(v.w,v.x,v.y,v.width,v.height)end end
    p.b47OptionsRows.active=false;p.b47OptionsRows=nil
   end
   snapshot(root,view)
@@ -336,6 +352,7 @@ local function index(root)
   end
  end
  for i=#root.tabs.viewList+1,#s.categories do s.categories[i]:setVisible(false)end
+ s.nav:insertNewLineOfButtons(s.navPrevious,s.navNext)
  s.nav.joypadIndex=1;s.nav.joypadIndexY=1;s.nav.joypadButtons=s.nav.joypadButtonsY[1]
  s.viewCount=#root.tabs.viewList
  s.dirty=false;s.dirtyPages={}
@@ -348,9 +365,36 @@ function O.layout(root)
  local navHeight=c.sidebarH
  place(s.nav,c.g,c.sidebarY,c.side-c.g,navHeight)
  place(s.search,c.side+c.g, c.g,c.w,c.button) -- Search is root-owned, independent of sidebar scroll.
- local y=0
- for i,b in ipairs(s.categories)do place(b,0,y,s.nav:getWidth()-14,c.categoryH);y=y+c.categoryH+6 end
- s.nav:setScrollHeight(y);U.Layout.scrollbar(s.nav)
+ local count=#root.tabs.viewList
+ local medium=getTextManager():getFontHeight(UIFont.Medium)
+ local categoryH=c.categoryH;local subtitles=true
+ if count*(categoryH+6)>navHeight then categoryH=medium+12;subtitles=false end
+ local capacity=math.max(1,math.floor(navHeight/(categoryH+6)))
+ if count>capacity then capacity=math.max(1,math.floor((navHeight-c.button-c.g)/(categoryH+6)))end
+ local navPages=math.max(1,math.ceil(count/capacity))
+ if navPages==1 then capacity=count end
+ s.navPage=math.max(1,math.min(navPages,s.navPage or 1))
+ if s.layoutActive~=root.tabs.activeView then
+  for i,view in ipairs(root.tabs.viewList)do if view==root.tabs.activeView then s.navPage=math.ceil(i/math.max(1,capacity))end end
+  s.layoutActive=root.tabs.activeView
+ end
+ s.navPages=navPages
+ for i,b in ipairs(s.categories)do
+  local first=(s.navPage-1)*capacity+1;local visible=i>=first and i<first+capacity and i<=count
+  b.b47Subtitles=subtitles;b:setVisible(visible)
+  if visible then place(b,0,(i-first)*(categoryH+6),s.nav:getWidth(),categoryH)end
+ end
+ s.nav:setScrollHeight(s.nav:getHeight());s.nav:setYScroll(0)
+ place(s.navPrevious,0,navHeight-c.button,(s.nav:getWidth()-c.g)/2,c.button)
+ place(s.navNext,(s.nav:getWidth()+c.g)/2,navHeight-c.button,(s.nav:getWidth()-c.g)/2,c.button)
+ s.navPrevious:setVisible(navPages>1);s.navNext:setVisible(navPages>1)
+ s.navPrevious:setEnable(s.navPage>1);s.navNext:setEnable(s.navPage<navPages)
+ local counterW=math.max(56,f*4);local pageW=c.button
+ local sectionW=math.max(1,c.w-pageW*2-counterW-c.g*3)
+ place(s.sectionBox,c.x,c.sectionY,sectionW,c.button)
+ place(s.pagePrevious,c.x+sectionW+c.g,c.sectionY,pageW,c.button)
+ place(s.pageNext,c.right-pageW,c.sectionY,pageW,c.button)
+ s.counterX=c.x+sectionW+c.g*2+pageW;s.counterW=counterW
  place(root.tabs,c.x,c.y,c.w,c.h)
  for _,v in ipairs(root.tabs.viewList)do
   local p=v.view
@@ -361,9 +405,20 @@ function O.layout(root)
     for _,w in ipairs(children(p))do w:setAnchorsTBLR(true,false,true,false)end
    end
    place(p,0,0,c.w,c.h);U.Layout.scrollbar(p)
-   if p.b47OptionsRows then cards(root,p)else fallback(root,p)end
+   if not p.b47OptionsRows or not cards(root,p)then fallback(root,p)end
   end
  end
+ local active=root.tabs.activeView and root.tabs.activeView.view;local d=active and active.b47OptionsRows
+ s.syncing=true;s.sectionBox:clear()
+ if d and d.fits then
+  for _,section in ipairs(d.sections)do s.sectionBox:addOption(section.title)end
+  s.sectionBox.selected=d.section
+  local pages=#d.plans[d.section].pages
+  s.pagePrevious:setEnable(d.page>1);s.pageNext:setEnable(d.page<pages)
+  s.pageLabel=tostring(d.page)..' / '..tostring(pages)
+ else s.pageLabel=nil end
+ s.syncing=false
+ s.sectionBox:setVisible(d and d.fits or false);s.pagePrevious:setVisible(d and d.fits or false);s.pageNext:setVisible(d and d.fits or false)
  local x=c.right;local fy=root:getHeight()-c.footer+c.g
  for i=3,1,-1 do
   local b=({root.backButton,root.saveButton,root.acceptButton})[i]
@@ -379,10 +434,27 @@ function O.attach(root)
  local previous=root.b47OptionsShell
  if previous then
   root:removeChild(previous.nav);root:removeChild(previous.search)
+  root:removeChild(previous.sectionBox);root:removeChild(previous.pagePrevious);root:removeChild(previous.pageNext)
   for _,b in ipairs(previous.resultButtons)do root:removeChild(b)end
  end
  local s={tabs=root.tabs,categories={},resultButtons={},index={},results={}};root.b47OptionsShell=s
- local nav=ISPanelJoypad:new(0,0,200,400);nav:initialise();nav:instantiate();root:addChild(nav);nav:noBackground();nav:setScrollChildren(true);nav:addScrollBars();s.nav=nav
+ local nav=ISPanelJoypad:new(0,0,200,400);nav:initialise();nav:instantiate();root:addChild(nav);nav:noBackground();nav:setScrollChildren(false);s.nav=nav
+ s.navPrevious=button(nav,'<',function()if not blocked(root)then s.navPage=math.max(1,(s.navPage or 1)-1);O.layout(root)end end)
+ s.navNext=button(nav,'>',function()if not blocked(root)then s.navPage=math.min(s.navPages or 1,(s.navPage or 1)+1);O.layout(root)end end)
+ local selector=ISComboBox:new(0,0,200,32,root,function(_,box)
+  if not s.syncing then O.select(root,box.selected,1)end
+ end)
+ selector:initialise();selector:instantiate();U.Dropdown.style(selector);root:addChild(selector);s.sectionBox=selector
+ s.sectionBox:setTooltip(tr('OptionsSections'))
+ s.pagePrevious=button(root,'<',function()
+  local p=root.tabs.activeView and root.tabs.activeView.view;local d=p and p.b47OptionsRows
+  if d then O.select(root,d.section,(d.page or 1)-1)end
+ end)
+ s.pageNext=button(root,'>',function()
+  local p=root.tabs.activeView and root.tabs.activeView.view;local d=p and p.b47OptionsRows
+  if d then O.select(root,d.section,(d.page or 1)+1)end
+ end)
+ s.pagePrevious:setTooltip(tr('OptionsPrevious'));s.pageNext:setTooltip(tr('OptionsNext'))
  local navPre,navRender=nav.prerender,nav.render
  nav.prerender=function(self,...)
   self:setStencilRect(0,0,self:getWidth(),self:getHeight())
@@ -392,7 +464,7 @@ function O.attach(root)
   local result=pack(pcall(navRender,self,...));self:clearStencilRect()
   if not result[1]then error(result[2])end;return unpack(result,2,result.n)
  end
- nav.onMouseWheel=function(self,delta)self:setYScroll(math.min(0,math.max(self:getHeight()-self:getScrollHeight(),self:getYScroll()-delta*40)));return true end
+ nav.onMouseWheel=function()return true end
  local navEnsure=nav.ensureVisible
  nav.ensureVisible=function(self,...)
   local focused=self:getJoypadFocus()
@@ -462,7 +534,8 @@ function O.attach(root)
    if not result[1]then error(result[2])end
    local ss=self.b47OptionsShell
    if ss and ss.tabs==self.tabs then
-    if ss.dirty or ss.viewCount~=#self.tabs.viewList then index(self);O.layout(self)end
+    if ss.dirty or ss.viewCount~=#self.tabs.viewList then index(self);O.layout(self)
+    elseif ss.layoutActive~=self.tabs.activeView then O.layout(self)end
     local c=ss.chrome
     R.rect(self,0,0,self:getWidth(),c.header,T.colors.window)
     R.rect(self,0,self:getHeight()-c.footer,self:getWidth(),c.footer,T.colors.window)
@@ -473,9 +546,13 @@ function O.attach(root)
     local active=self.tabs.activeView
     if active then
      R.text(self,R.fit(active.name,c.w,UIFont.Medium),c.x,c.header+c.g,T.colors.text,UIFont.Medium)
-     R.text(self,R.fit(tr(spec(active)[2]),c.w),c.x,c.header+c.g+getTextManager():getFontHeight(UIFont.Medium)+4,T.colors.muted)
+     if not c.compact then R.text(self,R.fit(tr(spec(active)[2]),c.w),c.x,c.header+c.g+getTextManager():getFontHeight(UIFont.Medium)+4,T.colors.muted)end
     end
-    local visible=not blocked(self) and self.tabs:isVisible();ss.nav:setVisible(visible);ss.search:setVisible(visible)
+    local visible=self.modal==nil and MainOptions.setKeybindDialog==nil and self.tabs:isVisible()
+    ss.nav:setVisible(visible);ss.search:setVisible(visible)
+    local data=active and active.view.b47OptionsRows;local pagesVisible=visible and data and data.fits or false
+    ss.sectionBox:setVisible(pagesVisible);ss.pagePrevious:setVisible(pagesVisible);ss.pageNext:setVisible(pagesVisible)
+    if pagesVisible then R.text(self,R.fit(ss.pageLabel or '',ss.counterW),ss.counterX,c.sectionY+(c.button-getTextManager():getFontHeight(UIFont.Small))/2,T.colors.text)end
     for i,b in ipairs(ss.resultButtons)do b:setVisible(visible and ss.results[i]~=nil)end
     if ss.search:getInternalText()~='' and #ss.results==0 then R.text(self,tr('OptionsNoResults'),c.x,c.header+c.g,T.colors.muted)end
    end

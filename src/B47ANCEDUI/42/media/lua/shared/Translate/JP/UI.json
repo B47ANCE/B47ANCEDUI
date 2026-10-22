@@ -139,5 +139,8 @@
   "UI_B47ANCEDUI_StyleProperty_trackThickness": "Slider track thickness (px)",
   "UI_B47ANCEDUI_StyleProperty_thumbWidth": "Slider thumb width (px)",
   "UI_B47ANCEDUI_StyleProperty_thumbHeight": "Slider thumb height (px)",
-  "UI_B47ANCEDUI_StyleDefault": "Default"
+  "UI_B47ANCEDUI_StyleDefault": "Default",
+  "UI_B47ANCEDUI_OptionsSections": "Choose a settings section",
+  "UI_B47ANCEDUI_OptionsPrevious": "Previous page",
+  "UI_B47ANCEDUI_OptionsNext": "Next page"
 }

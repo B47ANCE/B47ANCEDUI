@@ -1,6 +1,6 @@
 # Native settings presentation
 
-Project Version: 0.9.0-dev.2
+Project Version: 0.9.0-dev.3
 
 The Options screen now uses the sidebar/search/card workspace described in [OPTIONS_LAYOUT.md](OPTIONS_LAYOUT.md). `NativeSettings.lua` remains its palette adapter: near-black surfaces, restrained rounded native controls, grey default accent `#B0B0B0` and guarded native/provider ownership. `OptionsLayout.lua` adds instance geometry/navigation after palette and Interface attachment. It replaces the recognized native tab strip with category navigation, while preserving the original tabs/pages/controls/actions underneath. The palette-only statements below describe NativeSettings, not the aggregate workspace layout.
 
@@ -45,3 +45,5 @@ Source-only Build42.21/Steam25485521 evidence and neutral third-party observatio
 Verified adopted instances resolve their component family in the new local preset book. Palette defaults restore before each override refresh; unknown/custom controls and live color swatches keep existing guards. Native slider pagination captures the native bar/knob before bounded visual changes; detach restores native geometry and stops overrides. Native volume rendering remains a distinct family, never a replacement generic slider. No values, callbacks, range/step math or native game-option persistence change. Managed tooltips customize their backing/border only; rich contents remain native. See STYLE_PRESETS.md. Native acceptance NOT TESTED.
 
 0.9.0-dev.2 corrects the shared ComponentStyles preparation path: unsupported global-next checks are replaced with the private pairs-based presence helper. Native widget ownership/palette/value contracts are unchanged. See STYLE_PRESETS.md for the actual dev.1 startup failure and post-fix runtime gate.
+
+0.9.0-dev.3 corrects the Options workspace above this palette layer: dismissed shared popup visibility no longer hides categories/search, native sections use bounded pages and hidden separators no longer inflate horizontal extent. Actual registered expanded popups still block underlying actions. Native Apply, option values, controller row identity and visibility intent remain owned by PZ. See OPTIONS_LAYOUT.md and OPTIONS_LAYOUT_SOURCE.json. Current native visual/input acceptance NOT TESTED.
