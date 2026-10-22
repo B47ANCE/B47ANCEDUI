@@ -1,6 +1,6 @@
 # Architecture and persistence
 
-Project Version: 0.9.0-dev.3
+Project Version: 0.9.0-dev.4
 
 NativeSettings adds an instance-scoped Options palette/drawing adapter. Native settings retain their original values, callbacks, fonts/geometry, tabs, page stencils, display confirmation, audio rollback and input ownership. Supported late additions are adopted through owned container addChild delegates, with bounded initial traversal. Custom renderers and colour swatches remain guarded; shared dropdown popup fields/methods restore after themed draw/error and detached controls stop receiving drawing changes. Accent is UI's local slot 0; no gameplay state, new settings storage or public API changes. See NATIVE_SETTINGS.md for scope, evidence and runtime gates.
 
@@ -64,3 +64,5 @@ StyleEditor owns a viewport veil, a stable scrollable inspector and an opt-in pr
 0.9.0-dev.2 adds a private early Theme-loaded table-presence helper using exposed pairs. All eight prior global-next checks in styles, profile pruning, pending/reset edits, tooltips and Options snapshots use it. No runtime globals are installed or patched, and no schema/data/default changes occur. Constrained offline VMs reproduce the native dev.1 failure and exercise the corrected paths. Native post-fix acceptance remains NOT TESTED.
 
 0.9.0-dev.3 separates native visibility intent from section/page visibility in Options. A measured bounded plan retains native rows/controls/GameOptions and selects a visible controller target; search resolves section/page before revealing the original control. Categories use explicit navigation pages when crowded. Shared combo activity requires parent expansion plus actual UIManager membership; a stale visible flag cannot hide navigation. Fitting pages remove unused horizontal bars and suppress vertical scrolling; specialized/oversized native content retains genuine overflow. No new persistence or gameplay ownership. Native post-fix acceptance NOT TESTED.
+
+0.9.0-dev.4 corrects one native receiver contract: section dropdowns use the native tooltip map, reapplied after native clear resets it. The fixture no longer grants ISComboBox the generic setTooltip method. This prevents the observed partial Options construction; it does not suppress native errors or alter gameplay/persistence ownership.

@@ -93,7 +93,7 @@
     "correction_version": "0.9.0-dev.3",
     "user_runtime_symptom": "Blank categories/search and overflowing Display settings in a 1344x864 Options window at 1920x1080",
     "regression": "Identical dismissed-popup test fails on source88b019c and passes on current source",
-    "post_fix_runtime": "NOT TESTED",
+    "post_fix_runtime": "FAILED native Options attach on dev.3 at unsupported Combo tooltip setter; see combo_tooltip_correction",
     "findings": [
       "ISComboBox.hidePopup removes the shared popup from UIManager without clearing visible. Require parent expansion plus actual UIManager membership for blocking; drawing navigation is independent of ordinary dropdown use.",
       "HorizontalLine decorations retain native full-window widths even when their renderer is suppressed; ignore them for overflow measurement.",
@@ -142,5 +142,32 @@
         }
       }
     ]
+  },
+  "combo_tooltip_correction": {
+    "verified_on": "2026-10-22",
+    "observed_version": "0.9.0-dev.3",
+    "observed_source_commit": "101ac0a7ef91f664a93bab12e2c3b85679300945",
+    "correction_version": "0.9.0-dev.4",
+    "environment": "Local frontend Build42.21.0/revision4a0e9546ec with existing PZ Optimization engine overrides; not pristine vanilla",
+    "exception": "Object tried to call nil in attach",
+    "call_chain": [
+      "OptionsLayout.lua448 sectionBox:setTooltip",
+      "OptionsLifecycle.lua15 listener pcall",
+      "OptionsLifecycle.lua44 pre"
+    ],
+    "confirmed_cause": "ISComboBox exposes setToolTipMap, not setTooltip; fixture incorrectly inherited the generic setter.",
+    "fix": "Reapply defaultTooltip map after native clear resets tooltip table.",
+    "regression": "Stricter native-shaped Combo fails before at OptionsLayout.lua448 attempt to call method setTooltip (a nil value), passes after; repeated layout/section rebuilds retain section help.",
+    "native_post_fix": "NOT TESTED",
+    "evidence": {
+      "path": "media/lua/client/ISUI/ISComboBox.lua",
+      "sha256": "3c313fe9c30711fef341bc4358d3d66e6f38591c224f5fe92e7c77db508f2e66",
+      "symbols": {
+        "getOptionTooltip": 483,
+        "setToolTipMap": 506,
+        "clear": 544
+      },
+      "negative_finding": "No setTooltip on ISComboBox or its installed native base classes."
+    }
   }
 }

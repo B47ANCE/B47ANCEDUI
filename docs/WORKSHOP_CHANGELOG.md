@@ -1,4 +1,4 @@
-Version 0.9.0-dev.3
+Version 0.9.0-dev.4
 
 - Development main-menu Quit to desktop confirmation now uses shared near-black rounded surfaces and local accent; native Yes/No actions/focus/geometry retained. Native acceptance NOT TESTED; not uploaded.
 
@@ -27,3 +27,5 @@ Development source addition: editable local UI style presets for supported compo
 Dev.2 source correction: fix unsupported global-next table checks that interrupted actual main-menu rendering. Full behavioral suite now runs with that global disabled; post-fix native acceptance pending. No new Workshop upload.
 
 Development dev.3 Options correction: restore visible categories/search after dropdown dismissal; fit supported settings into bounded section/page navigation and remove spurious scrollbars. Native values/Apply/callbacks are preserved; specialized or oversized provider content retains genuine overflow. Offline regressions PASS; native post-fix acceptance NOT TESTED. Source-only, not uploaded.
+
+Development dev.4 fixes native Options setup aborting at the section dropdown by using the installed tooltip-map API after each clear. Strict regression first fails at the observed dev.3 source call, then passes. Native post-fix acceptance remains pending; this is a draft, not an upload.

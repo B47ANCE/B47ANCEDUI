@@ -1,6 +1,6 @@
 # Options workspace
 
-Project Version: 0.9.0-dev.3
+Project Version: 0.9.0-dev.4
 
 The owner-provided reference guides near-black Options with header search, left categories, original primitive icons/subtitles, rounded native settings and fixed Back / Apply / Accept actions. The editable accent defaults to grey. No reference pixels, third-party code or assets are copied.
 
@@ -34,6 +34,8 @@ This compatible PATCH correction preserves API1, saved menu/HUD/style schemas, a
 
 [TESTED: offline Windows, 2026-10-22] The dismissed-popup regression fails against 88b019c with "Dismissed shared popup hid categories/search" and passes on current source. Full fixtures pass with global next unavailable: seven window sizes including 1344x864 from the screenshot, four simulated font heights, every section/page, native hidden/disabled intent, compound-row offsets, Apply collection identity, visible-row controller focus, search reveal, oversized separator removal, 35 added categories, and genuine fallback-bar placement/removal. Commands: `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py`, `git diff --check`. Inventory 68 runtime files / 144 keys / 29 English-fallback locales; translations unreviewed. Doubles are not native rendering/input proof.
 
-The preceding 0.9.0-dev.2 local deployment reached Options styling/interface setup without the earlier global-next exception. Its subsequent user screenshot showed blank categories and overflowing Display layout: startup success was not visual acceptance. This dev.3 correction has not been locally deployed or runtime accepted.
+The preceding 0.9.0-dev.2 local deployment reached Options styling/interface setup without the earlier global-next exception. Its subsequent user screenshot showed blank categories and overflowing Display layout: startup success was not visual acceptance. The dev.3 correction was deployed with68/68 file hash parity but native Options setup FAILED at OptionsLayout.lua448: ISComboBox has no generic setTooltip method.
 
 [RUNTIME GATE] Check title-screen/Esc Options at standard/ultrawide sizes: visible categories/search, contained sections/pages at 1920x1080, all settings reachable, dropdown dismissal, controller visible-row focus, search into another section/page, and no spurious bars. Also check large fonts/translations, specialized-page fallback, key capture/cancel, audio preview then Back, display change/revert, unsaved Back, disabled Apply and native resets. G6 NOT TESTED; project G7/stable G8 BLOCKED. No new deploy, launch, package, merge or upload accompanies this source iteration.
+
+0.9.0-dev.4 uses installed ISComboBox.setToolTipMap with defaultTooltip immediately after every sectionBox.clear, because clear resets the map. The native-shaped fixture now exposes setTooltip only on actual label/button/text-entry classes. It fails before the fix at the same attach call as the native stack and passes afterward, including map retention across layout/section rebuilds. No native option/control/profile ownership changes. Post-fix native Options acceptance NOT TESTED; retest the sidebar, contained pages and dropdown help.

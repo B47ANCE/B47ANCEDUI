@@ -168,6 +168,10 @@
     {
       "reference": "docs/OPTIONS_LAYOUT_SOURCE.json:options_fit_correction",
       "reason": "Dated dev.2 symptom/dev.3 correction and Build42.21 source fingerprints retain their original investigation versions; not future project-version mirrors."
+    },
+    {
+      "reference": "docs/OPTIONS_LAYOUT_SOURCE.json:combo_tooltip_correction",
+      "reason": "Dated dev.3 native failure/dev.4 correction retains exact observed source/version and Build42.21 evidence; not a future project-version mirror."
     }
   ]
 }

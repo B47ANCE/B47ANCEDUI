@@ -27,7 +27,6 @@ function W:setVisible(v)self.visible=v end
 function W:setEnable(v)self.enable=v end
 function W:isReallyVisible()return self:isVisible()and(not self.parent or self.parent:isReallyVisible())end
 function W:isVisible()return self.visible~=false end
-function W:setTooltip(v)self.tooltip=v end
 function W:setTitle(v)self.title=v end
 function W:setText(v)self.text=v end
 function W:getInternalText()return self.text or '' end
@@ -63,9 +62,14 @@ function W:prerender()end
 function W:render()end
 local function class(name)local c=setmetatable({Type=name},{__index=W});_G[name]=c;package.loaded['ISUI/'..name]=c;return c end
 class('ISPanelJoypad');class('ISLabel');class('ISButton');class('ISTextEntryBox');class('ISComboBox');class('ISTabPanel')
+for _,class in ipairs({ISLabel,ISButton,ISTextEntryBox})do
+ function class:setTooltip(value)self.tooltip=value end
+end
 function ISTextEntryBox:new(text,x,y,w,h)local v=W.new(self,x,y,w,h);v.text=text;return v end
 function ISComboBox:new(x,y,w,h,target,onChange) local v=W.new(self,x,y,w,h);v.options={};v.target=target;v.onChange=onChange;return v end
-function ISComboBox:clear()self.options={};self.selected=1 end
+-- Native Combo uses a map; the generic setter belongs to the classes above.
+function ISComboBox:setToolTipMap(value)self.tooltip=value end
+function ISComboBox:clear()self.options={};self.tooltip={} end
 function ISComboBox:addOption(value)self.options[#self.options+1]=value end
 class('ISScrollBar')
 function ISScrollBar:new(parent,vertical)local v=W.new(self,0,0,14,14);v.vertical=vertical;return v end
@@ -130,6 +134,7 @@ local foreign,fv=page(r,'Custom tools');local custom=W:new(1700,30,300,80);custo
 local originalKeyX=wide.x;local nativeKeyDown=p.onJoypadDown;local options=r.gameOptions.options
 assert(O.attach(r));local s=r.b47OptionsShell
 assert(O.attach(r) and r.b47OptionsShell==s and r.tabs.tabHeight==0)
+assert(s.sectionBox.tooltip.defaultTooltip=='UI_B47ANCEDUI_OptionsSections')
 assert(#s.categories==3 and #s.index>=4 and not s.restoreDefaults)
 assert(p.b47OptionsRows and #p.b47OptionsRows.cards==1 and not keys.b47OptionsRows and not foreign.b47OptionsRows)
 assert(control.parent==p and control.selected==1 and p.joypadButtonsY==originalRows and r.gameOptions.options==options and p.onJoypadDown==nativeKeyDown)
@@ -277,6 +282,7 @@ font=14;fit.width=1344;fit.height=864;O.layout(fit)
 O.select(fit,1,1);assert(not controls[1]:isVisible()and controls[2].enable==false)
 O.select(fit,3,1);controls[1]:setVisible(true);assert(not controls[1]:isVisible(),'Native visibility update leaked a row from another section')
 O.select(fit,1,1);assert(controls[1]:isVisible(),'Native visibility intent was lost while paged out')
+assert(fit.b47OptionsShell.sectionBox.tooltip.defaultTooltip=='UI_B47ANCEDUI_OptionsSections','Native clear lost section help')
 O.select(fit,3,2);local focusData={focus=form};form.joyfocus=focusData
 O.select(fit,3,1);assert(form.selectedFocus and form.selectedFocus:isReallyVisible(),'Controller focus stayed on a hidden row')
 local target=controls[#controls];O.search(fit,'Setting 3 40');local hit=fit.b47OptionsShell.results[1]

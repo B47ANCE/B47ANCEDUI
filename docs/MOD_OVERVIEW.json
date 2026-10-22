@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.9.0-dev.3",
+  "version": "0.9.0-dev.4",
   "reviewed": true,
-  "source_digest": "e40b6a9d92dfdd40780db16ed5df6def3ef0267109f22087cbce32305acc9452",
+  "source_digest": "38e8bd0065f92f61f4fbfafcd18b48770a983a26a5868ea720e2606991b6aeb3",
   "features": [
     {
       "status": "Source",
@@ -113,9 +113,13 @@
     {
       "status": "Source",
       "text": "Kahlua startup compatibility correction: private pairs-based presence helper replaces all eight unsupported global-next calls; full behavioral suite uses next=nil and active source is guarded. Actual dev.1 frontend failure reproduced offline; post-fix native acceptance pending."
+    },
+    {
+      "status": "Source",
+      "text": "Native Options section-dropdown compatibility fix: verified setToolTipMap/defaultTooltip after clear replaces unsupported setTooltip. Actual dev.3 Kahlua attach failure reproduced at identical source call in strict fixture; current suite passes, native post-fix acceptance pending."
     }
   ],
-  "limits": "0.9.0-dev.3 source-only correction; Workshop remains 0.5.0-dev.11. Offline suites PASS: 68 runtime files / 144 keys / 29 English-fallback locales. Safe previews and explicit supported HUD overrides only; clock/moodles reference-only, unknown mods opt in, controller player layouts skipped. Actual dev.1 rendering failed at global next; preceding dev.2 source 88b019c deployed with 68/68 hash parity and limited startup without UI exceptions. Subsequent user screenshot showed blank Options categories/overflow: failed visual acceptance. Dev.3 fixes those separate defects offline; it is not deployed or runtime accepted. Native Options/input/HUD restoration/split-screen/persistence/controller and dedicated NOT TESTED. G6 NOT TESTED; project G7/stable G8 BLOCKED. No new package/upload. Client-local presentation without gameplay authority/shared sandbox settings.",
+  "limits": "0.9.0-dev.4 compatible development correction; Workshop remains0.5.0-dev.11. Offline suites PASS:68 runtime files/144 keys/29 unreviewed English-fallback locales. Dev.1 global-next rendering failure corrected in dev.2, whose limited startup was observed. Dev.3 source101ac0a deployed with68/68 hash parity but native Options attach FAILED at unsupported ISComboBox.setTooltip, producing a partial shell. Dev.4 uses setToolTipMap after clear and passes the exact strict regression; post-fix native rendering/input/controller acceptance NOT TESTED. Safe previews/explicit supported HUD overrides only; unknown providers opt in and oversized specialized content retains genuine overflow. No shared gameplay/network/sandbox state. G6 NOT TESTED; project G7/stable G8 BLOCKED. Current correction is prepared for authorized local retesting; no package/upload.",
   "evidence": [
     "README.md",
     "docs/API.md",

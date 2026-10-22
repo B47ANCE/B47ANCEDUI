@@ -410,6 +410,8 @@ function O.layout(root)
  end
  local active=root.tabs.activeView and root.tabs.activeView.view;local d=active and active.b47OptionsRows
  s.syncing=true;s.sectionBox:clear()
+ -- Native clear resets its tooltip map. Combo has no generic setTooltip.
+ s.sectionBox:setToolTipMap({defaultTooltip=tr('OptionsSections')})
  if d and d.fits then
   for _,section in ipairs(d.sections)do s.sectionBox:addOption(section.title)end
   s.sectionBox.selected=d.section
@@ -445,7 +447,6 @@ function O.attach(root)
   if not s.syncing then O.select(root,box.selected,1)end
  end)
  selector:initialise();selector:instantiate();U.Dropdown.style(selector);root:addChild(selector);s.sectionBox=selector
- s.sectionBox:setTooltip(tr('OptionsSections'))
  s.pagePrevious=button(root,'<',function()
   local p=root.tabs.activeView and root.tabs.activeView.view;local d=p and p.b47OptionsRows
   if d then O.select(root,d.section,(d.page or 1)-1)end

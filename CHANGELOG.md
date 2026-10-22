@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.9.0-dev.4] - 2026-10-22
+
+- Fix native Options setup aborting at the section dropdown: use the installed ISComboBox tooltip-map API after each native clear, rather than an unsupported generic tooltip setter.
+- Tighten the native-shaped fixture so only real label/button/text-entry receivers expose setTooltip; reproduce the exact dev.3 attach failure before the fix and verify section help survives rebuilds afterward.
+- Compatible PATCH; API1, settings values, saved schemas/defaults and native Apply behavior unchanged. Actual dev.3 Options initialization FAILED; dev.4 offline and runtime evidence are recorded separately in TESTING.md.
+
 ## [0.9.0-dev.3] - 2026-10-22
 
 - Restore Options categories/search after native dropdown dismissal by checking actual expanded popup ownership and UIManager membership instead of its stale visible flag.
