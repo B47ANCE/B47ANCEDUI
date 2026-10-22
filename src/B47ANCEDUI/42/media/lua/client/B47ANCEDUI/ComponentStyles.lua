@@ -71,7 +71,7 @@ function S.slider(w,owned)
 end
 function S.prepare(w,kind)
  local p=S.properties(w,w.b47StyleFamily or kind)
- if not next(p)then
+ if not U._hasEntries(p)then
   if w.b47StyleSliderBase then S.geometry(w)end
   return
  end

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "project_version": "0.9.0-dev.1",
+  "project_version": "0.9.0-dev.2",
   "date": "2026-10-21",
   "game_target": "Build 42.21",
   "steam_build": "25485521",
@@ -112,5 +112,18 @@
     "pixels/viewport/split-screen",
     "native file round-trip and power-loss durability",
     "provider compatibility/performance"
-  ]
+  ],
+  "runtime_failure": {
+    "date": "2026-10-22",
+    "tested_project_version": "0.9.0-dev.1",
+    "environment": "Local SP frontend, Build42.21.0/4a0e9546ec, existing PZ Optimization engine overrides; not pristine vanilla",
+    "exception": "Object tried to call nil in prepare",
+    "call_chain": [
+      "ComponentStyles.lua:74 global next(p)",
+      "Controls.lua:75 prerender"
+    ],
+    "result": "FAILED native frontend rendering",
+    "regression": "Constrained offline Lua5.1 VM with global next=nil fails at the same source call before the fix; all behavioral suites pass after pairs-based helper replacement",
+    "post_fix_runtime": "NOT TESTED"
+  }
 }

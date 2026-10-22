@@ -1,6 +1,11 @@
 -- Shared client presentation library. No application state, networking or mod APIs.
 B47ANCEDUI=B47ANCEDUI or {}
 local T={};B47ANCEDUI.Theme=T
+-- Private runtime helper: Kahlua exposes pairs, without a standard next global.
+function B47ANCEDUI._hasEntries(t)
+ for _ in pairs(t)do return true end
+ return false
+end
 local function color(r,g,b,a) return {r=r,g=g,b=b,a=a or 1} end
 T.colors={window=color(.035,.039,.039,.96),panel=color(.055,.059,.059,.96),raised=color(.09,.098,.098,.98),
  row=color(.055,.059,.059,.94),alternate=color(.075,.082,.082,.94),hover=color(.14,.157,.15,.98),

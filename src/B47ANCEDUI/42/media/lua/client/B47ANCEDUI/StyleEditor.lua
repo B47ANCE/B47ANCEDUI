@@ -41,7 +41,7 @@ function E.open(owner)
  local labels,controls={},{};local y=0
  local function editable()return not state.closed and not state.exitPrompt end
  local function pending(key,text)
-  local values=state.draft.pending or {};values[key]=text;state.draft.pending=next(values)and values or nil
+  local values=state.draft.pending or {};values[key]=text;state.draft.pending=U._hasEntries(values)and values or nil
  end
  local function addLabel(key)labels[#labels+1]={key=key,y=y};y=y+font+5 end
  local function combo(key)
@@ -89,7 +89,7 @@ function E.open(owner)
  reset=button('StyleResetComponent',function()
   if not editable()then return end
   pending('value',nil);local values=chosen().values
-  if values[state.scope]then values[state.scope][state.family]=nil;if not next(values[state.scope])then values[state.scope]=nil end end
+  if values[state.scope]then values[state.scope][state.family]=nil;if not U._hasEntries(values[state.scope])then values[state.scope]=nil end end
   preview();loadValue()
  end)
  local follow=button('StyleFollowShared',function()

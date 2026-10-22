@@ -1,3 +1,5 @@
+-- Fixture-only table iterator; the runtime global remains unavailable.
+local function next(t)for key,value in pairs(t)do return key,value end end
 -- Pure Lua/data and control doubles. No engine storage/render/input proof.
 local files,writes,fail,readError={},0,nil,nil
 getFileReader=function(path,create)

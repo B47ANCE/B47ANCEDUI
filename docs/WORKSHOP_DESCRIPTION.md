@@ -32,7 +32,7 @@ UI does not require Quartermaster, Rooms, PC Framework or custom Java/JAR compon
 
 MP testing build - dedicated multiplayer NOT TESTED
 
-Offline Lua 5.1 contracts, syntax, source inventory, translation coverage and package integrity fixtures passed. The earlier 0.5.0-dev.2 menu visuals were observed in an isolated local game profile; 0.9.0-dev.1 Options/editor/native HUD input, controller, split-screen, settings reload, subscription/download and dedicated-server behavior are NOT TESTED. This is test distribution, not stable-release certification.
+Offline Lua 5.1 contracts, syntax, source inventory, translation coverage and package integrity fixtures passed. The earlier 0.5.0-dev.2 menu visuals were observed in an isolated local game profile; 0.9.0-dev.2 Options/editor/native HUD input, controller, split-screen, settings reload, subscription/download and dedicated-server behavior are NOT TESTED. This is test distribution, not stable-release certification.
 
 ## Configuration
 Consuming mods can expose the shared local appearance editor: background opacity, a #RRGGBB hex field and Red/Green/Blue sliders (0–255). Changes preview locally; Reset restores opacity 82 and grey #B0B0B0. Existing opacity-only settings retain their values. Values are isolated by mod and local player. Appearance settings do not change gameplay or server permissions. There are no shared-gameplay sandbox options in this presentation-only foundation.
@@ -50,7 +50,7 @@ Developed by B47ANCE'd Workshop. Original B47ANCE-owned shared code extracted fr
 
 ## Development background
 
-Version 0.9.0-dev.1 adds the actual Options Interface page and safe HUD layout workspace, preserves the approved main-menu defaults and existing security-room artwork/audio/animation. It is development source only and has not been uploaded. See GitHub for support limits and offline evidence; native acceptance remains NOT TESTED.
+Version 0.9.0-dev.2 adds the actual Options Interface page and safe HUD layout workspace, preserves the approved main-menu defaults and existing security-room artwork/audio/animation. It is development source only and has not been uploaded. See GitHub for support limits and offline evidence; native acceptance remains NOT TESTED.
 
 - Development Options workspace: searchable header, category sidebar, responsive native section cards, editable grey accent and fixed native Back/Apply/Accept actions. Native settings values and behavior preserved; specialized/provider content keeps native internals. Native input/controller acceptance NOT TESTED. Not uploaded; Workshop remains0.5.0-dev.11.
 
@@ -60,3 +60,5 @@ Version 0.9.0-dev.1 adds the actual Options Interface page and safe HUD layout w
 
 ## Development source preview
 Editable UI Style Presets now live under Options → Interface in development source: shared component values and optional per-mod overrides, hex colors and bounded visual dimensions, live preview, explicit Save and unsaved-exit protection. Supported shared/native controls inherit styles; arbitrary provider rendering requires opt-in. Native acceptance is NOT TESTED. This description draft does not upload the development source; existing Workshop distribution remains unchanged.
+
+Development compatibility update: dev.2 replaces unsupported Kahlua global-next checks with pairs-based table presence. Post-fix native acceptance remains pending; this remains a description draft, not a new upload.

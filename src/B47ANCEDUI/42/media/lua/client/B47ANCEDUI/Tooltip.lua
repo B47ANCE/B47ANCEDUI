@@ -10,14 +10,14 @@ local function style(tip,owner,p)
  local proxy=setmetatable({b47RawRect=rect,b47RawBorder=border},{__index=tip})
  tip.drawRect=function(self,x,y,w,h,a,r,g,b)
   local props=U.ComponentStyles.properties(self,'tooltip')
-  if a>0 and x==0 and y==0 and w==self:getWidth()and h==self:getHeight()and next(props)then
+  if a>0 and x==0 and y==0 and w==self:getWidth()and h==self:getHeight()and U._hasEntries(props)then
    local c=U.ComponentStyles.color(self,U.Theme.colors.panel,'tooltip');c=U.Theme.copy(c);c.a=(props.opacity or a*100)/100
    return U.Renderer.roundedRect(proxy,x,y,w,h,c,0)
   end
   return rect(self,x,y,w,h,a,r,g,b)
  end
  tip.drawRectBorder=function(self,x,y,w,h,a,r,g,b)
-  if x==0 and y==0 and w==self:getWidth()and h==self:getHeight()and next(U.ComponentStyles.properties(self,'tooltip'))then
+  if x==0 and y==0 and w==self:getWidth()and h==self:getHeight()and U._hasEntries(U.ComponentStyles.properties(self,'tooltip'))then
    local c=U.Theme.copy(U.ComponentStyles.color(self,U.Theme.colors.border,'tooltip'));c.a=a
    return U.Renderer.roundedBorder(proxy,x,y,w,h,c,0)
   end

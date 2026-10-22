@@ -1,6 +1,6 @@
 # Architecture and persistence
 
-Project Version: 0.9.0-dev.1
+Project Version: 0.9.0-dev.2
 
 NativeSettings adds an instance-scoped Options palette/drawing adapter. Native settings retain their original values, callbacks, fonts/geometry, tabs, page stencils, display confirmation, audio rollback and input ownership. Supported late additions are adopted through owned container addChild delegates, with bounded initial traversal. Custom renderers and colour swatches remain guarded; shared dropdown popup fields/methods restore after themed draw/error and detached controls stop receiving drawing changes. Accent is UI's local slot 0; no gameplay state, new settings storage or public API changes. See NATIVE_SETTINGS.md for scope, evidence and runtime gates.
 
@@ -60,3 +60,5 @@ NativeMenus now observes the current native quit-dialog reference at its existin
 StylePresets owns a separate data-only schema1 two-slot journal per local player. ComponentStyles resolves immutable Theme/Appearance defaults through the selected preset shared/all/family and optional consumer overrides, caching by player/revision/scope/family. Native/API palette wrappers restore inherited colors before each refresh; slider pagination snapshots native geometry and keeps value mapping unchanged. Detached native sliders restore native dimensions. No new gameplay state, network channel, sandbox setting or world scan. Public API1 adds Slider/Styles/StyleEditor only.
 
 StyleEditor owns a viewport veil, a stable scrollable inspector and an opt-in preview subtree. A copied draft and single-owner preview lease separate live rendering from saved data. Save alternates journal slots and verifies read-back; Cancel restores saved data; invalid pending name/value fields cannot be cleared by editing another field. The shared exit guard protects voluntary unsaved closes; actual lifecycle teardown removes owned resources without writes. Frontend/player controller focus is transferred explicitly and restored only while owned. File failure/durability limitations, current validation and custom-renderer exclusions are recorded in STYLE_PRESETS.md.
+
+0.9.0-dev.2 adds a private early Theme-loaded table-presence helper using exposed pairs. All eight prior global-next checks in styles, profile pruning, pending/reset edits, tooltips and Options snapshots use it. No runtime globals are installed or patched, and no schema/data/default changes occur. Constrained offline VMs reproduce the native dev.1 failure and exercise the corrected paths. Native post-fix acceptance remains NOT TESTED.

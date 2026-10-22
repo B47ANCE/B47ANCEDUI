@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.9.0-dev.2] - 2026-10-22
+
+- Fix frontend rendering failure from unsupported global next() in the installed Kahlua runtime. Use one private pairs-based table-presence helper across styling, presets, editor pending/reset checks, tooltips and Options snapshots. No global compatibility shim or suppressed exception.
+- Run all behavioral fixtures with global next disabled and prevent active runtime code from reintroducing that call. Compatible PATCH; preset/menu/HUD schemas, API1, defaults and saved files unchanged. Native dev.1 startup failed; post-fix in-game acceptance remains pending.
+
 ## [0.9.0-dev.1] - 2026-10-21
 
 - Add editable local style presets with shared component values, optional per-mod overrides and independent preset bindings. Duplicate, rename, delete, inherit and reset component styles from Options → Interface → UI Style Presets.

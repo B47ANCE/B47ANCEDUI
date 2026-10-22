@@ -1,6 +1,6 @@
 # Editable UI style presets
 
-Project Version: 0.9.0-dev.1
+Project Version: 0.9.0-dev.2
 
 Open **Options → Interface → UI Style Presets**. Select the shared preset or a registered mod, then a component and property. Hex colors accept six digits with optional `#`; numeric properties have a bounded slider and text field. Empty values inherit. Duplicate, rename or delete presets (the default cannot be deleted), inherit one property, reset one component, or remove a mod's preset binding with Follow shared preset. Reset removes that component's explicit values only; inherited all-component/shared values still apply.
 
@@ -48,3 +48,5 @@ local radius=UI.Styles.number(myOwnedWidget,'radius',4)
 [TESTED: offline Windows, Lua5.1 doubles] `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py`, `git diff --check`. Tests cover journals, limits, unknown records, write/close/interruption failures, protected files, scoped inheritance/copy/lease ownership, palette rollback, slider geometry/value isolation, shared popup palette/error/foreign-owner restoration, default rounded outlines, independent primitive families, persistent focus rings, shared preview isolation, menu underline tokens, CRUD, invalid pending fields, explicit Save and unsaved exits, popup-first Escape, stale callbacks, frontend focus, viewport/stencil/scroll and lifecycle cleanup.
 
 [RUNTIME GATE] Actual PZ pixels, mouse/keyboard/controller dispatch, split-screen, file reload/failure recovery, custom-provider integration and performance remain NOT TESTED. G6 NOT TESTED; project G7/stable G8 BLOCKED. This iteration is source-only: no deployment, launch, package, merge or Workshop upload.
+
+0.9.0-dev.2 compatibility correction: the actual dev.1 frontend failed in ComponentStyles.prepare at its global next call. The installed Kahlua runtime does not provide that callable. One private pairs-based presence helper now handles all style/preset/editor/tooltip/Options checks; every behavioral test VM disables global next and the reproduction fails before the fix. Names, schema1 journal records, colors/geometry defaults and API1 are unchanged. Native post-fix acceptance remains pending. The earlier dev.1 offline pass is historical and did not establish Kahlua compatibility.

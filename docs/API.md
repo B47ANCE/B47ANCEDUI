@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.9.0-dev.1
+Project Version: 0.9.0-dev.2
 
 The native Options/settings adapter is internal and automatic when UI loads. Consumers still use API major 1 and style only their own widgets; it adds no consumer API, gameplay settings or dependency. It retains native option ownership and guards custom renderers. See [native settings scope](NATIVE_SETTINGS.md).
 
@@ -82,3 +82,5 @@ The 0.8.0-dev.2 HUD editor correction changes internal pointer/exit routing only
 The 0.8.0-dev.3 main-menu Quit confirmation skin is internal instance presentation only. Public API1 and saved schemas/defaults remain compatible; native modal text/geometry/actions/focus are retained. See NATIVE_MENUS.md.
 
 The 0.9 preset addition is compatible API1. Shared native/API controls and Renderer resolve the current local preset automatically; explicit family metadata governs generic palettes, and explicit row/tick/progress draw families remain separate. Private ComponentStyles/StylePresets modules are not supported consumer entry points. Existing Appearance methods continue to edit/read their own legacy preferences; explicit presets take precedence when rendered. See [editable preset contracts](STYLE_PRESETS.md).
+
+0.9.0-dev.2 is an internal Kahlua compatibility fix for table-presence checks; public API1, styles and persistence contracts are unchanged. The private helper is not a supported consumer API.

@@ -16,6 +16,7 @@ def validate():
     keys=set()
     for p in (SOURCE/'42/media/lua/client').rglob('*.lua'):
         text=p.read_text()
+        assert not re.search(r'\bnext\s*\(',text),(p,'Unsupported Kahlua global table iterator')
         for prohibited in ('B47ANCEDQuartermaster','UI_QMSS_','sendClientCommand','sendServerCommand','ModData','getSpecificPlayer'):
             assert prohibited not in text,(p,prohibited)
         for required in re.findall(r"require\s*\(?\s*['\"](B47ANCEDUI/[^'\"]+)",text):

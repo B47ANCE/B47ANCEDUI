@@ -1,6 +1,6 @@
 # Options workspace
 
-Project Version: 0.9.0-dev.1
+Project Version: 0.9.0-dev.2
 
 The owner-provided reference guides a near-black Options layout: header search, left category sidebar with original primitive icons and subtitles, a native category heading, rounded section cards and fixed Back / Apply / Accept actions. The shared local accent remains editable and defaults to grey. No reference pixels, third-party code or external assets are copied.
 
@@ -21,3 +21,5 @@ This compatible MINOR feature changes no public API major, saved menu/HUD schema
 [TESTED: offline Windows] `python -X utf8 -B scripts/check_versions.py`, `python -X utf8 -B tests/run_tests.py` and `git diff --check` pass. Fixtures cover seven viewport sizes (1024x768 through5120x1440) at four font heights, native object/row/value ownership, repeated layout, scoped title drawing/error restoration, search/Return/modal guards, sidebar/controller handoff, horizontal fallback reveal, late tabs/controls, rebuilt generations, intermediate card widths, negative native coordinates, large-font result/footer bounds, microphone meter and translator pagination. Inventory:65 runtime files,74 keys across29 English-fallback locales; translations remain unreviewed. Doubles are not native rendering/input proof.
 
 [RUNTIME GATE] Check the actual title-screen and Esc Options at standard/ultrawide sizes, all categories, long translations and large fonts; wheel/card/stencil/dropdown boundaries; controller search/results/bumpers and slider directions; key capture/cancel; audio preview then Back; display change/revert confirmation; unsaved Back, disabled Apply and existing resets. No new game/deploy/package/merge/Workshop action accompanies this iteration. G6 NOT TESTED; project G7/stable G8 BLOCKED. The earlier running dev.3 local build is not this redesign.
+
+0.9.0-dev.2 replaces the Options snapshot table-presence check with the shared private pairs-based helper. Native snapshot/content/action ownership remains unchanged. Global next is disabled throughout offline Options fixtures; native post-fix acceptance is pending.

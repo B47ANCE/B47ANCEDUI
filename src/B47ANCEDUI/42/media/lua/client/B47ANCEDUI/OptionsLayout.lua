@@ -44,7 +44,7 @@ local function snapshot(root,view)
   while w and w.parent and w.parent~=p do w=w.parent end
   if w and w.parent==p then controls[w]=true end
  end
- if not next(controls)then return end
+ if not U._hasEntries(controls)then return end
  for _,w in ipairs(list)do
   if not safe[w.Type] and w~=MainOptions.translatorPane then return end
   if w.Type=='ISPanel' and not controls[w] then return end

@@ -65,8 +65,8 @@ function S.set(book,key,scope,family,property,value)
  v[scope]=v[scope] or {};v[scope][family]=v[scope][family] or {}
  if value~=nil then value=S.value(property,value);if value==nil then return end end
  v[scope][family][property]=value
- if not next(v[scope][family])then v[scope][family]=nil end
- if not next(v[scope])then v[scope]=nil end
+ if not U._hasEntries(v[scope][family])then v[scope][family]=nil end
+ if not U._hasEntries(v[scope])then v[scope]=nil end
  return S.valid(out) and out or nil
 end
 function S.duplicate(book,key,name)

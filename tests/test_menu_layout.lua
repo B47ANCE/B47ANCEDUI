@@ -1,3 +1,5 @@
+-- Fixture-only table iterator; the runtime global remains unavailable.
+local function next(t)for key,value in pairs(t)do return key,value end end
 -- Disposable local preferences only; never reads/writes a real player profile.
 local filename='B47ANCEDUI/main-menu-layout.txt'
 local files,reads,writes,closed={},0,0,0

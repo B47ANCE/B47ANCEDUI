@@ -1,4 +1,4 @@
-Version 0.9.0-dev.1
+Version 0.9.0-dev.2
 
 - Development main-menu Quit to desktop confirmation now uses shared near-black rounded surfaces and local accent; native Yes/No actions/focus/geometry retained. Native acceptance NOT TESTED; not uploaded.
 
@@ -23,3 +23,5 @@ Save explicit local overrides for supported native HUD windows. Inventory/loot/c
 Offline Lua 5.1/source/version/translation/archive/regression fixtures PASS. Native input/controller/settings/HUD restoration, split-screen and actual persistence acceptance NOT TESTED. Project G7/stable G8 BLOCKED. Existing artwork, four independent 1–60 second static/no-signal screens and title-screen audio behavior are unchanged. No package, deployment, game/server launch or upload in this iteration.
 
 Development source addition: editable local UI style presets for supported component families, shared styles/per-mod overrides, live preview, explicit verified Save and unsaved Cancel/Escape protection. Native input/persistence acceptance NOT TESTED. Workshop item remains on the historical published build until a separate upload is requested.
+
+Dev.2 source correction: fix unsupported global-next table checks that interrupted actual main-menu rendering. Full behavioral suite now runs with that global disabled; post-fix native acceptance pending. No new Workshop upload.

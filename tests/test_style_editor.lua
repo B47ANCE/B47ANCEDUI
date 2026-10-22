@@ -1,3 +1,5 @@
+-- Fixture-only table iterator; the runtime global remains unavailable.
+local function next(t)for key,value in pairs(t)do return key,value end end
 -- Reuses the layout editor native-shaped doubles, plus the new owned inspector.
 local files,writes={},0
 getFileReader=function(path,create)

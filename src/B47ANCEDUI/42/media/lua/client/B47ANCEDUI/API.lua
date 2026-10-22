@@ -7,7 +7,7 @@ local U=B47ANCEDUI
 U.AppearanceEditor={open=function(owner) return require('B47ANCEDUI/AppearanceEditor').open(owner) end}
 U.StyleEditor={open=function(owner)return require('B47ANCEDUI/StyleEditor').open(owner)end}
 U.apiVersion=1
-U.version='0.9.0-dev.1'
+U.version='0.9.0-dev.2'
 local styleFamilies={};for _,family in ipairs(U.StylePresets.families)do styleFamilies[family]=true end
 U.Styles={
  setFamily=function(widget,family)assert(widget and styleFamilies[family],'Invalid style family');widget.b47StyleFamily=family;return widget end,
