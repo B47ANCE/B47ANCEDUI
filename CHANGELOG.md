@@ -2,6 +2,8 @@
 
 ## [0.12.0-dev.1] - 2026-10-24
 
+- Publication: PR16 merged after CI; existing public Workshop item3822582242 updated from exact source d992608. SteamCMD commit-success and exact public description/source/ZIP/stage parity verified. Separate user-approved Steam start confirmed (already closed); no local deployment or game/server launch. Native/dedicated acceptance remains NOT TESTED; dated receipt in docs/WORKSHOP_PRESETS_UPDATE.md.
+
 - Add independent editable surface/state colors, per-component scrollbar styles and RGB controls alongside hex values; old generic colors remain fallbacks.
 - Add data-only preset plugins from enabled mods. Packs populate an inactive catalog; explicit selection previews a detached editable local copy. Save retains complete data; Cancel restores the prior selection. Discovery never activates or writes preferences.
 - Add one-button selected-preset export with stable pack identity, read-back verification and native Workshop handoff. An optional offline packager/watch helper creates a data-only dependent mod and private Workshop staging, preserving native item identity/visibility on updates. Pure Lua cannot safely create new Workshop staging content; helper setup and final native Publish remain explicit user steps.

@@ -4,7 +4,7 @@
   "name": "B47ANCE'd UI",
   "version": "0.12.0-dev.1",
   "reviewed": true,
-  "source_digest": "769421fb576beb8f76269e2a57e60980c0ead952708f8187fe11fc208a60754c",
+  "source_digest": "25b54061d2b9e7fc41e7a5e2ead05e2b09067bd2444430b74e2363b080e60660",
   "features": [
     {
       "status": "Source",
@@ -72,7 +72,7 @@
     },
     {
       "status": "Source",
-      "text": "Public Workshop MP test item 3822582242 updated to 0.5.0-dev.11 after PR 14, with 52-file source/ZIP/stage parity, SteamCMD commit-success and exact public description. Steam unchanged by user choice; native/dedicated NOT TESTED."
+      "text": "Public Workshop MP test item3822582242 updated to0.12.0-dev.1 after PR16, release sourced992608;78-file source/ZIP/stage parity, SteamCMD commit-success and exact public description verified. Previous ZIP retained. Steam desktop started once after specific approval (already closed); subscribed download/native/dedicated NOT TESTED."
     },
     {
       "status": "Source",
@@ -147,7 +147,7 @@
       "text": "One-button authored-preset data export with explicit New/Update identity, checked completion/status and native Options/Workshop handoff. Optional manually started Python helper stages dependent data-only mods with fixed inventory, transactional rollback/history and exact native metadata preservation. Final native Publish stays explicit; actual discovery/export/upload NOT TESTED."
     }
   ],
-  "limits": "0.12.0-dev.1 compatible MINOR local-presentation colors/catalogue/export addition; API1 and schemas/defaults compatible. Offline suites PASS:78 runtime files/198 keys/29 unreviewed English-fallback locales. 61-area route/limit record is not a screen-completion claim. Bespoke rows/inner textures, inaccessible local classes, native engine clock/moodles/radials/model/document content and unknown providers retain explicit boundaries. Native rendering/input/controller/split-screen/performance/load order and PZAPI Meta dispatch NOT TESTED. Earlier audits/startup tests remain historical; G6 NOT TESTED, project G7/stable G8 BLOCKED. No deploy/launch/package/upload; Workshop remains0.5.0-dev.11. Native input text/placeholders limited to API-owned inputs; PZAPI universal thumb-hover/cursor/selection unavailable. Exports omit layouts and legacy Appearance preferences. Helper setup is required for new Workshop staging; no pure-Lua one-click upload claim.",
+  "limits": "0.12.0-dev.1 compatible MINOR local-presentation colors/catalogue/export addition; API1 and schemas/defaults compatible. Offline suites PASS:78 runtime files/198 keys/29 unreviewed English-fallback locales. 61-area route/limit record is not a screen-completion claim. Bespoke rows/inner textures, inaccessible local classes, native engine clock/moodles/radials/model/document content and unknown providers retain explicit boundaries. Native rendering/input/controller/split-screen/performance/load order and PZAPI Meta dispatch NOT TESTED. Earlier audits/startup tests remain historical; G6 NOT TESTED, project G7/stable G8 BLOCKED. 0.12.0-dev.1 Workshop MP test upload verified; no deployment/game/server launch. Separate user-approved Steam start verified; subscribed download NOT TESTED. Native input text/placeholders limited to API-owned inputs; PZAPI universal thumb-hover/cursor/selection unavailable. Exports omit layouts and legacy Appearance preferences. Helper setup is required for new Workshop staging; no pure-Lua one-click upload claim.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -201,7 +201,9 @@
     "tests/test_preset_plugins.lua",
     "tests/test_preset_export.lua",
     "tests/test_preset_packager.py",
-    "scripts/preset_packager.py"
+    "scripts/preset_packager.py",
+    "docs/WORKSHOP_PRESETS_UPDATE.md",
+    "docs/WORKSHOP_UPDATE_0.12.0-dev.1_2026-10-24.json"
   ],
   "relations": []
 }

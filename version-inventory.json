@@ -204,6 +204,10 @@
     {
       "reference": "docs/UI_COVERAGE_AUDIT_2026-10-24.md; docs/UI_COVERAGE_INVENTORY_2026-10-24.json; docs/UI_SOURCE_CATALOG_2026-10-24.json; docs/UI_COVERAGE_RULES_2026-10-24.json",
       "reason": "Dated source-only menu coverage audit binds observed project0.10.0-dev.2/runtime sourceb699329 and installed42.21.0/Steam25485521. Fixed versions/hashes/targets remain historical; not future project-version mirrors or native acceptance."
+    },
+    {
+      "reference": "docs/WORKSHOP_PRESETS_UPDATE.md; docs/WORKSHOP_UPDATE_0.12.0-dev.1_2026-10-24.json",
+      "reason": "Immutable dated0.12.0-dev.1 Workshop distribution receipt binds actual source/validation commit, exact package/runtime/text hashes and public verification. Preserve its version/identities on future development bumps; not native or dedicated acceptance."
     }
   ]
 }
