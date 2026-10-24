@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.9.0-dev.4
+Project Version: 0.10.0-dev.1
 
 The native Options/settings adapter is internal and automatic when UI loads. Consumers still use API major 1 and style only their own widgets; it adds no consumer API, gameplay settings or dependency. It retains native option ownership and guards custom renderers. See [native settings scope](NATIVE_SETTINGS.md).
 
@@ -88,3 +88,7 @@ The 0.9 preset addition is compatible API1. Shared native/API controls and Rende
 0.9.0-dev.3 is an internal Options layout correction: persistent categories/search, bounded native section/page navigation and genuine-overflow-only bars. Search reveals existing settings; native Apply/value/parent/controller ownership stays intact. Public API1 and all saved schemas remain compatible. See OPTIONS_LAYOUT.md; native post-fix acceptance NOT TESTED.
 
 0.9.0-dev.4 changes only the internal native section-dropdown tooltip contract: setToolTipMap after clear. API1, native values/callbacks, preset/layout schemas and defaults remain compatible. The preceding dev.3 native attach failure is recorded in TESTING.md; post-fix acceptance remains pending.
+
+## Native overhaul integration (0.10)
+
+The context/inventory/dialog adapters are internal. Consumers continue using API1 without new registration or dependencies. Native UI uses the existing B47ANCEDUI scope and explicit local-player slot; no profile/schema/default or gameplay API changes. Only documented neutral presentation tokens are adopted. Native semantic colours, callbacks and geometry remain owned by their source. See [coverage and gates](NATIVE_OVERHAUL.md).

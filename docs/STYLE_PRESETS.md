@@ -1,6 +1,6 @@
 # Editable UI style presets
 
-Project Version: 0.9.0-dev.4
+Project Version: 0.10.0-dev.1
 
 Open **Options → Interface → UI Style Presets**. Select the shared preset or a registered mod, then a component and property. Hex colors accept six digits with optional `#`; numeric properties have a bounded slider and text field. Empty values inherit. Duplicate, rename or delete presets (the default cannot be deleted), inherit one property, reset one component, or remove a mod's preset binding with Follow shared preset. Reset removes that component's explicit values only; inherited all-component/shared values still apply.
 
@@ -54,3 +54,7 @@ local radius=UI.Styles.number(myOwnedWidget,'radius',4)
 Post-fix dev.2 local deployment/limited startup on 2026-10-22:68 source/destination hashes match, saved preferences preserved, responding game window, Options styling/interface attachment true and no UI exception trace in the fresh console at observation. This is startup evidence, not full visual/input/preset/controller or persistence acceptance. Existing engine modifications and unrelated warnings remain; see TESTING.md.
 
 The subsequent user screenshot of the dev.2 local test showed blank Options categories and overflowing rows. This is failed Options visual acceptance despite successful startup; dev.3 corrects those separate layout defects in source. Preset rendering/input acceptance remains NOT TESTED.
+
+## Native overhaul coverage (0.10)
+
+Context menus use List, inventory/loot chrome uses Window, neutral inventory drawing uses Row, owned native controls use Normal button, tooltips use Tooltip, selected confirmations use Dialog, and inventory scrollbar colours use Slider. These are scoped adapters. Native text/semantic colours/fonts/geometry remain native; scrollbar dimension presets do not resize its hit areas. Transparent icon backings stay transparent and controller focus remains visible at zero border width. See [exact token/alpha bounds](NATIVE_OVERHAUL.md).

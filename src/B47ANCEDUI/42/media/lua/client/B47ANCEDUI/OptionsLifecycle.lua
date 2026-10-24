@@ -4,7 +4,7 @@ require 'OptionScreens/MainScreen'
 require 'OptionScreens/MainOptions'
 local U=B47ANCEDUI;if U.OptionsLifecycle then return U.OptionsLifecycle end
 local L={};U.OptionsLifecycle=L
-local listeners,order={},{}
+local listeners,order,monitors,monitorOrder={},{},{},{}
 local function pack(...)return {n=select('#',...),...}end
 local function ready(root,state)
  if state.busy or not root.tabs then return end
@@ -16,6 +16,7 @@ local function ready(root,state)
     state.seen[id]=root.tabs
    end
   end
+  for _,id in ipairs(monitorOrder)do monitors[id](root)end
   if listeners['native-settings'] and listeners['interface-page'] then
    local styled=root.b47NativeSettingsOwner==root
    local page=root.b47InterfaceTabs==root.tabs and root.b47InterfacePage~=nil
@@ -62,6 +63,11 @@ end
 function L.register(id,callback)
  assert(not listeners[id],'Duplicate Options lifecycle listener')
  listeners[id]=callback;order[#order+1]=id;L.current()
+end
+-- Constant-sized observations of known owned fields, after native construction.
+function L.monitor(id,callback)
+ assert(not monitors[id],'Duplicate Options monitor')
+ monitors[id]=callback;monitorOrder[#monitorOrder+1]=id;L.current()
 end
 Events.OnMainMenuEnter.Add(L.current)
 Events.OnGameStart.Add(L.current)

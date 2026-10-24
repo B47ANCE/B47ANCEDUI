@@ -1,6 +1,6 @@
 # Main-menu layout editor
 
-Project Version: 0.9.0-dev.4
+Project Version: 0.10.0-dev.1
 
 The 0.7 series adds compatible local layout editing; this dev.2 PATCH guards unsaved exits. Public API major1, formats and approved defaults are unchanged. Workshop remains 0.5.0-dev.11; current source is not deployed/uploaded. Historical 0.6.0-dev.2 local startup is recorded separately in TESTING.md.
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0-dev.1] - 2026-10-23
+
+- Start the native overhaul: near-black world/item/empty-inventory context menus and pooled submenus, live inventory/loot chrome and neutral rows, owned buttons/scrollbars, reached native tooltip frames and selected Options/inventory dialogs.
+- Preserve native item actions/transfers, semantic colours, fonts/geometry, layout restoration and dialog timers. Respect per-player presets, transparent controls and controller focus; restore temporary drawing methods on errors.
+- Add strict native-shaped regressions and portable source evidence. Offline suites PASS; native rendering/input/controller/split-screen NOT TESTED. Exact coverage: docs/NATIVE_OVERHAUL.md. No deploy/upload.
+- Compatible MINOR presentation addition; public API1, saved layouts/presets/defaults and gameplay ownership remain unchanged.
+
 ## [0.9.0-dev.4] - 2026-10-22
 
 - 2026-10-23 audit-only checkpoint: record 61 grouped UI work areas, 622 installed source candidates and 576 UI declarations with source fingerprints, explicit adoption/geometry/preview/engine boundaries and prioritized remaining work. Add read-only repeatable catalogue tooling; no runtime/version change.

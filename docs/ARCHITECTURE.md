@@ -1,6 +1,6 @@
 # Architecture and persistence
 
-Project Version: 0.9.0-dev.4
+Project Version: 0.10.0-dev.1
 
 NativeSettings adds an instance-scoped Options palette/drawing adapter. Native settings retain their original values, callbacks, fonts/geometry, tabs, page stencils, display confirmation, audio rollback and input ownership. Supported late additions are adopted through owned container addChild delegates, with bounded initial traversal. Custom renderers and colour swatches remain guarded; shared dropdown popup fields/methods restore after themed draw/error and detached controls stop receiving drawing changes. Accent is UI's local slot 0; no gameplay state, new settings storage or public API changes. See NATIVE_SETTINGS.md for scope, evidence and runtime gates.
 
@@ -66,3 +66,7 @@ StyleEditor owns a viewport veil, a stable scrollable inspector and an opt-in pr
 0.9.0-dev.3 separates native visibility intent from section/page visibility in Options. A measured bounded plan retains native rows/controls/GameOptions and selects a visible controller target; search resolves section/page before revealing the original control. Categories use explicit navigation pages when crowded. Shared combo activity requires parent expansion plus actual UIManager membership; a stale visible flag cannot hide navigation. Fitting pages remove unused horizontal bars and suppress vertical scrolling; specialized/oversized native content retains genuine overflow. No new persistence or gameplay ownership. Native post-fix acceptance NOT TESTED.
 
 0.9.0-dev.4 corrects one native receiver contract: section dropdowns use the native tooltip map, reapplied after native clear resets it. The fixture no longer grants ISComboBox the generic setTooltip method. This prevents the observed partial Options construction; it does not suppress native errors or alter gameplay/persistence ownership.
+
+## Native overhaul (0.10)
+
+Private NativePresentation helpers support NativeContext, NativeInventory and NativeDialogs. Exact native instances are adopted at known events/owned fields; delegates run once with exception-safe temporary drawing overrides. Native inventory creation/layout restore precedes observation, and replaced player roots fall back to unstyled native drawing. A private Options lifecycle monitor observes known dialogs after construction without replacing the renderer identity guard. Appearance proxies carry the explicit local-player slot; native player fields, geometry, actions and shared state remain untouched. [Coverage and runtime gates](NATIVE_OVERHAUL.md).

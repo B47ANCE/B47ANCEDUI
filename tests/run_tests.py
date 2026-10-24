@@ -55,3 +55,8 @@ styles.globals().package.path=(ROOT/'src/B47ANCEDUI/42/media/lua/client').as_pos
 styles.globals().B47ANCEDUI_FIXTURE_ONLY=True
 styles.execute((ROOT/'tests/test_api.lua').read_text())
 styles.execute((ROOT/'tests/test_style_presets.lua').read_text())
+native=client_runtime()
+native.globals().package.path=(ROOT/'src/B47ANCEDUI/42/media/lua/client').as_posix()+'/?.lua;'+native.globals().package.path
+native.globals().B47ANCEDUI_FIXTURE_ONLY=True
+native.execute((ROOT/'tests/test_api.lua').read_text())
+native.execute((ROOT/'tests/test_native_overhaul.lua').read_text())

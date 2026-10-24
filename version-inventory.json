@@ -65,6 +65,10 @@
     {
       "path": "docs/STYLE_PRESETS_SOURCE.json",
       "pattern": "^  \"project_version\": \"(?P<version>[^\"]+)\""
+    },
+    {
+      "path": "docs/NATIVE_OVERHAUL.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {
@@ -176,6 +180,10 @@
     {
       "reference": "docs/UI_COVERAGE_AUDIT_2026-10-23.md; docs/UI_COVERAGE_INVENTORY_2026-10-23.json; docs/UI_SOURCE_CATALOG_2026-10-23.json",
       "reason": "Dated source-only UI coverage inventory binds observed project0.9.0-dev.4/source7c452b8 and installed Build42.21.0/Steam25485521. Preserve actual snapshot identities/counts/hashes; not future project-version mirrors or runtime acceptance."
+    },
+    {
+      "reference": "docs/NATIVE_OVERHAUL_SOURCE.json",
+      "reason": "Dated source audit introduced in0.10.0-dev.1; fixed installed game/source observations, not future project-version mirrors or runtime acceptance."
     }
   ]
 }

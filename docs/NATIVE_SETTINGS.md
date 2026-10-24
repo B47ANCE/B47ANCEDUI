@@ -1,6 +1,6 @@
 # Native settings presentation
 
-Project Version: 0.9.0-dev.4
+Project Version: 0.10.0-dev.1
 
 The Options screen now uses the sidebar/search/card workspace described in [OPTIONS_LAYOUT.md](OPTIONS_LAYOUT.md). `NativeSettings.lua` remains its palette adapter: near-black surfaces, restrained rounded native controls, grey default accent `#B0B0B0` and guarded native/provider ownership. `OptionsLayout.lua` adds instance geometry/navigation after palette and Interface attachment. It replaces the recognized native tab strip with category navigation, while preserving the original tabs/pages/controls/actions underneath. The palette-only statements below describe NativeSettings, not the aggregate workspace layout.
 
@@ -49,3 +49,5 @@ Verified adopted instances resolve their component family in the new local prese
 0.9.0-dev.3 corrects the Options workspace above this palette layer: dismissed shared popup visibility no longer hides categories/search, native sections use bounded pages and hidden separators no longer inflate horizontal extent. Actual registered expanded popups still block underlying actions. Native Apply, option values, controller row identity and visibility intent remain owned by PZ. See OPTIONS_LAYOUT.md and OPTIONS_LAYOUT_SOURCE.json. Current native visual/input acceptance NOT TESTED.
 
 The dev.3 local Options setup failed at OptionsLayout.lua448 because native ISComboBox has setToolTipMap rather than setTooltip. Dev.4 uses the verified map API after clear and reproduces the original failure in a stricter fixture. This correction is in the layout layer; palette/native settings state remains unchanged. Current post-fix native acceptance is pending.
+
+Current 0.10 source also observes the owned native Options unsaved/display-change modal field with exact type/target/callback guards. Frames/buttons are styled without dialog reflow or replacing native countdown, rollback, focus or actions. Restart/text-entry/other confirmations remain separate. See [native overhaul](NATIVE_OVERHAUL.md).

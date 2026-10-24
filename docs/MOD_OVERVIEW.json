@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.9.0-dev.4",
+  "version": "0.10.0-dev.1",
   "reviewed": true,
-  "source_digest": "34bc31ea7b90ec775295d676725362a9ff5a1685e4458d99eebfd5c8d09e2dd5",
+  "source_digest": "48a1a92b720e7c7e5ddf453f1c9d393ae9aa960c6a8dc0e3a2476a34783ca363",
   "features": [
     {
       "status": "Source",
@@ -117,9 +117,13 @@
     {
       "status": "Source",
       "text": "Native Options section-dropdown compatibility fix: verified setToolTipMap/defaultTooltip after clear replaces unsupported setTooltip. Actual dev.3 Kahlua attach failure reproduced at identical source call in strict fixture; current suite passes, native post-fix acceptance pending."
+    },
+    {
+      "status": "Source",
+      "text": "First native overhaul: world/item/empty-container context menus and pooled submenus, live inventory/loot chrome/neutral rows, owned buttons/vertical scrollbar palette, reached tooltip frames and selected Options/inventory dialogs. Native guards preserve actions/geometry/semantic colours; explicit player preset context and exception-safe draws. Native acceptance NOT TESTED."
     }
   ],
-  "limits": "0.9.0-dev.4 compatible development correction; Workshop remains0.5.0-dev.11. Offline suites PASS:68 runtime files/144 keys/29 unreviewed English-fallback locales. Dev.1 global-next rendering failure corrected in dev.2, whose limited startup was observed. Dev.3 source101ac0a deployed with68/68 hash parity but native Options attach FAILED at unsupported ISComboBox.setTooltip, producing a partial shell. Dev.4 uses setToolTipMap after clear and passes the exact strict regression; post-fix native rendering/input/controller acceptance NOT TESTED. Safe previews/explicit supported HUD overrides only; unknown providers opt in and oversized specialized content retains genuine overflow. No shared gameplay/network/sandbox state. G6 NOT TESTED; project G7/stable G8 BLOCKED. Current correction is prepared for authorized local retesting; no package/upload. Dated 2026-10-23 audit identifies 61 grouped work areas and 622 UI-related source candidates; files/classes are not screen counts or completion percentages. Eight native HUD targets provide geometry only; broad gameplay/frontend adoption remains outstanding. Audit changes no runtime files.",
+  "limits": "0.10.0-dev.1 compatible MINOR local-presentation addition. Offline suites PASS:72 runtime files/144 keys/29 unreviewed English-fallback locales. Strict native-overhaul doubles/source contracts pass; actual pixels/input/transfers/controller/split-screen/performance NOT TESTED. Coverage is bounded in NATIVE_OVERHAUL.md; broad remaining gameplay/frontend work needs explicit adoption. Historical 0.9 Options fixes and limited startup evidence stay separate; dated audit observed61 work areas/622 candidate files, not screen counts/completion percentages. API1, schemas/defaults/shared gameplay ownership unchanged. G6 NOT TESTED; project G7/stable G8 BLOCKED. No package/deploy/launch/upload; Workshop remains0.5.0-dev.11.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -154,7 +158,10 @@
     "tests/test_style_editor.lua",
     "docs/UI_COVERAGE_AUDIT_2026-10-23.md",
     "docs/UI_COVERAGE_INVENTORY_2026-10-23.json",
-    "docs/UI_SOURCE_CATALOG_2026-10-23.json"
+    "docs/UI_SOURCE_CATALOG_2026-10-23.json",
+    "docs/NATIVE_OVERHAUL.md",
+    "docs/NATIVE_OVERHAUL_SOURCE.json",
+    "tests/test_native_overhaul.lua"
   ],
   "relations": []
 }
