@@ -1,6 +1,6 @@
 # Editable UI style presets
 
-Project Version: 0.10.0-dev.1
+Project Version: 0.10.0-dev.2
 
 Open **Options → Interface → UI Style Presets**. Select the shared preset or a registered mod, then a component and property. Hex colors accept six digits with optional `#`; numeric properties have a bounded slider and text field. Empty values inherit. Duplicate, rename or delete presets (the default cannot be deleted), inherit one property, reset one component, or remove a mod's preset binding with Follow shared preset. Reset removes that component's explicit values only; inherited all-component/shared values still apply.
 

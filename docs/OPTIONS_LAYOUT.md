@@ -1,6 +1,6 @@
 # Options workspace
 
-Project Version: 0.10.0-dev.1
+Project Version: 0.10.0-dev.2
 
 The owner-provided reference guides near-black Options with header search, left categories, original primitive icons/subtitles, rounded native settings and fixed Back / Apply / Accept actions. The editable accent defaults to grey. No reference pixels, third-party code or assets are copied.
 

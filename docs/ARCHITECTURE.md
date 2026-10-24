@@ -1,6 +1,6 @@
 # Architecture and persistence
 
-Project Version: 0.10.0-dev.1
+Project Version: 0.10.0-dev.2
 
 NativeSettings adds an instance-scoped Options palette/drawing adapter. Native settings retain their original values, callbacks, fonts/geometry, tabs, page stencils, display confirmation, audio rollback and input ownership. Supported late additions are adopted through owned container addChild delegates, with bounded initial traversal. Custom renderers and colour swatches remain guarded; shared dropdown popup fields/methods restore after themed draw/error and detached controls stop receiving drawing changes. Accent is UI's local slot 0; no gameplay state, new settings storage or public API changes. See NATIVE_SETTINGS.md for scope, evidence and runtime gates.
 
@@ -70,3 +70,5 @@ StyleEditor owns a viewport veil, a stable scrollable inspector and an opt-in pr
 ## Native overhaul (0.10)
 
 Private NativePresentation helpers support NativeContext, NativeInventory and NativeDialogs. Exact native instances are adopted at known events/owned fields; delegates run once with exception-safe temporary drawing overrides. Native inventory creation/layout restore precedes observation, and replaced player roots fall back to unstyled native drawing. A private Options lifecycle monitor observes known dialogs after construction without replacing the renderer identity guard. Appearance proxies carry the explicit local-player slot; native player fields, geometry, actions and shared state remain untouched. [Coverage and runtime gates](NATIVE_OVERHAUL.md).
+
+0.10.0-dev.2 corrects native empty-inventory event bootstrap: register only when absent through vanilla LuaEventManager.AddEvent, preserving preexisting handlers. The strict fixture reproduces the dev.1 startup failure before correction. No public API/profile/action/geometry changes. Corrected native visual/input acceptance remains pending; no Workshop upload.

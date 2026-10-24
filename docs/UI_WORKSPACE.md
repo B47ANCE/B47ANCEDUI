@@ -1,6 +1,6 @@
 # Options and safe HUD layout workspace
 
-Project Version: 0.10.0-dev.1
+Project Version: 0.10.0-dev.2
 
 Current 0.8.0-dev.2 adds compatible PATCH fixes for HUD editor input/exit handling to the 0.8 Options workspace. The 0.7 series introduced safe HUD previews and shared unsaved-exit confirmation. Public API major 1, existing appearance storage, main-menu schema 1 and the owner-approved menu/logo defaults remain compatible. No current package, deployment, launch or Workshop upload is part of this iteration.
 

@@ -60,3 +60,9 @@ native.globals().package.path=(ROOT/'src/B47ANCEDUI/42/media/lua/client').as_pos
 native.globals().B47ANCEDUI_FIXTURE_ONLY=True
 native.execute((ROOT/'tests/test_api.lua').read_text())
 native.execute((ROOT/'tests/test_native_overhaul.lua').read_text())
+existing_event=client_runtime()
+existing_event.globals().package.path=native.globals().package.path
+existing_event.globals().B47ANCEDUI_FIXTURE_ONLY=True
+existing_event.globals().B47ANCEDUI_EMPTY_EVENT_PREEXISTS=True
+existing_event.execute((ROOT/'tests/test_api.lua').read_text())
+existing_event.execute((ROOT/'tests/test_native_overhaul.lua').read_text())

@@ -60,5 +60,13 @@ function C.fill(player,context,_,test)
 end
 Events.OnFillWorldObjectContextMenu.Add(C.fill)
 Events.OnFillInventoryObjectContextMenu.Add(C.fill)
+-- The installed inventory Lua triggers this name without registering it.
+-- Match vanilla's Lua event bootstrap; preserve an existing event/handlers.
+if not Events.OnFillInventoryContextMenuNoItems then
+ LuaEventManager.AddEvent('OnFillInventoryContextMenuNoItems')
+end
+assert(Events.OnFillInventoryContextMenuNoItems and Events.OnFillInventoryContextMenuNoItems.Add,
+ 'B47ANCEDUI: empty-inventory context event registration unavailable')
 Events.OnFillInventoryContextMenuNoItems.Add(C.fill)
+print('B47ANCEDUI native context adapter: hooks ready')
 return C

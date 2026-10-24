@@ -152,6 +152,35 @@
         3389
       ],
       "observation": "Owned modal field, exact native unsaved/display confirmation callbacks."
+    },
+    {
+      "path": "media/lua/client/Vehicles/ISUI/ISVehicleDashboard.lua",
+      "sha256": "5b56f71248cd371f3d43aebe53fe6147f785ba97fc76c380bef07da69cdb7ce1",
+      "lines": [
+        715,
+        718
+      ],
+      "observation": "Vanilla registers an event through LuaEventManager.AddEvent before Events[name].Add subscription."
+    },
+    {
+      "path": "media/lua/client/OptionScreens/MultiplayerUI.lua",
+      "sha256": "e19afe750051a08015179e19ab74849414a1ba80aa46c0586c51447d507e6cc5",
+      "lines": [
+        1755,
+        1764
+      ],
+      "observation": "Vanilla client registers named events then subscribes to the resulting Events members."
     }
-  ]
+  ],
+  "context_event_bootstrap_correction": {
+    "date": "2026-10-23",
+    "failed_version": "0.10.0-dev.1",
+    "failed_source": "7514115d72922463d108d3f31a3562996287b29f",
+    "failure_environment": "Authorized local Windows client startup,42.21.0/Steam25485521 with existing engine overrides",
+    "failure": "NativeContext.lua63: attempted index Add of non-table null; no-items event absent from Events despite native Lua trigger call.",
+    "corrected_in_version": "0.10.0-dev.2",
+    "fix": "Register the missing event through vanilla LuaEventManager.AddEvent only when absent, validate Add, preserve preexisting event handlers/identity.",
+    "offline": "Exact absent-event failure reproduced before fix; absent/preexisting/repeated-load/dispatch fixtures pass afterward.",
+    "post_fix_native_acceptance": "NOT TESTED at source checkpoint; authorized local retest recorded separately."
+  }
 }

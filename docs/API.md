@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.10.0-dev.1
+Project Version: 0.10.0-dev.2
 
 The native Options/settings adapter is internal and automatic when UI loads. Consumers still use API major 1 and style only their own widgets; it adds no consumer API, gameplay settings or dependency. It retains native option ownership and guards custom renderers. See [native settings scope](NATIVE_SETTINGS.md).
 
@@ -92,3 +92,5 @@ The 0.9 preset addition is compatible API1. Shared native/API controls and Rende
 ## Native overhaul integration (0.10)
 
 The context/inventory/dialog adapters are internal. Consumers continue using API1 without new registration or dependencies. Native UI uses the existing B47ANCEDUI scope and explicit local-player slot; no profile/schema/default or gameplay API changes. Only documented neutral presentation tokens are adopted. Native semantic colours, callbacks and geometry remain owned by their source. See [coverage and gates](NATIVE_OVERHAUL.md).
+
+0.10.0-dev.2 corrects native empty-inventory event bootstrap: register only when absent through vanilla LuaEventManager.AddEvent, preserving preexisting handlers. The strict fixture reproduces the dev.1 startup failure before correction. No public API/profile/action/geometry changes. Corrected native visual/input acceptance remains pending; no Workshop upload.

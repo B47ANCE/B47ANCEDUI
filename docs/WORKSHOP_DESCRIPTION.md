@@ -32,7 +32,7 @@ UI does not require Quartermaster, Rooms, PC Framework or custom Java/JAR compon
 
 MP testing build - dedicated multiplayer NOT TESTED
 
-Offline Lua 5.1 contracts, syntax, source inventory, translation coverage and package integrity fixtures passed. The earlier 0.5.0-dev.2 menu visuals were observed in an isolated local game profile; 0.10.0-dev.1 Options/editor/native HUD input, controller, split-screen, settings reload, subscription/download and dedicated-server behavior are NOT TESTED. This is test distribution, not stable-release certification.
+Offline Lua 5.1 contracts, syntax, source inventory, translation coverage and package integrity fixtures passed. The earlier 0.5.0-dev.2 menu visuals were observed in an isolated local game profile; 0.10.0-dev.2 Options/editor/native HUD input, controller, split-screen, settings reload, subscription/download and dedicated-server behavior are NOT TESTED. This is test distribution, not stable-release certification.
 
 ## Configuration
 Consuming mods can expose the shared local appearance editor: background opacity, a #RRGGBB hex field and Red/Green/Blue sliders (0–255). Changes preview locally; Reset restores opacity 82 and grey #B0B0B0. Existing opacity-only settings retain their values. Values are isolated by mod and local player. Appearance settings do not change gameplay or server permissions. There are no shared-gameplay sandbox options in this presentation-only foundation.
@@ -50,7 +50,7 @@ Developed by B47ANCE'd Workshop. Original B47ANCE-owned shared code extracted fr
 
 ## Development background
 
-Version 0.10.0-dev.1 adds the actual Options Interface page and safe HUD layout workspace, preserves the approved main-menu defaults and existing security-room artwork/audio/animation. It is development source only and has not been uploaded. See GitHub for support limits and offline evidence; native acceptance remains NOT TESTED.
+Version 0.10.0-dev.2 adds the actual Options Interface page and safe HUD layout workspace, preserves the approved main-menu defaults and existing security-room artwork/audio/animation. It is development source only and has not been uploaded. See GitHub for support limits and offline evidence; native acceptance remains NOT TESTED.
 
 - Development Options workspace: searchable header, category sidebar, responsive native section cards, editable grey accent and fixed native Back/Apply/Accept actions. Native settings values and behavior preserved; specialized/provider content keeps native internals. Native input/controller acceptance NOT TESTED. Not uploaded; Workshop remains0.5.0-dev.11.
 
@@ -68,3 +68,5 @@ Development dev.3 Options correction: restore visible categories/search after dr
 Development dev.4 fixes native Options setup aborting at the section dropdown by using the installed tooltip-map API after each clear. Strict regression first fails at the observed dev.3 source call, then passes. Native post-fix acceptance remains pending; this is a draft, not an upload.
 
 Development source 0.10 adds the first native inventory/loot/context-menu/tooltip/dialog skin slice with shared presets and per-player appearance. Native input/rendering acceptance is NOT TESTED; this source is not uploaded. See GitHub NATIVE_OVERHAUL.md for exact coverage and limits.
+
+0.10.0-dev.2 corrects native empty-inventory event bootstrap: register only when absent through vanilla LuaEventManager.AddEvent, preserving preexisting handlers. The strict fixture reproduces the dev.1 startup failure before correction. No public API/profile/action/geometry changes. Corrected native visual/input acceptance remains pending; no Workshop upload.

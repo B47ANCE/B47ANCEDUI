@@ -1,6 +1,6 @@
 # Native settings presentation
 
-Project Version: 0.10.0-dev.1
+Project Version: 0.10.0-dev.2
 
 The Options screen now uses the sidebar/search/card workspace described in [OPTIONS_LAYOUT.md](OPTIONS_LAYOUT.md). `NativeSettings.lua` remains its palette adapter: near-black surfaces, restrained rounded native controls, grey default accent `#B0B0B0` and guarded native/provider ownership. `OptionsLayout.lua` adds instance geometry/navigation after palette and Interface attachment. It replaces the recognized native tab strip with category navigation, while preserving the original tabs/pages/controls/actions underneath. The palette-only statements below describe NativeSettings, not the aggregate workspace layout.
 

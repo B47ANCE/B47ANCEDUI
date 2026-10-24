@@ -109,7 +109,18 @@ local function event(name)
  handlers[name]={};return {Add=function(fn)table.insert(handlers[name],fn)end}
 end
 Events={}
-for _,name in ipairs({'OnFillWorldObjectContextMenu','OnFillInventoryObjectContextMenu','OnFillInventoryContextMenuNoItems','OnMainMenuEnter','OnGameStart','OnResetLua','OnCreatePlayer','OnResolutionChange'})do Events[name]=event(name)end
+for _,name in ipairs({'OnFillWorldObjectContextMenu','OnFillInventoryObjectContextMenu','OnMainMenuEnter','OnGameStart','OnResetLua','OnCreatePlayer','OnResolutionChange'})do Events[name]=event(name)end
+local emptyName='OnFillInventoryContextMenuNoItems'
+local eventRegistrations=0
+local existingEmpty
+if B47ANCEDUI_EMPTY_EVENT_PREEXISTS then
+ Events[emptyName]=event(emptyName);existingEmpty=Events[emptyName]
+ handlers[emptyName][1]=function()end
+end
+LuaEventManager={AddEvent=function(name)
+ assert(name==emptyName and Events[name]==nil,'Existing event must not be recreated')
+ eventRegistrations=eventRegistrations+1;Events[name]=event(name)
+end}
 ISPlayerData={};package.loaded['ISUI/PlayerData/ISPlayerData']=ISPlayerData
 local function widget(c)
  return setmetatable({width=240,height=160,children={},draws={},x=11,y=13,player=1,font=44,
@@ -117,6 +128,14 @@ local function widget(c)
 end
 local P=require 'B47ANCEDUI/NativePresentation'
 local C=require 'B47ANCEDUI/NativeContext'
+assert(eventRegistrations==(existingEmpty and 0 or 1),'Missing-event bootstrap not performed exactly once')
+assert(not existingEmpty or Events[emptyName]==existingEmpty,'Existing event identity changed')
+local registrations=#handlers[emptyName]
+package.loaded['B47ANCEDUI/NativeContext']=nil
+assert(require('B47ANCEDUI/NativeContext')==C and #handlers[emptyName]==registrations,'Repeated load duplicated handlers')
+local empty=widget(context);empty.itemHgt=24;empty.subOptionNums=0;empty.instanceMap={}
+handlers[emptyName][registrations](1,empty,true)
+assert(empty.b47NativeContext and empty.b47NativeContext.player==1,'Empty-container callback arguments changed')
 local I=require 'B47ANCEDUI/NativeInventory'
 local D=U.NativeDialogs
 local function has(w,predicate)

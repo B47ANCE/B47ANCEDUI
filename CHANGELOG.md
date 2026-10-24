@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.10.0-dev.2] - 2026-10-23
+
+- Fix native startup failing at NativeContext.lua63 when the installed inventory Lua triggers an event absent from the Events registry. Register the missing empty-inventory event through vanilla LuaEventManager.AddEvent before subscribing; preserve preexisting event identity/handlers.
+- Reproduce the actual failure with an absent-event fixture; cover absent/preexisting registration, repeated loads and unchanged callback arguments. Compatible PATCH to the 0.10 native-overhaul addition; API1, profiles, defaults, geometry and actions unchanged.
+- Offline tests PASS; corrected startup/local deployment evidence is separate from native visual/input acceptance. No Workshop upload.
+
 ## [0.10.0-dev.1] - 2026-10-23
 
 - Start the native overhaul: near-black world/item/empty-inventory context menus and pooled submenus, live inventory/loot chrome and neutral rows, owned buttons/scrollbars, reached native tooltip frames and selected Options/inventory dialogs.
