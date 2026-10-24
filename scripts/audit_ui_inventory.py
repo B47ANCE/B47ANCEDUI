@@ -92,4 +92,3 @@ if __name__=='__main__':
     try: main()
     except (ValueError,OSError) as error:
         print('FAIL:',error,file=sys.stderr);sys.exit(1)
-
