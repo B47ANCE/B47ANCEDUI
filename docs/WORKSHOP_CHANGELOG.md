@@ -1,39 +1,14 @@
 Version 0.12.0-dev.1
 
-- Development source:53 editable colors, hex/RGB, separate Scrollbar styles and inactive plugin preset choices with editable saved copies. Export selected styling; optional offline helper stages data-only Workshop mods, preserving native metadata and final Publish. Offline suites PASS; actual discovery/export/upload NOT TESTED. Not uploaded.
-
-- Development source: extend shared near-black native chrome across audited frontend, gameplay and specialist Lua windows, with native controls, pooled dropdown guards and separate PZAPI lifecycle. Preserve semantic content, native actions and saved menu/layout defaults. Offline suites PASS; native visual/input acceptance NOT TESTED. Not uploaded; Workshop remains0.5.0-dev.11.
-
-- Development main-menu Quit to desktop confirmation now uses shared near-black rounded surfaces and local accent; native Yes/No actions/focus/geometry retained. Native acceptance NOT TESTED; not uploaded.
-
-- Development HUD editor input fix: explicit Save/Cancel/Escape exits, shared unsaved confirmation, direct preview movement/resizing, inert empty canvas, guarded dropdown dismissal and retained modal drafts. Native dispatch NOT TESTED; not uploaded.
-
-- Development Options workspace: searchable header, category sidebar, responsive native section cards, editable grey accent and fixed native Back/Apply/Accept actions. Native settings values and behavior preserved; specialized/provider content keeps native internals. Native input/controller acceptance NOT TESTED. Not uploaded; Workshop remains0.5.0-dev.11.
-
 MP testing build - dedicated multiplayer NOT TESTED
 
-Development source only; NOT uploaded. Workshop remains 0.5.0-dev.11.
+- Extend the near-black theme across audited frontend, gameplay and specialist native window/control chrome, inventory/loot, context menus, tooltips and selected confirmations. Preserve native actions, settings, semantic colors and guarded provider content.
+- Add searchable Options categories, responsive section cards and contained pages. Correct deferred initialization, dropdown/category visibility and installed tooltip-map usage; keep native Back/Apply/Accept behavior.
+- Add 53 editable color channels, synchronized hex/RGB controls, specific Scrollbar styling, multiple local component presets and per-mod overrides. Save/Cancel and unsaved-exit protection preserve user choices.
+- Enabled data-only preset plugins add inactive choices. Explicit selection previews a detached editable copy; saved copies survive source-pack removal or updates. Installing a pack never activates it automatically.
+- Export selected styling with separate New/Update choices, verified data and identity journals. An optional manually started Python packager stages dependent Workshop mods with retained history and native item metadata. Final Publish remains explicit in PZ's uploader; layouts and legacy Appearance preferences are not exported.
+- Improve main-menu/logo layout editing and the black-canvas HUD workspace with direct preview movement/resizing, larger inspector controls, inert blank clicks, guarded dropdown dismissal and unsaved confirmation. Preserve the approved shipped defaults and valid local overrides; clock/moodles remain reference-only.
+- Apply the shared style to main-menu Quit to desktop confirmation. Correct unsupported Kahlua global-next checks and the absent empty-inventory event bootstrap without changing gameplay or public API1/profile schema1 contracts.
+- Preserve the existing security-room artwork, independent 1-60 second CRT static/no-signal loops and title-screen audio behavior.
 
-Fix native Options remaining vanilla when its build is deferred until opening. Attach styling and Interface after completed construction/draw, once per current tab panel; preserve native settings/returns/errors and custom-renderer boundaries. Offline regression passes; post-fix native acceptance NOT TESTED.
-
-Guard unsaved layout exits with Keep editing / Discard changes, including unfinished numeric entries and switching editors. Default to Keep; preserve drafts/focus and prevent underlying controller slider updates. Clean/reverted layouts and successful Save close directly. Native popup input NOT TESTED.
-
-Add an Interface page to the actual native Options screen for accent/appearance and a safe in-game UI layout workspace. Preserve native settings, tabs and Apply/Back behavior. Add Edit in-game UI to the main menu: black canvas, clearly labeled synthetic previews, no loaded character/world.
-
-Improve both layout inspectors with larger slider thumbs and click targets, separate step buttons, numeric percentages, edge/corner handles and compact footer spacing. Correct pending-entry switching/reset and batched clamping. Preserve the owner's approved main-menu/logo defaults and existing saved profiles.
-
-Save explicit local overrides for supported native HUD windows. Inventory/loot/chat resize both dimensions; mechanics supports height, fixed-size assets support position; clock/moodles remain reference-only. Providers can register safe owned previews through the compatible public Lua API. Unknown mod windows are not automatically adopted. Native controller layouts are skipped; native layout persistence may retain prior positions after Reset releases our override.
-
-Offline Lua 5.1/source/version/translation/archive/regression fixtures PASS. Native input/controller/settings/HUD restoration, split-screen and actual persistence acceptance NOT TESTED. Project G7/stable G8 BLOCKED. Existing artwork, four independent 1–60 second static/no-signal screens and title-screen audio behavior are unchanged. No package, deployment, game/server launch or upload in this iteration.
-
-Development source addition: editable local UI style presets for supported component families, shared styles/per-mod overrides, live preview, explicit verified Save and unsaved Cancel/Escape protection. Native input/persistence acceptance NOT TESTED. Workshop item remains on the historical published build until a separate upload is requested.
-
-Dev.2 source correction: fix unsupported global-next table checks that interrupted actual main-menu rendering. Full behavioral suite now runs with that global disabled; post-fix native acceptance pending. No new Workshop upload.
-
-Development dev.3 Options correction: restore visible categories/search after dropdown dismissal; fit supported settings into bounded section/page navigation and remove spurious scrollbars. Native values/Apply/callbacks are preserved; specialized or oversized provider content retains genuine overflow. Offline regressions PASS; native post-fix acceptance NOT TESTED. Source-only, not uploaded.
-
-Development dev.4 fixes native Options setup aborting at the section dropdown by using the installed tooltip-map API after each clear. Strict regression first fails at the observed dev.3 source call, then passes. Native post-fix acceptance remains pending; this is a draft, not an upload.
-
-Development 0.10 native overhaul: black inventory/loot chrome, neutral rows, context menus and pooled submenus, reached native tooltip frames, inventory scrollbars and selected native dialogs. Native actions, transfers, semantic colours and geometry retained. Offline tests PASS; actual rendering/input/controller/split-screen NOT TESTED. Source only; NOT uploaded.
-
-0.10.0-dev.2 corrects native empty-inventory event bootstrap: register only when absent through vanilla LuaEventManager.AddEvent, preserving preexisting handlers. The strict fixture reproduces the dev.1 startup failure before correction. No public API/profile/action/geometry changes. Corrected native visual/input acceptance remains pending; no Workshop upload.
+Offline syntax/regression/source/version/translation/integrity checks pass. Native visual/input/controller, split-screen, settings/profile reload, actual plugin discovery/export, helper-to-uploader handoff, subscription/download and dedicated multiplayer acceptance remain NOT TESTED. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. This upload does not establish runtime acceptance.
