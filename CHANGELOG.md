@@ -2,6 +2,7 @@
 
 ## [0.10.0-dev.2] - 2026-10-23
 
+- 2026-10-24 audit-only checkpoint: refresh all61 work areas and complete623-candidate/607-definition catalogue for current scoped native adoption, including qualified Lua and named PZAPI templates. Add187 concrete source targets/169 evidence-file bindings, remaining frontend/gameplay menu registers, priorities and source-bound repeatable checks; no runtime/version/profile change.
 - Fix native startup failing at NativeContext.lua63 when the installed inventory Lua triggers an event absent from the Events registry. Register the missing empty-inventory event through vanilla LuaEventManager.AddEvent before subscribing; preserve preexisting event identity/handlers.
 - Reproduce the actual failure with an absent-event fixture; cover absent/preexisting registration, repeated loads and unchanged callback arguments. Compatible PATCH to the 0.10 native-overhaul addition; API1, profiles, defaults, geometry and actions unchanged.
 - Offline tests PASS; corrected startup/local deployment evidence is separate from native visual/input acceptance. No Workshop upload.

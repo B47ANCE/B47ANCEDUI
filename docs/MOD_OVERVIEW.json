@@ -4,7 +4,7 @@
   "name": "B47ANCE'd UI",
   "version": "0.10.0-dev.2",
   "reviewed": true,
-  "source_digest": "7b5ce3c577dc6d3b33aeab28ae2a9967398a89d4ecca1d9f82b226ef53355fdf",
+  "source_digest": "7495539ac56c356768c076ad9433acd10cb363c1842311dbab92c033c3eddf2e",
   "features": [
     {
       "status": "Source",
@@ -125,9 +125,13 @@
     {
       "status": "Source",
       "text": "Dev.2 fixes actual dev.1 startup nil Add: register the missing empty-inventory event through vanilla LuaEventManager only when absent. Strict absent/preexisting/repeated-load/dispatch regression PASS. Native overhaul visual/input acceptance pending."
+    },
+    {
+      "status": "Source",
+      "text": "2026-10-24 current menu audit:61 grouped work areas/623 installed candidates/187 curated source targets/169 evidence-file bindings; complete frontend/gameplay remaining-menu registers and per-instance/route coverage. Source-bound scanner refuses changed runtime/version; counts are not screens/completion, runtime acceptance not inferred."
     }
   ],
-  "limits": "0.10.0-dev.2 compatible PATCH to the0.10 MINOR local-presentation addition. Offline suites PASS:72 runtime files/144 keys/29 unreviewed English-fallback locales. Strict native-overhaul doubles/source contracts pass; actual pixels/input/transfers/controller/split-screen/performance NOT TESTED. Coverage is bounded in NATIVE_OVERHAUL.md; broad remaining gameplay/frontend work needs explicit adoption. Historical 0.9 Options fixes and limited startup evidence stay separate; dated audit observed61 work areas/622 candidate files, not screen counts/completion percentages. API1, schemas/defaults/shared gameplay ownership unchanged. G6 NOT TESTED; project G7/stable G8 BLOCKED. Dev.1 authorized local deploy72/72 preserved preferences/profile but actual startup failed at NativeContext.lua63. Dev.2 source correction passes strict regression; corrected local retest recorded separately. No Workshop upload; item remains0.5.0-dev.11.",
+  "limits": "0.10.0-dev.2 compatible PATCH to the0.10 MINOR local-presentation addition. Offline suites PASS:72 runtime files/144 keys/29 unreviewed English-fallback locales. Strict native-overhaul doubles/source contracts pass; actual pixels/input/transfers/controller/split-screen/performance NOT TESTED. Coverage is bounded in NATIVE_OVERHAUL.md; broad remaining gameplay/frontend work needs explicit adoption. Historical 0.9 Options fixes and limited startup evidence stay separate; historical2026-10-23 audit observed61 work areas/622 candidate files, not screen counts/completion percentages. API1, schemas/defaults/shared gameplay ownership unchanged. G6 NOT TESTED; project G7/stable G8 BLOCKED. Dev.1 authorized local deploy72/72 preserved preferences/profile but actual startup failed at NativeContext.lua63. Dev.2 source correction passes strict regression; corrected local retest recorded separately. No Workshop upload; item remains0.5.0-dev.11. Current2026-10-24 audit separates partial inventory/context/tooltip/dialog/list adoption from36 broadly unadopted and5 geometry-only families. Old source catalogue labels stay historical; actual menus/input remain NOT TESTED.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -165,7 +169,12 @@
     "docs/UI_SOURCE_CATALOG_2026-10-23.json",
     "docs/NATIVE_OVERHAUL.md",
     "docs/NATIVE_OVERHAUL_SOURCE.json",
-    "tests/test_native_overhaul.lua"
+    "tests/test_native_overhaul.lua",
+    "docs/UI_COVERAGE_AUDIT_2026-10-24.md",
+    "docs/UI_COVERAGE_INVENTORY_2026-10-24.json",
+    "docs/UI_SOURCE_CATALOG_2026-10-24.json",
+    "docs/UI_COVERAGE_RULES_2026-10-24.json",
+    "scripts/audit_menu_coverage.py"
   ],
   "relations": []
 }
