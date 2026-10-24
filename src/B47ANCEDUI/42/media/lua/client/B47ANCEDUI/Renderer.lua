@@ -1,6 +1,6 @@
 require 'B47ANCEDUI/Theme'
 local U=B47ANCEDUI;local T=U.Theme;local R={};U.Renderer=R
-local function color(w,c) return U.Appearance and U.Appearance.color(w,c) or c end
+local function color(w,c,family) return U.ComponentStyles and U.ComponentStyles.color(w,c,family) or U.Appearance and U.Appearance.color(w,c) or c end
 local corners={}
 local function corner(width,height,radius)
  local r=math.max(0,math.min(8,math.floor(radius or 0),math.floor(math.min(width,height)/2)))
@@ -12,6 +12,7 @@ local function corner(width,height,radius)
  return r,corners[r]
 end
 function R.roundedRect(w,x,y,width,height,c,radius)
+ radius=U.ComponentStyles and U.ComponentStyles.radius(w,radius)or radius
  c=color(w,c)
  if width<=0 or height<=0 then return end
  local draw=w.b47RawRect or w.drawRect;local r,offsets=corner(width,height,radius)
@@ -22,8 +23,7 @@ function R.roundedRect(w,x,y,width,height,c,radius)
  end
  if height>2*r then draw(w,x,y+r,width,height-2*r,c.a,c.r,c.g,c.b) end
 end
-function R.roundedBorder(w,x,y,width,height,c,radius)
- c=color(w,c)
+local function roundedBorderOne(w,x,y,width,height,c,radius)
  if width<=0 or height<=0 then return end
  local draw=w.b47RawRect or w.drawRect;local r,offsets=corner(width,height,radius)
  if r==0 then return (w.b47RawBorder or w.drawRectBorder)(w,x,y,width,height,c.a,c.r,c.g,c.b) end
@@ -39,6 +39,12 @@ function R.roundedBorder(w,x,y,width,height,c,radius)
   if width>1 then draw(w,x+width-1,y+r,1,height-2*r,c.a,c.r,c.g,c.b) end
  end
 end
+function R.roundedBorder(w,x,y,width,height,c,radius)
+ c=color(w,c)
+ radius=U.ComponentStyles and U.ComponentStyles.radius(w,radius)or radius
+ local stroke=U.ComponentStyles and U.ComponentStyles.number(w,'borderWidth',1)or 1
+ for i=0,stroke-1 do roundedBorderOne(w,x+i,y+i,width-2*i,height-2*i,c,math.max(0,(radius or 0)-i))end
+end
 -- Only a styled instance's exact backing bounds are rounded. Native callbacks,
 -- textures, stripes, list rows and all other drawing retain their own geometry.
 function R.round(w,radius)
@@ -47,6 +53,7 @@ function R.round(w,radius)
  w.b47RawRect=w.drawRect;w.b47RawBorder=w.drawRectBorder
  w.drawRect=function(self,x,y,width,height,a,r,g,b)
   if x==0 and y==0 and width==self:getWidth() and height==self:getHeight() then
+   if self.b47Kind=='button'and U.ComponentStyles then a,r,g,b=U.ComponentStyles.buttonFill(self,a,r,g,b)end
    return R.roundedRect(self,x,y,width,height,{a=a,r=r,g=g,b=b},self.b47Radius)
   end
   return self.b47RawRect(self,x,y,width,height,a,r,g,b)
@@ -58,18 +65,28 @@ function R.round(w,radius)
   return self.b47RawBorder(self,x,y,width,height,a,r,g,b)
  end
 end
-function R.rect(w,x,y,width,height,c) c=color(w,c);if width>0 and height>0 then w:drawRect(x,y,width,height,c.a,c.r,c.g,c.b) end end
+function R.rect(w,x,y,width,height,c,family) c=color(w,c,family);if width>0 and height>0 then w:drawRect(x,y,width,height,c.a,c.r,c.g,c.b) end end
 -- Shared text-only menu focus mark; native labels retain their own row geometry.
 function R.menuUnderline(w,x,width)
  width=math.min(width,math.max(0,w:getWidth()-x-3))
- R.rect(w,x,w:getHeight()-6,width,2,T.colors.accent)
+ R.rect(w,x,w:getHeight()-6,width,2,T.colors.menuUnderline,'menuButton')
 end
 function R.background(w,x,y,width,height,c)
  c=color(w,c)
- if width>0 and height>0 then w:drawRect(x,y,width,height,U.Appearance and U.Appearance.alpha(w) or c.a,c.r,c.g,c.b) end
+ local alpha=U.Appearance and U.Appearance.alpha(w)or c.a
+ if U.ComponentStyles then alpha=U.ComponentStyles.number(w,'opacity',alpha*100)/100 end
+ if width>0 and height>0 then w:drawRect(x,y,width,height,alpha,c.r,c.g,c.b) end
 end
-function R.border(w,x,y,width,height,c) c=color(w,c);if width>0 and height>0 then w:drawRectBorder(x,y,width,height,c.a,c.r,c.g,c.b) end end
-function R.text(w,text,x,y,c,font) c=color(w,c);w:drawText(tostring(text or ''),x,y,c.r,c.g,c.b,c.a,font or T.fonts.body) end
+function R.border(w,x,y,width,height,c,family)
+ c=color(w,c,family)
+ local stroke=U.ComponentStyles and U.ComponentStyles.number(w,'borderWidth',1,family)or 1
+ local radius=0
+ if w.b47RawBorder and x==0 and y==0 and width==w:getWidth()and height==w:getHeight()then
+  radius=U.ComponentStyles and U.ComponentStyles.number(w,'radius',w.b47Radius or 0,family)or w.b47Radius or 0
+ end
+ for i=0,stroke-1 do roundedBorderOne(w,x+i,y+i,width-2*i,height-2*i,c,math.max(0,radius-i))end
+end
+function R.text(w,text,x,y,c,font,family) c=color(w,c,family);w:drawText(tostring(text or ''),x,y,c.r,c.g,c.b,c.a,font or T.fonts.body) end
 function R.fit(text,width,font)
  text=tostring(text or '');font=font or T.fonts.body
  local measure=getTextManager();if measure:MeasureStringX(font,text)<=width then return text end
@@ -83,22 +100,23 @@ function R.fit(text,width,font)
 end
 function R.focus(w)
  if w.joypadFocused or w.joyfocus or w.isFocused and w:isFocused() then
-  R.roundedBorder(w,1,1,w:getWidth()-2,w:getHeight()-2,T.colors.accent,math.max(0,(w.b47Radius or 0)-1))
-  R.roundedBorder(w,2,2,w:getWidth()-4,w:getHeight()-4,T.colors.strong,math.max(0,(w.b47Radius or 0)-2))
+  roundedBorderOne(w,1,1,w:getWidth()-2,w:getHeight()-2,color(w,T.colors.focusOuter),math.max(0,(w.b47Radius or 0)-1))
+  roundedBorderOne(w,2,2,w:getWidth()-4,w:getHeight()-4,color(w,T.colors.focusInner),math.max(0,(w.b47Radius or 0)-2))
  end
 end
 function R.row(w,y,height,index,selected,hover)
- local c=color(w,selected and T.colors.selected or hover and T.colors.hover or index%2==0 and T.colors.alternate or T.colors.row)
+ local c=color(w,selected and T.colors.selected or hover and T.colors.hover or index%2==0 and T.colors.alternate or T.colors.row,'row')
  -- The root owns the single backing pass. Rows add a light contrast overlay,
  -- while the opaque selection stripe stays independent of user opacity.
  local a=U.Appearance and U.Appearance.alpha(w)*.12 or c.a
+ if U.ComponentStyles then a=U.ComponentStyles.number(w,'opacity',a*100/.12,'row')/100*.12 end
  w:drawRect(0,y,w:getWidth(),height-1,a,c.r,c.g,c.b)
- if selected then R.rect(w,0,y,3,height-1,T.colors.accent) end
+ if selected then R.rect(w,0,y,3,height-1,T.colors.accent,'row') end
 end
 function R.checkbox(w,x,y,state)
- R.border(w,x,y,16,16,T.colors.strong)
- if state=='full' then R.text(w,'x',x+3,y-1,T.colors.accent)
- elseif state=='partial' then R.rect(w,x+3,y+7,10,3,T.colors.accent) end
+ R.border(w,x,y,16,16,T.colors.checkBorder,'tick')
+ if state=='full' then R.text(w,'x',x+3,y-1,T.colors.check,nil,'tick')
+ elseif state=='partial' then R.rect(w,x+3,y+7,10,3,T.colors.check,'tick') end
 end
 function R.icon(w,texture,x,y,size)
  if texture then
@@ -107,13 +125,13 @@ function R.icon(w,texture,x,y,size)
  else R.border(w,x+3,y+3,size-6,size-6,T.colors.border) end
 end
 U.Badge={}
-function U.Badge.draw(w,label,x,y,role) R.text(w,label,x,y,T.colors[role] or T.colors.muted,T.fonts.status) end
+function U.Badge.draw(w,label,x,y,role) R.text(w,label,x,y,T.colors[role] or T.colors.muted,T.fonts.status,'text') end
 U.Progress={}
 function U.Progress.draw(w,x,y,width,current,target,role)
- R.rect(w,x,y,width,8,T.colors.raised)
+ R.rect(w,x,y,width,8,T.colors.progressTrack,'progress')
  local ratio=target and target>0 and math.min(1,math.max(0,current/target)) or 0
- R.rect(w,x,y,width*ratio,8,T.colors[role] or T.colors.accent)
- R.border(w,x,y,width,8,T.colors.border)
+ R.rect(w,x,y,width*ratio,8,T.colors[role] or T.colors.progressFill,'progress')
+ R.border(w,x,y,width,8,T.colors.progressBorder,'progress')
 end
 U.Tree={indent=function(depth) return 6+(depth or 0)*20 end,checkbox=R.checkbox}
 U.Table={}

@@ -1,0 +1,3393 @@
+{
+  "schema": 1,
+  "audit_date": "2026-10-24",
+  "project_version_observed": "0.10.0-dev.2",
+  "project_source_commit": "b69932929acdd3589aabd5053f977ae4d9f59385",
+  "game_version": "42.21.0",
+  "game_revision": "4a0e9546ec",
+  "steam_build": "25485521",
+  "status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+  "scope": "Grouped UI work areas, including current scopes, cross-cutting components, frontend, gameplay, specialist, integration and engine boundaries. Rows overlap by component and are not a count of independent screens.",
+  "counts": {
+    "work_areas": 61,
+    "by_group": {
+      "Current scopes": 8,
+      "Shared components": 7,
+      "Frontend": 17,
+      "Gameplay": 23,
+      "Specialist": 3,
+      "Integration": 2,
+      "Engine boundary": 1
+    },
+    "by_coverage": {
+      "implemented_scope": 4,
+      "partial_scope": 10,
+      "preview_and_geometry": 1,
+      "opt_in_scope": 1,
+      "unadopted": 36,
+      "geometry_only": 5,
+      "reference_only": 1,
+      "engine_audit": 2,
+      "opt_in_boundary": 1
+    },
+    "by_priority": {
+      "P0 validation": 8,
+      "P1": 18,
+      "P2": 26,
+      "P3": 6,
+      "P4": 3
+    },
+    "distinct_evidence_files": 169,
+    "distinct_candidate_targets": 187
+  },
+  "source_catalog": "UI_SOURCE_CATALOG_2026-10-24.json",
+  "source_catalog_digest": "7f19a9920d077e918d5031ab06f3c950c372f810bf9007017b01c6e503c21c0f",
+  "runtime_limit": "Controlled local dev.2 startup reached context hooks-ready and Options styling/interface markers without UI exception traces. This is startup only, not native acceptance. Main-menu position report may involve older Workshop0.5.0-dev.11 on unrestricted launch; saved preferences preserved, actual positions not visually confirmed. Existing engine overrides remain; not pristine vanilla.",
+  "areas": [
+    {
+      "id": "C01",
+      "group": "Current scopes",
+      "title": "Main menu navigation and security-room scene",
+      "source_coverage": "implemented_scope",
+      "priority": "P0 validation",
+      "next_action": "Validate actual positions/profile persistence and loaded source identity, all dynamic entries, audio restoration, boot loops and4:3/16:9/32:9.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeMenus.lua",
+          "line": 145,
+          "sha256": "7cd73fd949fd1750f6561afb33603d2e1887fa61b566762adf2469970a13e99e"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/MenuBackground.lua",
+          "line": 1,
+          "sha256": "8e0a0eeeded9b9e0a91ef513c30c4e0623fdbd604ec9f648fca3131e0329c3fd"
+        }
+      ],
+      "previous_source_coverage": "implemented_scope",
+      "current_scope": "Saved/default menu/logo rectangles, dynamic navigation and security-room scene are implemented. Original defaults were promoted in0.6.0-dev.3; Workshop0.5.0-dev.11 predates layout support.",
+      "validation_priority": "P0",
+      "menu_targets": [],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "C02",
+      "group": "Current scopes",
+      "title": "Esc/pause navigation",
+      "source_coverage": "partial_scope",
+      "priority": "P0 validation",
+      "next_action": "Verify native pause navigation and controller actions; in-game leave/quit confirmations and other pause panels still need explicit adapters.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeMenus.lua",
+          "line": 145,
+          "sha256": "7cd73fd949fd1750f6561afb33603d2e1887fa61b566762adf2469970a13e99e"
+        }
+      ],
+      "previous_source_coverage": "partial_scope",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "validation_priority": "P0",
+      "menu_targets": [],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "C03",
+      "group": "Current scopes",
+      "title": "Frontend Quit to desktop confirmation",
+      "source_coverage": "implemented_scope",
+      "priority": "P0 validation",
+      "next_action": "Accept native Yes/No, cooldown, controller focus and real quit behavior; only the strict frontend dialog is adopted.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeMenus.lua",
+          "line": 11,
+          "sha256": "7cd73fd949fd1750f6561afb33603d2e1887fa61b566762adf2469970a13e99e"
+        }
+      ],
+      "previous_source_coverage": "implemented_scope",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "validation_priority": "P0",
+      "menu_targets": [],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "C04",
+      "group": "Current scopes",
+      "title": "Native Options and Interface page",
+      "source_coverage": "partial_scope",
+      "priority": "P0 validation",
+      "next_action": "Accept sidebar/search, section navigation, all native setting actions, Apply/save, display rollback and specialized panel overflow.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeSettings.lua",
+          "line": 169,
+          "sha256": "9d3f9cfc7c0c21994edffc4874adc18b6a4d3d370d2839af62b327311f56a710"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsLayout.lua",
+          "line": 48,
+          "sha256": "dfdbf4c03879d1af7544136557446d72b7d598b29c815078fea447711ae9083b"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsLayout.lua",
+          "line": 190,
+          "sha256": "dfdbf4c03879d1af7544136557446d72b7d598b29c815078fea447711ae9083b"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsInterface.lua",
+          "line": 1,
+          "sha256": "c32883d17d1063a2306d4c7ed6def788eac45bcb5c8cc75afd3d16197b2be98d"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/MainOptions.lua",
+          "line": 441,
+          "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/MainOptions.lua",
+          "line": 1157,
+          "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/MainOptions.lua",
+          "line": 1903,
+          "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/MainOptions.lua",
+          "line": 2154,
+          "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/MainOptions.lua",
+          "line": 2367,
+          "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/MainOptions.lua",
+          "line": 2727,
+          "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/MainOptions.lua",
+          "line": 2735,
+          "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/MainOptions.lua",
+          "line": 2798,
+          "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96"
+        }
+      ],
+      "previous_source_coverage": "partial_scope",
+      "current_scope": "Owned native Options frame, whitelisted controls, searchable sidebar, bounded sections/pages and Interface launchers. Specialized controller/keybinding/provider content is not a blanket conversion.",
+      "validation_priority": "P0",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/MainOptions.lua",
+          "class": "MainOptions",
+          "line": 12
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included.",
+      "settings_sections": [
+        "Display & Performance",
+        "User Interface",
+        "Audio",
+        "Key Bindings",
+        "Accessibility",
+        "Controller",
+        "Multiplayer",
+        "Conditional native Mods settings",
+        "B47ANCEDUI Interface"
+      ],
+      "settings_limit": "Frame/whitelisted native controls/section pagination are partial. Controller custom panels, key capture, semantic swatches and arbitrary provider contents need separate acceptance/adapters."
+    },
+    {
+      "id": "C05",
+      "group": "Current scopes",
+      "title": "Main-menu layout editor",
+      "source_coverage": "implemented_scope",
+      "priority": "P0 validation",
+      "next_action": "Validate native drag/resize, sliders/fields, Save/Reset/Cancel, unsaved warning and reload at multiple sizes/fonts/controllers.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/MenuLayoutEditor.lua",
+          "line": 1,
+          "sha256": "9bcbc65eb8c3e5c88b109ec485eeb1d2f195f618d9179b9bb212145044799722"
+        }
+      ],
+      "previous_source_coverage": "implemented_scope",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "validation_priority": "P0",
+      "menu_targets": [],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "C06",
+      "group": "Current scopes",
+      "title": "HUD preview/layout editor",
+      "source_coverage": "preview_and_geometry",
+      "priority": "P0 validation",
+      "next_action": "Validate direct hit/resize and popup/unsaved exits. Ten samples are static; only eight native asset targets have geometry bindings. Add real skins independently.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/HUDPreviews.lua",
+          "line": 36,
+          "sha256": "e99ad8a66b5e39312b9a35565d2051681fce86cc2a4024315af226125e100a5a"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/HUDLayoutRuntime.lua",
+          "line": 9,
+          "sha256": "2d98e340c194a6db81560af66fc880626107cc10c9a2f4ae2a6f85f001bb6770"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/UILayoutEditor.lua",
+          "line": 1,
+          "sha256": "c71d8ddf0194afb6578b9fedf0fb08194e7ab1ab15ebeb483962defbb0c23bc2"
+        }
+      ],
+      "previous_source_coverage": "preview_and_geometry",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "validation_priority": "P0",
+      "menu_targets": [],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "C07",
+      "group": "Current scopes",
+      "title": "Style preset and accent/appearance editors",
+      "source_coverage": "implemented_scope",
+      "priority": "P0 validation",
+      "next_action": "Validate all supported component previews, per-mod inheritance, pending fields, file reload, Save failures, controller and unsaved exits.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/StyleEditor.lua",
+          "line": 1,
+          "sha256": "a6eea4d6cb0397efc05786be31b0d6746ddad1ec2128b9d9c5303d657ec85e25"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/AppearanceEditor.lua",
+          "line": 1,
+          "sha256": "f22a90df37d4c25bff8d3aca77074e41bad2e7df62e6b141359df5f4fe87726c"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/StylePresets.lua",
+          "line": 1,
+          "sha256": "5a8c6eb785ef7ac53a237ca2329a2ac53921ac9a408c7594fc05c78b9fb35a96"
+        }
+      ],
+      "previous_source_coverage": "implemented_scope",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "validation_priority": "P0",
+      "menu_targets": [],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "C08",
+      "group": "Current scopes",
+      "title": "Shared API controls, dialogs and managed tooltip helpers",
+      "source_coverage": "opt_in_scope",
+      "priority": "P0 validation",
+      "next_action": "Confirm consumer opt-in and native method contracts. These helpers do not globally adopt vanilla controls or arbitrary mod renderers.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/API.lua",
+          "line": 21,
+          "sha256": "5a623e7728351548c5b0e1e59d8c8b1cdc5b08322b407b2d41d738eba7111514"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Controls.lua",
+          "line": 95,
+          "sha256": "544bbda31265d787207209559696a70518ea191db19a3c7d5c14529f06f1b61a"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Dialog.lua",
+          "line": 1,
+          "sha256": "fa307cfca5e4448aa06f5672e4d8592cc0354b4bf017a64f5b4c2be8966df11f"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Tooltip.lua",
+          "line": 1,
+          "sha256": "ecca50f08a46f2f0139136ed39b180ef16aad1c0cec0d25cc49e0167b3980e3b"
+        }
+      ],
+      "previous_source_coverage": "opt_in_scope",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "validation_priority": "P0",
+      "menu_targets": [],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "X01",
+      "group": "Shared components",
+      "title": "Native confirmations, warnings and text-entry dialogs beyond frontend Quit",
+      "source_coverage": "partial_scope",
+      "priority": "P1",
+      "next_action": "Add restart, text/password entry, leave-game, save/delete, key capture and other dialog routes; retain actions, focus and modal ownership.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISModalDialog.lua",
+          "line": 1,
+          "sha256": "084d21246c03e54f8fe2a0dd16fb19f83e9ee347aa400c2d974e536f31f692dc"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISTextBox.lua",
+          "line": 1,
+          "sha256": "ceab200f0b1551e431f5fae9b8f1917cf819609b9cac6e0e3cd4c86f725e7f3a"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/MainOptions.lua",
+          "line": 1,
+          "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeMenus.lua",
+          "line": 11,
+          "sha256": "7cd73fd949fd1750f6561afb33603d2e1887fa61b566762adf2469970a13e99e"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeDialogs.lua",
+          "line": 21,
+          "sha256": "ba4158630262a193f54100fb2f9c97fd954f94da473c45f765e790d84948bf17"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeInventory.lua",
+          "line": 102,
+          "sha256": "4f8b9d3c77f026350edf68ae229899833bc2d7de302d68d4d5519924016e9ef7"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "Selected frontend Quit, Options unsaved/display confirmations and current inventory information modal only.",
+      "validation_priority": "P0",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISModalDialog.lua",
+          "class": "ISModalDialog",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISTextBox.lua",
+          "class": "ISTextBox",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/OptionScreens/MainOptions.lua",
+          "class": "MainOptions",
+          "line": 12
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "X02",
+      "group": "Shared components",
+      "title": "World/item/container context menus and submenus",
+      "source_coverage": "partial_scope",
+      "priority": "P1",
+      "next_action": "Validate pooled/native root reuse and controller/scroll/disabled semantics; cover remaining entry routes from a fresh session without assuming class-wide conversion.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISContextMenu.lua",
+          "line": 298,
+          "sha256": "4e4616dedbf135960dd2b7c63d67480ad19ff17352b1797cf9224631f9a669c8"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeContext.lua",
+          "line": 6,
+          "sha256": "84b287034b10fd512cad5a384bd8084c2d4b01f440744b30304172823879904a"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeContext.lua",
+          "line": 57,
+          "sha256": "84b287034b10fd512cad5a384bd8084c2d4b01f440744b30304172823879904a"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISInventoryPane.lua",
+          "line": 191,
+          "sha256": "8cce738cc0dfec8655d2970c42572596bf6294b85e4917a245dc41d1827a56be"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Chat/ISChat.lua",
+          "line": 246,
+          "sha256": "0386ca1cd4bb936ea6a3591dc13f77f1ef830764c6b8a8ee2ded92559b16b483"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISContextMenu.lua",
+          "line": 1166,
+          "sha256": "4e4616dedbf135960dd2b7c63d67480ad19ff17352b1797cf9224631f9a669c8"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "World/item/empty-container fill roots and discovered pooled native submenus are skinned. Reused player roots can retain styling for later filter/chat routes. Initial direct routes and custom renderers are not guaranteed.",
+      "validation_priority": "P0",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISContextMenu.lua",
+          "class": "ISContextMenu",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISInventoryPane.lua",
+          "class": "ISInventoryPane",
+          "line": 10
+        },
+        {
+          "path": "media/lua/client/Chat/ISChat.lua",
+          "class": "ISChat",
+          "line": 6
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "X03",
+      "group": "Shared components",
+      "title": "Item, rich, world-object and container tooltips",
+      "source_coverage": "partial_scope",
+      "priority": "P1",
+      "next_action": "Audit other generic/world/moveable/custom tooltip routes and ownership/lifetime; preserve engine item content and measurement.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISToolTipInv.lua",
+          "line": 43,
+          "sha256": "6f36edfb2447f9faa55301c3d150ab0d76a574c9dbb661812eeaa87d736967e6"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISToolTipInv.lua",
+          "line": 186,
+          "sha256": "6f36edfb2447f9faa55301c3d150ab0d76a574c9dbb661812eeaa87d736967e6"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Tooltip.lua",
+          "line": 1,
+          "sha256": "ecca50f08a46f2f0139136ed39b180ef16aad1c0cec0d25cc49e0167b3980e3b"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativePresentation.lua",
+          "line": 79,
+          "sha256": "94083d3c36aa6edc9a47839ac30806951f7aeefbf176ee7c1833c0905be91bdc"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeContext.lua",
+          "line": 49,
+          "sha256": "84b287034b10fd512cad5a384bd8084c2d4b01f440744b30304172823879904a"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeInventory.lua",
+          "line": 83,
+          "sha256": "4f8b9d3c77f026350edf68ae229899833bc2d7de302d68d4d5519924016e9ef7"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "Native ISToolTip/ISToolTipInv frames reached through adopted contexts or inventory panes. ObjectTooltip stats/rich/semantic content stays native.",
+      "validation_priority": "P0",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISToolTipInv.lua",
+          "class": "ISToolTipInv",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "X04",
+      "group": "Shared components",
+      "title": "Native scrollbars, scrolling panels and clipping",
+      "source_coverage": "partial_scope",
+      "priority": "P1",
+      "next_action": "Cover horizontal bars, other screens vertical bars and scroll panels with native clipping, focus and accessible hit areas retained.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISScrollBar.lua",
+          "line": 299,
+          "sha256": "0d8c0c95afea326de4fb1d261d2e5a9aaa6319416f26c294c0f9154af82198fd"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Controls.lua",
+          "line": 130,
+          "sha256": "544bbda31265d787207209559696a70518ea191db19a3c7d5c14529f06f1b61a"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeInventory.lua",
+          "line": 28,
+          "sha256": "4f8b9d3c77f026350edf68ae229899833bc2d7de302d68d4d5519924016e9ef7"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "Inventory-owned vertical track/thumb palette only; original input/thumb dimensions/arrows/clipping remain native.",
+      "validation_priority": "P0",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISScrollBar.lua",
+          "class": "ISScrollBar",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "X05",
+      "group": "Shared components",
+      "title": "Lists, tables, trees and column headers",
+      "source_coverage": "partial_scope",
+      "priority": "P1",
+      "next_action": "Theme general scrolling lists, tables/trees, sorting/expansion and screen-specific doDrawItem renderers independently.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISScrollingListBox.lua",
+          "line": 1,
+          "sha256": "380d222414d16ab40b830abe9d016f49f1fd2d07d0067a5879db22f89e5c796b"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISInventoryPane.lua",
+          "line": 27,
+          "sha256": "8cce738cc0dfec8655d2970c42572596bf6294b85e4917a245dc41d1827a56be"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeInventory.lua",
+          "line": 57,
+          "sha256": "4f8b9d3c77f026350edf68ae229899833bc2d7de302d68d4d5519924016e9ef7"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "Neutral inventory detail rows/static headers and owned native inventory header buttons only. Shared API lists are opt-in.",
+      "validation_priority": "P0",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISScrollingListBox.lua",
+          "class": "ISScrollingListBox",
+          "line": 7
+        },
+        {
+          "path": "media/lua/client/ISUI/ISInventoryPane.lua",
+          "class": "ISInventoryPane",
+          "line": 10
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "X06",
+      "group": "Shared components",
+      "title": "Native tabs, check/radio controls, color pickers and popups outside Options",
+      "source_coverage": "partial_scope",
+      "priority": "P1",
+      "next_action": "Add radio controls, spinboxes, pickers, rich content, generic progress/LCD/knob/image controls and other screen routes while preserving semantic swatches.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISTabPanel.lua",
+          "line": 1,
+          "sha256": "9a687431a143131a002f1057ac860fbecc19c796312fdf16d37192e00afb21b5"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISTickBox.lua",
+          "line": 1,
+          "sha256": "fef402fba351785a1a4bdd884876f459dda6411f287267e324aa2d657e50c488"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISColorPicker.lua",
+          "line": 1,
+          "sha256": "00ad7c9fa728e01dec4522b9deafa555bf346d41677494d36f28a9faf6510914"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeSettings.lua",
+          "line": 169,
+          "sha256": "9d3f9cfc7c0c21994edffc4874adc18b6a4d3d370d2839af62b327311f56a710"
+        }
+      ],
+      "previous_source_coverage": "partial_scope",
+      "current_scope": "Owned Options whitelist and selected inventory buttons; API consumers may opt into supported components.",
+      "validation_priority": "P0",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISTabPanel.lua",
+          "class": "ISTabPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISTickBox.lua",
+          "class": "ISTickBox",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISColorPicker.lua",
+          "class": "ISColorPicker",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "X07",
+      "group": "Shared components",
+      "title": "Typography, density, icon states and preset coverage",
+      "source_coverage": "partial_scope",
+      "priority": "P1",
+      "next_action": "Decide supported font/spacing/density/layout tokens, safe bounds and per-family adoption; current color/radius/stroke/slider presets do not configure every visual property or asset.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/ComponentStyles.lua",
+          "line": 6,
+          "sha256": "00b5808da2ff5dfc3f845a8bf5cd3ed3c32a10cc4faea7454e961d1ffe5a12b1"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/StylePresets.lua",
+          "line": 1,
+          "sha256": "5a8c6eb785ef7ac53a237ca2329a2ac53921ac9a408c7594fc05c78b9fb35a96"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Controls.lua",
+          "line": 95,
+          "sha256": "544bbda31265d787207209559696a70518ea191db19a3c7d5c14529f06f1b61a"
+        }
+      ],
+      "previous_source_coverage": "partial_scope",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "validation_priority": "P0",
+      "menu_targets": [],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F01",
+      "group": "Frontend",
+      "title": "Solo mode, difficulty and challenge selection",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Redesign screen panels, challenge cards/lists, descriptions and action buttons while retaining native flow.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/NewGameScreen.lua",
+          "line": 148,
+          "sha256": "926a073d6299d92ce7f9de95ada3ef0049d1f92b722460177c9b0dde7600604d"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/LastStandChallenge.lua",
+          "line": 1,
+          "sha256": "ff0897a6cf44cbb700e2784c8c54e49c5b1670c01da976be1d274d39a5ed6161"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/LastStandPlayerSelect.lua",
+          "line": 9,
+          "sha256": "da0a28bf03f7bf7351f4dfff54beb0ca91aa57c60286220409160d6c133eabbe"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/NewGameScreen.lua",
+          "class": "NewGameScreen",
+          "line": 136
+        },
+        {
+          "path": "media/lua/client/OptionScreens/LastStandPlayerSelect.lua",
+          "class": "LastStandPlayerSelect",
+          "line": 9
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F02",
+      "group": "Frontend",
+      "title": "Load/save browser and saved-game configuration",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme save lists, details/mod panels, configuration/delete warnings and loading actions.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/LoadGameScreen.lua",
+          "line": 24,
+          "sha256": "975cf7129e5e6321a2b804692d4464eae9b80bbcf7220f4da9ded1be66987f7e"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/LoadGameScreen.lua",
+          "line": 470,
+          "sha256": "975cf7129e5e6321a2b804692d4464eae9b80bbcf7220f4da9ded1be66987f7e"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/LoadGameScreen.lua",
+          "class": "LoadGameScreen",
+          "line": 11
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F03",
+      "group": "Frontend",
+      "title": "World/map and spawn selection",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme region lists/map preview/seed controls and navigation; preserve map data and selection.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/WorldSelect.lua",
+          "line": 239,
+          "sha256": "4fd0d20a7071b5b6a9c55066ed127201f298c8036b95cd6eac3b250f1f11cdbd"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/MapSpawnSelect.lua",
+          "line": 315,
+          "sha256": "55147ea9a7b3d603ff41fbc6dc573cd45387ae8ca790a4ef468d05305ce954c7"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/WorldSelect.lua",
+          "class": "WorldSelect",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/MapSpawnSelect.lua",
+          "class": "MapSpawnSelect",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/MapSpawnSelect.lua",
+          "class": "MapSpawnSelectImage",
+          "line": 14
+        },
+        {
+          "path": "media/lua/client/OptionScreens/MapSpawnSelect.lua",
+          "class": "MapSpawnSelectListBox",
+          "line": 260
+        },
+        {
+          "path": "media/lua/client/OptionScreens/MapSpawnSelect.lua",
+          "class": "MapSpawnSelectInfoPanel",
+          "line": 275
+        },
+        {
+          "path": "media/lua/client/OptionScreens/MapSpawnSelect.lua",
+          "class": "MapSpawnSelectSeedPanel",
+          "line": 313
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F04",
+      "group": "Frontend",
+      "title": "Sandbox settings and presets",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Adopt dynamic native setting factories, preset dialogs, category navigation and validation; shared gameplay values remain native/server owned.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/SandboxOptions.lua",
+          "line": 407,
+          "sha256": "22319f9de25c5da14146e54758a1711347f019272d1277860db66d75a2cd0833"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/SandboxOptions.lua",
+          "line": 642,
+          "sha256": "22319f9de25c5da14146e54758a1711347f019272d1277860db66d75a2cd0833"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/SandboxOptions.lua",
+          "class": "SandboxOptionsScreen",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F05",
+      "group": "Frontend",
+      "title": "Character identity, clothing and avatar creation",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme forms, selectors, appearance controls and layout around the native model viewport; audit UI3DModel separately.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/CharacterCreationMain.lua",
+          "line": 157,
+          "sha256": "a058e7c6294c70f4969fffd5a7b135c4b8a3a4bb340721aa7c80ac3690d7f489"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/CharacterCreationAvatar.lua",
+          "line": 12,
+          "sha256": "914aa7b2d01bef383b8adf4c98c324e8cc67183dcac90019451dbf9c3395d73e"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/CharacterCreationProfession.lua",
+          "line": 10,
+          "sha256": "fac4764f0464d263bfe3cbb137793b785dbdd4e19b85db67c1c78e461e377edd"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/CharacterCreationMain.lua",
+          "class": "CharacterCreationMain",
+          "line": 9
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CharacterCreationMain.lua",
+          "class": "CharacterCreationMainCharacterPanel",
+          "line": 12
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CharacterCreationMain.lua",
+          "class": "CharacterCreationMainPresetPanel",
+          "line": 13
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CharacterCreationAvatar.lua",
+          "class": "CharacterCreationAvatar",
+          "line": 6
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CharacterCreationProfession.lua",
+          "class": "CharacterCreationProfession",
+          "line": 10
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F06",
+      "group": "Frontend",
+      "title": "Occupation and traits",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme profession/trait lists, points, descriptions and selection states without changing balance or validation.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/CharacterCreationProfession.lua",
+          "line": 97,
+          "sha256": "fac4764f0464d263bfe3cbb137793b785dbdd4e19b85db67c1c78e461e377edd"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/CharacterCreationProfession.lua",
+          "class": "CharacterCreationProfession",
+          "line": 10
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F07",
+      "group": "Frontend",
+      "title": "Multiplayer server browser",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme server rows/details/favorites/filters/actions and error states; preserve discovery/network behavior.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/MultiplayerUI.lua",
+          "line": 47,
+          "sha256": "e19afe750051a08015179e19ab74849414a1ba80aa46c0586c51447d507e6cc5"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/MultiplayerUI.lua",
+          "class": "MultiplayerUI",
+          "line": 8
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F08",
+      "group": "Frontend",
+      "title": "Connection, bootstrap, progress and error popups",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme connection/password/progress/error/return states; do not replace connection logic.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ConnectToServer.lua",
+          "line": 6,
+          "sha256": "ab85ddf9f4b5bfeeb1a6de2de242a3461e64a89c01e24d8c2888c4a87710ac0c"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/BootstrapConnectPopup.lua",
+          "line": 1,
+          "sha256": "32b0eaeb1f22cd6e4af8848ffb4faaa9602acff8a7dae4f8fd2ad52d0d666a3a"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ServerConnectPopup.lua",
+          "line": 1,
+          "sha256": "ea5402e132b57f75852cfc61e12036604dbcf324adb69b656f7e5b5350614072"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/ConnectToServer.lua",
+          "class": "ConnectToServer",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/OptionScreens/BootstrapConnectPopup.lua",
+          "class": "BootstrapConnectPopup",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ServerConnectPopup.lua",
+          "class": "ServerConnectPopup",
+          "line": 6
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F09",
+      "group": "Frontend",
+      "title": "Host/local-coop setup",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme host profiles/start controls and cooperative setup; preserve server startup actions and confirmations.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/CoopOptionsScreen.lua",
+          "line": 125,
+          "sha256": "f47e2e06dfc0ba4729eb505affe26bacfb798705cf6a47b53ac8d0278386f340"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ServerToolbox.lua",
+          "line": 3,
+          "sha256": "6d4a23a161100c0bacd1961089e6a368feacdfd0a31c52e1c8bf82b644f5b93c"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/CoopOptionsScreen.lua",
+          "class": "CoopOptionsScreen",
+          "line": 10
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CoopOptionsScreen.lua",
+          "class": "CoopOptionsScreenPanel",
+          "line": 11
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ServerToolbox.lua",
+          "class": "ServerToolbox",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F10",
+      "group": "Frontend",
+      "title": "Server configuration editor",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Audit every native settings group/list/tooltip, presets and validation; UI skinning must not redefine authoritative settings.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ServerSettingsScreen.lua",
+          "line": 3964,
+          "sha256": "617349ddbd1e5023c5f4d83a248a89423dfc608db01496458b31a6b1a3d51a19"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/ServerSettingsScreen.lua",
+          "class": "ServerSettingsScreen",
+          "line": 6
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ServerSettingsScreen.lua",
+          "class": "BaseServerSettingsPanel",
+          "line": 7
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ServerSettingsScreen.lua",
+          "class": "SpawnRegionsNameFilePanel",
+          "line": 389
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ServerSettingsScreen.lua",
+          "class": "Page3.ChooseModsWindow",
+          "line": 2987,
+          "discovery": "qualified_derive"
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F11",
+      "group": "Frontend",
+      "title": "Mod manager, mod presets and missing-mod warnings",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme mod list/details/search/presets, map-order/missing-dependency adjuncts and activation warnings; preserve enable/load-order behavior.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/ModSelector.lua",
+          "line": 12,
+          "sha256": "6503047607818794965da060a680f61831652ad501a811657b01dbf70c1d7a01"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ISModsNagPanel.lua",
+          "line": 12,
+          "sha256": "f4de77d826520ed957e9d4f0b27985a65f62b0cb58a03ea3b01c16ecaaefa814"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModMoreInfo.lua",
+          "line": 9,
+          "sha256": "6e6b2189e3ed517dfc1e78029d1afd62e513ac27422f824b77853d8635e2d64a"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/ISModsHelpPanel.lua",
+          "line": 3,
+          "sha256": "4ff04a9f4616a6ef5dd577f160ac1d1a448d28ba7b9e55907f890cba7f051754"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanel.lua",
+          "line": 3,
+          "sha256": "4263cd72dad720da1878505e1ab68cee4aa98e1c4f93d5503727826aa6831f1a"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/ModListPresets.lua",
+          "line": 7,
+          "sha256": "bbf45c84ffa0b10a746e45ee87e1c1b789d185239986d676d29cd05e846a58af"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/MapOrderListBox.lua",
+          "line": 4,
+          "sha256": "3c57bfd6f7355b3b9e521c21baebe7988449d2f4deaee6214dc5e31e750397c5"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/MapOrderUI.lua",
+          "line": 7,
+          "sha256": "6424e6f3d9f84a4277747914d1e5ec8d36e80c46ba78e258c9eb54cfe95d9ca1"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/MissedModsPanel.lua",
+          "line": 6,
+          "sha256": "6a5405a5871c57fb4fbc94986927f08f685361e549efebdb671d586814d1d493"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelDesc.lua",
+          "line": 4,
+          "sha256": "8ff8c04c37f0e84bcfa65c1d14f0336f57fbd6c1ccf222dd5a36830d474e4477"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelInteractionParam.lua",
+          "line": 8,
+          "sha256": "b6bd99c12e4945dcc6437ff36d1d6eb2b1069fb7cddec20f72c9938afbac6ef1"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelParam.lua",
+          "line": 8,
+          "sha256": "7a35ce8f8bb4101a8696911d398bec2eee2e27191439aa341f5028b9cad15c1c"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelThumbnail.lua",
+          "line": 4,
+          "sha256": "2045e6dac66cd016ec1d6469e575e2ab7a61eacbc4193f40b8cab78535145ce3"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelTitle.lua",
+          "line": 8,
+          "sha256": "b894b8dca97958bf37e5950fec4aaef3854664b109b79221950c04295dbdf946"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/ModListBox.lua",
+          "line": 4,
+          "sha256": "53f0de830841eb216ec85a8f8f9c9b3dfc3d8d637bf8f1097d5dcb9c980de670"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/ModListPanel.lua",
+          "line": 12,
+          "sha256": "76d17fea5a0b3f5d41e471e5294d3f494f7240894731be3ebc0f1f556b4f16fa"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/ModLoadOrderPanel.lua",
+          "line": 7,
+          "sha256": "6f318a0702093806608edfe6db1d5785d92c8991651f8fc634c813d825506312"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/ModOrderListBox.lua",
+          "line": 4,
+          "sha256": "6c231d409078d7be6be0dd663e38b58e0bb0d4150230887947c096e3b1f4b2a4"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ModSelector/ModSelectorModel.lua",
+          "line": 1,
+          "sha256": "a42f02da40a1f3be4e221b94ef126d38c92e71119472b097a1fdcfa826c7f67e"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModSelector.lua",
+          "class": "ModSelector",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ISModsNagPanel.lua",
+          "class": "ISModsNagPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModMoreInfo.lua",
+          "class": "ModMoreInfo",
+          "line": 9
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ISModsHelpPanel.lua",
+          "class": "ISModsHelpPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanel.lua",
+          "class": "ModInfoPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModListPresets.lua",
+          "class": "ModListPresets",
+          "line": 7
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/MapOrderListBox.lua",
+          "class": "ModSelector.MapOrderListBox",
+          "line": 4,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/MapOrderUI.lua",
+          "class": "ModSelector.MapOrderUI",
+          "line": 7,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/MissedModsPanel.lua",
+          "class": "ModSelector.MissedModsPanel",
+          "line": 6,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/MissedModsPanel.lua",
+          "class": "ModSelector.MissedModsWindow",
+          "line": 48,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelDesc.lua",
+          "class": "ModInfoPanel.Desc",
+          "line": 4,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelInteractionParam.lua",
+          "class": "ModInfoPanel.InteractionParam",
+          "line": 8,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelParam.lua",
+          "class": "ModInfoPanel.Param",
+          "line": 8,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelThumbnail.lua",
+          "class": "ModInfoPanel.Thumbnail",
+          "line": 4,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelTitle.lua",
+          "class": "ModInfoPanel.Title",
+          "line": 8,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModListBox.lua",
+          "class": "ModSelector.ModListBox",
+          "line": 4,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModListPanel.lua",
+          "class": "ModSelector.ModListPanel",
+          "line": 12,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModLoadOrderPanel.lua",
+          "class": "ModSelector.ModLoadOrderPanel",
+          "line": 7,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModOrderListBox.lua",
+          "class": "ModSelector.ModOrderListBox",
+          "line": 4,
+          "discovery": "qualified_derive"
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F12",
+      "group": "Frontend",
+      "title": "Server Workshop dependency installation",
+      "source_coverage": "unadopted",
+      "priority": "P3",
+      "next_action": "Theme dependency lists, download/progress/retry states and confirmations without changing subscriptions.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ServerWorkshopItemScreen.lua",
+          "line": 80,
+          "sha256": "1c139b7407d14b115e99011db6248ab9b62609c4d1b9322ec9237da3d5dfe66d"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/ServerWorkshopItemScreen.lua",
+          "class": "ServerWorkshopItemScreen",
+          "line": 4
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F13",
+      "group": "Frontend",
+      "title": "Workshop submission/update wizard",
+      "source_coverage": "unadopted",
+      "priority": "P3",
+      "next_action": "Theme wizard forms, preview selection and status/errors; retain native submission behavior and confirmation.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/WorkshopSubmitScreen.lua",
+          "line": 35,
+          "sha256": "b381a0a4d78a3fab94b504f29b0af2092642040fc236d83af5ffa37d8058fecf"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/WorkshopSubmitScreen.lua",
+          "class": "WorkshopSubmitScreen",
+          "line": 6
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F14",
+      "group": "Frontend",
+      "title": "Credits, Terms/legal, help/report and ancillary entry controls",
+      "source_coverage": "unadopted",
+      "priority": "P3",
+      "next_action": "Theme owned text/button frames and standalone screens; retain legal text, report links and original actions.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/CreditsScreen.lua",
+          "line": 14,
+          "sha256": "6b6b5652b97114a648020bd646e585553290c5ef7f2c6f462c7cbe3d9abae854"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISTermsOfServiceUI.lua",
+          "line": 1,
+          "sha256": "977b96c0368e54f8a43f192b9b76f8c347e03c36d815285ec60a3f441db0ad37"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/MainScreen.lua",
+          "line": 624,
+          "sha256": "f89d351830fcb0050cfc10bc7a7e1a216a260b4731fe0ac34da9bcd4269352e5"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/CreditsScreen.lua",
+          "class": "CreditsScreen",
+          "line": 12
+        },
+        {
+          "path": "media/lua/client/ISUI/ISTermsOfServiceUI.lua",
+          "class": "ISTermsOfServiceUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/OptionScreens/MainScreen.lua",
+          "class": "MainScreen",
+          "line": 9
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F15",
+      "group": "Frontend",
+      "title": "Steam invitations and scoreboard",
+      "source_coverage": "unadopted",
+      "priority": "P3",
+      "next_action": "Theme Lua invitations/player lists and actions; the Steam platform overlay is a separate engine boundary.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/InviteFriends.lua",
+          "line": 269,
+          "sha256": "1afd33ced6377f69efd79a98ed648392259681b9e0a17a3c94fcc6487bd615b9"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ISScoreboard.lua",
+          "line": 1,
+          "sha256": "5e06626bf8187e95af61acbd06af911fe6cfb39b9a2cd3f2e725622d13a4e2d2"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/InviteFriends.lua",
+          "class": "InviteFriends",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ISScoreboard.lua",
+          "class": "ISScoreboard",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F16",
+      "group": "Frontend",
+      "title": "Local-player/cooperative character join flow",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Adopt username/avatar/profession/spawn/join screens with independent player/controller focus ownership.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/CoopCharacterCreation.lua",
+          "line": 148,
+          "sha256": "00a23dc9c3ca0ed045e0a19271030f600d80e5c1d934d946ada9d40bc66301b6"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/CoopUserName.lua",
+          "line": 3,
+          "sha256": "c06494a011bde68ae290a43c67a0d9c327ee48132891c36ecdeb796469568590"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/CoopCharacterCreationMain.lua",
+          "line": 3,
+          "sha256": "6ddae63880be661c9b79f124165bcafd5eb05fd39054fd34b87eb7740b7a7260"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/CoopCharacterCreationProfession.lua",
+          "line": 3,
+          "sha256": "eb172e700c2243ab6b089c7beae1b12c9a3005a4c43f015aa6b18fef4c7d8977"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/CoopMapSpawnSelect.lua",
+          "line": 3,
+          "sha256": "e5357b7b137fa40813d012ac32177728d75b2e6c773682b51d0feeb3b50a36e2"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "Coop username, spawn and character/profession flow lacks visual adapters. CoopCharacterCreationMain derives from CharacterCreationMain; no separate CoopCharacterCreationAvatar file was found.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/CoopCharacterCreation.lua",
+          "class": "CoopCharacterCreation",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CoopUserName.lua",
+          "class": "CoopUserName",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CoopCharacterCreationMain.lua",
+          "class": "CoopCharacterCreationMain",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CoopCharacterCreationProfession.lua",
+          "class": "CoopCharacterCreationProfession",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CoopMapSpawnSelect.lua",
+          "class": "CoopMapSpawnSelect",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "F17",
+      "group": "Frontend",
+      "title": "Advanced sound browser",
+      "source_coverage": "unadopted",
+      "priority": "P3",
+      "next_action": "Theme the separate sound/debug browser rather than assuming native Options root adoption reaches it.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/OptionScreens/ISGameSounds.lua",
+          "line": 227,
+          "sha256": "9cab31c4b2b4123b338fead615c9e5f95086e2307abcd92bef6d9e2060d0cbae"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/ISGameSounds.lua",
+          "class": "ISGameSounds",
+          "line": 152
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G01",
+      "group": "Gameplay",
+      "title": "Live inventory and loot windows",
+      "source_coverage": "partial_scope",
+      "priority": "P1",
+      "next_action": "Accept live inventory and loot scrolling, all buttons/pooled bags, rejected drops/heat/progress/blink, search/filter, item tooltips, transfers/drag-drop and controller/split-screen; redesign remaining content only through explicit contracts.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISInventoryPage.lua",
+          "line": 68,
+          "sha256": "65ebb1668583cb7f6f346f367e68e8f045fc926db0bf9d167ca4574c2282fd3b"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISInventoryPane.lua",
+          "line": 1779,
+          "sha256": "8cce738cc0dfec8655d2970c42572596bf6294b85e4917a245dc41d1827a56be"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/InventoryWindow/ISInventoryWindowContainerControls.lua",
+          "line": 36,
+          "sha256": "065c9f780a6ebad19a4b7b26c937f76336a2ec632d0b3b263dfb5306ecfad0d6"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/LootWindow/ISLootWindowContainerControls.lua",
+          "line": 101,
+          "sha256": "4e2df8a7afd1b321c01ba4fef50b7b91bb470ad8f9e83b260503188ce21e854d"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/HUDLayoutRuntime.lua",
+          "line": 9,
+          "sha256": "2d98e340c194a6db81560af66fc880626107cc10c9a2f4ae2a6f85f001bb6770"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeInventory.lua",
+          "line": 90,
+          "sha256": "4f8b9d3c77f026350edf68ae229899833bc2d7de302d68d4d5519924016e9ef7"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeInventory.lua",
+          "line": 134,
+          "sha256": "4f8b9d3c77f026350edf68ae229899833bc2d7de302d68d4d5519924016e9ef7"
+        }
+      ],
+      "previous_source_coverage": "geometry_only",
+      "current_scope": "Live inventory/loot shell, neutral detail rows, headers/container/action buttons, vertical scrollbar palette and reached tooltip frame for current four-player roots. Native item semantics/actions/input/geometry retained.",
+      "validation_priority": "P0",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISInventoryPage.lua",
+          "class": "ISInventoryPage",
+          "line": 14
+        },
+        {
+          "path": "media/lua/client/ISUI/ISInventoryPage.lua",
+          "class": "ISInventoryPageContainerButtonPanel",
+          "line": 23
+        },
+        {
+          "path": "media/lua/client/ISUI/ISInventoryPane.lua",
+          "class": "ISInventoryPane",
+          "line": 10
+        },
+        {
+          "path": "media/lua/client/ISUI/InventoryWindow/ISInventoryWindowContainerControls.lua",
+          "class": "ISInventoryWindowContainerControls",
+          "line": 7
+        },
+        {
+          "path": "media/lua/client/ISUI/LootWindow/ISLootWindowContainerControls.lua",
+          "class": "ISLootWindowContainerControls",
+          "line": 29
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G02",
+      "group": "Gameplay",
+      "title": "Character, skills, health, protection, insulation, fitness and garment panels",
+      "source_coverage": "geometry_only",
+      "priority": "P1",
+      "next_action": "Theme every inner tab/body diagram/skill bar/state and auxiliary fitness/tailoring/makeup dialog; moving the outer window does not skin these.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/XpSystem/ISUI/ISCharacterInfoWindow.lua",
+          "line": 103,
+          "sha256": "4eb4bfe22c27b4fa9a22e7cd193be3246c2b32a940128a4dfed5bd569b533f05"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/XpSystem/ISUI/ISHealthPanel.lua",
+          "line": 114,
+          "sha256": "8138f094a76f73f275e8c65a8991fd501cdc3502547f4d08e52b122c1f9f2a10"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/XpSystem/ISUI/ISSkillProgressBar.lua",
+          "line": 26,
+          "sha256": "ef7c4040146f9a8a1d892f27542c0c6dc0ebcbc1d1a8684f6d64ffa90229e078"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISFitnessUI.lua",
+          "line": 27,
+          "sha256": "d6857bc80317217b8b0260b98af3ac0b92d431e4d15175b460322ef9f797c9a0"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISGarmentUI.lua",
+          "line": 409,
+          "sha256": "3188981fb5060afd1c83993a6d2153ebf4ce282227cdab8b8ca8a8ccd95f676f"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/XpSystem/ISUI/ISCharacterScreen.lua",
+          "line": 4,
+          "sha256": "ac4dae5d7f749fca6654dd65b96029adea40d2a50bdb1a2a3c087aa02300ff02"
+        }
+      ],
+      "previous_source_coverage": "geometry_only",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISCharacterInfoWindow.lua",
+          "class": "ISCharacterInfoWindow",
+          "line": 4
+        },
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISHealthPanel.lua",
+          "class": "ISHealthPanel",
+          "line": 4
+        },
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISHealthPanel.lua",
+          "class": "ISNewHealthPanel",
+          "line": 10
+        },
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISHealthPanel.lua",
+          "class": "ISHealthBodyPartPanel",
+          "line": 53
+        },
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISHealthPanel.lua",
+          "class": "ISHealthBodyPartListBox",
+          "line": 96
+        },
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISSkillProgressBar.lua",
+          "class": "ISSkillProgressBar",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISFitnessUI.lua",
+          "class": "ISFitnessUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISGarmentUI.lua",
+          "class": "ISGarmentUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISCharacterScreen.lua",
+          "class": "ISCharacterScreen",
+          "line": 4
+        },
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISCharacterScreen.lua",
+          "class": "ISCharacterScreenAvatar",
+          "line": 30
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G03",
+      "group": "Gameplay",
+      "title": "Equipment and hotbar",
+      "source_coverage": "geometry_only",
+      "priority": "P1",
+      "next_action": "Theme live slots, equip/attach indicators, selection/hovers and prompts; preserve item rendering and hotkey/controller behavior.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISEquippedItem.lua",
+          "line": 27,
+          "sha256": "9ee7932e2b00d55e653b4988ba11e0452ae1829ed11de2978564a6d542ca5c68"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Hotbar/ISHotbar.lua",
+          "line": 7,
+          "sha256": "5260ae8b0a73fbc06514f4cbebe163de848aa30546a0436ad59afa2d23d90048"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/HUDLayoutRuntime.lua",
+          "line": 9,
+          "sha256": "2d98e340c194a6db81560af66fc880626107cc10c9a2f4ae2a6f85f001bb6770"
+        }
+      ],
+      "previous_source_coverage": "geometry_only",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISEquippedItem.lua",
+          "class": "ISEquippedItem",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISEquippedItem.lua",
+          "class": "ISMoveablesIconPopup",
+          "line": 1070
+        },
+        {
+          "path": "media/lua/client/ISUI/ISEquippedItem.lua",
+          "class": "ISMapPopup",
+          "line": 1181
+        },
+        {
+          "path": "media/lua/client/Hotbar/ISHotbar.lua",
+          "class": "ISHotbar",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G04",
+      "group": "Gameplay",
+      "title": "Clock/watch and moodles/status indicators",
+      "source_coverage": "reference_only",
+      "priority": "P2",
+      "next_action": "Audit available exposed engine/Lua drawing and movement routes; static editor references are not editable bindings or a completed skin.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/HUDPreviews.lua",
+          "line": 44,
+          "sha256": "e99ad8a66b5e39312b9a35565d2051681fce86cc2a4024315af226125e100a5a"
+        }
+      ],
+      "previous_source_coverage": "reference_only",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G05",
+      "group": "Gameplay",
+      "title": "Chat",
+      "source_coverage": "geometry_only",
+      "priority": "P1",
+      "next_action": "Theme native tabs/channel colors/input/history/scroll/mentions/size states while retaining chat behavior and moderation semantics.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Chat/ISChat.lua",
+          "line": 72,
+          "sha256": "0386ca1cd4bb936ea6a3591dc13f77f1ef830764c6b8a8ee2ded92559b16b483"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Chat/ISChat.lua",
+          "line": 434,
+          "sha256": "0386ca1cd4bb936ea6a3591dc13f77f1ef830764c6b8a8ee2ded92559b16b483"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/HUDLayoutRuntime.lua",
+          "line": 40,
+          "sha256": "2d98e340c194a6db81560af66fc880626107cc10c9a2f4ae2a6f85f001bb6770"
+        }
+      ],
+      "previous_source_coverage": "geometry_only",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/Chat/ISChat.lua",
+          "class": "ISChat",
+          "line": 6
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G06",
+      "group": "Gameplay",
+      "title": "Minimap, world/paper maps, symbols, legends and sharing",
+      "source_coverage": "geometry_only",
+      "priority": "P1",
+      "next_action": "Theme toolbars/frames/annotations/sharing/symbol pickers; minimap positioning does not redesign engine UIWorldMap content.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "line": 282,
+          "sha256": "69e77918d3f1a7b1146c96b7743ae9be2735fe46feb5d558e5f44460e67989cb"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Maps/ISMap.lua",
+          "line": 44,
+          "sha256": "4dbd725cc06db3ad7927d3390c1720d800f1261858894079698ccb951cce36ae"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Maps/ISMiniMap.lua",
+          "line": 406,
+          "sha256": "3cb66d04f9e839776b9e17d7eb670cad2b357fa02f1961c75273aef309b3e2d7"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Maps/ISWorldMapSymbols.lua",
+          "line": 1089,
+          "sha256": "aba98a2d3f686dd7e5fab280430ab8b9763a4e80225d7198f776d4f29c0de28f"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Maps/ISWorldMapSharing.lua",
+          "line": 390,
+          "sha256": "6c8d066a9a0a2a5085e45410502e829eaeac40d915dc52aed5ac86a997d5989b"
+        }
+      ],
+      "previous_source_coverage": "geometry_only",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "WorldMapOptions",
+          "line": 12
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "ISWorldMapButtonPanel",
+          "line": 226
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "ISWorldMap",
+          "line": 264
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "AnnotatedMapOverlay",
+          "line": 683
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISMap.lua",
+          "class": "ISMap",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISMap.lua",
+          "class": "ISMapWrapper",
+          "line": 10
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISMiniMap.lua",
+          "class": "ISMiniMapOuter",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISMiniMap.lua",
+          "class": "ISMiniMapInner",
+          "line": 4
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISMiniMap.lua",
+          "class": "ISMiniMapTitleBar",
+          "line": 5
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISMiniMap.lua",
+          "class": "ISMiniMapOptionsPanel",
+          "line": 12
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMapSymbols.lua",
+          "class": "ISWorldMapSymbols",
+          "line": 9
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMapSymbols.lua",
+          "class": "ISWorldMapSymbolsTabPanel",
+          "line": 1036
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMapSharing.lua",
+          "class": "ISWorldMapSharing",
+          "line": 5
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMapSharing.lua",
+          "class": "ISWorldMapSharing_PanelPlayers",
+          "line": 249
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G07",
+      "group": "Gameplay",
+      "title": "Build42 handcraft and recipe UI",
+      "source_coverage": "unadopted",
+      "priority": "P1",
+      "next_action": "Theme current handcraft windows plus recipe/filter/list/ingredient/tool/output widgets. Do not target the legacy ISCraftingUI helper as the active screen.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Crafting/ISHandcraftWindow.lua",
+          "line": 15,
+          "sha256": "f2faef3d78669c5b4a0b5c424a256bc504767166722de3da3a75ab4ed13bace8"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Entity/ISUI/CraftRecipe/ISHandCraftPanel.lua",
+          "line": 9,
+          "sha256": "701585f80b96346783a506370de49aaa887ad122ffbc5a4a67d7c99c063cce1d"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Entity/ISUI/CraftRecipe/ISCraftRecipePanel.lua",
+          "line": 9,
+          "sha256": "d86d12808328ae17bd6e64b9a7b01432379c24d1a86ad0f3dac4b6c6a388b511"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/Crafting/ISHandcraftWindow.lua",
+          "class": "ISHandcraftWindow",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Entity/ISUI/CraftRecipe/ISHandCraftPanel.lua",
+          "class": "ISHandCraftPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Entity/ISUI/CraftRecipe/ISCraftRecipePanel.lua",
+          "class": "ISCraftRecipePanel",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G08",
+      "group": "Gameplay",
+      "title": "Building, placement and moveable controls",
+      "source_coverage": "unadopted",
+      "priority": "P1",
+      "next_action": "Theme current build recipe windows, headers, placement controls, cursor help and moveable tooltips; preserve placement intent and server validation.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Building/ISBuildWindow.lua",
+          "line": 28,
+          "sha256": "d6768b6c577d561fa67be9d460fbc655bfb24c281e97c692df8a88ae3e18cc40"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Entity/ISUI/BuildRecipe/ISBuildPanel.lua",
+          "line": 9,
+          "sha256": "2b4bb8908dbf0158f68bc0a9c05b6d338fc1695d6fc9897b78e22010c342e05d"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISExtendedPlacementUI.lua",
+          "line": 387,
+          "sha256": "a7fc58b9644092a39faba304437485db5e080222d1c51979e9ee577ff221edd7"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Moveables/ISMoveablesIconToolTip.lua",
+          "line": 20,
+          "sha256": "5b4e88e5ffe7d73e85830f51c62d1b5bde369305bcdad994104cb08fd67fcb19"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/Building/ISBuildWindow.lua",
+          "class": "ISBuildWindow",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Entity/ISUI/BuildRecipe/ISBuildPanel.lua",
+          "class": "ISBuildPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISExtendedPlacementUI.lua",
+          "class": "ISExtendedPlacementUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Moveables/ISMoveablesIconToolTip.lua",
+          "class": "ISMoveablesIconToolTip",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G09",
+      "group": "Gameplay",
+      "title": "Entities and crafting workstations",
+      "source_coverage": "unadopted",
+      "priority": "P1",
+      "next_action": "Theme entity/tab windows and craft-bench/logic component panels with data-driven custom widget coverage.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Entity/ISUI/Windows/ISEntityWindow.lua",
+          "line": 15,
+          "sha256": "82cde58b396f3f6efca59be9f3e25767800d18808773e346dba93c9ea7f13478"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Entity/ISUI/Windows/ISEntityTabWindow.lua",
+          "line": 15,
+          "sha256": "8caa8fca7d79796c110090cfa27be01a770cab08d44a0a7f8610660a0c6dc3c6"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Entity/ISUI/Components/Crafting/ISCraftBenchPanel.lua",
+          "line": 15,
+          "sha256": "3cc0cb2cb2c356efc6922fec841e9e32ac51ab7a5518b19b8c196b4f2fa4a179"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Entity/ISUI/Components/Crafting/ISCraftLogicPanel.lua",
+          "line": 15,
+          "sha256": "fff1dab5ed9dfc0aef655a783ff10136361734237f89714a64a033ab829de46d"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/Entity/ISUI/Windows/ISEntityWindow.lua",
+          "class": "ISEntityWindow",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Entity/ISUI/Windows/ISEntityTabWindow.lua",
+          "class": "ISEntityTabWindow",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Entity/ISUI/Components/Crafting/ISCraftBenchPanel.lua",
+          "class": "ISCraftBenchPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Entity/ISUI/Components/Crafting/ISCraftLogicPanel.lua",
+          "class": "ISCraftLogicPanel",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G10",
+      "group": "Gameplay",
+      "title": "Vehicle mechanics",
+      "source_coverage": "geometry_only",
+      "priority": "P1",
+      "next_action": "Theme part tree, inspection/details, body diagram, lists and action feedback. Existing override supports height only and is not visual adoption.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleMechanics.lua",
+          "line": 136,
+          "sha256": "372baa7b9f65fb9a0fe02e91ebdff68ef135add0199d592934d86f766aadd700"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/HUDLayoutRuntime.lua",
+          "line": 9,
+          "sha256": "2d98e340c194a6db81560af66fc880626107cc10c9a2f4ae2a6f85f001bb6770"
+        }
+      ],
+      "previous_source_coverage": "geometry_only",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleMechanics.lua",
+          "class": "ISVehicleMechanics",
+          "line": 1
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G11",
+      "group": "Gameplay",
+      "title": "Vehicle dashboard, seats, climate, lightbar and radial controls",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme Lua panels/prompt states and audit native gauges/radials independently; preserve vehicle functions and input mapping.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleDashboard.lua",
+          "line": 231,
+          "sha256": "5b56f71248cd371f3d43aebe53fe6147f785ba97fc76c380bef07da69cdb7ce1"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleSeatUI.lua",
+          "line": 67,
+          "sha256": "034ad4cfd3122c5c9458af3de421f33b1a4d83d935641698b44705f45bc0a627"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleACUI.lua",
+          "line": 5,
+          "sha256": "253189470b6ecca0a52f29554131f8fb641c7da8a5e8e21bbbb5ea3546b75409"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Vehicles/ISUI/ISLightbarUI.lua",
+          "line": 5,
+          "sha256": "74f2b4f625ab4728c2c3e73c8b6802891ee0ed50e5ad4e76f1acd10e73c505e6"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleGauge.lua",
+          "line": 17,
+          "sha256": "3e4d8a93a7c8032f56c1060ba7dfefd848b07434913a016a319fa6946bd26609"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleDashboard.lua",
+          "class": "ISVehicleDashboard",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleSeatUI.lua",
+          "class": "ISVehicleSeatUI",
+          "line": 61
+        },
+        {
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleACUI.lua",
+          "class": "ISVehicleACUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Vehicles/ISUI/ISLightbarUI.lua",
+          "class": "ISLightbarUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleGauge.lua",
+          "class": "ISVehicleGauge",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G12",
+      "group": "Gameplay",
+      "title": "Radio, television and recorded media",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme radio-window modules, frequency/presets/media controls, decorative sliders/knobs and metadata; preserve tuning/playback logic.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/RadioCom/ISRadioWindow.lua",
+          "line": 111,
+          "sha256": "704976f04b887feeb22e1c05dfc8a4350f6ed1ad27156a0d905e68978cd7ecfa"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/RecordedMedia/ISMediaInfo.lua",
+          "line": 27,
+          "sha256": "c5caceb0684f6c440d1bbdb11b1ba9fa59168571737ef847970100db92796b64"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/RadioCom/ISRadioWindow.lua",
+          "class": "ISRadioWindow",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/RecordedMedia/ISMediaInfo.lua",
+          "class": "ISMediaInfo",
+          "line": 1
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G13",
+      "group": "Gameplay",
+      "title": "Foraging, search and tracking overlays",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme search/zone panels, world-item hints/icons and tracking help without changing discovery results.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Foraging/ISSearchWindow.lua",
+          "line": 185,
+          "sha256": "a2079ca99bc52a3f2192b8e754ab2de13f7c1bdc34673140ff1b54ffb1ebe88d"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Foraging/ISZoneDisplay.lua",
+          "line": 753,
+          "sha256": "27924ddb6b2a99f7b5acdbc49489a39cf6079d46aa4c7ce7ddd655e7d5019a3f"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Foraging/ISForageIcon.lua",
+          "line": 126,
+          "sha256": "2860b9f5ee39e1d463ae34d59c8017798ae48ce5aa8fcdd65c63ef967a9cbe5f"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Foraging/ISAnimalTracksMenu.lua",
+          "line": 3,
+          "sha256": "3594baf9646c99280e00779803c0b6e93bf0245741d43089f47e746628ccd52b"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Animal/ISAnimalTracksUI.lua",
+          "line": 7,
+          "sha256": "7e4ee8148555c5f2f0556135bf8c3feb0a39924b5f087c8b3845312cf72875ae"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "Foraging/search/tracking windows and overlays lack visual adapters. Track-context options can inherit an adopted pooled context frame, but the tracking UI itself remains unadopted.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/Foraging/ISSearchWindow.lua",
+          "class": "ISSearchWindow",
+          "line": 5
+        },
+        {
+          "path": "media/lua/client/Foraging/ISZoneDisplay.lua",
+          "class": "ISZoneDisplay",
+          "line": 2
+        },
+        {
+          "path": "media/lua/client/Foraging/ISForageIcon.lua",
+          "class": "ISForageIcon",
+          "line": 4
+        },
+        {
+          "path": "media/lua/client/ISUI/Animal/ISAnimalTracksUI.lua",
+          "class": "ISAnimalTracksUI",
+          "line": 7
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G14",
+      "group": "Gameplay",
+      "title": "Fishing and newer PZAPI fish window",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme tension/activity feedback and the distinct PZAPI organism/template window; classic ISPanel adoption alone is insufficient.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Fishing/TensionUI.lua",
+          "line": 10,
+          "sha256": "6339605e37529c104825325088fe2cd03d7134ee971802b69787b7d397480ab5"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/PZAPI/ui/organisms/FishWindow.lua",
+          "line": 102,
+          "sha256": "c28749b23d8937e7c7143301198f7e244c793cc9cb6e6280257a150edfada0b9"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/Fishing/TensionUI.lua",
+          "class": "Fishing.ISTensionUI",
+          "line": 3,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/PZAPI/ui/organisms/FishWindow.lua",
+          "class": "UI.FishWindow",
+          "line": 102,
+          "discovery": "ui_template"
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G15",
+      "group": "Gameplay",
+      "title": "Animals, designation zones, hutches, tracks and butchering",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme animal details/lists/actions, zone editing, hutch and vehicle-animal panels; preserve native animal management and authority.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Animal/ISAnimalUI.lua",
+          "line": 364,
+          "sha256": "3368b1ada1d17bad7a6f152e8a9f77948968425f8d7c8cf863b971f768a50bcf"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Animal/ISDesignationAnimalZoneUI.lua",
+          "line": 187,
+          "sha256": "0e63b438be60aea743ab3f2ef5ac0848dd38977b39d9699e2f474258d1e70248"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Animal/ISButcherHookUI.lua",
+          "line": 289,
+          "sha256": "d7e87b2e9b4fa4fed77f978cc754924b09f20cdc50aae0fc3c3eaea11ea27fcf"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Hutch/ISHutchUI.lua",
+          "line": 760,
+          "sha256": "06dd6eb4f9536888bd7ecfbecf2c11e743b34f0dd662183c8749fb6e205470c1"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISVehicleAnimalUI.lua",
+          "line": 312,
+          "sha256": "cb353da5517c7fa14a1b0eec4ddf894fe52ff3cf08dd7308ebcc80e0d62f9922"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Foraging/ISAnimalTracksMenu.lua",
+          "line": 3,
+          "sha256": "3594baf9646c99280e00779803c0b6e93bf0245741d43089f47e746628ccd52b"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Animal/ISAnimalTracksUI.lua",
+          "line": 7,
+          "sha256": "7e4ee8148555c5f2f0556135bf8c3feb0a39924b5f087c8b3845312cf72875ae"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/Animal/ISAnimalUI.lua",
+          "class": "ISAnimalUI",
+          "line": 8
+        },
+        {
+          "path": "media/lua/client/ISUI/Animal/ISAnimalUI.lua",
+          "class": "ISAnimalAvatar",
+          "line": 12
+        },
+        {
+          "path": "media/lua/client/ISUI/Animal/ISDesignationAnimalZoneUI.lua",
+          "class": "ISDesignationZoneAnimalZoneUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/Animal/ISDesignationAnimalZoneUI.lua",
+          "class": "ISDesignationZoneAnimalZoneUI_AnimalsPanel",
+          "line": 6
+        },
+        {
+          "path": "media/lua/client/ISUI/Animal/ISButcherHookUI.lua",
+          "class": "ISButcherHookUI",
+          "line": 9
+        },
+        {
+          "path": "media/lua/client/ISUI/Hutch/ISHutchUI.lua",
+          "class": "ISHutch3DModel",
+          "line": 23
+        },
+        {
+          "path": "media/lua/client/ISUI/Hutch/ISHutchUI.lua",
+          "class": "ISHutchNestBox",
+          "line": 60
+        },
+        {
+          "path": "media/lua/client/ISUI/Hutch/ISHutchUI.lua",
+          "class": "ISHutchNestParentPanel",
+          "line": 230
+        },
+        {
+          "path": "media/lua/client/ISUI/Hutch/ISHutchUI.lua",
+          "class": "ISHutchRoost",
+          "line": 374
+        },
+        {
+          "path": "media/lua/client/ISUI/Hutch/ISHutchUI.lua",
+          "class": "ISHutchRoostParentPanel",
+          "line": 539
+        },
+        {
+          "path": "media/lua/client/ISUI/Hutch/ISHutchUI.lua",
+          "class": "ISHutchUI",
+          "line": 731
+        },
+        {
+          "path": "media/lua/client/ISUI/ISVehicleAnimalUI.lua",
+          "class": "ISVehicleAnimalUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISVehicleAnimalUI.lua",
+          "class": "ISAnimalInVehiclePanel",
+          "line": 10
+        },
+        {
+          "path": "media/lua/client/ISUI/ISVehicleAnimalUI.lua",
+          "class": "ISVehicleAnimal3DModel",
+          "line": 452
+        },
+        {
+          "path": "media/lua/client/ISUI/Animal/ISAnimalTracksUI.lua",
+          "class": "ISAnimalTracksUI",
+          "line": 7
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G16",
+      "group": "Gameplay",
+      "title": "Farming and plant information",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme crop/health/water/state panels and farming context feedback without changing farming values or commands.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Farming/ISUI/ISFarmingInfo.lua",
+          "line": 29,
+          "sha256": "c75013eaedbae2df90b9d93aa7d78a276dca45fdba70285902ef215b1ab9e634"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Farming/ISUI/ISFarmingWindow.lua",
+          "line": 3,
+          "sha256": "f86de0418a6dd17421614d87c98f5387eea15ddc6130112b4bb68892bc79ab3c"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/Farming/ISUI/ISFarmingInfo.lua",
+          "class": "ISFarmingInfo",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Farming/ISUI/ISFarmingWindow.lua",
+          "class": "ISFarmingWindow",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G17",
+      "group": "Gameplay",
+      "title": "Fluid transfer and container information",
+      "source_coverage": "unadopted",
+      "priority": "P1",
+      "next_action": "Theme composition/bars/transfer quantities, selectors and warnings; preserve meaningful fluid colors and authoritative transfer logic.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Fluids/ISFluidTransferUI.lua",
+          "line": 73,
+          "sha256": "f4fa531fc756ecca2a3709130c7f69cb2065cb158ae43141a86cb24fdc041321"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Fluids/ISFluidInfoUI.lua",
+          "line": 71,
+          "sha256": "14dbeffe43f34f1eec73468da762faecf8fab256f8c8481d3d282ffbba9ca96c"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Fluids/ISFluidBar.lua",
+          "line": 1,
+          "sha256": "642b880020de93352930f0c1e237d46c9953b577b5f697736a2dc0574d50d257"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Fluids/ISFluidContainerPanel.lua",
+          "line": 3,
+          "sha256": "1d393c089fe60f109c9b5ee780d9dde8abec9776edabb6c854d21241dbca0a93"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/Fluids/ISFluidTransferUI.lua",
+          "class": "ISFluidTransferUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Fluids/ISFluidInfoUI.lua",
+          "class": "ISFluidInfoUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Fluids/ISFluidBar.lua",
+          "class": "ISFluidBar",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Fluids/ISFluidContainerPanel.lua",
+          "class": "ISFluidContainerPanel",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G18",
+      "group": "Gameplay",
+      "title": "Appliances, heating, generator and BBQ information",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme oven/microwave controls and power/fuel/temperature/information windows with native timers/ranges and warnings intact.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Fireplace/ISOvenUI.lua",
+          "line": 153,
+          "sha256": "f4810738df267b681362a7b05bdec4aaa421186be8b0ceb897d5b79c848dad00"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Fireplace/ISMicrowaveUI.lua",
+          "line": 120,
+          "sha256": "55e484f16e8e41318ac59a7ce3739b901b04da10e30248e0290642692e7635e1"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISGeneratorInfoWindow.lua",
+          "line": 6,
+          "sha256": "6712644e29f2a6420aa0b7f0e0388c0671a1857190b6de64fb3f61943ca992d9"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISBBQInfoWindow.lua",
+          "line": 6,
+          "sha256": "1007edb664aba44cc1e26bd9235ff7560d22241627df86a8e0617754239fda43"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/Fireplace/ISOvenUI.lua",
+          "class": "ISOvenUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/Fireplace/ISMicrowaveUI.lua",
+          "class": "ISMicrowaveUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISGeneratorInfoWindow.lua",
+          "class": "ISGeneratorInfoWindow",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISBBQInfoWindow.lua",
+          "class": "ISBBQInfoWindow",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G19",
+      "group": "Gameplay",
+      "title": "Literature, journals, notes and printed media",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme reading/writing/print panels and newer PZAPI PrintMedia templates; preserve text entry, paging, content and document actions.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISLiteratureUI.lua",
+          "line": 287,
+          "sha256": "672ce871cc14a162ca68907c3126efbcac5b5edd8a68aef158acccf239e4f473"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISUIWriteJournal.lua",
+          "line": 231,
+          "sha256": "d3f1aace5ef366d760f327ca7a8abe9030593f28f1d8b6fa83e1a504c1bf205c"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISPrintMediaTextPanel.lua",
+          "line": 471,
+          "sha256": "4ab5f95e4a23b8bddf16d10537528eefb81cda0b981ae94eff2d889058666e1d"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/PZAPI/ui/organisms/PrintMedia.lua",
+          "line": 42,
+          "sha256": "eafede2ce483a1e55aae0a6a7e5b0fc25465939e54e31a4aa25250c4142c913e"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISLiteratureUI.lua",
+          "class": "ISLiteratureUI",
+          "line": 5
+        },
+        {
+          "path": "media/lua/client/ISUI/ISLiteratureUI.lua",
+          "class": "ISLiteratureList",
+          "line": 6
+        },
+        {
+          "path": "media/lua/client/ISUI/ISLiteratureUI.lua",
+          "class": "ISLiteratureMediaList",
+          "line": 7
+        },
+        {
+          "path": "media/lua/client/ISUI/ISLiteratureUI.lua",
+          "class": "ISLiteratureGrowingList",
+          "line": 8
+        },
+        {
+          "path": "media/lua/client/ISUI/ISUIWriteJournal.lua",
+          "class": "ISUIWriteJournal",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISPrintMediaTextPanel.lua",
+          "class": "ISPrintMediaTextPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISPrintMediaTextPanel.lua",
+          "class": "ISPrintMediaMap",
+          "line": 590
+        },
+        {
+          "path": "media/lua/client/PZAPI/ui/organisms/PrintMedia.lua",
+          "class": "UI.PrintMedia",
+          "line": 42,
+          "discovery": "ui_template"
+        },
+        {
+          "path": "media/lua/client/PZAPI/ui/organisms/PrintMedia.lua",
+          "class": "UI.PrintMedia.children.bar.children.name",
+          "line": 398,
+          "discovery": "ui_template"
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G20",
+      "group": "Gameplay",
+      "title": "Alarm, sleeping and post-death/respawn UI",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme timers/dialogs/overlays/respawn actions while preserving safe defaults and game-state transitions; audit engine-rendered portions separately.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISAlarmClockDialog.lua",
+          "line": 158,
+          "sha256": "ebb5c7fd12ef146acaf3824ca726b66b8a18c71918d77158d18362db4817f231"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISSleepingUI.lua",
+          "line": 6,
+          "sha256": "9538f8fbcd686e50f68d461c327d388e51e8cc43df165a1fcbb61e6a7e262177"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISPostDeathUI.lua",
+          "line": 59,
+          "sha256": "2b0baf55937a0138a7167d32194b5384cf02189cdd2e90332647e365ea00bdea"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISAlarmClockDialog.lua",
+          "class": "ISAlarmClockDialog",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISSleepingUI.lua",
+          "class": "ISSleepingUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISPostDeathUI.lua",
+          "class": "ISPostDeathUI",
+          "line": 1
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G21",
+      "group": "Gameplay",
+      "title": "Player tools, factions, safehouses, tickets, trading and wars",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme ordinary multiplayer player panels/lists/invites/confirmations, retaining all permissions and server-owned actions.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/UserPanel/ISUserPanelUI.lua",
+          "line": 24,
+          "sha256": "5918c2c719939714f99281829a154d83102a8378ed10376165effc4629b64d77"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/UserPanel/ISSafehouseUI.lua",
+          "line": 226,
+          "sha256": "3a272ef96a0bebce14f897e8555fca970372dba5a4e4757ba36446f65629239b"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/UserPanel/ISFactionUI.lua",
+          "line": 235,
+          "sha256": "9d5706365e84606be6db99a4d6d627f04229c0beb1fbfc0b90e10d4830cc0566"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/UserPanel/ISTicketsUI.lua",
+          "line": 112,
+          "sha256": "46c5908f8ccf742ca8944d0055ce67c295f59e6695b9dbae39318cdfb361146a"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISTradingUI.lua",
+          "line": 486,
+          "sha256": "5037593488b8261dba222d58fb2c28e591baa138c0fca5ee5980b2771ba8f33c"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISWarManagerUI.lua",
+          "line": 195,
+          "sha256": "09b10c6b9abedf96120652a011980fedd8e5ed52aad8331f2c923ca1cc2504f7"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/UserPanel/ISUserPanelUI.lua",
+          "class": "ISUserPanelUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/UserPanel/ISSafehouseUI.lua",
+          "class": "ISSafehouseUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/UserPanel/ISFactionUI.lua",
+          "class": "ISFactionUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/UserPanel/ISTicketsUI.lua",
+          "class": "ISTicketsUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISTradingUI.lua",
+          "class": "ISTradingUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISWarManagerUI.lua",
+          "class": "ISWarManagerUI",
+          "line": 1
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G22",
+      "group": "Gameplay",
+      "title": "Tutorial, survival help and focus overlays",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Theme instruction panels, highlighted targets and help navigation without changing tutorial sequencing or player input lock.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Tutorial/ISUI/TutorialMessage.lua",
+          "line": 1,
+          "sha256": "4c9f98021b1e1649b15950c049c28bbd44df06725203d20b7336d3278e29ae86"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Tutorial/ISUI/TutorialFocus.lua",
+          "line": 1,
+          "sha256": "ba0e0eda74e0142b35aa86341f9a78942e60ece01803b1939a9cb310c744c61b"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/Tutorial/ISUI/TutorialMessage.lua",
+          "class": "TutorialMessage",
+          "line": 5
+        },
+        {
+          "path": "media/lua/client/Tutorial/ISUI/TutorialFocus.lua",
+          "class": "TutorialFocus",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "G23",
+      "group": "Gameplay",
+      "title": "Timed-action progress, radials and transient HUD feedback",
+      "source_coverage": "engine_audit",
+      "priority": "P2",
+      "next_action": "Inventory exposed draw/asset controls and explicit Lua-only alternatives for engine-backed progress/radial renderers; do not infer coverage from preview rectangles.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISRadialProgressBar.lua",
+          "line": 6,
+          "sha256": "0b51104a5c6cf676de9e1ecfd4d76f3fd8272170838ae113dc0f67dc3a5138ed"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISRadialMenu.lua",
+          "line": 6,
+          "sha256": "853c6291f6809b645398db40891a7723001c0e69ba251e7f17aba1624a599f99"
+        }
+      ],
+      "previous_source_coverage": "engine_audit",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISRadialProgressBar.lua",
+          "class": "ISRadialProgressBar",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISRadialMenu.lua",
+          "class": "ISRadialMenu",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "A01",
+      "group": "Specialist",
+      "title": "Administration and player/server management",
+      "source_coverage": "unadopted",
+      "priority": "P4",
+      "next_action": "Theme admin/item/server/sandbox/role/zone/player-stat panels separately; preserve access levels, permissions and server validation.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/AdminPanel/ISAdminPanelUI.lua",
+          "line": 24,
+          "sha256": "fb1459754ed45f9a6d6c0139a06f94e9495f8a4cce07dafb60c880c371c410e1"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/AdminPanel/ISItemsListViewer.lua",
+          "line": 81,
+          "sha256": "f316be786db5541e02b50e25032c9ab740ceab3522d04670986ca565d469ba6d"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/AdminPanel/ISServerOptions.lua",
+          "line": 70,
+          "sha256": "0c594dc8d53377a47ec8a18e1cb529b0fcf7ae40cee348663abde8579b550f40"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/PlayerStats/ISPlayerStatsUI.lua",
+          "line": 246,
+          "sha256": "8a4b4e508e1d8bb0f4c08fa339bb244f8bfe8e701d3b3968db0a5e7b7c02c5e5"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/AdminPanel/ISServerSandboxOptionsUI.lua",
+          "line": 4,
+          "sha256": "12c481051f89b6a76047b27c977cf6ac2a30de2470d3f231b1eefeb87081ba5d"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/AdminPanel/ISAdminPanelUI.lua",
+          "class": "ISAdminPanelUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/AdminPanel/ISItemsListViewer.lua",
+          "class": "ISItemsListViewer",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/AdminPanel/ISServerOptions.lua",
+          "class": "ISServerOptions",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/PlayerStats/ISPlayerStatsUI.lua",
+          "class": "ISPlayerStatsUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/AdminPanel/ISServerSandboxOptionsUI.lua",
+          "class": "ISServerSandboxOptionsUI",
+          "line": 4
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "A02",
+      "group": "Specialist",
+      "title": "Debug and developer tools",
+      "source_coverage": "unadopted",
+      "priority": "P4",
+      "next_action": "Catalogue opt-in debug windows and avoid applying aggressive global skins to custom diagnostic renderers.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/DebugUIs/DebugMenu/ISDebugMenu.lua",
+          "line": 104,
+          "sha256": "529a3d6f2839ca4c6aee27f08a16a0e6fb53afeebb6680efed0fbbf5159842f2"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/DebugUIs/DebugErrorsWindow.lua",
+          "line": 5,
+          "sha256": "788e62d95b918573a81c5655646486d7cf03b98ff9e1734c1aec1f6fb30ba37e"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/DebugUIs/DebugMenu/ISDebugMenu.lua",
+          "class": "ISDebugMenu",
+          "line": 6
+        },
+        {
+          "path": "media/lua/client/DebugUIs/DebugErrorsWindow.lua",
+          "class": "DebugErrorsWindow",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "A03",
+      "group": "Specialist",
+      "title": "Controller, split-screen, on-screen keyboard and reconnect UI",
+      "source_coverage": "unadopted",
+      "priority": "P1",
+      "next_action": "Validate inventory skin separately for controller/split-screen, then adopt specialized controller/keyboard/reconnect panels. Do not infer their coverage from generic Options styling.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Gamepad/ISControllerBindingsEditorPanel.lua",
+          "line": 24,
+          "sha256": "97acf41740dd21b188b50aaa1f8ee6ad10cfa29a8147d5c62f43ea843541e4a5"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Gamepad/ISControllerTestPanel.lua",
+          "line": 167,
+          "sha256": "b84be106dd532f84a08f0631e8f76402900b91722ee65406275bc9a47de25c9c"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/JoyPad/ISJoypadDisconnectedUI.lua",
+          "line": 5,
+          "sha256": "926d646a3ffd62bd8fe72485aa40b9cb2dd9451c4e2a493e97dde39cf925ba4e"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISOnScreenKeyboard.lua",
+          "line": 1,
+          "sha256": "aa54cd8e5821bc015e592b314889b4121abafe23dc4fad0a281ca9f53239873c"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/HUDLayoutRuntime.lua",
+          "line": 15,
+          "sha256": "2d98e340c194a6db81560af66fc880626107cc10c9a2f4ae2a6f85f001bb6770"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeInventory.lua",
+          "line": 134,
+          "sha256": "4f8b9d3c77f026350edf68ae229899833bc2d7de302d68d4d5519924016e9ef7"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativePresentation.lua",
+          "line": 27,
+          "sha256": "94083d3c36aa6edc9a47839ac30806951f7aeefbf176ee7c1833c0905be91bdc"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "Controller test/bindings/disconnected/on-screen-keyboard screens lack dedicated adapters. Inventory skin does support explicit slots0-3 and preserves native controller input by source. HUD geometry overrides still skip controller players.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/Gamepad/ISControllerBindingsEditorPanel.lua",
+          "class": "ISControllerBindingsEditorPanel",
+          "line": 18
+        },
+        {
+          "path": "media/lua/client/ISUI/Gamepad/ISControllerTestPanel.lua",
+          "class": "ISControllerTestPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/JoyPad/ISJoypadDisconnectedUI.lua",
+          "class": "ISJoypadDisconnectedUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISOnScreenKeyboard.lua",
+          "class": "ISOnScreenKeyboard",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISOnScreenKeyboard.lua",
+          "class": "OnScreenKeyboardEntry",
+          "line": 11
+        },
+        {
+          "path": "media/lua/client/ISUI/ISOnScreenKeyboard.lua",
+          "class": "OnScreenKeyboardPanel",
+          "line": 149
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "I01",
+      "group": "Integration",
+      "title": "Newer PZAPI atoms, templates and organisms",
+      "source_coverage": "unadopted",
+      "priority": "P2",
+      "next_action": "Plan explicit PZAPI adapters/token contracts separately from ISUI; use fish/printed-media surfaces as scoped acceptance cases.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/PZAPI/ui/organisms/FishWindow.lua",
+          "line": 102,
+          "sha256": "c28749b23d8937e7c7143301198f7e244c793cc9cb6e6280257a150edfada0b9"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/PZAPI/ui/organisms/PrintMedia.lua",
+          "line": 42,
+          "sha256": "eafede2ce483a1e55aae0a6a7e5b0fc25465939e54e31a4aa25250c4142c913e"
+        }
+      ],
+      "previous_source_coverage": "unadopted",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/PZAPI/ui/organisms/FishWindow.lua",
+          "class": "UI.FishWindow",
+          "line": 102,
+          "discovery": "ui_template"
+        },
+        {
+          "path": "media/lua/client/PZAPI/ui/organisms/PrintMedia.lua",
+          "class": "UI.PrintMedia",
+          "line": 42,
+          "discovery": "ui_template"
+        },
+        {
+          "path": "media/lua/client/PZAPI/ui/organisms/PrintMedia.lua",
+          "class": "UI.PrintMedia.children.bar.children.name",
+          "line": 398,
+          "discovery": "ui_template"
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "I02",
+      "group": "Integration",
+      "title": "Consuming mods and arbitrary provider UI",
+      "source_coverage": "opt_in_boundary",
+      "priority": "P3",
+      "next_action": "Audit B47ANCE consumers individually through the public API; record provider ownership and permissions before adding overrides. Arbitrary external mod windows do not auto-convert; no external-mod source was inspected in this audit.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/API.lua",
+          "line": 21,
+          "sha256": "5a623e7728351548c5b0e1e59d8c8b1cdc5b08322b407b2d41d738eba7111514"
+        },
+        {
+          "kind": "project_source",
+          "path": "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/LayoutAssets.lua",
+          "line": 1,
+          "sha256": "47806987bc432b0a63c40cbd62a97dc39a9fc6e2934926244a25b643217908e3"
+        }
+      ],
+      "previous_source_coverage": "opt_in_boundary",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    },
+    {
+      "id": "E01",
+      "group": "Engine boundary",
+      "title": "Boot/logo/loading layers, native renderer internals and platform overlays",
+      "source_coverage": "engine_audit",
+      "priority": "P4",
+      "next_action": "Separate Lua-owned chrome from UI3DModel/ObjectTooltip/UIWorldMap/RadialMenu/VehicleGauge and Steam overlay internals. Record unsupported capabilities and propose exposed-Lua/asset alternatives; never custom Java.",
+      "evidence_status": "VERIFIED source scope; native visual/input acceptance NOT TESTED",
+      "evidence": [
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISUI3DModel.lua",
+          "line": 5,
+          "sha256": "5f996aafcbc4558f852534cf5c6fd56920d95ae12bb4dbecbc839df8315316be"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISToolTipInv.lua",
+          "line": 186,
+          "sha256": "6f36edfb2447f9faa55301c3d150ab0d76a574c9dbb661812eeaa87d736967e6"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "line": 266,
+          "sha256": "69e77918d3f1a7b1146c96b7743ae9be2735fe46feb5d558e5f44460e67989cb"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/ISUI/ISRadialMenu.lua",
+          "line": 6,
+          "sha256": "853c6291f6809b645398db40891a7723001c0e69ba251e7f17aba1624a599f99"
+        },
+        {
+          "kind": "installed_source",
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleGauge.lua",
+          "line": 17,
+          "sha256": "3e4d8a93a7c8032f56c1060ba7dfefd848b07434913a016a319fa6946bd26609"
+        }
+      ],
+      "previous_source_coverage": "engine_audit",
+      "current_scope": "No additional automatic adoption beyond the reviewed scope recorded for this family.",
+      "menu_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISUI3DModel.lua",
+          "class": "ISUI3DModel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISToolTipInv.lua",
+          "class": "ISToolTipInv",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "WorldMapOptions",
+          "line": 12
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "ISWorldMapButtonPanel",
+          "line": 226
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "ISWorldMap",
+          "line": 264
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "AnnotatedMapOverlay",
+          "line": 683
+        },
+        {
+          "path": "media/lua/client/ISUI/ISRadialMenu.lua",
+          "class": "ISRadialMenu",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleGauge.lua",
+          "class": "ISVehicleGauge",
+          "line": 3
+        }
+      ],
+      "target_limit": "Declaration/construction candidates, not a count of active independent screens. Some helper/nested panels are included."
+    }
+  ],
+  "coverage_rules": "UI_COVERAGE_RULES_2026-10-24.json"
+}

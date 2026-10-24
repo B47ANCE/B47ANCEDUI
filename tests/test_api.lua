@@ -18,11 +18,12 @@ function Widget:setX(v) self.x=v end
 function Widget:setY(v) self.y=v end
 function Widget:setWidth(v) self.width=v end
 function Widget:setHeight(v) self.height=v end
-for _,name in ipairs({'ISPanel','ISCollapsableWindowJoypad','ISButton','ISScrollingListBox','ISTextEntryBox','ISModalDialog','ISPanelJoypad','ISSliderPanel'}) do
+for _,name in ipairs({'ISPanel','ISCollapsableWindowJoypad','ISButton','ISScrollingListBox','ISTextEntryBox','ISModalDialog','ISPanelJoypad','ISSliderPanel','ISComboBox'}) do
  _G[name]=setmetatable({},{__index=Widget})
  local path=name=='ISSliderPanel' and 'RadioCom/ISUIRadio/ISSliderPanel' or 'ISUI/'..name
  package.loaded[path]=_G[name]
 end
+if B47ANCEDUI_FIXTURE_ONLY then return end
 local files={['LegacyOwnerAppearance0.txt']='opacity=65',['LegacyOwnerAppearance1.txt']='opacity=73'}
 local closed,writeCount=0,0
 getFileReader=function(name,create)

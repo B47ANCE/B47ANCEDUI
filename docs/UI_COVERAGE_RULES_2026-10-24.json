@@ -1,0 +1,231 @@
+{
+  "schema": 1,
+  "audit_date": "2026-10-24",
+  "project_version_observed": "0.10.0-dev.2",
+  "project_source_commit": "b69932929acdd3589aabd5053f977ae4d9f59385",
+  "game_version": "42.21.0",
+  "game_revision": "4a0e9546ec",
+  "steam_build": "25485521",
+  "status": "VERIFIED source review only; priorities are planning judgements",
+  "project_fingerprints": {
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/API.lua": "5a623e7728351548c5b0e1e59d8c8b1cdc5b08322b407b2d41d738eba7111514",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Appearance.lua": "2c8cf2ca3508dc88a7a0b3e2491f15b2ca6602539af7c06cac996e0e66e24351",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/AppearanceEditor.lua": "f22a90df37d4c25bff8d3aca77074e41bad2e7df62e6b141359df5f4fe87726c",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Clipboard.lua": "41c4f56c98788677e556c342d3ba29da0f997ad0a9b09eebe9ce1e98711a33f6",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/ComponentStyles.lua": "00b5808da2ff5dfc3f845a8bf5cd3ed3c32a10cc4faea7454e961d1ffe5a12b1",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Controls.lua": "544bbda31265d787207209559696a70518ea191db19a3c7d5c14529f06f1b61a",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Dialog.lua": "fa307cfca5e4448aa06f5672e4d8592cc0354b4bf017a64f5b4c2be8966df11f",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/EditorControls.lua": "db0ba92701f885460387d3db20dd84086de1b2738a21b1ced5ac2e301e177f10",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/HUDLayoutRuntime.lua": "2d98e340c194a6db81560af66fc880626107cc10c9a2f4ae2a6f85f001bb6770",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/HUDPreviews.lua": "e99ad8a66b5e39312b9a35565d2051681fce86cc2a4024315af226125e100a5a",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/LayoutAssets.lua": "47806987bc432b0a63c40cbd62a97dc39a9fc6e2934926244a25b643217908e3",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/MenuBackground.lua": "8e0a0eeeded9b9e0a91ef513c30c4e0623fdbd604ec9f648fca3131e0329c3fd",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/MenuLayout.lua": "5bb884b6896492a51518f1dfb2eaf2c849dd5d628693fdd6bef4fe3fe0530754",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/MenuLayoutEditor.lua": "9bcbc65eb8c3e5c88b109ec485eeb1d2f195f618d9179b9bb212145044799722",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeContext.lua": "84b287034b10fd512cad5a384bd8084c2d4b01f440744b30304172823879904a",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeDialogs.lua": "ba4158630262a193f54100fb2f9c97fd954f94da473c45f765e790d84948bf17",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeInventory.lua": "4f8b9d3c77f026350edf68ae229899833bc2d7de302d68d4d5519924016e9ef7",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeMenus.lua": "7cd73fd949fd1750f6561afb33603d2e1887fa61b566762adf2469970a13e99e",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativePresentation.lua": "94083d3c36aa6edc9a47839ac30806951f7aeefbf176ee7c1833c0905be91bdc",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeSettings.lua": "9d3f9cfc7c0c21994edffc4874adc18b6a4d3d370d2839af62b327311f56a710",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsInterface.lua": "c32883d17d1063a2306d4c7ed6def788eac45bcb5c8cc75afd3d16197b2be98d",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsLayout.lua": "dfdbf4c03879d1af7544136557446d72b7d598b29c815078fea447711ae9083b",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsLayoutModel.lua": "b283cf7cb47e63e32b9eb03ee1513b4f446a89c0eaeb99a18123c5c635072b08",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsLifecycle.lua": "83fd33772c4ccc5ea474aee8f626e11d16524e5889c4161c5b171819699aff90",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Renderer.lua": "1172b798bea169bdcdb831c29f39bace49feaf34d534cc53ad37cf7c3375f709",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/RowTooltip.lua": "ea660779cd4c78d803ef8521a3fabef4e715addb6ad398226ed9c2803b82edab",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/StyleEditor.lua": "a6eea4d6cb0397efc05786be31b0d6746ddad1ec2128b9d9c5303d657ec85e25",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/StylePresets.lua": "5a8c6eb785ef7ac53a237ca2329a2ac53921ac9a408c7594fc05c78b9fb35a96",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Theme.lua": "9c74b222f2ea1c5146e93caea2381bd7cc5f01e1b2301f9f9f400b87989141d8",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Tooltip.lua": "ecca50f08a46f2f0139136ed39b180ef16aad1c0cec0d25cc49e0167b3980e3b",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/UILayout.lua": "8f6c23ea637a3ac01f86ce797501c1e9baf04675794185380b987431f455e292",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/UILayoutEditor.lua": "c71d8ddf0194afb6578b9fedf0fb08194e7ab1ab15ebeb483962defbb0c23bc2",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/AR/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/CA/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/CH/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/CN/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/CS/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/DA/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/DE/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/EN/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/ES/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/ES_CL/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/ES_MX/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/FI/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/FR/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/HU/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/ID/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/IT/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/JP/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/KO/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/NL/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/NO/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/PL/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/PT/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/PTBR/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/RO/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/RU/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/STREW/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/TH/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/TR/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/UA/UI.json": "2b6761c276a72aad4eb125841ec5a73cd00e7cfc3d58e95329cb023d3afde96d",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoom.png": "1b694091f466f951e6917d6399f5f2ab9aeb4748b047d2a1c5d00befe7991295",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "340e86248af1da41a23bda51a46ecd7fff39d356096a8ebf6313d7685c87d5c0",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static1.png": "dbaf8fdc8c66029bf9a7544b506df6a3f586463ffd7a420b6ea8ad2c9b046e9d",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static2.png": "768f0cd0c1d32b8f97c271a848dc8929b230e05c0f903555e5914ed0cfb56cc5",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static3.png": "aaea06a05b84d93318769b03d04b2b057fb909bd21a5ce754a71380513afb310",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static4.png": "353d0174157fd89776b8deb8addad12d0282080a5b9fd09622439865ad52e863",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static5.png": "f7950b521ffcfb04eea2a7166c2b442a3bd8dd670d64ab40766f4edf36ea0b64",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static6.png": "c87c64a549b6b808f09e632291f7c82f8c2f7b49e0bafb796e966d9b51822e61",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static7.png": "57cbd4aaca2abf88d4d29c5b60f1c5d648e519db998db0ba5c9fa0c6090c3f4c",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static8.png": "65137127a76a187573ad6d04c7f1f4f928b808ed387b0bd042cd4484ff6490cf",
+    "src/B47ANCEDUI/42/mod.info": "049fb1b7985899c295f686fce44d756c063bc76b74c26458d2c59a7e4855183e"
+  },
+  "class_boundaries": {
+    "MainScreen": {
+      "boundary": "partial_main_pause_navigation",
+      "scope": "Supported navigation/selected frontend Quit only; background is main-menu-only. Other screens created here are separate.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "MainOptions": {
+      "boundary": "partial_owned_options",
+      "scope": "Owned Options root, whitelisted controls/sections and Interface page; specialized subtrees/provider panels remain guarded.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISModalDialog": {
+      "boundary": "selected_owned_dialogs",
+      "scope": "Exact frontend Quit and owned Options unsaved-confirmation instances only; other ordinary modals are unadopted.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISConfirmMonitorSettingsDialog": {
+      "boundary": "selected_owned_dialogs",
+      "scope": "Exact owned Options display-change confirmation only; native countdown/automatic rollback retained.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISModalRichText": {
+      "boundary": "inventory_information_only",
+      "scope": "Current inventory infoRichText field only; other rich/text-entry dialogs remain native.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISContextMenu": {
+      "boundary": "event_observed_pooled_context",
+      "scope": "World/item/empty-container fill roots and discovered native submenus; pooled root can retain skin on later reuse. Other initial routes unguaranteed.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISToolTip": {
+      "boundary": "reached_tooltip_frames_only",
+      "scope": "Existing native tooltip frames reached through adopted contexts/inventory panes. Native content/other creation routes separate.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISToolTipInv": {
+      "boundary": "reached_tooltip_frames_only",
+      "scope": "Existing native tooltip frames reached through adopted contexts/inventory panes. Native content/other creation routes separate.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISInventoryPage": {
+      "boundary": "partial_owned_inventory_loot",
+      "scope": "Current four local-player inventory/loot roots only; shell/neutral rows/buttons/headers. Input/actions/semantics/geometry native.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISInventoryPane": {
+      "boundary": "partial_owned_inventory_loot",
+      "scope": "Current four local-player inventory/loot roots only; shell/neutral rows/buttons/headers. Input/actions/semantics/geometry native.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISScrollBar": {
+      "boundary": "inventory_vertical_only",
+      "scope": "Existing inventory-owned vertical scrollbar palette; no global/horizontal adoption or hit-area resizing.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISResizableButton": {
+      "boundary": "owned_inventory_headers",
+      "scope": "Exact native inventory header/button instances only; native fonts/sorting/resizing retained.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISButton": {
+      "boundary": "conditional_owned_controls",
+      "scope": "Explicit API consumers, owned Options whitelist, known inventory controls. Native class reuse does not auto-style other windows.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISPanel": {
+      "boundary": "conditional_owned_controls",
+      "scope": "Explicit API consumers, owned Options whitelist, known inventory controls. Native class reuse does not auto-style other windows.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISPanelJoypad": {
+      "boundary": "conditional_owned_controls",
+      "scope": "Explicit API consumers, owned Options whitelist, known inventory controls. Native class reuse does not auto-style other windows.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISTabPanel": {
+      "boundary": "conditional_owned_controls",
+      "scope": "Explicit API consumers, owned Options whitelist, known inventory controls. Native class reuse does not auto-style other windows.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISComboBox": {
+      "boundary": "conditional_owned_controls",
+      "scope": "Explicit API consumers, owned Options whitelist, known inventory controls. Native class reuse does not auto-style other windows.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISTickBox": {
+      "boundary": "conditional_owned_controls",
+      "scope": "Explicit API consumers, owned Options whitelist, known inventory controls. Native class reuse does not auto-style other windows.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISTextEntryBox": {
+      "boundary": "conditional_owned_controls",
+      "scope": "Explicit API consumers, owned Options whitelist, known inventory controls. Native class reuse does not auto-style other windows.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISSliderPanel": {
+      "boundary": "conditional_owned_controls",
+      "scope": "Explicit API consumers, owned Options whitelist, known inventory controls. Native class reuse does not auto-style other windows.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISVolumeControl": {
+      "boundary": "conditional_owned_controls",
+      "scope": "Explicit API consumers, owned Options whitelist, known inventory controls. Native class reuse does not auto-style other windows.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISMegaVolumeControl": {
+      "boundary": "conditional_owned_controls",
+      "scope": "Explicit API consumers, owned Options whitelist, known inventory controls. Native class reuse does not auto-style other windows.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISCharacterInfoWindow": {
+      "boundary": "geometry_only",
+      "scope": "Supported explicit local HUD geometry target; no live visual skin. Mechanics height only; controller geometry overrides skipped.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISVehicleMechanics": {
+      "boundary": "geometry_only",
+      "scope": "Supported explicit local HUD geometry target; no live visual skin. Mechanics height only; controller geometry overrides skipped.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISEquippedItem": {
+      "boundary": "geometry_only",
+      "scope": "Supported explicit local HUD geometry target; no live visual skin. Mechanics height only; controller geometry overrides skipped.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISMiniMapOuter": {
+      "boundary": "geometry_only",
+      "scope": "Supported explicit local HUD geometry target; no live visual skin. Mechanics height only; controller geometry overrides skipped.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISHotbar": {
+      "boundary": "geometry_only",
+      "scope": "Supported explicit local HUD geometry target; no live visual skin. Mechanics height only; controller geometry overrides skipped.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISChat": {
+      "boundary": "geometry_only",
+      "scope": "Supported explicit local HUD geometry target; no live visual skin. Mechanics height only; controller geometry overrides skipped.",
+      "runtime_acceptance": "NOT TESTED"
+    },
+    "ISScrollingListBox": {
+      "boundary": "explicit_api_list_only",
+      "scope": "Explicit shared API list/consumer opt-in; no automatic stock-screen or bespoke row adoption.",
+      "runtime_acceptance": "NOT TESTED"
+    }
+  }
+}

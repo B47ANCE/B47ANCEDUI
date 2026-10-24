@@ -41,6 +41,50 @@
     {
       "path": "docs/MENU_BACKGROUND.md",
       "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/MENU_LAYOUT_EDITOR.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/NATIVE_SETTINGS.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/UI_WORKSPACE.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/OPTIONS_LAYOUT.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/STYLE_PRESETS.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/STYLE_PRESETS_SOURCE.json",
+      "pattern": "^  \"project_version\": \"(?P<version>[^\"]+)\""
+    },
+    {
+      "path": "docs/NATIVE_OVERHAUL.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/NATIVE_ROLLOUT.md",
+      "pattern": "^Project Version: (?P<version>[^\\s]+)$"
+    },
+    {
+      "path": "docs/NATIVE_ROLLOUT_SOURCE.json",
+      "pattern": "^  \"project_version\": \"(?P<version>[^\\\"]+)\""
+    },
+    {
+      "path": "docs/NATIVE_ROLLOUT_COVERAGE.json",
+      "pattern": "^  \"project_version\": \"(?P<version>[^\\\"]+)\""
+    },
+    {
+      "path": "docs/PRESET_PLUGINS.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {
@@ -71,6 +115,21 @@
       "category": "compatibility",
       "reference": "API.lua:apiVersion",
       "reason": "Independent public Lua API major."
+    },
+    {
+      "category": "compatibility",
+      "reference": "MenuLayout.lua:schema=1",
+      "reason": "Independent local main-menu layout data format; not the project version or gameplay/save schema."
+    },
+    {
+      "category": "compatibility",
+      "reference": "UILayout.lua:schema=1",
+      "reason": "Separate installation-local HUD geometry data, independent of main-menu schema, gameplay saves and project/API versions."
+    },
+    {
+      "category": "compatibility",
+      "reference": "StylePresets.lua:schema=1",
+      "reason": "Separate installation-local style preset journal, independent of API/project/menu/HUD formats."
     }
   ],
   "historical": [
@@ -125,6 +184,26 @@
     {
       "reference": "docs/WORKSHOP_PIPE_UPDATE.md; docs/WORKSHOP_UPDATE_0.5.0-dev.11_2026-10-19.json",
       "reason": "Immutable dated dev11 distribution/source/package evidence; original source commit, versions and hashes remain fixed and are not future mirrors."
+    },
+    {
+      "reference": "docs/OPTIONS_LAYOUT_SOURCE.json:options_fit_correction",
+      "reason": "Dated dev.2 symptom/dev.3 correction and Build42.21 source fingerprints retain their original investigation versions; not future project-version mirrors."
+    },
+    {
+      "reference": "docs/OPTIONS_LAYOUT_SOURCE.json:combo_tooltip_correction",
+      "reason": "Dated dev.3 native failure/dev.4 correction retains exact observed source/version and Build42.21 evidence; not a future project-version mirror."
+    },
+    {
+      "reference": "docs/UI_COVERAGE_AUDIT_2026-10-23.md; docs/UI_COVERAGE_INVENTORY_2026-10-23.json; docs/UI_SOURCE_CATALOG_2026-10-23.json",
+      "reason": "Dated source-only UI coverage inventory binds observed project0.9.0-dev.4/source7c452b8 and installed Build42.21.0/Steam25485521. Preserve actual snapshot identities/counts/hashes; not future project-version mirrors or runtime acceptance."
+    },
+    {
+      "reference": "docs/NATIVE_OVERHAUL_SOURCE.json",
+      "reason": "Dated source audit introduced in0.10.0-dev.1; fixed installed game/source observations, not future project-version mirrors or runtime acceptance."
+    },
+    {
+      "reference": "docs/UI_COVERAGE_AUDIT_2026-10-24.md; docs/UI_COVERAGE_INVENTORY_2026-10-24.json; docs/UI_SOURCE_CATALOG_2026-10-24.json; docs/UI_COVERAGE_RULES_2026-10-24.json",
+      "reason": "Dated source-only menu coverage audit binds observed project0.10.0-dev.2/runtime sourceb699329 and installed42.21.0/Steam25485521. Fixed versions/hashes/targets remain historical; not future project-version mirrors or native acceptance."
     }
   ]
 }

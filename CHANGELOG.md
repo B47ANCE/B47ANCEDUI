@@ -1,5 +1,113 @@
 # Changelog
 
+## [0.12.0-dev.1] - 2026-10-24
+
+- Add independent editable surface/state colors, per-component scrollbar styles and RGB controls alongside hex values; old generic colors remain fallbacks.
+- Add data-only preset plugins from enabled mods. Packs populate an inactive catalog; explicit selection previews a detached editable local copy. Save retains complete data; Cancel restores the prior selection. Discovery never activates or writes preferences.
+- Add one-button selected-preset export with stable pack identity, read-back verification and native Workshop handoff. An optional offline packager/watch helper creates a data-only dependent mod and private Workshop staging, preserving native item identity/visibility on updates. Pure Lua cannot safely create new Workshop staging content; helper setup and final native Publish remain explicit user steps.
+- Offline suites PASS: all39 added independent colors, RGB/catalogue editor integration, guarded native states, cross-Lua pack parsing, inactive discovery/copies, interrupted identity journals, exact data-only inventory, checksum bounds, transactional rollback and native metadata preservation.
+- Compatible MINOR addition; public API1, local journal/plugin schema1, menu/HUD defaults and gameplay ownership retained. Native visual/input/discovery/export/Workshop integration NOT TESTED; no deployment, game launch or upload.
+
+## [0.11.0-dev.1] - 2026-10-24
+
+- Extend shared near-black presentation across audited native frontend, gameplay and specialist Lua windows: deferred instance adoption, late children, neutral frames, dialogs, buttons, tabs, lists, dropdowns, text entries, checks, sliders and both scrollbar orientations. Retain existing main/Esc, Options, inventory and editor owners.
+- Add a separate PZAPI Window/FishWindow/PrintMedia chrome adapter using declared native lifecycle and colour setters. Preserve document subtrees, live condition colours, textures, native dispatch and callbacks. Add a public provider-tree opt-out.
+- Compatible MINOR presentation addition. API1 and all profile schemas/defaults remain compatible; no geometry, input actions, permissions or gameplay ownership changes. Offline evidence and explicit engine/provider/runtime limits: docs/NATIVE_ROLLOUT.md. Native visual/input acceptance NOT TESTED; no deploy/upload.
+
+## [0.10.0-dev.2] - 2026-10-23
+
+- 2026-10-24 audit-only checkpoint: refresh all61 work areas and complete623-candidate/607-definition catalogue for current scoped native adoption, including qualified Lua and named PZAPI templates. Add187 concrete source targets/169 evidence-file bindings, remaining frontend/gameplay menu registers, priorities and source-bound repeatable checks; no runtime/version/profile change.
+- Fix native startup failing at NativeContext.lua63 when the installed inventory Lua triggers an event absent from the Events registry. Register the missing empty-inventory event through vanilla LuaEventManager.AddEvent before subscribing; preserve preexisting event identity/handlers.
+- Reproduce the actual failure with an absent-event fixture; cover absent/preexisting registration, repeated loads and unchanged callback arguments. Compatible PATCH to the 0.10 native-overhaul addition; API1, profiles, defaults, geometry and actions unchanged.
+- Offline tests PASS; corrected startup/local deployment evidence is separate from native visual/input acceptance. No Workshop upload.
+
+## [0.10.0-dev.1] - 2026-10-23
+
+- Start the native overhaul: near-black world/item/empty-inventory context menus and pooled submenus, live inventory/loot chrome and neutral rows, owned buttons/scrollbars, reached native tooltip frames and selected Options/inventory dialogs.
+- Preserve native item actions/transfers, semantic colours, fonts/geometry, layout restoration and dialog timers. Respect per-player presets, transparent controls and controller focus; restore temporary drawing methods on errors.
+- Add strict native-shaped regressions and portable source evidence. Offline suites PASS; native rendering/input/controller/split-screen NOT TESTED. Exact coverage: docs/NATIVE_OVERHAUL.md. No deploy/upload.
+- Compatible MINOR presentation addition; public API1, saved layouts/presets/defaults and gameplay ownership remain unchanged.
+
+## [0.9.0-dev.4] - 2026-10-22
+
+- 2026-10-23 audit-only checkpoint: record 61 grouped UI work areas, 622 installed source candidates and 576 UI declarations with source fingerprints, explicit adoption/geometry/preview/engine boundaries and prioritized remaining work. Add read-only repeatable catalogue tooling; no runtime/version change.
+
+- Fix native Options setup aborting at the section dropdown: use the installed ISComboBox tooltip-map API after each native clear, rather than an unsupported generic tooltip setter.
+- Tighten the native-shaped fixture so only real label/button/text-entry receivers expose setTooltip; reproduce the exact dev.3 attach failure before the fix and verify section help survives rebuilds afterward.
+- Compatible PATCH; API1, settings values, saved schemas/defaults and native Apply behavior unchanged. Actual dev.3 Options initialization FAILED; dev.4 offline and runtime evidence are recorded separately in TESTING.md.
+
+## [0.9.0-dev.3] - 2026-10-22
+
+- Restore Options categories/search after native dropdown dismissal by checking actual expanded popup ownership and UIManager membership instead of its stale visible flag.
+- Keep supported settings within the window using compact section selection and measured row pages, with native widget/value/callback identities and hidden/disabled policy preserved. Remove false separator overflow and position genuinely needed fallback horizontal bars at the bottom. Sidebar categories fit or use explicit navigation pages, without a scrollbar.
+- Compatible PATCH; API1 and profile formats/defaults unchanged. Native dev.2 screenshot exposed missing categories and unnecessary scrolling; new fit/input regressions and runtime gates are recorded in TESTING.md.
+
+## [0.9.0-dev.2] - 2026-10-22
+
+- Fix frontend rendering failure from unsupported global next() in the installed Kahlua runtime. Use one private pairs-based table-presence helper across styling, presets, editor pending/reset checks, tooltips and Options snapshots. No global compatibility shim or suppressed exception.
+- Run all behavioral fixtures with global next disabled and prevent active runtime code from reintroducing that call. Compatible PATCH; preset/menu/HUD schemas, API1, defaults and saved files unchanged. Native dev.1 startup failed; post-fix in-game acceptance remains pending.
+
+## [0.9.0-dev.1] - 2026-10-21
+
+- Add editable local style presets with shared component values, optional per-mod overrides and independent preset bindings. Duplicate, rename, delete, inherit and reset component styles from Options → Interface → UI Style Presets.
+- Preview supported native/API controls live; edit hex colors, opacity, corners, borders and slider track/thumb dimensions. Save verifies the two-slot data journal; Cancel/Escape/controller Back protect unsaved changes and restore the saved style. Existing appearance/menu/HUD formats, native values/callbacks/geometry and API major1 stay compatible.
+- Compatible MINOR presentation addition. Custom renderers opt in; font/spacing/layout/gameplay remain outside the style store. Offline evidence and native runtime gates are recorded in TESTING.md; no deploy, launch, package, merge or upload.
+
+## [0.8.0-dev.3] - 2026-10-21
+
+- Theme the native main-menu Quit to desktop Yes/No confirmation with shared near-black rounded surfaces, neutral text and existing local accent. Preserve original dialog/button geometry, text, callbacks, focus, destruction and input behavior.
+- Reuse the existing frontend layout checkpoint to recognize native class-owned or instance-owned quit dialogs, including controller creation. Unknown/custom dialogs and in-game quit stay outside this adapter. Compatible PATCH; API1/schemas/defaults unchanged. Offline evidence/runtime gates in TESTING.md. No deploy/launch/package/merge/upload.
+
+## [0.8.0-dev.2] - 2026-10-21
+
+- Fix implicit HUD editor exits after dropdown Enter and temporary modal activity. Cancel/Escape/controller Back use the same shared unsaved confirmation; Save remains explicit, and blank canvas clicks do nothing.
+- Use one fixed canvas input surface to hit-test real preview rectangles in visible order, move assets directly and resize supported edges/corners. Preserve reference-only/axis/aspect limits, saved schemas/defaults and provider ownership.
+- Guard popup dismissal/release click-through and stale UI callbacks; retain drafts during temporary modal focus and clean up only on actual owner/game teardown. Compatible PATCH within 0.8; offline regression/runtime limits in TESTING.md. No deployment, launch, package, merge or upload.
+
+## [0.8.0-dev.1] - 2026-10-21
+
+- Redesign native Options with a searchable header, category sidebar, responsive section cards, contextual native help and a fixed Back/Apply/Accept footer. Use the existing editable grey accent.
+- Preserve native option/control/callback identities, values, parent graph and controller rows. Search jumps to existing settings; specialized/provider pages keep native content with horizontal overflow access. Native dirty/display confirmation, audio rollback, key capture and apply/persistence delegates remain unchanged.
+- Compatible MINOR presentation addition; public API major1 and saved menu/HUD schema1/defaults unchanged. Offline validation and untested native input/render/controller gates are recorded in TESTING.md. No deployment, launch, packaging, merge or upload.
+
+## [0.7.0-dev.3] - 2026-10-21
+
+- Fix Options remaining vanilla when its construction is deferred until opening. Observe each native Options instance's create/draw completion and attach styling/Interface page once per tab panel, including rebuilt tabs.
+- Preserve native action/return/error behavior, custom-renderer guards, settings values, controller ownership and global classes. Compatible PATCH within 0.7; API major1, saved formats/defaults and unsaved-exit protection remain unchanged.
+- Regression reproduces missed deferred attachment before the fix. Offline/native evidence and runtime limits are recorded in TESTING.md; no new deployment/launch/publication in this development checkpoint.
+
+## [0.7.0-dev.2] - 2026-10-20
+
+- Confirm unsaved layout changes before Cancel, Escape, controller B or switching away. Keep editing is the safe default; Discard changes closes without writing. Both layout editors include unfinished/invalid numeric fields in dirty detection and preserve drafts while the popup is open.
+- Unchanged or successfully saved layouts close directly. Own popup input/focus/capture/cleanup stays within the frontend editor; forced owner/game lifecycle teardown remains unconditional. Compatible PATCH behavior within the 0.7 development iteration; API major1 and saved formats/defaults unchanged.
+- Offline regression and native runtime evidence are recorded in TESTING.md; no deployment, launch, packaging or publication.
+
+## [0.7.0-dev.1] - 2026-10-20
+
+- Add an Interface page to the native Options screen and a main-menu workspace for editing supported in-game UI layouts with safe static previews, without constructing players or loading a world.
+- Add provider-scoped layout registration, a separate local HUD profile and supported native runtime geometry adapters. Preserve the saved main-menu defaults, schema1 profile and native Options behavior. Reference-only assets are explicitly marked.
+- Rework editor sliders, numeric percentage inputs, resize grips and compact inspector spacing. Refresh native slider pagination after final bounds to fix stale 1px thumb geometry.
+- Compatible MINOR presentation/API addition; public API major1 remains compatible. Validation and native input/runtime limits are documented with this iteration; no deployment, launch, package or publication requested.
+
+## [0.6.0-dev.3] - 2026-10-20
+
+- Promote the owner's saved main-menu placement to the built-in defaults: menu x18%, y14.5%, width27.9696133%, height52.5%; logo x4%, y26.5%, width22%, preserving native proportions.
+- New/missing/invalid profiles and Reset use the approved layout with viewport clamps. Existing valid target overrides keep priority; schema1 and preference files are unchanged. Compatible PATCH presentation adjustment within unreleased 0.6; public API major1 remains unchanged.
+- Offline regression first fails against the prior default and passes with exact approved placement, partial-profile precedence, reset/editor behavior and tiny/standard/ultrawide viewport/ratio clamps. This source iteration is not deployed or published; current running local test remains dev.2 with the owner's saved profile. Native defaults acceptance, project G7/stable G8 remain NOT TESTED/BLOCKED.
+
+## [0.6.0-dev.2] - 2026-10-20
+
+- Theme the native settings/options screen with a near-black backdrop, rounded tab/button surfaces, subtle active-tab accents and scoped checkbox/slider colours. Reuse UI's local accent preference, default grey.
+- Preserve native fonts, layout, control identities, callbacks, tab scrolling/clipping, controller rows, display confirmation, audio preview/rollback and keybinding ownership. Keep colour swatches and custom renderers untouched; adopt supported late-added native controls without a per-frame tree scan.
+- Borrow the shared dropdown popup palette only during settings-owned drawing and restore on success/error. Lua-only client presentation; no option writes/networking introduced.
+- Offline contracts cover styling/lifecycle/ownership and error restoration. Native SP/input/controller/display/audio acceptance NOT TESTED; G7/stable G8 remain BLOCKED. No package, deploy, game/server launch or Workshop upload.
+
+## [0.6.0-dev.1]
+- Compatible MINOR: player-local main-menu layout editor with independent menu/logo movement and resize, aspect-locked logo, viewport bounds and normalized saved placement. Existing users keep the automatic wall layout until they customize it.
+- Edit menu layout control, F10 and main-menu controller X access; drag/corner handles, percentage sliders, keyboard nudges, Save/Cancel and reversible Reset. Controller Y retains its vanilla Terms of Service action.
+- Dynamic mod-added entries/status notes continue fitting inside the chosen menu rectangle. Local data-only profile; no shared gameplay state, networking, server sandbox setting or public API major change.
+- Native mouse/controller/keyboard/resolution-change acceptance NOT TESTED. Development source only; no deployment, game launch or Workshop upload. Published Workshop build remains 0.5.0-dev.11.
+
 ## [0.5.0-dev.11]
 - Compatible PATCH: apply the user-selected room with the horizontal pipe extended straight across the left wall at its existing height. Use the approved generated PNG unchanged; retain the four transparent CRT openings and room composition.
 - Match CRT masks/crop to the selected artwork. Keep all four casings visible from 4:3 through 32:9 and place the dynamic logo/menu below the pipe, above the baseboard and before the vertical conduit.

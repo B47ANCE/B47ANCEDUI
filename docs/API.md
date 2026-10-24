@@ -1,6 +1,14 @@
 # Public Lua API
 
-Project Version: 0.5.0-dev.11
+Project Version: 0.12.0-dev.1
+
+0.12 adds `API.PresetPacks={schema=1,path='media/B47ANCEDUI/style-pack.txt',refresh=function() ... end}`. `refresh()` returns detached catalogue and issue arrays from currently enabled mods, without activation, preference writes or revision changes. Entries carry `source`, `pack`, `version`, `key`, `preset`; issues carry source/status. Format1 and public API1 are independent. Selection/export remain owned by the standard StyleEditor. See [preset pack contract](PRESET_PLUGINS.md).
+
+Theme color tokens now include53 independently editable channels. Consumers using the public resolver inherit generic old colors unless a specific channel is set; the shared Theme remains read-only. Native semantic/gameplay content and unsupported engine drawing remain caller-owned.
+
+0.11 adds automatic styling for audited native Lua instances and a separate PZAPI adapter, preserving API1, scopes, callbacks, saved schemas and menu/default layouts. `UI.excludeNativeTheme(widget)` protects a provider-owned tree; pass `false` to release that opt-out. Existing API-owned/editor trees are already excluded. The flag is local and not persisted. Native wrappers check it on draw; PZAPI restores its known palette during the next native root renderUpdate. It does not opt arbitrary providers into automatic styling or grant gameplay authority. See [native rollout and engine limits](NATIVE_ROLLOUT.md).
+
+The native Options/settings adapter is internal and automatic when UI loads. Consumers still use API major 1 and style only their own widgets; it adds no consumer API, gameplay settings or dependency. It retains native option ownership and guards custom renderers. See [native settings scope](NATIVE_SETTINGS.md).
 
 Client only. `local API=require 'B47ANCEDUI/API'`; `API.requireVersion(1)` returns the provider or errors for an unsupported API major before application UI is constructed. `API.apiVersion` is the independent contract major; `API.version` is the project version. API 1 is the initial contract. Add `B47ANCEDUI` to mod.info `require`; no bundled implementation fallback or private module require is supported for consumers.
 
@@ -8,14 +16,17 @@ Client only. `local API=require 'B47ANCEDUI/API'`; `API.requireVersion(1)` retur
 
 | API | Contract |
 |---|---|
-| `UI.WindowShell/Panel/Button/IconButton/ScrollList/TextInput/NumberInput/Toggle:new(...)` | Same arguments and lifecycle as the corresponding native factory in Controls; returned native instance is styled and tagged with consumer scope. Caller initializes/instantiates/adds/removes it. |
+| `UI.WindowShell/Panel/Button/IconButton/ScrollList/TextInput/NumberInput/Toggle/Slider:new(...)` | Same arguments and lifecycle as the corresponding native factory in Controls; returned native instance is styled and tagged with consumer scope. Caller initializes/instantiates/adds/removes it. |
 | `UI.skin(widget,kind,role)` / `skinChildren(parent)` | Owned instances only; idempotent styling. Never pass unknown third-party trees or native global classes. Kinds include window/panel/button/menuButton/list/input/dropdown/label; role primary/destructive optional. |
+| `UI.Slider.style(widget)` | Opt an owned ISSliderPanel into shared palettes and bounded track/thumb visuals; native range/value/step/input callbacks remain owned by the caller. Custom pagination must retain its own geometry. |
+| `UI.StyleEditor.open(owner)` | Open the singleton local preset editor; returns its panel, or nil when another preview owner holds the lease. Explicit Save/Cancel with unsaved confirmation; player inherited from owner. |
+| `UI.Styles.setFamily(widget,family)` / `.color(widget,originalThemeToken,family?)` / `.number(widget,key,fallback,family?)` | Opt owned custom rendering into a supported family and resolve colors/numeric values. Scoped facade tags consumer ownership. Families/limits/inheritance: STYLE_PRESETS.md. Returned color data is read-only-by-contract; copied/arbitrary RGB remains provider-owned. Missing/invalid numeric token uses fallback. No profile write API is promised. |
 | `UI.Dropdown.style(widget)` | Style an existing native combobox. |
 | `UI.MenuButton:new(x,y,width,title,target,onclick,...)` | Dedicated main/pause/Esc-style navigation. Native ISButton instance/input/lifecycle, native Large font, left-aligned text, minimum height 56 growing to font height +24, transparent surface and no button border. Hover/selected/controller focus use scoped accent text and a 2px underline beneath the label only. Caller supplies localized text and owns the action. Regular controls remain Small/Normal. |
 | `UI.MenuButton.style(widget)` / `UI.Theme.menuMetrics()` | Style an unstyled owned native ISButton without resizing; already-menu styling is idempotent, mixing with an already styled ordinary control errors. Metrics return a fresh height/font/padding record. Native dimensions apply for styled instances; caller must allow enough height. MenuButton is not a third ordinary size, and `Button.sized("large",...)` remains the compatibility alias to Normal. |
 | `UI.Button.sized(size,x,y,width,title,target,onclick,...)` | Two opt-in sizes: `small` / `normal`, minimum heights 24/32, horizontal padding 8/12, corner radii 3/4. Legacy `large` requests resolve to Normal; no distinct third size remains. Height grows with native font metrics. Same native lifecycle/callback arguments; also available on IconButton/Toggle. Unknown IDs error. |
 | `UI.Button.setSize(widget,size)` / `UI.Theme.buttonSize(size)` | Opt-in height/font/padding/radius update; returns widget. Theme returns a fresh caller-owned metric record. Existing `:new(...)` dimensions and legacy `Theme.metrics().button` stay unchanged. |
-| `UI.Theme.colors/fonts/spacing`, `Theme.metrics()` | Shared design tokens/read-only-by-contract. Font metrics cached. Do not mutate shared tables per app. Arbitrary fonts/themes are not provided. |
+| `UI.Theme.colors/fonts/spacing`, `Theme.metrics()` | Shared design tokens/read-only-by-contract. Font metrics cached. Do not mutate shared tables per app. Fonts remain native/caller-owned; component presets resolve through Styles/Renderer without mutating these defaults. |
 | `UI.Renderer.rect/border/text/fit/icon/background`, `UI.Table.prepare/draw` | Shared drawing/table helpers, same retained native arguments; text/rows and callbacks supplied by application. No gameplay data fetching. |
 | `UI.Layout.place(widget,x,y,width,height)` / `.scrollbar(list)` | Explicit geometry, disables competing native right/bottom anchors. `UI.bounds(window,playerNum)` clamps origin; oversized-window reflow remains caller-owned. |
 | `UI.TabBar.add/select`, `UI.SectionHeader.draw`, `UI.SearchField.attach` | Native-semantic styled controls; SearchField returns entry/clear/layout handles. Caller owns search and translated labels. |
@@ -35,7 +46,7 @@ Appearance migration is a read fallback only; new explicit saves write `B47ANCED
 
 The editor saves after changed slider release, valid hex Enter/focus loss, Reset and Close. Drag/typing previews do not write per frame. Reset restores both defaults; Close/B saves the last valid colour and returns focus. A reported writer failure leaves the editor open once; Close again retries and permits session-only dismissal if persistence still fails. Native silent I/O failures cannot be guaranteed detectable.
 
-MenuButton remains the presentation component for consumer-owned navigation; constructing it does not trigger a native action. Starting in 0.4.0-dev.1, the separately auto-loaded NativeMenus adapter applies the same text/underline style to verified native main/Esc navigation labels. It preserves label identity, native geometry/font, localized names, controller rows and original callbacks. Native labels keep their existing row heights rather than the factory's opt-in minimum 56. See NATIVE_MENUS.md; NativeMenus is an internal adapter, not a supported consumer load entry point. Native menus use appearance scope B47ANCEDUI, local slot 0; consumers' independent settings are unchanged. CCTV, whole-game theming, arbitrary fonts, universal No Click and automatic layout editing remain unimplemented.
+MenuButton remains the presentation component for consumer-owned navigation; constructing it does not trigger a native action. Starting in 0.4.0-dev.1, the separately auto-loaded NativeMenus adapter applies the same text/underline style to verified native main/Esc navigation labels. It preserves label identity, native geometry/font, localized names, controller rows and original callbacks. Native labels keep their existing row heights rather than the factory's opt-in minimum 56. See NATIVE_MENUS.md; NativeMenus is an internal adapter, not a supported consumer load entry point. Native menus use appearance scope B47ANCEDUI, local slot 0; consumers' independent settings are unchanged. Live CCTV, whole-game theming, arbitrary fonts, universal No Click and automatic adoption of arbitrary window layouts remain unimplemented.
 
 The current style uses near-black surfaces, editable accents (neutral grey by default) and restrained corners. Rounded fill/border helpers use cached, bounded Lua scanlines through native drawRect; instance wrappers round only exact backing bounds. Textures and decorative subrectangles retain native geometry. Texture clipping, antialiasing and rounded hit testing are not provided; native rectangular hit areas remain. Native performance, pixels and input require runtime acceptance. These technical presentation tokens need no shared gameplay sandbox options.
 
@@ -50,3 +61,42 @@ The current style uses near-black surfaces, editable accents (neutral grey by de
 ## Optional status-label compatibility (0.5.0-dev.7)
 
 The public PZOPT_MENU ISLabel is the audited exception to unknown-custom-renderer refusal. Its original renderer executes once; temporary instance draw interception supplies the shared title style and centers its live Small-font version/update line in reserved space beneath the title. The background layout subtracts that note lane before distributing normal rows, then fits title/note scale for crowded layouts. Callback, original text/status colors, glyph and tooltip ownership remain with the provider; height and methods restore on errors, which propagate. No provider API, Java dependency, external edits, network/save state or settings were added. Other custom renderers remain guarded. See [neutral contract and clean-room record](THIRD_PARTY_RESEARCH.md). Native PZ acceptance remains NOT TESTED.
+
+## Local main-menu layout (0.6.0-dev.1)
+
+MenuLayout resolves independent normalized menu/logo preferences over the owner-approved saved placement, now the built-in default. Missing/invalid targets and Reset use those defaults; existing valid targets retain precedence, with no schema change or automatic preference write. MenuLayoutEditor supplies an owned overlay, drag/corner resize, native percentage sliders, keyboard/controller entry and Save/Cancel/Reset. Preferences are local-only, bounded data with a separate schema 1 file; appearance, gameplay/network state and public API major 1 are unchanged. The logo retains its aspect ratio; dynamic menu/status rows refit inside the selected area. Initial joypad child focus and capture/focus cleanup are explicit. No global UI class/key dispatcher replacement. See MENU_LAYOUT_EDITOR.md for controls, persistence and evidence. Native acceptance NOT TESTED; development source is not deployed or published.
+
+## Safe HUD layout providers (0.7.0-dev.1)
+
+`UI.LayoutAssets` is an additive API 1 facade scoped to the consumer registered by forMod. `register(localKey,definition)` adds an original safe static preview and bounded normalized defaults; `resolve(localKey,width,height)` returns pixel geometry; `apply(localKey,ownedWidget,left,top,width,height)` applies only an explicit saved override after the consumer's own native construction/restoration. Invalid/missing viewport or unsupported/missing override returns nil/false. Duplicate/invalid registrations error. Widget visibility and gameplay state remain owned by the consumer. Definitions and returned rectangles are copied.
+
+Fields include localized `labelKey`, required `preview(parent)`, `default={x,y,w,h}`, `resizable`, optional `resizeWidth/resizeHeight`, `minWidth/minHeight`, fixed `aspect`, owned `resize(widget,width,height)` and `dispose(preview)`. Aspect cannot be combined with a disabled resize axis. Providers must use synthetic data, owned children and safe cleanup; they may not construct a player/world HUD in the frontend. No automatic third-party discovery is provided. See [complete provider contract, built-in support and persistence](UI_WORKSPACE.md).
+
+The native Options Interface page and main-menu Edit in-game UI button open the owned black canvas. Main-menu layout, HUD layout and appearance retain separate local files; only edited supported assets affect native runtime geometry. Public API major1 remains compatible. Native event/input/controller acceptance is NOT TESTED.
+
+Both owned layout editors now guard voluntary unsaved exits with Keep editing / Discard changes. This is internal editor behavior, not a new public API or preference format. Existing facade methods remain compatible; native input acceptance is pending. See MENU_LAYOUT_EDITOR.md and UI_WORKSPACE.md.
+
+The 0.7.0-dev.3 internal OptionsLifecycle helper attaches native styling and the Interface page after deferred construction/rebuilt tabs. It adds no public consumer API, dependency or profile schema; native settings and custom renderer boundaries remain. See NATIVE_SETTINGS.md for the reproduced timing defect and runtime gates.
+
+
+The 0.8 Options workspace is internal presentation: searchable categories, cards and fixed native actions add no public API or profile schema. Existing consumers/API1 remain compatible. See OPTIONS_LAYOUT.md for native ownership and runtime limits.
+
+
+The 0.8.0-dev.2 HUD editor correction changes internal pointer/exit routing only: fixed preview hit surface, explicit Save, existing shared unsaved Cancel/Escape confirmation and draft retention during temporary modals. Public API1/provider contracts, approved defaults and local saved schemas stay compatible. Native dispatch acceptance remains NOT TESTED.
+
+
+The 0.8.0-dev.3 main-menu Quit confirmation skin is internal instance presentation only. Public API1 and saved schemas/defaults remain compatible; native modal text/geometry/actions/focus are retained. See NATIVE_MENUS.md.
+
+The 0.9 preset addition is compatible API1. Shared native/API controls and Renderer resolve the current local preset automatically; explicit family metadata governs generic palettes, and explicit row/tick/progress draw families remain separate. Private ComponentStyles/StylePresets modules are not supported consumer entry points. Existing Appearance methods continue to edit/read their own legacy preferences; explicit presets take precedence when rendered. See [editable preset contracts](STYLE_PRESETS.md).
+
+0.9.0-dev.2 is an internal Kahlua compatibility fix for table-presence checks; public API1, styles and persistence contracts are unchanged. The private helper is not a supported consumer API.
+
+0.9.0-dev.3 is an internal Options layout correction: persistent categories/search, bounded native section/page navigation and genuine-overflow-only bars. Search reveals existing settings; native Apply/value/parent/controller ownership stays intact. Public API1 and all saved schemas remain compatible. See OPTIONS_LAYOUT.md; native post-fix acceptance NOT TESTED.
+
+0.9.0-dev.4 changes only the internal native section-dropdown tooltip contract: setToolTipMap after clear. API1, native values/callbacks, preset/layout schemas and defaults remain compatible. The preceding dev.3 native attach failure is recorded in TESTING.md; post-fix acceptance remains pending.
+
+## Native overhaul integration (0.10)
+
+The context/inventory/dialog adapters are internal. Consumers continue using API1 without new registration or dependencies. Native UI uses the existing B47ANCEDUI scope and explicit local-player slot; no profile/schema/default or gameplay API changes. Only documented neutral presentation tokens are adopted. Native semantic colours, callbacks and geometry remain owned by their source. See [coverage and gates](NATIVE_OVERHAUL.md).
+
+0.10.0-dev.2 corrects native empty-inventory event bootstrap: register only when absent through vanilla LuaEventManager.AddEvent, preserving preexisting handlers. The strict fixture reproduces the dev.1 startup failure before correction. No public API/profile/action/geometry changes. Corrected native visual/input acceptance remains pending; no Workshop upload.

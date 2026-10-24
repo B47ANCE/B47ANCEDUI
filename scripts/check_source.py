@@ -16,8 +16,12 @@ def validate():
     keys=set()
     for p in (SOURCE/'42/media/lua/client').rglob('*.lua'):
         text=p.read_text()
+        assert not re.search(r'\bnext\s*\(',text),(p,'Unsupported Kahlua global table iterator')
         for prohibited in ('B47ANCEDQuartermaster','UI_QMSS_','sendClientCommand','sendServerCommand','ModData','getSpecificPlayer'):
-            assert prohibited not in text,(p,prohibited)
+            # Native metadata includes ISModDataDebug UI names. That is not
+            # access to the global shared gameplay store.
+            present = bool(re.search(r'\bModData\b',text)) if prohibited=='ModData' else prohibited in text
+            assert not present,(p,prohibited)
         for required in re.findall(r"require\s*\(?\s*['\"](B47ANCEDUI/[^'\"]+)",text):
             assert (SOURCE/'42/media/lua/client'/f'{required}.lua').is_file(),required
         keys.update(re.findall(r"getText\(['\"](UI_B47ANCEDUI_[^'\"]+)",text))
@@ -25,6 +29,20 @@ def validate():
     english=json.loads((translations/'EN/UI.json').read_text())
     # AppearanceEditor's concatenated prefix is explicitly enumerated.
     keys.update('UI_B47ANCEDUI_'+k for k in ('ResetAppearance','Close','WindowOpacity','AccentHex','Red','Green','Blue','InvalidHex','SaveFailed'))
+    # MenuLayoutEditor's concatenated keys use explicit English fallback in all locales.
+    keys.update('UI_B47ANCEDUI_'+k for k in ('EditMenuLayout', 'LayoutTitle', 'LayoutMenu', 'LayoutLogo', 'LayoutX', 'LayoutY', 'LayoutWidth', 'LayoutHeight', 'LayoutSave', 'LayoutCancel', 'LayoutReset', 'LayoutHelp', 'LayoutKeys', 'LayoutAspect', 'LayoutSaveFailed', 'LayoutShortcut'))
+    # Owned editor/workspace prefixes: explicit English fallback, not translated claims.
+    keys.update('UI_B47ANCEDUI_'+k for k in ('UnsavedTitle','UnsavedMessage','KeepEditing','DiscardChanges'))
+    keys.update('UI_B47ANCEDUI_'+k for k in ('InvalidPercent', 'InterfaceTab', 'InterfaceTitle', 'InterfaceAppearance', 'InterfaceLocalNotice', 'InterfaceEditorNotice', 'InterfaceMenuOnly', 'EditInGameUI', 'HudEditorTitle', 'HudPreviewNotice', 'HudProperties', 'HudPropertiesHelp', 'ResetHudOverrides', 'LayoutFuture', 'HudReferenceOnly', 'HudResizeHelp', 'HudMoveOnly', 'HudOverridesNotice', 'PreviewUnavailable', 'SampleContent', 'AssetInventory', 'AssetLoot', 'AssetCharacter', 'AssetMechanics', 'AssetChat', 'AssetEquipment', 'AssetHotbar', 'AssetMinimap', 'AssetClock', 'AssetMoodles'))
+    keys.update('UI_B47ANCEDUI_'+k for k in ('OptionsTitle', 'OptionsSearch', 'OptionsSearchHelp', 'OptionsDisplayHelp', 'OptionsUIHelp', 'OptionsAudioHelp', 'OptionsKeysHelp', 'OptionsAccessHelp', 'OptionsControllerHelp', 'OptionsMPHelp', 'OptionsOtherHelp', 'OptionsSection', 'OptionsNoResults'))
+    # Editable style catalog uses explicit English fallback in every locale.
+    keys.update('UI_B47ANCEDUI_'+k for k in ('StyleTitle', 'StylePreset', 'StyleName', 'StyleDuplicate', 'StyleDelete', 'StyleScope', 'StyleComponent', 'StyleProperty', 'StyleValue', 'StyleInherit', 'StyleResetComponent', 'StyleFollowShared', 'StyleNewName', 'StylePreview', 'StyleSampleButton', 'StyleSampleInput', 'StyleSampleChoice', 'StyleSampleChoice2', 'StyleSampleSelected', 'StyleShared', 'StyleHexHelp', 'StyleNumberHelp', 'StyleLimit', 'StyleInvalid', 'StyleSaveFailed', 'StyleProtected', 'StyleNotice', 'StyleUnsavedMessage', 'StyleFamily_all', 'StyleFamily_button', 'StyleFamily_buttonSmall', 'StyleFamily_menuButton', 'StyleFamily_slider', 'StyleFamily_volume', 'StyleFamily_tick', 'StyleFamily_input', 'StyleFamily_dropdown', 'StyleFamily_panel', 'StyleFamily_window', 'StyleFamily_dialog', 'StyleFamily_list', 'StyleFamily_row', 'StyleFamily_tabs', 'StyleFamily_tooltip', 'StyleFamily_text', 'StyleFamily_progress', 'StyleProperty_background', 'StyleProperty_hover', 'StyleProperty_selected', 'StyleProperty_border', 'StyleProperty_focus', 'StyleProperty_text', 'StyleProperty_muted', 'StyleProperty_accent', 'StyleProperty_accentHover', 'StyleProperty_disabled', 'StyleProperty_alternate', 'StyleProperty_danger', 'StyleProperty_warning', 'StyleProperty_success', 'StyleProperty_opacity', 'StyleProperty_radius', 'StyleProperty_borderWidth', 'StyleProperty_trackThickness', 'StyleProperty_thumbWidth', 'StyleProperty_thumbHeight'))
+    keys.update('UI_B47ANCEDUI_'+k for k in ('OptionsSections','OptionsPrevious','OptionsNext'))
+    palette=(SOURCE/'42/media/lua/client/B47ANCEDUI/Theme.lua').read_text()
+    aliases=re.search(r'T.colorAliases=\{(.*?)\}',palette,re.S).group(1)
+    keys.update('UI_B47ANCEDUI_StyleProperty_'+key for key in re.findall(r"([A-Za-z]+)='[A-Za-z]+'",aliases))
+    keys.add('UI_B47ANCEDUI_StyleFamily_scrollbar')
+    keys.update('UI_B47ANCEDUI_'+key for key in ('StyleExport','StyleExportFolder','StyleOpenWorkshop','StyleRefreshPlugins','StyleExportFailed','StyleExportWaiting','StyleExportReady','StylePluginIssues','StyleWorkshopMenuOnly','StyleExportMode','StyleExportNew','StyleExportUpdate','StyleExportStale','StyleExportTarget'))
     assert set(english)==keys,(set(english),keys)
     locales=[]
     for p in translations.glob('*/UI.json'):

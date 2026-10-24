@@ -1,0 +1,1711 @@
+{
+  "schema": 1,
+  "project_version": "0.12.0-dev.1",
+  "runtime_acceptance": "NOT TESTED",
+  "status": "Implemented guarded Lua chrome routes; explicit engine/content/provider boundaries, not screen completion counts",
+  "baseline": "UI_COVERAGE_INVENTORY_2026-10-24.json (frozen pre-rollout0.10.0-dev.2)",
+  "counts": {
+    "work_areas": 61,
+    "native_lua_declarations": 591,
+    "separate_pzapi_templates": 16
+  },
+  "areas": [
+    {
+      "id": "C01",
+      "title": "Main menu navigation and security-room scene",
+      "group": "Current scopes",
+      "route": "Existing NativeMenus/MenuBackground owners",
+      "limits": "Approved menu/logo geometry and saved defaults unchanged; actual placement acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "implemented_scope",
+      "curated_targets": []
+    },
+    {
+      "id": "C02",
+      "title": "Esc/pause navigation",
+      "group": "Current scopes",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "partial_scope",
+      "curated_targets": []
+    },
+    {
+      "id": "C03",
+      "title": "Frontend Quit to desktop confirmation",
+      "group": "Current scopes",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "implemented_scope",
+      "curated_targets": []
+    },
+    {
+      "id": "C04",
+      "title": "Native Options and Interface page",
+      "group": "Current scopes",
+      "route": "Existing OptionsLifecycle/NativeSettings/OptionsLayout owners",
+      "limits": "Native settings values, Apply and custom pages remain owned by PZ/providers.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "partial_scope",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/MainOptions.lua",
+          "class": "MainOptions",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "id": "C05",
+      "title": "Main-menu layout editor",
+      "group": "Current scopes",
+      "route": "Existing MenuLayoutEditor",
+      "limits": "Existing editor/defaults and unsaved confirmation retained.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "implemented_scope",
+      "curated_targets": []
+    },
+    {
+      "id": "C06",
+      "title": "HUD preview/layout editor",
+      "group": "Current scopes",
+      "route": "Existing safe HUD workspace and supported geometry adapters",
+      "limits": "Synthetic previews remain previews; no character/world loaded; native clock/moodles reference-only.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "preview_and_geometry",
+      "curated_targets": []
+    },
+    {
+      "id": "C07",
+      "title": "Style preset and accent/appearance editors",
+      "group": "Current scopes",
+      "route": "Existing style/appearance editors plus live native painters",
+      "limits": "Preserve API1/profile schemas, explicit Save/Cancel, scopes and user preferences.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "implemented_scope",
+      "curated_targets": []
+    },
+    {
+      "id": "C08",
+      "title": "Shared API controls, dialogs and managed tooltip helpers",
+      "group": "Current scopes",
+      "route": "Existing public API plus excludeNativeTheme helper",
+      "limits": "API-owned controls retain consumer scope and ownership; arbitrary provider content is opt-in.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "opt_in_scope",
+      "curated_targets": []
+    },
+    {
+      "id": "X01",
+      "title": "Native confirmations, warnings and text-entry dialogs beyond frontend Quit",
+      "group": "Shared components",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "partial_scope",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISModalDialog.lua",
+          "class": "ISModalDialog",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISTextBox.lua",
+          "class": "ISTextBox",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/OptionScreens/MainOptions.lua",
+          "class": "MainOptions",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "id": "X02",
+      "title": "World/item/container context menus and submenus",
+      "group": "Shared components",
+      "route": "Existing NativeContext plus deferred direct native context adoption",
+      "limits": "Capability tests/actions/pooling remain native; exact custom renderer/provider routes are guarded.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "partial_scope",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISContextMenu.lua",
+          "class": "ISContextMenu",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISInventoryPane.lua",
+          "class": "ISInventoryPane",
+          "line": 10
+        },
+        {
+          "path": "media/lua/client/Chat/ISChat.lua",
+          "class": "ISChat",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "id": "X03",
+      "title": "Item, rich, world-object and container tooltips",
+      "group": "Shared components",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "partial_scope",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISToolTipInv.lua",
+          "class": "ISToolTipInv",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "X04",
+      "title": "Native scrollbars, scrolling panels and clipping",
+      "group": "Shared components",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "partial_scope",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISScrollBar.lua",
+          "class": "ISScrollBar",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "X05",
+      "title": "Lists, tables, trees and column headers",
+      "group": "Shared components",
+      "route": "Native list palettes and audited frame descendants",
+      "limits": "Bespoke row/header/tree content and hardcoded inner rectangles are not blanket-recolored.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "partial_scope",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISScrollingListBox.lua",
+          "class": "ISScrollingListBox",
+          "line": 7
+        },
+        {
+          "path": "media/lua/client/ISUI/ISInventoryPane.lua",
+          "class": "ISInventoryPane",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "id": "X06",
+      "title": "Native tabs, check/radio controls, color pickers and popups outside Options",
+      "group": "Shared components",
+      "route": "Audited native controls and popup chrome",
+      "limits": "Keep data color swatches, picker gradients, native toggle/check state and popup focus semantics.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "partial_scope",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISTabPanel.lua",
+          "class": "ISTabPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISTickBox.lua",
+          "class": "ISTickBox",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISColorPicker.lua",
+          "class": "ISColorPicker",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "X07",
+      "title": "Typography, density, icon states and preset coverage",
+      "group": "Shared components",
+      "route": "Shared theme/preset chrome with native metrics retained",
+      "limits": "Native fonts/density/layout and semantic icon content remain native; arbitrary font replacement is not implemented.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "partial_scope",
+      "curated_targets": []
+    },
+    {
+      "id": "F01",
+      "title": "Solo mode, difficulty and challenge selection",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/NewGameScreen.lua",
+          "class": "NewGameScreen",
+          "line": 136
+        },
+        {
+          "path": "media/lua/client/OptionScreens/LastStandPlayerSelect.lua",
+          "class": "LastStandPlayerSelect",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "id": "F02",
+      "title": "Load/save browser and saved-game configuration",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/LoadGameScreen.lua",
+          "class": "LoadGameScreen",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "id": "F03",
+      "title": "World/map and spawn selection",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/WorldSelect.lua",
+          "class": "WorldSelect",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/MapSpawnSelect.lua",
+          "class": "MapSpawnSelect",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/MapSpawnSelect.lua",
+          "class": "MapSpawnSelectImage",
+          "line": 14
+        },
+        {
+          "path": "media/lua/client/OptionScreens/MapSpawnSelect.lua",
+          "class": "MapSpawnSelectListBox",
+          "line": 260
+        },
+        {
+          "path": "media/lua/client/OptionScreens/MapSpawnSelect.lua",
+          "class": "MapSpawnSelectInfoPanel",
+          "line": 275
+        },
+        {
+          "path": "media/lua/client/OptionScreens/MapSpawnSelect.lua",
+          "class": "MapSpawnSelectSeedPanel",
+          "line": 313
+        }
+      ]
+    },
+    {
+      "id": "F04",
+      "title": "Sandbox settings and presets",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/SandboxOptions.lua",
+          "class": "SandboxOptionsScreen",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "F05",
+      "title": "Character identity, clothing and avatar creation",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/CharacterCreationMain.lua",
+          "class": "CharacterCreationMain",
+          "line": 9
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CharacterCreationMain.lua",
+          "class": "CharacterCreationMainCharacterPanel",
+          "line": 12
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CharacterCreationMain.lua",
+          "class": "CharacterCreationMainPresetPanel",
+          "line": 13
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CharacterCreationAvatar.lua",
+          "class": "CharacterCreationAvatar",
+          "line": 6
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CharacterCreationProfession.lua",
+          "class": "CharacterCreationProfession",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "id": "F06",
+      "title": "Occupation and traits",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/CharacterCreationProfession.lua",
+          "class": "CharacterCreationProfession",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "id": "F07",
+      "title": "Multiplayer server browser",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/MultiplayerUI.lua",
+          "class": "MultiplayerUI",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "id": "F08",
+      "title": "Connection, bootstrap, progress and error popups",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/ConnectToServer.lua",
+          "class": "ConnectToServer",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/OptionScreens/BootstrapConnectPopup.lua",
+          "class": "BootstrapConnectPopup",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ServerConnectPopup.lua",
+          "class": "ServerConnectPopup",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "id": "F09",
+      "title": "Host/local-coop setup",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/CoopOptionsScreen.lua",
+          "class": "CoopOptionsScreen",
+          "line": 10
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CoopOptionsScreen.lua",
+          "class": "CoopOptionsScreenPanel",
+          "line": 11
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ServerToolbox.lua",
+          "class": "ServerToolbox",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "F10",
+      "title": "Server configuration editor",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/ServerSettingsScreen.lua",
+          "class": "ServerSettingsScreen",
+          "line": 6
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ServerSettingsScreen.lua",
+          "class": "BaseServerSettingsPanel",
+          "line": 7
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ServerSettingsScreen.lua",
+          "class": "SpawnRegionsNameFilePanel",
+          "line": 389
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ServerSettingsScreen.lua",
+          "class": "Page3.ChooseModsWindow",
+          "line": 2987,
+          "discovery": "qualified_derive"
+        }
+      ]
+    },
+    {
+      "id": "F11",
+      "title": "Mod manager, mod presets and missing-mod warnings",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModSelector.lua",
+          "class": "ModSelector",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ISModsNagPanel.lua",
+          "class": "ISModsNagPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModMoreInfo.lua",
+          "class": "ModMoreInfo",
+          "line": 9
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ISModsHelpPanel.lua",
+          "class": "ISModsHelpPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanel.lua",
+          "class": "ModInfoPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModListPresets.lua",
+          "class": "ModListPresets",
+          "line": 7
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/MapOrderListBox.lua",
+          "class": "ModSelector.MapOrderListBox",
+          "line": 4,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/MapOrderUI.lua",
+          "class": "ModSelector.MapOrderUI",
+          "line": 7,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/MissedModsPanel.lua",
+          "class": "ModSelector.MissedModsPanel",
+          "line": 6,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/MissedModsPanel.lua",
+          "class": "ModSelector.MissedModsWindow",
+          "line": 48,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelDesc.lua",
+          "class": "ModInfoPanel.Desc",
+          "line": 4,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelInteractionParam.lua",
+          "class": "ModInfoPanel.InteractionParam",
+          "line": 8,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelParam.lua",
+          "class": "ModInfoPanel.Param",
+          "line": 8,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelThumbnail.lua",
+          "class": "ModInfoPanel.Thumbnail",
+          "line": 4,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModInfoPanelTitle.lua",
+          "class": "ModInfoPanel.Title",
+          "line": 8,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModListBox.lua",
+          "class": "ModSelector.ModListBox",
+          "line": 4,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModListPanel.lua",
+          "class": "ModSelector.ModListPanel",
+          "line": 12,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModLoadOrderPanel.lua",
+          "class": "ModSelector.ModLoadOrderPanel",
+          "line": 7,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ModSelector/ModOrderListBox.lua",
+          "class": "ModSelector.ModOrderListBox",
+          "line": 4,
+          "discovery": "qualified_derive"
+        }
+      ]
+    },
+    {
+      "id": "F12",
+      "title": "Server Workshop dependency installation",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/ServerWorkshopItemScreen.lua",
+          "class": "ServerWorkshopItemScreen",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "id": "F13",
+      "title": "Workshop submission/update wizard",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/WorkshopSubmitScreen.lua",
+          "class": "WorkshopSubmitScreen",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "id": "F14",
+      "title": "Credits, Terms/legal, help/report and ancillary entry controls",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/CreditsScreen.lua",
+          "class": "CreditsScreen",
+          "line": 12
+        },
+        {
+          "path": "media/lua/client/ISUI/ISTermsOfServiceUI.lua",
+          "class": "ISTermsOfServiceUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/OptionScreens/MainScreen.lua",
+          "class": "MainScreen",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "id": "F15",
+      "title": "Steam invitations and scoreboard",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/InviteFriends.lua",
+          "class": "InviteFriends",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/ISScoreboard.lua",
+          "class": "ISScoreboard",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "F16",
+      "title": "Local-player/cooperative character join flow",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/CoopCharacterCreation.lua",
+          "class": "CoopCharacterCreation",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CoopUserName.lua",
+          "class": "CoopUserName",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CoopCharacterCreationMain.lua",
+          "class": "CoopCharacterCreationMain",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CoopCharacterCreationProfession.lua",
+          "class": "CoopCharacterCreationProfession",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/OptionScreens/CoopMapSpawnSelect.lua",
+          "class": "CoopMapSpawnSelect",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "F17",
+      "title": "Advanced sound browser",
+      "group": "Frontend",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/OptionScreens/ISGameSounds.lua",
+          "class": "ISGameSounds",
+          "line": 152
+        }
+      ]
+    },
+    {
+      "id": "G01",
+      "title": "Live inventory and loot windows",
+      "group": "Gameplay",
+      "route": "Existing NativeInventory owner",
+      "limits": "Native transfer/actions and inventory row semantics remain native.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "partial_scope",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISInventoryPage.lua",
+          "class": "ISInventoryPage",
+          "line": 14
+        },
+        {
+          "path": "media/lua/client/ISUI/ISInventoryPage.lua",
+          "class": "ISInventoryPageContainerButtonPanel",
+          "line": 23
+        },
+        {
+          "path": "media/lua/client/ISUI/ISInventoryPane.lua",
+          "class": "ISInventoryPane",
+          "line": 10
+        },
+        {
+          "path": "media/lua/client/ISUI/InventoryWindow/ISInventoryWindowContainerControls.lua",
+          "class": "ISInventoryWindowContainerControls",
+          "line": 7
+        },
+        {
+          "path": "media/lua/client/ISUI/LootWindow/ISLootWindowContainerControls.lua",
+          "class": "ISLootWindowContainerControls",
+          "line": 29
+        }
+      ]
+    },
+    {
+      "id": "G02",
+      "title": "Character, skills, health, protection, insulation, fitness and garment panels",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "geometry_only",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISCharacterInfoWindow.lua",
+          "class": "ISCharacterInfoWindow",
+          "line": 4
+        },
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISHealthPanel.lua",
+          "class": "ISHealthPanel",
+          "line": 4
+        },
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISHealthPanel.lua",
+          "class": "ISNewHealthPanel",
+          "line": 10
+        },
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISHealthPanel.lua",
+          "class": "ISHealthBodyPartPanel",
+          "line": 53
+        },
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISHealthPanel.lua",
+          "class": "ISHealthBodyPartListBox",
+          "line": 96
+        },
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISSkillProgressBar.lua",
+          "class": "ISSkillProgressBar",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISFitnessUI.lua",
+          "class": "ISFitnessUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISGarmentUI.lua",
+          "class": "ISGarmentUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISCharacterScreen.lua",
+          "class": "ISCharacterScreen",
+          "line": 4
+        },
+        {
+          "path": "media/lua/client/XpSystem/ISUI/ISCharacterScreen.lua",
+          "class": "ISCharacterScreenAvatar",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "id": "G03",
+      "title": "Equipment and hotbar",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "geometry_only",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISEquippedItem.lua",
+          "class": "ISEquippedItem",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISEquippedItem.lua",
+          "class": "ISMoveablesIconPopup",
+          "line": 1070
+        },
+        {
+          "path": "media/lua/client/ISUI/ISEquippedItem.lua",
+          "class": "ISMapPopup",
+          "line": 1181
+        },
+        {
+          "path": "media/lua/client/Hotbar/ISHotbar.lua",
+          "class": "ISHotbar",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "G04",
+      "title": "Clock/watch and moodles/status indicators",
+      "group": "Gameplay",
+      "route": "Existing reference previews; engine palette boundary",
+      "limits": "No verified universal clock/moodle palette contract; engine internals unchanged. This remains a capability/runtime boundary.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "reference_only",
+      "curated_targets": []
+    },
+    {
+      "id": "G05",
+      "title": "Chat",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "geometry_only",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/Chat/ISChat.lua",
+          "class": "ISChat",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "id": "G06",
+      "title": "Minimap, world/paper maps, symbols, legends and sharing",
+      "group": "Gameplay",
+      "route": "Audited Lua map frame/control chrome",
+      "limits": "Native map layers, explored state, icons and style colors remain semantic content.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "geometry_only",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "WorldMapOptions",
+          "line": 12
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "ISWorldMapButtonPanel",
+          "line": 226
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "ISWorldMap",
+          "line": 264
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "AnnotatedMapOverlay",
+          "line": 683
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISMap.lua",
+          "class": "ISMap",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISMap.lua",
+          "class": "ISMapWrapper",
+          "line": 10
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISMiniMap.lua",
+          "class": "ISMiniMapOuter",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISMiniMap.lua",
+          "class": "ISMiniMapInner",
+          "line": 4
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISMiniMap.lua",
+          "class": "ISMiniMapTitleBar",
+          "line": 5
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISMiniMap.lua",
+          "class": "ISMiniMapOptionsPanel",
+          "line": 12
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMapSymbols.lua",
+          "class": "ISWorldMapSymbols",
+          "line": 9
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMapSymbols.lua",
+          "class": "ISWorldMapSymbolsTabPanel",
+          "line": 1036
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMapSharing.lua",
+          "class": "ISWorldMapSharing",
+          "line": 5
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMapSharing.lua",
+          "class": "ISWorldMapSharing_PanelPlayers",
+          "line": 249
+        }
+      ]
+    },
+    {
+      "id": "G07",
+      "title": "Build42 handcraft and recipe UI",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/Crafting/ISHandcraftWindow.lua",
+          "class": "ISHandcraftWindow",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Entity/ISUI/CraftRecipe/ISHandCraftPanel.lua",
+          "class": "ISHandCraftPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Entity/ISUI/CraftRecipe/ISCraftRecipePanel.lua",
+          "class": "ISCraftRecipePanel",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "G08",
+      "title": "Building, placement and moveable controls",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/Building/ISBuildWindow.lua",
+          "class": "ISBuildWindow",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Entity/ISUI/BuildRecipe/ISBuildPanel.lua",
+          "class": "ISBuildPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISExtendedPlacementUI.lua",
+          "class": "ISExtendedPlacementUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Moveables/ISMoveablesIconToolTip.lua",
+          "class": "ISMoveablesIconToolTip",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "G09",
+      "title": "Entities and crafting workstations",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/Entity/ISUI/Windows/ISEntityWindow.lua",
+          "class": "ISEntityWindow",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Entity/ISUI/Windows/ISEntityTabWindow.lua",
+          "class": "ISEntityTabWindow",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Entity/ISUI/Components/Crafting/ISCraftBenchPanel.lua",
+          "class": "ISCraftBenchPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Entity/ISUI/Components/Crafting/ISCraftLogicPanel.lua",
+          "class": "ISCraftLogicPanel",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "G10",
+      "title": "Vehicle mechanics",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "geometry_only",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleMechanics.lua",
+          "class": "ISVehicleMechanics",
+          "line": 1
+        }
+      ]
+    },
+    {
+      "id": "G11",
+      "title": "Vehicle dashboard, seats, climate, lightbar and radial controls",
+      "group": "Gameplay",
+      "route": "Audited vehicle window/control chrome",
+      "limits": "Needles/calibration, warning textures and engine radial segment backgrounds remain native.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleDashboard.lua",
+          "class": "ISVehicleDashboard",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleSeatUI.lua",
+          "class": "ISVehicleSeatUI",
+          "line": 61
+        },
+        {
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleACUI.lua",
+          "class": "ISVehicleACUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Vehicles/ISUI/ISLightbarUI.lua",
+          "class": "ISLightbarUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleGauge.lua",
+          "class": "ISVehicleGauge",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "G12",
+      "title": "Radio, television and recorded media",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/RadioCom/ISRadioWindow.lua",
+          "class": "ISRadioWindow",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/RecordedMedia/ISMediaInfo.lua",
+          "class": "ISMediaInfo",
+          "line": 1
+        }
+      ]
+    },
+    {
+      "id": "G13",
+      "title": "Foraging, search and tracking overlays",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/Foraging/ISSearchWindow.lua",
+          "class": "ISSearchWindow",
+          "line": 5
+        },
+        {
+          "path": "media/lua/client/Foraging/ISZoneDisplay.lua",
+          "class": "ISZoneDisplay",
+          "line": 2
+        },
+        {
+          "path": "media/lua/client/Foraging/ISForageIcon.lua",
+          "class": "ISForageIcon",
+          "line": 4
+        },
+        {
+          "path": "media/lua/client/ISUI/Animal/ISAnimalTracksUI.lua",
+          "class": "ISAnimalTracksUI",
+          "line": 7
+        }
+      ]
+    },
+    {
+      "id": "G14",
+      "title": "Fishing and newer PZAPI fish window",
+      "group": "Gameplay",
+      "route": "Native Lua fishing chrome plus separate PZAPI FishWindow",
+      "limits": "Live weather/temperature/condition colors retained; engine dispatch/runtime acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/Fishing/TensionUI.lua",
+          "class": "Fishing.ISTensionUI",
+          "line": 3,
+          "discovery": "qualified_derive"
+        },
+        {
+          "path": "media/lua/client/PZAPI/ui/organisms/FishWindow.lua",
+          "class": "UI.FishWindow",
+          "line": 102,
+          "discovery": "ui_template"
+        }
+      ]
+    },
+    {
+      "id": "G15",
+      "title": "Animals, designation zones, hutches, tracks and butchering",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/Animal/ISAnimalUI.lua",
+          "class": "ISAnimalUI",
+          "line": 8
+        },
+        {
+          "path": "media/lua/client/ISUI/Animal/ISAnimalUI.lua",
+          "class": "ISAnimalAvatar",
+          "line": 12
+        },
+        {
+          "path": "media/lua/client/ISUI/Animal/ISDesignationAnimalZoneUI.lua",
+          "class": "ISDesignationZoneAnimalZoneUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/Animal/ISDesignationAnimalZoneUI.lua",
+          "class": "ISDesignationZoneAnimalZoneUI_AnimalsPanel",
+          "line": 6
+        },
+        {
+          "path": "media/lua/client/ISUI/Animal/ISButcherHookUI.lua",
+          "class": "ISButcherHookUI",
+          "line": 9
+        },
+        {
+          "path": "media/lua/client/ISUI/Hutch/ISHutchUI.lua",
+          "class": "ISHutch3DModel",
+          "line": 23
+        },
+        {
+          "path": "media/lua/client/ISUI/Hutch/ISHutchUI.lua",
+          "class": "ISHutchNestBox",
+          "line": 60
+        },
+        {
+          "path": "media/lua/client/ISUI/Hutch/ISHutchUI.lua",
+          "class": "ISHutchNestParentPanel",
+          "line": 230
+        },
+        {
+          "path": "media/lua/client/ISUI/Hutch/ISHutchUI.lua",
+          "class": "ISHutchRoost",
+          "line": 374
+        },
+        {
+          "path": "media/lua/client/ISUI/Hutch/ISHutchUI.lua",
+          "class": "ISHutchRoostParentPanel",
+          "line": 539
+        },
+        {
+          "path": "media/lua/client/ISUI/Hutch/ISHutchUI.lua",
+          "class": "ISHutchUI",
+          "line": 731
+        },
+        {
+          "path": "media/lua/client/ISUI/ISVehicleAnimalUI.lua",
+          "class": "ISVehicleAnimalUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISVehicleAnimalUI.lua",
+          "class": "ISAnimalInVehiclePanel",
+          "line": 10
+        },
+        {
+          "path": "media/lua/client/ISUI/ISVehicleAnimalUI.lua",
+          "class": "ISVehicleAnimal3DModel",
+          "line": 452
+        },
+        {
+          "path": "media/lua/client/ISUI/Animal/ISAnimalTracksUI.lua",
+          "class": "ISAnimalTracksUI",
+          "line": 7
+        }
+      ]
+    },
+    {
+      "id": "G16",
+      "title": "Farming and plant information",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/Farming/ISUI/ISFarmingInfo.lua",
+          "class": "ISFarmingInfo",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Farming/ISUI/ISFarmingWindow.lua",
+          "class": "ISFarmingWindow",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "G17",
+      "title": "Fluid transfer and container information",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/Fluids/ISFluidTransferUI.lua",
+          "class": "ISFluidTransferUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Fluids/ISFluidInfoUI.lua",
+          "class": "ISFluidInfoUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Fluids/ISFluidBar.lua",
+          "class": "ISFluidBar",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Fluids/ISFluidContainerPanel.lua",
+          "class": "ISFluidContainerPanel",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "G18",
+      "title": "Appliances, heating, generator and BBQ information",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/Fireplace/ISOvenUI.lua",
+          "class": "ISOvenUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/Fireplace/ISMicrowaveUI.lua",
+          "class": "ISMicrowaveUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISGeneratorInfoWindow.lua",
+          "class": "ISGeneratorInfoWindow",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISBBQInfoWindow.lua",
+          "class": "ISBBQInfoWindow",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "G19",
+      "title": "Literature, journals, notes and printed media",
+      "group": "Gameplay",
+      "route": "Native Lua document frames plus PZAPI PrintMedia chrome",
+      "limits": "Entire printed document data subtree, artwork, glyphs and typography excluded, including dynamic additions.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISLiteratureUI.lua",
+          "class": "ISLiteratureUI",
+          "line": 5
+        },
+        {
+          "path": "media/lua/client/ISUI/ISLiteratureUI.lua",
+          "class": "ISLiteratureList",
+          "line": 6
+        },
+        {
+          "path": "media/lua/client/ISUI/ISLiteratureUI.lua",
+          "class": "ISLiteratureMediaList",
+          "line": 7
+        },
+        {
+          "path": "media/lua/client/ISUI/ISLiteratureUI.lua",
+          "class": "ISLiteratureGrowingList",
+          "line": 8
+        },
+        {
+          "path": "media/lua/client/ISUI/ISUIWriteJournal.lua",
+          "class": "ISUIWriteJournal",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISPrintMediaTextPanel.lua",
+          "class": "ISPrintMediaTextPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISPrintMediaTextPanel.lua",
+          "class": "ISPrintMediaMap",
+          "line": 590
+        },
+        {
+          "path": "media/lua/client/PZAPI/ui/organisms/PrintMedia.lua",
+          "class": "UI.PrintMedia",
+          "line": 42,
+          "discovery": "ui_template"
+        },
+        {
+          "path": "media/lua/client/PZAPI/ui/organisms/PrintMedia.lua",
+          "class": "UI.PrintMedia.children.bar.children.name",
+          "line": 398,
+          "discovery": "ui_template"
+        }
+      ]
+    },
+    {
+      "id": "G20",
+      "title": "Alarm, sleeping and post-death/respawn UI",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISAlarmClockDialog.lua",
+          "class": "ISAlarmClockDialog",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISSleepingUI.lua",
+          "class": "ISSleepingUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISPostDeathUI.lua",
+          "class": "ISPostDeathUI",
+          "line": 1
+        }
+      ]
+    },
+    {
+      "id": "G21",
+      "title": "Player tools, factions, safehouses, tickets, trading and wars",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/UserPanel/ISUserPanelUI.lua",
+          "class": "ISUserPanelUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/UserPanel/ISSafehouseUI.lua",
+          "class": "ISSafehouseUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/UserPanel/ISFactionUI.lua",
+          "class": "ISFactionUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/UserPanel/ISTicketsUI.lua",
+          "class": "ISTicketsUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISTradingUI.lua",
+          "class": "ISTradingUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISWarManagerUI.lua",
+          "class": "ISWarManagerUI",
+          "line": 1
+        }
+      ]
+    },
+    {
+      "id": "G22",
+      "title": "Tutorial, survival help and focus overlays",
+      "group": "Gameplay",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/Tutorial/ISUI/TutorialMessage.lua",
+          "class": "TutorialMessage",
+          "line": 5
+        },
+        {
+          "path": "media/lua/client/Tutorial/ISUI/TutorialFocus.lua",
+          "class": "TutorialFocus",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "G23",
+      "title": "Timed-action progress, radials and transient HUD feedback",
+      "group": "Gameplay",
+      "route": "Audited Lua transient frame/control chrome; engine boundary",
+      "limits": "Native radial segments, progress values and safety/meaning colors retained; no universal engine reskin claimed.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "engine_audit",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISRadialProgressBar.lua",
+          "class": "ISRadialProgressBar",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISRadialMenu.lua",
+          "class": "ISRadialMenu",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "A01",
+      "title": "Administration and player/server management",
+      "group": "Specialist",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/AdminPanel/ISAdminPanelUI.lua",
+          "class": "ISAdminPanelUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/AdminPanel/ISItemsListViewer.lua",
+          "class": "ISItemsListViewer",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/AdminPanel/ISServerOptions.lua",
+          "class": "ISServerOptions",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/PlayerStats/ISPlayerStatsUI.lua",
+          "class": "ISPlayerStatsUI",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/AdminPanel/ISServerSandboxOptionsUI.lua",
+          "class": "ISServerSandboxOptionsUI",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "id": "A02",
+      "title": "Debug and developer tools",
+      "group": "Specialist",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/DebugUIs/DebugMenu/ISDebugMenu.lua",
+          "class": "ISDebugMenu",
+          "line": 6
+        },
+        {
+          "path": "media/lua/client/DebugUIs/DebugErrorsWindow.lua",
+          "class": "DebugErrorsWindow",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "A03",
+      "title": "Controller, split-screen, on-screen keyboard and reconnect UI",
+      "group": "Specialist",
+      "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
+      "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/Gamepad/ISControllerBindingsEditorPanel.lua",
+          "class": "ISControllerBindingsEditorPanel",
+          "line": 18
+        },
+        {
+          "path": "media/lua/client/ISUI/Gamepad/ISControllerTestPanel.lua",
+          "class": "ISControllerTestPanel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/JoyPad/ISJoypadDisconnectedUI.lua",
+          "class": "ISJoypadDisconnectedUI",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISOnScreenKeyboard.lua",
+          "class": "ISOnScreenKeyboard",
+          "line": 1
+        },
+        {
+          "path": "media/lua/client/ISUI/ISOnScreenKeyboard.lua",
+          "class": "OnScreenKeyboardEntry",
+          "line": 11
+        },
+        {
+          "path": "media/lua/client/ISUI/ISOnScreenKeyboard.lua",
+          "class": "OnScreenKeyboardPanel",
+          "line": 149
+        }
+      ]
+    },
+    {
+      "id": "I01",
+      "title": "Newer PZAPI atoms, templates and organisms",
+      "group": "Integration",
+      "route": "PZAPITheme declared Meta lifecycle with verified native setters",
+      "limits": "Window/Fish/PrintMedia and recognized prototype chrome only; inactive templates/content are not claimed complete. Meta instance dispatch remains a runtime gate.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "unadopted",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/PZAPI/ui/organisms/FishWindow.lua",
+          "class": "UI.FishWindow",
+          "line": 102,
+          "discovery": "ui_template"
+        },
+        {
+          "path": "media/lua/client/PZAPI/ui/organisms/PrintMedia.lua",
+          "class": "UI.PrintMedia",
+          "line": 42,
+          "discovery": "ui_template"
+        },
+        {
+          "path": "media/lua/client/PZAPI/ui/organisms/PrintMedia.lua",
+          "class": "UI.PrintMedia.children.bar.children.name",
+          "line": 398,
+          "discovery": "ui_template"
+        }
+      ]
+    },
+    {
+      "id": "I02",
+      "title": "Consuming mods and arbitrary provider UI",
+      "group": "Integration",
+      "route": "Public API/provider opt-in and exclusion boundary",
+      "limits": "Unknown custom renderers/provider-scoped trees remain provider-owned. No third-party source copied or modified.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "opt_in_boundary",
+      "curated_targets": []
+    },
+    {
+      "id": "E01",
+      "title": "Boot/logo/loading layers, native renderer internals and platform overlays",
+      "group": "Engine boundary",
+      "route": "Lua-owned chrome only; engine/platform boundary",
+      "limits": "Boot/loading/model/item-stat/platform internals remain unchanged where no verified universal palette API exists.",
+      "runtime_acceptance": "NOT TESTED",
+      "prior_source_state": "engine_audit",
+      "curated_targets": [
+        {
+          "path": "media/lua/client/ISUI/ISUI3DModel.lua",
+          "class": "ISUI3DModel",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/ISToolTipInv.lua",
+          "class": "ISToolTipInv",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "WorldMapOptions",
+          "line": 12
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "ISWorldMapButtonPanel",
+          "line": 226
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "ISWorldMap",
+          "line": 264
+        },
+        {
+          "path": "media/lua/client/ISUI/Maps/ISWorldMap.lua",
+          "class": "AnnotatedMapOverlay",
+          "line": 683
+        },
+        {
+          "path": "media/lua/client/ISUI/ISRadialMenu.lua",
+          "class": "ISRadialMenu",
+          "line": 3
+        },
+        {
+          "path": "media/lua/client/Vehicles/ISUI/ISVehicleGauge.lua",
+          "class": "ISVehicleGauge",
+          "line": 3
+        }
+      ]
+    }
+  ]
+}

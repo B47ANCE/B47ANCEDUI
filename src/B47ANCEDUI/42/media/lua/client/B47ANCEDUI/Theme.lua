@@ -1,6 +1,11 @@
 -- Shared client presentation library. No application state, networking or mod APIs.
 B47ANCEDUI=B47ANCEDUI or {}
 local T={};B47ANCEDUI.Theme=T
+-- Private runtime helper: Kahlua exposes pairs, without a standard next global.
+function B47ANCEDUI._hasEntries(t)
+ for _ in pairs(t)do return true end
+ return false
+end
 local function color(r,g,b,a) return {r=r,g=g,b=b,a=a or 1} end
 T.colors={window=color(.035,.039,.039,.96),panel=color(.055,.059,.059,.96),raised=color(.09,.098,.098,.98),
  row=color(.055,.059,.059,.94),alternate=color(.075,.082,.082,.94),hover=color(.14,.157,.15,.98),
@@ -12,6 +17,16 @@ T.spacing={xs=4,s=8,m=12,l=18,xl=24};T.borderSize=1;T.corner='rounded';T.radius=
 T.defaultAccent='#B0B0B0'
 T.fonts={title=UIFont.Medium,section=UIFont.Medium,body=UIFont.Small,small=UIFont.Small,item=UIFont.Small,status=UIFont.Small}
 T.fonts.menu=UIFont.Large or UIFont.Medium
+-- Independent token identities preserve old generic preset fallbacks while
+-- allowing every owned chrome state to be edited separately.
+T.colorAliases={windowBackground='window',panelBackground='panel',raisedBackground='raised',rowBackground='row',overlayBackground='overlay',
+ pressed='hover',selectedText='text',disabledText='disabled',disabledBorder='disabled',focusOuter='accent',focusInner='strong',
+ titleBackground='raised',titleText='text',statusBackground='raised',track='raised',trackBorder='border',thumb='accent',thumbHover='accentHover',thumbBorder='strong',
+ scrollTrack='raised',scrollThumb='strong',scrollThumbHover='accent',scrollArrow='text',check='accent',checkBackground='hover',checkBorder='strong',
+ icon='text',iconDisabled='disabled',progressTrack='raised',progressFill='accent',progressBorder='border',menuText='text',menuHover='accent',menuUnderline='accent',
+ tooltipBackground='window',tooltipText='text',tooltipBorder='border',inputText='text',inputPlaceholder='muted'}
+for key,base in pairs(T.colorAliases)do local c=T.colors[base];T.colors[key]={r=c.r,g=c.g,b=c.b,a=c.a}end
+T.colors.pressed.r=T.colors.hover.r*.5;T.colors.pressed.g=T.colors.hover.g*.5;T.colors.pressed.b=T.colors.hover.b*.5
 function T.menuMetrics()
  return {height=math.max(56,getTextManager():getFontHeight(T.fonts.menu)+24),font=T.fonts.menu,padding=3}
 end

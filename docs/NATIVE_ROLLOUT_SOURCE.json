@@ -1,0 +1,446 @@
+{
+  "schema": 1,
+  "project_version": "0.12.0-dev.1",
+  "game_version": "42.21.0",
+  "game_revision": "4a0e9546ec",
+  "steam_build": "25485521",
+  "evidence": "VERIFIED installed source contracts; TESTED offline Lua5.1; no copied native function bodies",
+  "runtime_acceptance": "NOT TESTED",
+  "provenance_limit": "Installed engine overrides are present; not pristine-distribution certification. Known provider source excluded; no external source imported.",
+  "project_fingerprints": {
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/API.lua": "c1f01c2cfb3d421e1070f22bc58bb2f8f619550de869e7b598b7236fc63b5382",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Appearance.lua": "7437765b204d3f4c40160bae1435fe90281be3bce212823d5ff779127d28d252",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/AppearanceEditor.lua": "f3c4b257772e791b35693842bfa61b643bf9cd6b96b38b9f96de1d9b44d1368b",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Clipboard.lua": "1ec36b9c3669c3e023b3fd85a9c2ebe71b5b94a733b90921f5de4cc020ffdb43",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/ComponentStyles.lua": "c7cd80ad9ab1e448844bd8aaa376125df8cee5e9b17c3d3e0ae40e923a8de063",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Controls.lua": "4e6ff80bd1e221648996b7da919f6b0788b9b7cf89225cadb370e8ab05132e3f",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Dialog.lua": "d68c18a00641278f044cf0efdd38a598c9e64db6f7aa4a1a3b83de274705c3f4",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/EditorControls.lua": "db0ba92701f885460387d3db20dd84086de1b2738a21b1ced5ac2e301e177f10",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/HUDLayoutRuntime.lua": "2d98e340c194a6db81560af66fc880626107cc10c9a2f4ae2a6f85f001bb6770",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/HUDPreviews.lua": "e99ad8a66b5e39312b9a35565d2051681fce86cc2a4024315af226125e100a5a",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/LayoutAssets.lua": "47806987bc432b0a63c40cbd62a97dc39a9fc6e2934926244a25b643217908e3",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/MenuBackground.lua": "0da9aa2d8890e4819bb8df152ff6391efba978915b0fe2ca95d4050fd2e42cc7",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/MenuLayout.lua": "5bb884b6896492a51518f1dfb2eaf2c849dd5d628693fdd6bef4fe3fe0530754",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/MenuLayoutEditor.lua": "9bcbc65eb8c3e5c88b109ec485eeb1d2f195f618d9179b9bb212145044799722",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeContext.lua": "84b287034b10fd512cad5a384bd8084c2d4b01f440744b30304172823879904a",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeDialogs.lua": "ba4158630262a193f54100fb2f9c97fd954f94da473c45f765e790d84948bf17",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeInventory.lua": "eac9aa06e010ca56f86b9ede6f695af8c8c9bf1c93fb8bc43333c5d4cd5c4ee6",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeMenus.lua": "91ac932fc0772398a25aecf6b707ebd390a6ffb6d9473c279465ce52c39bb57e",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativePainters.lua": "488d3bd069c5d24a592cd149d6ec6111f31ac51ce6d6bc36b809f2e499a27268",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativePresentation.lua": "b7c6613f64dc4866f04700cd8ed50f3f4ac3caa810eb88ca76539cd0123c0121",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeRegistry.lua": "de9aac10637a5862f38522d4e00d64c859944cbae02df42a66aaf7aeabf1ceb0",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeSettings.lua": "42bb0af1918cfee4f8fbc4809f912a6dccb4c1045e4dbd0f3aaf99eb54e33d0c",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeTheme.lua": "4618bb7b90f1f3a8f1e7a31f27f55ee92b5ee1ef6a55e48bcb6783a8a72e0eec",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsInterface.lua": "c32883d17d1063a2306d4c7ed6def788eac45bcb5c8cc75afd3d16197b2be98d",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsLayout.lua": "e9f4ca785f619f689b8e1f1efc56be935d5d74b3792e4038601f60cc13b72469",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsLayoutModel.lua": "b283cf7cb47e63e32b9eb03ee1513b4f446a89c0eaeb99a18123c5c635072b08",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsLifecycle.lua": "83fd33772c4ccc5ea474aee8f626e11d16524e5889c4161c5b171819699aff90",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/PresetExport.lua": "999cb058b4b6ab87360130023f5f6dfcf75dc2672eea2d3dd058d04835722662",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/PresetPlugins.lua": "0b1c2fd0149e65b179a6f9d53d9f9df4a6250a4db1d64892081c4982ec545e35",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/PZAPITheme.lua": "e4d1e12d73203647635ef3128562fe180f1266699da426e7a1116fbe0436afec",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Renderer.lua": "7ab5a1f3f9cab99614ab5b23c396a00cba60730f20bc2ae1d403026e01401d3f",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/RowTooltip.lua": "599670855f85e8d8e5e04e07b7ffb3f6badf0b3db1ec2b9ea4d7d0b397b0ce47",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/StyleEditor.lua": "cac70735c8ad54933d5ef9d5222e25c1c9d84b030dccb6ea027eab1039369cda",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/StylePresets.lua": "6af4aac6fa108968e5afdea3aebbc5fc7f0358b2c79952dad2deac5e33dff0bd",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Theme.lua": "d71f144292f6843c1d7b18da6bccc5909d8412bdc81d74ada7a71555da83fa90",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Tooltip.lua": "cb9bd267393f30bf99a2f0d4954e55f8b21e848109f5017e7555fffe15af46a1",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/UILayout.lua": "8f6c23ea637a3ac01f86ce797501c1e9baf04675794185380b987431f455e292",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/UILayoutEditor.lua": "c71d8ddf0194afb6578b9fedf0fb08194e7ab1ab15ebeb483962defbb0c23bc2",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/AR/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/CA/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/CH/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/CN/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/CS/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/DA/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/DE/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/EN/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/ES/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/ES_CL/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/ES_MX/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/FI/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/FR/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/HU/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/ID/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/IT/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/JP/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/KO/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/NL/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/NO/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/PL/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/PT/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/PTBR/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/RO/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/RU/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/STREW/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/TH/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/TR/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/UA/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoom.png": "1b694091f466f951e6917d6399f5f2ab9aeb4748b047d2a1c5d00befe7991295",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "340e86248af1da41a23bda51a46ecd7fff39d356096a8ebf6313d7685c87d5c0",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static1.png": "dbaf8fdc8c66029bf9a7544b506df6a3f586463ffd7a420b6ea8ad2c9b046e9d",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static2.png": "768f0cd0c1d32b8f97c271a848dc8929b230e05c0f903555e5914ed0cfb56cc5",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static3.png": "aaea06a05b84d93318769b03d04b2b057fb909bd21a5ce754a71380513afb310",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static4.png": "353d0174157fd89776b8deb8addad12d0282080a5b9fd09622439865ad52e863",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static5.png": "f7950b521ffcfb04eea2a7166c2b442a3bd8dd670d64ab40766f4edf36ea0b64",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static6.png": "c87c64a549b6b808f09e632291f7c82f8c2f7b49e0bafb796e966d9b51822e61",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static7.png": "57cbd4aaca2abf88d4d29c5b60f1c5d648e519db998db0ba5c9fa0c6090c3f4c",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static8.png": "65137127a76a187573ad6d04c7f1f4f928b808ed387b0bd042cd4484ff6490cf",
+    "src/B47ANCEDUI/42/mod.info": "59d8dd6ecb17b225cc296b12bc02203ac35bc878e8d79a82eedd287959ba4f00"
+  },
+  "installed_contracts": [
+    {
+      "path": "media/lua/client/ISUI/ISUIElement.lua",
+      "sha256": "2de4720f995ae35e76a1465c6690ad17fe272e33dec3b106e49c475310440f8f",
+      "lines": [
+        993,
+        1007,
+        1365,
+        1371,
+        1451,
+        1477,
+        1965
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/ISUI/ISPanel.lua",
+      "sha256": "17f97444bd8910d3eb8320221bcdd95def8d32d570abbf157b55efb064e96ea3",
+      "lines": [
+        18,
+        21
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/ISUI/ISPanelJoypad.lua",
+      "sha256": "8e7a2afbe11bb826bd3a2b8e08501790adba772171fd5e747af6cc520a60f060",
+      "lines": [
+        820,
+        823
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/ISUI/ISCollapsableWindow.lua",
+      "sha256": "3ac31699bb9eedc26e3ac5d6c2fa4f964857e0a954b2cff4d6ddb54aed0e607d",
+      "lines": [
+        152,
+        197
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/ISUI/ISButton.lua",
+      "sha256": "5a4101bb351f3fc5d20de884b0d15692d9048d72ceff0d8b4e0420800fac3011",
+      "lines": [
+        111,
+        145
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/ISUI/ISComboBox.lua",
+      "sha256": "3c313fe9c30711fef341bc4358d3d66e6f38591c224f5fe92e7c77db508f2e66",
+      "lines": [
+        258,
+        299
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/ISUI/ISTickBox.lua",
+      "sha256": "fef402fba351785a1a4bdd884876f459dda6411f287267e324aa2d657e50c488",
+      "lines": [
+        63,
+        107
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/ISUI/ISTextEntryBox.lua",
+      "sha256": "94d10e1583f68bcba635cd93f7921df85be4d8223ca8a99c67e00c650bf5d3e1",
+      "lines": [
+        117,
+        118,
+        136,
+        137,
+        186,
+        202
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/ISUI/ISScrollingListBox.lua",
+      "sha256": "380d222414d16ab40b830abe9d016f49f1fd2d07d0067a5879db22f89e5c796b",
+      "lines": [
+        304,
+        334,
+        475,
+        487
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/ISUI/ISScrollBar.lua",
+      "sha256": "0d8c0c95afea326de4fb1d261d2e5a9aaa6319416f26c294c0f9154af82198fd",
+      "lines": [
+        299,
+        383
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/ISUI/ISTabPanel.lua",
+      "sha256": "9a687431a143131a002f1057ac860fbecc19c796312fdf16d37192e00afb21b5",
+      "lines": [
+        66,
+        165
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/ISUI/ISVolumeControl.lua",
+      "sha256": "e72491c78359e0ed8d9a726af16ae92eb8faee5d09bd3434e6b93801028b738c",
+      "lines": [
+        1
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/ISUI/ISMegaVolumeControl.lua",
+      "sha256": "8746760ea25c2eddc122f9bc6bb1e57fcf23e22bde8f307449a03c5146c088fa",
+      "lines": [
+        1
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/RadioCom/ISUIRadio/ISSliderPanel.lua",
+      "sha256": "cadab9df43df0fe25f093c048f5706951ac1bdfb946a12b74feae5a890e16bb8",
+      "lines": [
+        22,
+        35,
+        137,
+        157,
+        222,
+        229
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/atoms/Meta.lua",
+      "sha256": "b1fdf3efcbe2ae9dfd3a049d6edf23be426abe7988e093a1d1c2807e649f7f69",
+      "lines": [
+        8,
+        19,
+        106,
+        114,
+        123,
+        137
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/atoms/Node.lua",
+      "sha256": "2865916f276331d50d6a7c88ea511d0b6a5e86ec53cc9e79e63b03ed1eb3c053",
+      "lines": [
+        84,
+        91
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/atoms/Texture.lua",
+      "sha256": "78f690e3e3b77ddee91af9c7b518143138b773731276c31ec20a9268e221abf3",
+      "lines": [
+        5,
+        23
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/atoms/Text.lua",
+      "sha256": "ada91d399f0af9aa2cfc56476af1af77682d98a4388fe78067792988fda0461e",
+      "lines": [
+        1
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/atoms/AtomExtensions.lua",
+      "sha256": "3782ea9860aaf3bbc48a04bddcff5642b05ee31a1b174695db7295c1c172537c",
+      "lines": [
+        1,
+        108
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/molecules/Panel.lua",
+      "sha256": "994edd5aff4a9e66dd379492bda259e7fbda6036f5d5ba2266dcdbaba720cbb4",
+      "lines": [
+        28,
+        35
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/molecules/TextButton.lua",
+      "sha256": "b4e22f10969dde88982e1fa297d079c2a31704b52a0e79d46e956dc5e647d712",
+      "lines": [
+        16,
+        26
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/molecules/ImageButton.lua",
+      "sha256": "f44ee0e263f1d51051308d6db9ce46309b3a3c83a95fefa153dd57bda9adaf38",
+      "lines": [
+        8,
+        16
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/molecules/TabPanel.lua",
+      "sha256": "08260567a9deeb1b54fea9deb418a9d216a7a7829f87b03d87af00bc8e3d51a0",
+      "lines": [
+        26,
+        50,
+        70,
+        75
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/molecules/ScrollBarVertical.lua",
+      "sha256": "2790b903a2351a6366885e54c4dd61b6f0e04bee299ca086820fb15b3469e2a1",
+      "lines": [
+        4,
+        79
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/organisms/Window.lua",
+      "sha256": "4dab063a6425e4d2deab928155658d178e2e23977e12a757d70be349d033dc79",
+      "lines": [
+        62,
+        191
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/organisms/FishWindow.lua",
+      "sha256": "c28749b23d8937e7c7143301198f7e244c793cc9cb6e6280257a150edfada0b9",
+      "lines": [
+        102,
+        155,
+        232,
+        251,
+        255
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/organisms/PrintMedia.lua",
+      "sha256": "eafede2ce483a1e55aae0a6a7e5b0fc25465939e54e31a4aa25250c4142c913e",
+      "lines": [
+        42,
+        100,
+        135,
+        354,
+        358
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/organisms/BuildUI.lua",
+      "sha256": "a5ffb024cfb6e39a2b028004b1ade748355ec48cd1c787bd6416313c60de2c0d",
+      "lines": [
+        152,
+        157,
+        312,
+        378,
+        405,
+        668
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/PZAPI/ui/organisms/Inventory.lua",
+      "sha256": "276af9af6259712686d0f7ff5da766a40181893c385824b0738a3a68dd111cce",
+      "lines": [
+        10,
+        1
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/erosion/debug/DebugDemoTime.lua",
+      "sha256": "2c71122499b1787d5d8e71a1977dad44e9c9195c10dfc3c106bd95a93964db44",
+      "lines": [
+        117
+      ],
+      "catalogued": false
+    },
+    {
+      "path": "media/lua/client/OptionScreens/WorkshopSubmitScreen.lua",
+      "sha256": "b381a0a4d78a3fab94b504f29b0af2092642040fc236d83af5ffa37d8058fecf",
+      "lines": [
+        107,
+        109,
+        351,
+        650,
+        1062,
+        1081,
+        1567,
+        1580
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/OptionScreens/MainOptions.lua",
+      "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96",
+      "lines": [
+        354,
+        365,
+        3324,
+        3347,
+        3685,
+        3688
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/OptionScreens/MainScreen.lua",
+      "sha256": "f89d351830fcb0050cfc10bc7a7e1a216a260b4731fe0ac34da9bcd4269352e5",
+      "lines": [
+        153,
+        160,
+        1455,
+        1460
+      ],
+      "catalogued": true
+    },
+    {
+      "path": "media/lua/client/ISUI/ISPauseModListUI.lua",
+      "sha256": "05f83001e8f975c5ee3ea0823ae40384387eceea6d668cda5bbedf22ad72a62c",
+      "lines": [
+        19,
+        25
+      ],
+      "catalogued": true
+    }
+  ],
+  "project_hash_format": "SHA256; .lua/.json/.info CRLF normalized to LF; binary exact bytes",
+  "preset_pack_boundaries": {
+    "runtime": "NOT TESTED",
+    "data_schema": 1,
+    "writer": "Lua cache only; no verified arbitrary Workshop staging-content writer",
+    "native_inspection": "Packaged LuaManager GlobalObject writers/readers checked read-only; no game classes executed or generated",
+    "local_presentation": "No shared gameplay state, commands or synchronization",
+    "packager": "Optional offline authoring helper; not shipped/required as runtime code; no upload"
+  }
+}

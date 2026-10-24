@@ -1,17 +1,14 @@
-Version 0.5.0-dev.11
+Version 0.12.0-dev.1
 
 MP testing build - dedicated multiplayer NOT TESTED
 
-Apply the selected security-room background with one straight horizontal pipe extending across the left wall at its existing height. Fit the logo/menu below the pipe and above the baseboard; retarget the four transparent animated CRTs and standard/ultrawide crop. Native rendering for dev.11 NOT TESTED.
+- Extend the near-black theme across audited frontend, gameplay and specialist native window/control chrome, inventory/loot, context menus, tooltips and selected confirmations. Preserve native actions, settings, semantic colors and guarded provider content.
+- Add searchable Options categories, responsive section cards and contained pages. Correct deferred initialization, dropdown/category visibility and installed tooltip-map usage; keep native Back/Apply/Accept behavior.
+- Add 53 editable color channels, synchronized hex/RGB controls, specific Scrollbar styling, multiple local component presets and per-mod overrides. Save/Cancel and unsaved-exit protection preserve user choices.
+- Enabled data-only preset plugins add inactive choices. Explicit selection previews a detached editable copy; saved copies survive source-pack removal or updates. Installing a pack never activates it automatically.
+- Export selected styling with separate New/Update choices, verified data and identity journals. An optional manually started Python packager stages dependent Workshop mods with retained history and native item metadata. Final Publish remains explicit in PZ's uploader; layouts and legacy Appearance preferences are not exported.
+- Improve main-menu/logo layout editing and the black-canvas HUD workspace with direct preview movement/resizing, larger inspector controls, inert blank clicks, guarded dropdown dismissal and unsaved confirmation. Preserve the approved shipped defaults and valid local overrides; clock/moodles remain reference-only.
+- Apply the shared style to main-menu Quit to desktop confirmation. Correct unsupported Kahlua global-next checks and the absent empty-inventory event bootstrap without changing gameplay or public API1/profile schema1 contracts.
+- Preserve the existing security-room artwork, independent 1-60 second CRT static/no-signal loops and title-screen audio behavior.
 
-Right-expanded 32:9 security-room main-menu background: one continuous back wall, pipe/baseboard/floor perspective, one lamp and four independently randomized static/no-signal monitors. The wider field of view reframes the desk toward center-left. Native main-menu actions and controller label identities remain; Esc background is unchanged. Each monitor has independent 1-60 second initial static then persistent no-signal animation. One continuous panorama with undistorted CRTs and transparent screen openings fills ultrawide displays. Narrower windows crop the outer room. Larger centered navigation adapts to visible mod-added menu labels/buttons. Decorative animation only, no live CCTV.
-
-Offline viewport checks cover 4:3, 16:9 at 720p/1080p/1440p/4K, 21:9 and 32:9 through 5120x1440. Main-menu rendering, resolutions, controller and menu-mod compatibility require native validation. G7 and stable G8 remain blocked.
-
-Keep the menu/logo clear of the outer CRT casing with long translations or mod-added labels, including small 1024x768 windows. Existing text fitting and native actions remain intact.
-
-Temporarily mute native music gain on the security-room main menu; saved preferences remain intact and native exit restores configured gain. Audible rain/thunder suppression and restoration NOT TESTED.
-
-Add filing cabinets, archive boxes, noticeboard, keys, intercom and extinguisher on the right, plus a shadowed footlocker and vent on the far left.
-
-Optional PZ Optimization main-menu label now uses the shared title style. Move its live version/update subtext into a reserved centered line beneath the entry, preserving its original action/status/glyph/tooltip. External provider integration requires in-game testing; no external runtime dependency is added.
+Offline syntax/regression/source/version/translation/integrity checks pass. Native visual/input/controller, split-screen, settings/profile reload, actual plugin discovery/export, helper-to-uploader handoff, subscription/download and dedicated multiplayer acceptance remain NOT TESTED. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. This upload does not establish runtime acceptance.
