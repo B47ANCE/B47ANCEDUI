@@ -1,5 +1,6 @@
 require 'B47ANCEDUI/Renderer'
 require 'B47ANCEDUI/Appearance'
+require 'B47ANCEDUI/ComponentStyles'
 require 'B47ANCEDUI/Tooltip'
 require 'B47ANCEDUI/RowTooltip'
 require 'ISUI/ISPanel'
@@ -7,6 +8,7 @@ require 'ISUI/ISCollapsableWindowJoypad'
 require 'ISUI/ISButton'
 require 'ISUI/ISScrollingListBox'
 require 'ISUI/ISTextEntryBox'
+require 'RadioCom/ISUIRadio/ISSliderPanel'
 local U=B47ANCEDUI;local T,R=U.Theme,U.Renderer
 local function menuActive(w)
  return w.enable~=false and (w.joypadFocused or w.b47Selected or w.isFocused and w:isFocused() or w.mouseOver and (not w.isMouseOver or w:isMouseOver()))
@@ -24,6 +26,7 @@ function U.skin(w,kind,role)
  if not w then return end
  if w.b47Styled then if role then w.b47Role=role end;return w end
  kind=kind or U.kind(w);w.b47Styled=true;w.b47Kind=kind;w.b47Role=role
+ if kind=='dropdown'then U.ComponentStyles.dropdown(w)end
  if kind=='button' or kind=='input' or kind=='dropdown' or kind=='panel' or kind=='window' then R.round(w,kind=='button' and 4 or T.radius) end
  w.backgroundColor=T.copy(kind=='window' and T.colors.window or kind=='button' and T.colors.raised or T.colors.panel)
  w.backgroundColorMouseOver=T.copy(T.colors.hover);w.borderColor=T.copy(T.colors.border)
@@ -40,6 +43,7 @@ function U.skin(w,kind,role)
   w.r=T.colors.text.r;w.g=T.colors.text.g;w.b=T.colors.text.b
   local labelPre=w.prerender
   w.prerender=function(self,...)
+   local c=U.ComponentStyles.color(self,T.colors.text,'text');self.r=c.r;self.g=c.g;self.b=c.b
    local name,translation=self.name,self.translation;local full=translation or name
    if full then self.name=R.fit(full,self:getWidth(),self.font);self.translation=nil;if self.setTooltip and (not self.tooltip or self.tooltip==self.b47FallbackTip) then self.b47FallbackTip=self.name~=full and full or nil;self:setTooltip(self.b47FallbackTip) end end
    local ok,result=pcall(labelPre,self,...);self.name,self.translation=name,translation
@@ -50,7 +54,7 @@ function U.skin(w,kind,role)
   local render=w.render
   w.render=function(self,...)
    local full=self.title
-   if kind=='menuButton' then self.textColor=T.copy(U.Appearance.color(self,menuActive(self) and T.colors.accent or T.colors.text)) end
+   if kind=='menuButton' then self.textColor=T.copy(U.ComponentStyles.color(self,menuActive(self) and T.colors.accent or T.colors.text)) end
    local fontHeight=getTextManager():getFontHeight(self.font)
    if full and (self.b47FullTitle~=full or self.b47TitleWidth~=self:getWidth() or self.b47TitleFont~=self.font or self.b47TitleFontHeight~=fontHeight) then
     self.b47FullTitle=full;self.b47TitleWidth=self:getWidth();self.b47TitleFont=self.font;self.b47TitleFontHeight=fontHeight;self.b47ShortTitle=R.fit(full,self:getWidth()-2*(self.b47Padding or 9),self.font)
@@ -66,7 +70,9 @@ function U.skin(w,kind,role)
  end
  local old=w.prerender
  w.prerender=function(self,...)
+  U.ComponentStyles.restore(self)
   U.Appearance.prepare(self,kind)
+  U.ComponentStyles.prepare(self,kind)
   if old then old(self,...) end
   if self.tooltipUI and not self.tooltipUI.b47Styled then
    self.tooltipUI.b47Styled=true -- Preserve the native final tooltip frame deliberately.
@@ -90,6 +96,8 @@ U.WindowShell=factory(ISCollapsableWindowJoypad,'window');U.Panel=factory(ISPane
 U.ScrollList=factory(ISScrollingListBox,'list');U.TextInput=factory(ISTextEntryBox,'input')
 U.NumberInput=factory(ISTextEntryBox,'input');U.Toggle=factory(ISButton,'button')
 U.MenuButton=factory(ISButton,'menuButton')
+U.Slider={new=function(_,...)local w=ISSliderPanel:new(...);U.ComponentStyles.slider(w);return U.skin(w,'slider')end,
+ style=function(w)U.ComponentStyles.slider(w);return U.skin(w,'slider')end}
 -- Dedicated menu navigation, not a third ordinary button size.
 U.MenuButton.new=function(_,x,y,width,title,target,onclick,...)
  return U.skin(ISButton:new(x,y,width,T.menuMetrics().height,title,target,onclick,...),'menuButton')
@@ -121,11 +129,12 @@ function U.Layout.scrollbar(list)
   U.Layout.place(list.vscroll,list:getWidth()-T.metrics().scrollbar,0,T.metrics().scrollbar,list:getHeight())
  end
 end
-U.SectionHeader={draw=function(w,label,x,y) R.text(w,label,x,y,T.colors.text,T.fonts.section) end}
+U.SectionHeader={draw=function(w,label,x,y) R.text(w,label,x,y,T.colors.text,T.fonts.section,'text') end}
 
 U.TabBar={}
 function U.TabBar.add(parent,label,callback)
  local b=U.Button:new(0,0,100,T.metrics().tab,label,parent,callback)
+ b.b47StyleFamily='tabs'
  b:initialise();b:instantiate();parent:addChild(b);return b
 end
 function U.TabBar.select(button,selected) button.b47Selected=selected==true end

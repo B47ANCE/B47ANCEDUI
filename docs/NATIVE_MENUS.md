@@ -1,6 +1,8 @@
 # Native main and Esc menu styling
 
-Project Version: 0.5.0-dev.11
+Project Version: 0.10.0-dev.2
+
+The native Options screen has a separate internal palette/drawing adapter in this development revision. It preserves native settings and input behavior; it does not apply large text-only menu navigation to the ordinary settings buttons. See [settings integration](NATIVE_SETTINGS.md). Native acceptance remains NOT TESTED.
 
 Dev.9 positions the main-menu logo and complete dynamic column inside the quiet wall in the new artwork; see MENU_BACKGROUND.md. This drawing/layout refinement retains native actions/controller objects and the Esc layout. Native acceptance for dev.9 NOT TESTED; Workshop remains dev.8.
 
@@ -37,3 +39,18 @@ The public PZOPT_MENU ISLabel is the audited exception to unknown-custom-rendere
 0.5.0-dev.10 replaces the whole security-room artwork in a single generation pass. The background adapter retargets CRT masks/crop and fits the existing dynamic logo/menu column on the quiet wall at source X440/Y72-470, before X645. Native navigation identities, callbacks, provider status ownership and Esc behavior remain unchanged. See MENU_BACKGROUND.md and MENU_ROOM_REGENERATION_PROMPT.md. Current native PZ rendering NOT TESTED; no deployment or publication.
 
 0.5.0-dev.11 applies the user-selected pipe-only artwork. Main-menu positioning follows its quiet wall at source X405/Y116-470/right600, below the horizontal conduit. Four masks and the uniform crop match this composition. Navigation objects/actions, optional status ownership, public API and Esc behavior remain unchanged. See MENU_BACKGROUND.md and MENU_SELECTED_PIPE_PROMPT.md. Native PZ rendering for dev.11 NOT TESTED.
+
+## Local main-menu layout (0.6.0-dev.1)
+
+MenuLayout resolves independent normalized menu/logo preferences over the existing automatic wall layout. MenuLayoutEditor supplies an owned overlay, drag/corner resize, native percentage sliders, keyboard/controller entry and Save/Cancel/Reset. Preferences are local-only, bounded data with a separate schema 1 file; appearance, gameplay/network state and public API major 1 are unchanged. The logo retains its aspect ratio; dynamic menu/status rows refit inside the selected area. Initial joypad child focus and capture/focus cleanup are explicit. No global UI class/key dispatcher replacement. See MENU_LAYOUT_EDITOR.md for controls, persistence and evidence. Native acceptance NOT TESTED; development source is not deployed or published.
+
+
+## Main-menu Quit confirmation (0.8.0-dev.3)
+
+The native Quit to desktop Yes/No modal now uses shared near-black rounded backing/buttons and the current B47ANCEDUI local accent. Native text, dialog/button dimensions/placement, target/callback/internal identifiers, focus references, controller methods and destroy behavior remain intact. The ordinary shared modal decorator is deliberately not used because it reflows geometry/text and replaces focus restoration; this adapter skins the recognized instances only.
+
+Installed Build42.21/Steam25485521 MainScreen calls `MainScreen:quitToDesktopFunc()` on the class, and controller A dispatch calls the class menu handler directly. The new bounded reference check therefore examines both the current screen and MainScreen class dialog field through NativeMenus.apply, already called by the security-room frontend layout even when the native quit action hides bottomPanel. No label callback, controller dispatcher, vanilla file or global class is replaced. If that existing background/layout adapter is inactive or a competing renderer owns the screen, automatic confirmation detection is unsupported and fails closed; no new polling event or scan is added.
+
+Only the current non-game MainScreen's exact native ISModalDialog, expected localized quit text, native confirmation callback/target and native Yes/No buttons qualify. Unknown/custom renderers, callbacks, already styled objects and in-game quit dialogs retain ownership. Repeated checks do nothing after adoption. Public API1, profiles/defaults, gameplay/network state and sandbox settings remain unchanged; this is local presentation only.
+
+[TESTED offline] Existing native-menu fixtures now cover class/instance-owned modal fields, hidden menu panel, palette/rounded flags, one native draw, unchanged geometry/actions/focus references, idempotence, Yes/No destruction/callback delegation and foreign/in-game refusal. Tests invoke doubles, never the engine quit function. [VERIFIED source] MainScreen.lua1463–1501/1913–1916 and ISModalDialog.lua8–96/160–205; fingerprints in STYLE_SOURCE_EVIDENCE.json. [RUNTIME GATE] Open Quit to desktop from the actual title screen, check mouse/controller Yes/No/focus restoration, long translations and large fonts; native acceptance NOT TESTED. No deployment, game launch, package, merge or Workshop upload. G6 NOT TESTED; project G7/stable G8 BLOCKED.

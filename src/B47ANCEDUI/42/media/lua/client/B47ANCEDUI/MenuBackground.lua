@@ -5,6 +5,9 @@ require 'ISUI/ISLabel'
 local U=B47ANCEDUI
 if U.MenuBackground then return U.MenuBackground end
 local B={};U.MenuBackground=B
+local Layout=require 'B47ANCEDUI/MenuLayout'
+local Editor=require 'B47ANCEDUI/MenuLayoutEditor'
+local Workspace=require 'B47ANCEDUI/UILayoutEditor'
 local path='media/ui/B47ANCEDUI/'
 local nativePre=MainScreen.prerender
 local imageWidth,imageHeight=2172,724
@@ -103,7 +106,7 @@ function B.layout(screen,menuWidth,top,bottom)
   local height=getTextManager():getFontHeight(font)
   zoom=math.min(zoom,(menuWidth-48)/math.max(1,width),row*.65/math.max(1,height))
  end
- zoom=math.max(.05,zoom)
+ zoom=math.max(.001,zoom) -- compact custom areas must still fit crowded/large-font rows
  local cursor=0
  for _,child in ipairs(entries) do
   local text=child.translation or child.name or child.title or ''
@@ -121,47 +124,53 @@ function B.layout(screen,menuWidth,top,bottom)
  end
  menu:setHeight(available)
 end
+function B.defaultRectangles(screen)
+ local w,h=screen:getWidth(),screen:getHeight()
+ -- Owner-approved saved placement becomes the normalized starting/reset layout.
+ -- Existing local profiles still override each target independently.
+ local ratio=screen.logoTexture:getWidth()/screen.logoTexture:getHeight()
+ return {menu=Layout.fit('menu',{x=w*.18,y=h*.145,w=w*.279696133,h=h*.525},w,h,ratio),
+  logo=Layout.fit('logo',{x=w*.04,y=h*.265,w=w*.22},w,h,ratio)}
+end
+function B.rectangles(screen)
+ return Layout.resolve(Editor.profile(screen),B.defaultRectangles(screen),screen:getWidth(),screen:getHeight(),
+  screen.logoTexture:getWidth()/screen.logoTexture:getHeight())
+end
 function B.apply(screen)
+ Editor.ownerChanged(screen)
  if not screen or screen.inGame or screen.b47MenuBackground or not screen.bottomPanel
   or screen.prerender~=nativePre or not loadArt() then return false end
  screen.b47MenuBackground=B.newSession(getTimestampMs())
  screen.prerender=function(self,...)
+  Workspace.update(self)
+  Editor.update(self)
   if self.inGame then return nativePre(self,...) end
   -- Runtime gain only: MainScreenState.exit restores the configured music gain.
   -- Never write saved options or mute world/UI sound categories.
   local sound=getSoundManager()
   if sound and sound:getMusicVolume()~=0 then sound:setMusicVolume(0) end
   B.draw(self,self.b47MenuBackground,UIManager.getMillisSinceLastRender())
-  local w,h=self:getWidth(),self:getHeight()
-  local margin=math.max(16,w*.025)
   local menu=self.bottomPanel
-  local artX,artY,artScale=B.geometry(w,h)
-  local columnLimit=math.max(1,artX+600*artScale-margin*2) -- keep long labels on the quiet wall before the pipe
-  local menuWidth=math.min(math.max(self.maxMenuItemWidth or 0,w*.28),360*artScale,columnLimit)
-  local menuX=math.max(margin,math.min(w-menuWidth-margin,artX+405*artScale-menuWidth/2))
-  local wallTop=math.max(margin,artY+116*artScale)
-  local wallBottom=math.min(h-margin,artY+470*artScale)
-  local logoScale=math.min(menuWidth/self.logoTexture:getWidth(),(wallBottom-wallTop)*.34/self.logoTexture:getHeight())
-  local logoHeight=self.logoTexture:getHeight()*logoScale
-  local top=wallTop+logoHeight+math.max(12,20*artScale)
+  local rects=B.rectangles(self);local column,logo=rects.menu,rects.logo
   local originalDraw=self.drawTextureScaled
   local previousRaw=rawget(self,'drawTextureScaled')
   -- Only redirect this instance's logo draw during the native prerender call.
   -- Native delay, fading, demo notices and state guards still execute once.
   self.drawTextureScaled=function(owner,tex,tx,ty,tw,th,...)
    if tex==owner.logoTexture then
-    tw,th=tex:getWidth()*logoScale,logoHeight
-    tx,ty=menuX+(menuWidth-tw)/2,wallTop
+    tx,ty,tw,th=logo.x,logo.y,logo.w,logo.h
    end
    return originalDraw(owner,tex,tx,ty,tw,th,...)
   end
   local ok,result=pcall(nativePre,self,...)
   self.drawTextureScaled=previousRaw
   if not ok then error(result) end
-  menu:setX(menuX);menu:setY(top);menu:setWidth(menuWidth)
-  B.layout(self,menuWidth,top,wallBottom)
+  menu:setX(column.x);menu:setY(column.y);menu:setWidth(column.w)
+  B.layout(self,column.w,column.y,column.y+column.h)
   return result
  end
+ screen.b47MenuBackgroundRenderer=screen.prerender
+ Editor.attach(screen);Workspace.attach(screen)
  return true
 end
 local function applyCurrent() B.apply(MainScreen.instance) end

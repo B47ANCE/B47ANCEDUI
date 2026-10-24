@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "project_version": "0.10.0-dev.2",
+  "date": "2026-10-21",
+  "game_target": "Build 42.21",
+  "steam_build": "25485521",
+  "evidence": "VERIFIED installed Lua source only; not engine input/render/file runtime proof",
+  "files": [
+    {
+      "path": "client/RadioCom/ISUIRadio/ISSliderPanel.lua",
+      "sha256": "cadab9df43df0fe25f093c048f5706951ac1bdfb946a12b74feae5a890e16bb8",
+      "symbols": {
+        "function ISSliderPanel:paginate": [
+          21
+        ],
+        "function ISSliderPanel:setWidth": [
+          89
+        ],
+        "function ISSliderPanel:onMouseDown": [
+          38
+        ],
+        "function ISSliderPanel:setCurrentValue": [
+          181
+        ],
+        "function ISSliderPanel:new": [
+          240
+        ]
+      }
+    },
+    {
+      "path": "client/ISUI/ISComboBox.lua",
+      "sha256": "3c313fe9c30711fef341bc4358d3d66e6f38591c224f5fe92e7c77db508f2e66",
+      "symbols": {
+        "function ISComboBox:clear": [
+          544
+        ],
+        "function ISComboBox:hidePopup": [
+          207
+        ]
+      }
+    },
+    {
+      "path": "client/ISUI/ISUIElement.lua",
+      "sha256": "2de4720f995ae35e76a1465c6690ad17fe272e33dec3b106e49c475310440f8f",
+      "symbols": {
+        "function ISUIElement:setWantKeyEvents": [
+          1828
+        ]
+      }
+    },
+    {
+      "path": "client/ISUI/ISPanelJoypad.lua",
+      "sha256": "8e7a2afbe11bb826bd3a2b8e08501790adba772171fd5e747af6cc520a60f060",
+      "symbols": {
+        "function ISPanelJoypad:ensureVisible": [
+          731
+        ],
+        "function ISPanelJoypad:restoreJoypadFocus": [
+          666
+        ],
+        "function ISPanelJoypad:clearJoypadFocus": [
+          673
+        ]
+      }
+    },
+    {
+      "path": "client/ISUI/Gamepad/JoyPadSetup.lua",
+      "sha256": "1e34303e5328b791daf0cd3b1f3ab84b85bbe7636e3ddb980baa4a1fecc7407e",
+      "symbols": {
+        "function setJoypadFocus": [
+          546
+        ],
+        "function updateJoypadFocus": [
+          608
+        ]
+      }
+    },
+    {
+      "path": "client/ISUI/AdminPanel/ISItemsListViewer.lua",
+      "sha256": "f316be786db5541e02b50e25032c9ab740ceab3522d04670986ca565d469ba6d",
+      "symbols": {
+        "function ISItemsListViewer:isKeyConsumed": [
+          103
+        ],
+        "function ISItemsListViewer:onKeyRelease": [
+          107
+        ]
+      }
+    },
+    {
+      "path": "client/ISUI/ISToolTip.lua",
+      "sha256": "57441ced0f68c1db1b55a5be3ed7385944de72da657de56597cdc4a4442f86d8",
+      "symbols": {
+        "function ISToolTip:prerender": [
+          57
+        ],
+        "function ISToolTip:render": [
+          67,
+          222
+        ]
+      }
+    }
+  ],
+  "findings": [
+    "Native slider bar x/width own value input mapping; track/thumb visual changes retain range/step/currentValue and callbacks. Native width setter paginates; final editor height triggers explicit pagination.",
+    "Standalone key subscriptions use setWantKeyEvents/isKeyConsumed/onKeyRelease; Escape closes owned dropdown before the editor guard.",
+    "setJoypadFocus targets player joypads, so the actual frontend joypad focus is transferred/updated explicitly and restored only while owned.",
+    "Native tooltip exact backing/border draw calls are scoped per managed tooltip; custom semantic content remains native."
+  ],
+  "runtime_gates": [
+    "mouse/keyboard/controller dispatch",
+    "pixels/viewport/split-screen",
+    "native file round-trip and power-loss durability",
+    "provider compatibility/performance"
+  ],
+  "runtime_failure": {
+    "date": "2026-10-22",
+    "tested_project_version": "0.9.0-dev.1",
+    "environment": "Local SP frontend, Build42.21.0/4a0e9546ec, existing PZ Optimization engine overrides; not pristine vanilla",
+    "exception": "Object tried to call nil in prepare",
+    "call_chain": [
+      "ComponentStyles.lua:74 global next(p)",
+      "Controls.lua:75 prerender"
+    ],
+    "result": "FAILED native frontend rendering",
+    "regression": "Constrained offline Lua5.1 VM with global next=nil fails at the same source call before the fix; all behavioral suites pass after pairs-based helper replacement",
+    "post_fix_runtime": "NOT TESTED"
+  },
+  "post_fix_startup_observation": {
+    "date": "2026-10-22",
+    "project_version": "0.9.0-dev.2",
+    "runtime_source_commit": "88b019c5bfaf404e036adfa72de5f8301043ce5b",
+    "game": "Build42.21.0/4a0e9546ec",
+    "environment": "Local frontend, existing PZ Optimization engine overrides; not pristine vanilla",
+    "deployment": "68/68 SHA256 file parity; default profile and preferences preserved",
+    "observed": true,
+    "ui_exception_traces": 0,
+    "previous_next_exception_present": false,
+    "unrelated_warnings": [
+      "PZ Optimization GC JSON parsing",
+      "historical missing vanilla font textures"
+    ],
+    "result": "Limited frontend startup observation without UI exception traces; subsequent user screenshot showed blank Options categories/overflow and failed visual acceptance.",
+    "interactive_input_persistence_controller": "NOT TESTED",
+    "dedicated": "NOT TESTED",
+    "upload": "NOT PERFORMED"
+  }
+}

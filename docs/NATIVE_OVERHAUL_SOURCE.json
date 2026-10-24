@@ -1,0 +1,186 @@
+{
+  "schema": 1,
+  "audit_date": "2026-10-23",
+  "introduced_in_version": "0.10.0-dev.1",
+  "game_version": "42.21.0",
+  "game_revision": "4a0e9546ec",
+  "steam_build": "25485521",
+  "status": "VERIFIED_SOURCE_ONLY",
+  "runtime_status": "NOT_TESTED",
+  "installation_note": "Existing PZ Optimization engine overrides present; not pristine certification. No third-party code copied.",
+  "files": [
+    {
+      "path": "media/lua/client/ISUI/ISContextMenu.lua",
+      "sha256": "4e4616dedbf135960dd2b7c63d67480ad19ff17352b1797cf9224631f9a669c8",
+      "lines": [
+        206,
+        215
+      ],
+      "observation": "Existing tooltip ownership; render/pooling uses root generation/instanceMap."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISWorldObjectContextMenu.lua",
+      "sha256": "980e67622e34422983cd33d64ea4f6dbff5cdf151a6dd9aef6acb669261fb47f",
+      "lines": [
+        190,
+        213
+      ],
+      "observation": "World fill player/context/worldobjects/test; test is capability probe."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISInventoryPaneContextMenu.lua",
+      "sha256": "4cbbc52cbab591cee0c7d1c5927125bf59c70c588936b04d3ce0fe75648a96cc",
+      "lines": [
+        935,
+        959
+      ],
+      "observation": "Item and OnFillInventoryContextMenuNoItems event routes."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISInventoryPage.lua",
+      "sha256": "65ebb1668583cb7f6f346f367e68e8f045fc926db0bf9d167ca4574c2282fd3b",
+      "lines": [
+        560,
+        684
+      ],
+      "observation": "Shell and semantic title/blink paths; status render958-977, infoRichText383."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISInventoryPane.lua",
+      "sha256": "8cce738cc0dfec8655d2970c42572596bf6294b85e4917a245dc41d1827a56be",
+      "lines": [
+        2211,
+        2595
+      ],
+      "observation": "Rows own refresh/drag/drop/heat/rejection/progress; updateTooltip810-867 owns toolRender."
+    },
+    {
+      "path": "media/lua/client/ISUI/PlayerData/ISPlayerData.lua",
+      "sha256": "daa34c1d4722c26814f6dde49eaf12eea89386662240fdb0cd5b48de77864d21",
+      "lines": [
+        164,
+        206
+      ],
+      "observation": "Native create can recreate multiple players windows; preserve event order."
+    },
+    {
+      "path": "media/lua/client/ISUI/PlayerData/ISPlayerDataObject.lua",
+      "sha256": "c5d4d34be88d7171bfb1c697d64667d88ec55a97b9382c3d5d0456976e1e35a7",
+      "lines": [
+        27,
+        152
+      ],
+      "observation": "Inventory/loot construction and native layout registration."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISScrollBar.lua",
+      "sha256": "0d8c0c95afea326de4fb1d261d2e5a9aaa6319416f26c294c0f9154af82198fd",
+      "lines": [
+        299,
+        350
+      ],
+      "observation": "Native thumb dimensions/state, arrow painting and no-overflow reset."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISButton.lua",
+      "sha256": "5a4101bb351f3fc5d20de884b0d15692d9048d72ceff0d8b4e0420800fac3011",
+      "lines": [
+        111,
+        185
+      ],
+      "observation": "Native backing/border, fades, semantic action colours and tooltip ownership."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISResizeableButton.lua",
+      "sha256": "340943ebdea4228024f07b60632599f37681a07c9f33a377f9546b0961c8706c",
+      "lines": [
+        1,
+        20
+      ],
+      "observation": "ISResizableButton class despite different file spelling; native header resizing."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISToolTip.lua",
+      "sha256": "57441ced0f68c1db1b55a5be3ed7385944de72da657de56597cdc4a4442f86d8",
+      "lines": [
+        57,
+        115
+      ],
+      "observation": "Generic tips paint twice, with render blue-tinted border and native content."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISToolTipInv.lua",
+      "sha256": "6f36edfb2447f9faa55301c3d150ab0d76a574c9dbb661812eeaa87d736967e6",
+      "lines": [
+        43,
+        108
+      ],
+      "observation": "Native ObjectTooltip measurement and content, own Lua frame."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISModalDialog.lua",
+      "sha256": "084d21246c03e54f8fe2a0dd16fb19f83e9ee347aa400c2d974e536f31f692dc",
+      "lines": [
+        1,
+        130
+      ],
+      "observation": "Native frame/buttons and callback/destruction ownership."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISModalRichText.lua",
+      "sha256": "ef25cda5a02a298019f8b0a13ed13c0d989e13b4e5c12469a441da0e88c80e4c",
+      "lines": [
+        1,
+        130
+      ],
+      "observation": "Rich content/pagination/focus/destruction ownership."
+    },
+    {
+      "path": "media/lua/client/ISUI/ISConfirmMonitorSettingsDialog.lua",
+      "sha256": "aa9d1f742e0a68d9533267f27378e174a78dad9c756b63776d63f7d265c7654b",
+      "lines": [
+        1,
+        33
+      ],
+      "observation": "Type ISConfirmMonitorSettings; native update auto-reverts, render counts down/centers."
+    },
+    {
+      "path": "media/lua/client/OptionScreens/MainOptions.lua",
+      "sha256": "bf705e2f64b6aaee7acecc1f99f0c496a4c300acebbb91a56e48ccf1b2507e96",
+      "lines": [
+        3324,
+        3389
+      ],
+      "observation": "Owned modal field, exact native unsaved/display confirmation callbacks."
+    },
+    {
+      "path": "media/lua/client/Vehicles/ISUI/ISVehicleDashboard.lua",
+      "sha256": "5b56f71248cd371f3d43aebe53fe6147f785ba97fc76c380bef07da69cdb7ce1",
+      "lines": [
+        715,
+        718
+      ],
+      "observation": "Vanilla registers an event through LuaEventManager.AddEvent before Events[name].Add subscription."
+    },
+    {
+      "path": "media/lua/client/OptionScreens/MultiplayerUI.lua",
+      "sha256": "e19afe750051a08015179e19ab74849414a1ba80aa46c0586c51447d507e6cc5",
+      "lines": [
+        1755,
+        1764
+      ],
+      "observation": "Vanilla client registers named events then subscribes to the resulting Events members."
+    }
+  ],
+  "context_event_bootstrap_correction": {
+    "date": "2026-10-23",
+    "failed_version": "0.10.0-dev.1",
+    "failed_source": "7514115d72922463d108d3f31a3562996287b29f",
+    "failure_environment": "Authorized local Windows client startup,42.21.0/Steam25485521 with existing engine overrides",
+    "failure": "NativeContext.lua63: attempted index Add of non-table null; no-items event absent from Events despite native Lua trigger call.",
+    "corrected_in_version": "0.10.0-dev.2",
+    "fix": "Register the missing event through vanilla LuaEventManager.AddEvent only when absent, validate Add, preserve preexisting event handlers/identity.",
+    "offline": "Exact absent-event failure reproduced before fix; absent/preexisting/repeated-load/dispatch fixtures pass afterward.",
+    "post_fix_native_acceptance": "NOT TESTED at source checkpoint; authorized local retest recorded separately."
+  }
+}

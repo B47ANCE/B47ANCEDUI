@@ -8,6 +8,31 @@ if U.NativeMenus then return U.NativeMenus end
 local N={};U.NativeMenus=N
 local T,R=U.Theme,U.Renderer
 local nativeLabelPre=ISLabel.prerender
+function N.applyQuitDialog(screen)
+ if not screen or screen~=MainScreen.instance or screen.inGame then return false end
+ -- Native menu/controller actions call the MainScreen class as receiver, so
+ -- the modal can live on the class rather than directly on this screen.
+ local dialog=screen.quitToDesktopDialog or MainScreen.quitToDesktopDialog
+ if not dialog or dialog.b47NativeQuitDialog then return false end
+ if dialog.Type~='ISModalDialog' or dialog.b47Styled or dialog.yesno~=true
+  or dialog.prerender~=ISModalDialog.prerender or dialog.render~=ISModalDialog.render
+  or (dialog.target~=MainScreen and dialog.target~=screen)
+  or dialog.onclick~=MainScreen.onConfirmQuitToDesktop
+  or dialog.text~=getText('IGUI_ConfirmQuitToDesktop'):gsub('\\n','\n') then return false end
+ for _,button in ipairs({dialog.yes,dialog.no})do
+  if button.Type~='ISButton' or button.parent~=dialog or button.b47Styled
+   or button.prerender~=ISButton.prerender or button.render~=ISButton.render
+   or button.onclick~=ISModalDialog.onClick or button.target~=dialog then return false end
+ end
+ if not dialog.yes or not dialog.no or dialog.yes.internal~='YES' or dialog.no.internal~='NO' then return false end
+ dialog.b47NativeQuitDialog=true;dialog.b47AppearanceScope='B47ANCEDUI';dialog.b47AppearanceOpaque=true
+ dialog.b47StyleFamily='dialog'
+ U.skin(dialog,'panel')
+ for _,button in ipairs({dialog.yes,dialog.no})do
+  button.b47AppearanceScope='B47ANCEDUI';U.skin(button,'button',button==dialog.yes and 'primary' or nil)
+ end
+ return true
+end
 local options={latestSaveOption='LATESTSAVE',loadOption='LOAD',tutorialOption='TUTORIAL',
  survivalOption='SOLO',onlineOption='MULTIPLAYER',onlineCoopOption='COOP',
  returnOption='RETURN',scoreOption='SCOREBOARD',inviteOption='INVITE',optionsOption='OPTIONS',
@@ -25,7 +50,7 @@ local function style(screen,label)
   if self.fade then self.fade:update() end
   local disabled=blocked(screen,self)
   local active=not disabled and (self.joypadFocused or self:isMouseOver())
-  local c=U.Appearance.color(self,disabled and T.colors.disabled or active and T.colors.accent or T.colors.text)
+  local c=U.ComponentStyles.color(self,disabled and T.colors.disabled or active and T.colors.accent or T.colors.text,'menuButton')
   local name,translation=self.name,self.translation
   local r,g,b,a,textColor=self.r,self.g,self.b,self.a,self.textColor
   local full=translation or name or ''
@@ -78,7 +103,7 @@ local function styleStatusLabel(screen,label)
   local titleX=(width-titleWidth)/2
   local disabled=blocked(screen,self)
   local active=not disabled and (self.joypadFocused or self:isMouseOver())
-  local c=U.Appearance.color(self,disabled and T.colors.disabled or active and T.colors.accent or T.colors.text)
+  local c=U.ComponentStyles.color(self,disabled and T.colors.disabled or active and T.colors.accent or T.colors.text,'menuButton')
   if not self.tooltip or self.tooltip==self.b47NativeMenuFallbackTip then
    self.b47NativeMenuFallbackTip=short~=full and full or nil;self.tooltip=self.b47NativeMenuFallbackTip
   end
@@ -120,6 +145,9 @@ local function styleStatusLabel(screen,label)
 end
 function N.apply(screen)
  if not screen or not screen.bottomPanel then return 0 end
+ -- Reuse the existing frontend layout checkpoint; no new polling event or
+ -- input hook. It runs even while native quit hides the bottom panel.
+ N.applyQuitDialog(screen)
  local count=0
  for field,internal in pairs(options) do
   local label=screen[field]

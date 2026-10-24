@@ -1,6 +1,29 @@
 -- Local presentation only. Native hit tests and context focus remain authoritative for visibility.
 require 'B47ANCEDUI/Renderer'
 local U=B47ANCEDUI;local H={};U.Tooltip=H
+local function style(tip,owner,p)
+ if not U.ComponentStyles then return end
+ tip.b47AppearanceScope=U.Appearance.scope(owner);tip.playerNum=p;tip.b47StyleFamily='tooltip'
+ if tip.b47PresetFrame or not tip.drawRect or not tip.drawRectBorder then return end
+ tip.b47PresetFrame=true
+ local rect,border=tip.drawRect,tip.drawRectBorder
+ local proxy=setmetatable({b47RawRect=rect,b47RawBorder=border},{__index=tip})
+ tip.drawRect=function(self,x,y,w,h,a,r,g,b)
+  local props=U.ComponentStyles.properties(self,'tooltip')
+  if a>0 and x==0 and y==0 and w==self:getWidth()and h==self:getHeight()and U._hasEntries(props)then
+   local c=U.ComponentStyles.color(self,U.Theme.colors.panel,'tooltip');c=U.Theme.copy(c);c.a=(props.opacity or a*100)/100
+   return U.Renderer.roundedRect(proxy,x,y,w,h,c,0)
+  end
+  return rect(self,x,y,w,h,a,r,g,b)
+ end
+ tip.drawRectBorder=function(self,x,y,w,h,a,r,g,b)
+  if x==0 and y==0 and w==self:getWidth()and h==self:getHeight()and U._hasEntries(U.ComponentStyles.properties(self,'tooltip'))then
+   local c=U.Theme.copy(U.ComponentStyles.color(self,U.Theme.colors.border,'tooltip'));c.a=a
+   return U.Renderer.roundedBorder(proxy,x,y,w,h,c,0)
+  end
+  return border(self,x,y,w,h,a,r,g,b)
+ end
+end
 function H.plain(text) return tostring(text or ''):gsub('[<>]',''):gsub('[\r\t]',' ') end
 function H.wrap(text,width,font)
  local lines={};local current=''
@@ -64,15 +87,15 @@ function H.attach(w,p)
   if self.isReallyVisible and not self:isReallyVisible() then H.hide(self);return end
   local owner=self;while owner do if owner.playerNum~=nil then self.b47TooltipPlayer=owner.playerNum;break end;if owner.player and owner.player.getPlayerNum then self.b47TooltipPlayer=owner.player:getPlayerNum();break end;owner=owner.parent end
   if pre then pre(self,...) end
-  if self.tooltipUI and self.tooltipUI:getIsVisible() then H.prepare(self.tooltipUI,self.tooltip or self.tooltipUI.description,self.b47TooltipPlayer) end
+  if self.tooltipUI and self.tooltipUI:getIsVisible() then style(self.tooltipUI,self,self.b47TooltipPlayer);H.prepare(self.tooltipUI,self.tooltip or self.tooltipUI.description,self.b47TooltipPlayer) end
  end
  local render=w.render
- if render then w.render=function(self,...) local result=render(self,...);if self.tooltipUI and self.tooltipUI:getIsVisible() then H.prepare(self.tooltipUI,self.tooltip or self.tooltipUI.description,self.b47TooltipPlayer) end;return result end end
+ if render then w.render=function(self,...) local result=render(self,...);if self.tooltipUI and self.tooltipUI:getIsVisible() then style(self.tooltipUI,self,self.b47TooltipPlayer);H.prepare(self.tooltipUI,self.tooltip or self.tooltipUI.description,self.b47TooltipPlayer) end;return result end end
 end
 function H.inspect(playerNum,text,owner,scope)
  require 'ISUI/ISPanelJoypad';require 'ISUI/ISScrollingListBox';require 'ISUI/ISButton'
  local _,_,vw,vh=bounds(playerNum);local left,top=bounds(playerNum);local width,height=math.min(520,vw-20),math.min(480,vh-20)
- local panel=ISPanelJoypad:new(left+10,top+10,width,height);panel.playerNum=playerNum;panel.b47AppearanceScope=scope or U.Appearance.scope(owner);panel.b47AppearanceOpaque=true;panel:initialise();panel:instantiate();U.skin(panel,'window')
+ local panel=ISPanelJoypad:new(left+10,top+10,width,height);panel.playerNum=playerNum;panel.b47StyleFamily='tooltip';panel.b47AppearanceScope=scope or U.Appearance.scope(owner);panel.b47AppearanceOpaque=true;panel:initialise();panel:instantiate();U.skin(panel,'window')
  local list=ISScrollingListBox:new(10,10,width-20,height-60);list:initialise();list:instantiate();panel:addChild(list);U.skin(list,'list')
  local font=U.Theme.fonts.body;local fh=getTextManager():getFontHeight(font);local maxWidth=width-56
  for line in (tostring(text or ''):gsub('<LINE>','\n')..'\n'):gmatch('(.-)\n') do
@@ -90,6 +113,7 @@ end
 function H.context(option,text,p,menu)
  if not ISToolTip or not ISToolTip.new then return end
  local tip=ISToolTip:new();tip:initialise();tip:setVisible(false);tip.contextMenu=menu;tip.description=text;tip.backgroundColor.a=0
+ style(tip,{b47AppearanceScope=U.Appearance.scope(menu)},p)
  local render=tip.render
  tip.render=function(self,...) H.prepare(self,text,p);return render(self,...) end
  option.toolTip=tip;return tip
