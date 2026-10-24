@@ -125,3 +125,10 @@ U.excludeNativeTheme(w);w:renderUpdate();assert(w.children.bar.r==0 and w.childr
 local old=button.r;button:onHover(false);assert(button.r==0,'Opt-out ignored')
 U.excludeNativeTheme(w,false);w:renderUpdate();assert(w.children.bar.r==U.Theme.colors.window.r,'Un-exclude not reflected')
 print('PASS OFFLINE Atom native Meta dispatch preserved, known roots, callbacks/returns/errors, late children, template identity, transparency and document/semantic exclusions')
+
+local image=node({_ATOM_UI_CLASS=UI.Texture._ATOM_UI_CLASS,texture={},onHover=UI.ImageButton.onHover,enable=false})
+w.children.body.children.imageButton=image;UI._addChild(w.children.body,image)
+local iconBook=U.StylePresets.set(U.StylePresets.new(),'default','B47ANCEDUI','button','iconDisabled','#123456')
+local iconOwner={};assert(U.StylePresets.preview(1,iconBook,iconOwner));w:renderUpdate()
+assert(image.r==0x12/255 and image.g==0x34/255,'Disabled native image button missed iconDisabled')
+U.StylePresets.clearPreview(1,iconOwner)

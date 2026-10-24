@@ -1,6 +1,8 @@
 # Native UI rollout
 
-Project Version: 0.11.0-dev.1
+Project Version: 0.12.0-dev.1
+
+0.12 extends these same guarded drawing paths with53 editable colors and specific surface/state/slider/scrollbar/check/title/menu/tooltip/progress channels. Disabled-button outlines use the native enable field and retain focus precedence; pressed colors preserve native fade interpolation. Native text-entry text/placeholder setters are used only for API-owned inputs. PZAPI icon and scrollbar thumb bodies are supported; universal thumb-hover and native cursor/selection/semantic item colors remain outside this adapter. Palette loans still restore on errors and Cancel. Shareable data packs add inactive choices, never implicit styling; [preset workflow and helper](PRESET_PLUGINS.md).
 
 The shared near-black theme now has an automatic adoption route for the audited native Lua UI classes, across frontend setup, gameplay windows and specialist tools. It preserves each screen's native controls and behavior. This is a source implementation and offline validation milestone; native visual/input acceptance is **NOT TESTED**. It is not a claim that every candidate is an active screen or that every pixel has been replaced.
 

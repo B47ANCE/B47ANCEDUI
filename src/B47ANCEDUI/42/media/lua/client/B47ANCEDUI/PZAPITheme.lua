@@ -54,8 +54,14 @@ local function apply(w)
  local state=w.b47NativeAtom;local kind=state.kind
  if not equal(w,state.last)then state.base=rgba(w)end
  if (kind=='panel'or kind=='button')and not w.isSearch and not P.neutral(state.base.r,state.base.g,state.base.b)then restore(w);return end
- local proxy=canvas(w,kind=='panel'and 'window'or kind=='thumb'and 'slider'or kind=='tab'and 'tabs'or 'button')
+ local proxy=canvas(w,kind=='panel'and 'window'or kind=='thumb'and 'scrollbar'or kind=='tab'and 'tabs'or 'button')
  local token=kind=='panel'and 'window'or kind=='thumb'and 'accent'or kind=='image'and(w.b47NativeAtom.hover and 'accentHover'or 'text')or kind=='tab'and(w.selected and 'selected'or 'raised')or w.isSearch and 'selected'or(w.b47NativeAtom.hover and 'hover'or 'raised')
+ if kind=='thumb'and U.ComponentStyles.properties(proxy).scrollThumb then token='scrollThumb'end
+ if kind=='image'then token=w.enable==false and 'iconDisabled'or w.b47NativeAtom.hover and 'accentHover'or 'icon'end
+ if kind=='panel'and root.children then
+  local props=U.ComponentStyles.properties(proxy)
+  if w==root.children.bar and props.titleBackground then token='titleBackground'elseif w==root.children.bottomBar and props.statusBackground then token='statusBackground'end
+ end
  local c=U.ComponentStyles.color(proxy,U.Theme.colors[token])
  -- Live alpha is native state (fade, hover, collapsed/transparent surfaces).
  w:setColor(c.r,c.g,c.b,w.a)

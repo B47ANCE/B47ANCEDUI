@@ -81,6 +81,10 @@
     {
       "path": "docs/NATIVE_ROLLOUT_COVERAGE.json",
       "pattern": "^  \"project_version\": \"(?P<version>[^\\\"]+)\""
+    },
+    {
+      "path": "docs/PRESET_PLUGINS.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {

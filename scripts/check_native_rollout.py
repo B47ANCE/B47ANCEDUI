@@ -45,7 +45,7 @@ def check(game_root=None):
     assert (runtime/'42/media/lua/client/B47ANCEDUI/NativeRegistry.lua').read_text() == render()
     for area in coverage['areas']:
         assert area['route'] and area['limits'] and area['runtime_acceptance'] == 'NOT TESTED'
-    print('PASS rollout bindings: 76 runtime files, 61 reviewed areas; native acceptance NOT TESTED')
+    print(f'PASS rollout bindings: {len(files)} runtime files, 61 reviewed areas; native acceptance NOT TESTED')
     if game_root:
         print('PASS exact installed contract hashes/line bounds; source inspection only')
 

@@ -27,6 +27,8 @@
   "42/media/lua/client/B47ANCEDUI/OptionsLayoutModel.lua",
   "42/media/lua/client/B47ANCEDUI/OptionsLifecycle.lua",
   "42/media/lua/client/B47ANCEDUI/PZAPITheme.lua",
+  "42/media/lua/client/B47ANCEDUI/PresetExport.lua",
+  "42/media/lua/client/B47ANCEDUI/PresetPlugins.lua",
   "42/media/lua/client/B47ANCEDUI/Renderer.lua",
   "42/media/lua/client/B47ANCEDUI/RowTooltip.lua",
   "42/media/lua/client/B47ANCEDUI/StyleEditor.lua",

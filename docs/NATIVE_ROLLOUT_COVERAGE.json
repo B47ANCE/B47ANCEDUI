@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "project_version": "0.11.0-dev.1",
+  "project_version": "0.12.0-dev.1",
   "runtime_acceptance": "NOT TESTED",
   "status": "Implemented guarded Lua chrome routes; explicit engine/content/provider boundaries, not screen completion counts",
   "baseline": "UI_COVERAGE_INVENTORY_2026-10-24.json (frozen pre-rollout0.10.0-dev.2)",

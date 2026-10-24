@@ -53,6 +53,7 @@ function R.round(w,radius)
  w.b47RawRect=w.drawRect;w.b47RawBorder=w.drawRectBorder
  w.drawRect=function(self,x,y,width,height,a,r,g,b)
   if x==0 and y==0 and width==self:getWidth() and height==self:getHeight() then
+   if self.b47Kind=='button'and U.ComponentStyles then a,r,g,b=U.ComponentStyles.buttonFill(self,a,r,g,b)end
    return R.roundedRect(self,x,y,width,height,{a=a,r=r,g=g,b=b},self.b47Radius)
   end
   return self.b47RawRect(self,x,y,width,height,a,r,g,b)
@@ -68,7 +69,7 @@ function R.rect(w,x,y,width,height,c,family) c=color(w,c,family);if width>0 and 
 -- Shared text-only menu focus mark; native labels retain their own row geometry.
 function R.menuUnderline(w,x,width)
  width=math.min(width,math.max(0,w:getWidth()-x-3))
- R.rect(w,x,w:getHeight()-6,width,2,T.colors.accent,'menuButton')
+ R.rect(w,x,w:getHeight()-6,width,2,T.colors.menuUnderline,'menuButton')
 end
 function R.background(w,x,y,width,height,c)
  c=color(w,c)
@@ -99,8 +100,8 @@ function R.fit(text,width,font)
 end
 function R.focus(w)
  if w.joypadFocused or w.joyfocus or w.isFocused and w:isFocused() then
-  roundedBorderOne(w,1,1,w:getWidth()-2,w:getHeight()-2,color(w,T.colors.accent),math.max(0,(w.b47Radius or 0)-1))
-  roundedBorderOne(w,2,2,w:getWidth()-4,w:getHeight()-4,color(w,T.colors.strong),math.max(0,(w.b47Radius or 0)-2))
+  roundedBorderOne(w,1,1,w:getWidth()-2,w:getHeight()-2,color(w,T.colors.focusOuter),math.max(0,(w.b47Radius or 0)-1))
+  roundedBorderOne(w,2,2,w:getWidth()-4,w:getHeight()-4,color(w,T.colors.focusInner),math.max(0,(w.b47Radius or 0)-2))
  end
 end
 function R.row(w,y,height,index,selected,hover)
@@ -113,9 +114,9 @@ function R.row(w,y,height,index,selected,hover)
  if selected then R.rect(w,0,y,3,height-1,T.colors.accent,'row') end
 end
 function R.checkbox(w,x,y,state)
- R.border(w,x,y,16,16,T.colors.strong,'tick')
- if state=='full' then R.text(w,'x',x+3,y-1,T.colors.accent,nil,'tick')
- elseif state=='partial' then R.rect(w,x+3,y+7,10,3,T.colors.accent,'tick') end
+ R.border(w,x,y,16,16,T.colors.checkBorder,'tick')
+ if state=='full' then R.text(w,'x',x+3,y-1,T.colors.check,nil,'tick')
+ elseif state=='partial' then R.rect(w,x+3,y+7,10,3,T.colors.check,'tick') end
 end
 function R.icon(w,texture,x,y,size)
  if texture then
@@ -127,10 +128,10 @@ U.Badge={}
 function U.Badge.draw(w,label,x,y,role) R.text(w,label,x,y,T.colors[role] or T.colors.muted,T.fonts.status,'text') end
 U.Progress={}
 function U.Progress.draw(w,x,y,width,current,target,role)
- R.rect(w,x,y,width,8,T.colors.raised,'progress')
+ R.rect(w,x,y,width,8,T.colors.progressTrack,'progress')
  local ratio=target and target>0 and math.min(1,math.max(0,current/target)) or 0
- R.rect(w,x,y,width*ratio,8,T.colors[role] or T.colors.accent,'progress')
- R.border(w,x,y,width,8,T.colors.border,'progress')
+ R.rect(w,x,y,width*ratio,8,T.colors[role] or T.colors.progressFill,'progress')
+ R.border(w,x,y,width,8,T.colors.progressBorder,'progress')
 end
 U.Tree={indent=function(depth) return 6+(depth or 0)*20 end,checkbox=R.checkbox}
 U.Table={}

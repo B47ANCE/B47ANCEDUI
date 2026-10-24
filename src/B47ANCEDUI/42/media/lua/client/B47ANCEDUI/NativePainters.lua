@@ -3,11 +3,11 @@ local P=require 'B47ANCEDUI/NativePresentation'
 local U=B47ANCEDUI
 if U.NativePainters then return U.NativePainters end
 local N={};U.NativePainters=N
-local families={combo='dropdown',input='input',slider='slider',volume='volume',tick='tick',tabs='tabs',list='list',button='button',scroll='slider'}
+local families={combo='dropdown',input='input',slider='slider',volume='volume',tick='tick',tabs='tabs',list='list',button='button',scroll='scrollbar'}
 local fields={backgroundColor='panel',backgroundColorMouseOver='hover',borderColor='border',
- textColor='text',selectedTextColor='text',choicesColor='text',selectionColor='selected',mouseOverHighlightColor='hover',
- buttonColor='raised',buttonMouseOverColor='hover',sliderBarColor='raised',sliderBarBorderColor='border',
- sliderColor='accent',sliderMouseOverColor='accentHover',sliderBorderColor='strong'}
+ textColor='text',textColorDisabled='disabledText',selectedTextColor='selectedText',choicesColor='text',selectionColor='selected',mouseOverHighlightColor='hover',
+ buttonColor='raised',buttonMouseOverColor='hover',sliderBarColor='track',sliderBarBorderColor='trackBorder',
+ sliderColor='thumb',sliderMouseOverColor='thumbHover',sliderBorderColor='thumbBorder'}
 function N.player(w)
  if w and w.parentCombo then w=w.parentCombo end
  for _=1,64 do
@@ -51,12 +51,26 @@ function N.paint(w,delegate,kind,...)
     -- as well as original neutral native constants, only in known frame areas.
     for _,v in pairs(borrowed)do if r==v.r and g==v.g and b==v.b then neutral=true;break end end
     local frame=full(self,x,y,width,height)
+    if kind=='scroll'and neutral then
+     if not edge and x==4 and y==0 and width==self.width-5 and height==self.height then return P.fill(c,x,y,width,height,'scrollTrack',a,0)end
+    end
+    if kind=='tick'and width==self.boxSize and height==self.boxSize and x==self.leftMargin then
+     if edge then return P.edge(c,x,y,width,height,'checkBorder',a,1)end
+     if neutral then return P.fill(c,x,y,width,height,'checkBackground',a,1)end
+    end
+    if kind=='input'and edge and(self.joyfocus or self.joypadFocused)and(x==0 or x==1)and y==x and width==self.width-2*x and height==self.height-2*x then
+     return P.edge(c,x,y,width,height,x==0 and 'focusOuter'or 'focusInner',a)
+    end
     if kind=='frame' and self.titleBarHeight and x==0 and width==self:getWidth()then
      local title=self:titleBarHeight()
      frame=frame or(y==0 and height==title)or(y==title and height==self:getHeight()-title)
     end
+    if frame and not edge and kind=='button'and saved.backgroundColor and self.pressed and U.ComponentStyles.properties(canvas).pressed then
+      a,r,g,b=U.ComponentStyles.buttonFill(self,a,r,g,b,canvas)
+      return U.Renderer.roundedRect(c,x,y,width,height,{a=a,r=r,g=g,b=b},4)
+    end
     if frame and neutral then
-     if edge then return P.edge(c,x,y,width,height,self.joypadFocused and 'accent'or 'border',a)end
+     if edge then return P.edge(c,x,y,width,height,self.joypadFocused and 'focusOuter'or ((kind=='button'or kind=='tick')and self.enable==false or kind=='combo'and self.disabled)and 'disabledBorder'or 'border',a)end
      local token=kind=='button'and 'raised'or kind=='frame'and 'window'or 'panel'
      if borrowed.backgroundColorMouseOver and r==borrowed.backgroundColorMouseOver.r and g==borrowed.backgroundColorMouseOver.g then token='hover'end
      return P.fill(c,x,y,width,height,token,a)
@@ -74,11 +88,12 @@ function N.paint(w,delegate,kind,...)
    if selected and index and not self.isDragging and x==self:getTabX(index)then P.fill(canvas,x,height-2,width,2,'accent',a,0)end
    return
   end
+  if kind=='tick'and tex==self.tickTexture then local c=color(canvas,self.enable==false and 'disabledText'or 'check');r,g,b=c.r,c.g,c.b end
   if kind=='frame' and ((self.titlebarbkg and tex==self.titlebarbkg)or(self.statusbarbkg and tex==self.statusbarbkg))then
-   return P.fill(canvas,x,y,width,height,'raised',a,0)
+   return P.fill(canvas,x,y,width,height,tex==self.titlebarbkg and 'titleBackground'or 'statusBackground',a,0)
   end
   if kind=='scroll' and tex==self.midtex then
-   return P.fill(canvas,x,y,width,height,self.scrolling and 'accent'or 'strong',a,2)
+   return P.fill(canvas,x,y,width,height,self.scrolling and 'scrollThumbHover'or 'scrollThumb',a,2)
   end
   return texture(self,tex,x,y,width,height,a,r,g,b,...)
  end end
@@ -86,9 +101,25 @@ function N.paint(w,delegate,kind,...)
   local draw=w.drawTexture
   wrappers.drawTexture=function(self,tex,x,y,a,r,g,b,...)
    if tex==self.toptex or tex==self.bottex then
-    local c=color(canvas,self.scrolling and 'accent'or 'strong');r,g,b=c.r,c.g,c.b
+    local c=color(canvas,self.scrolling and 'scrollThumbHover'or 'scrollThumb');r,g,b=c.r,c.g,c.b
+   elseif tex==self.uptex or tex==self.downtex then
+    local c=color(canvas,'scrollArrow');r,g,b=c.r,c.g,c.b
    end
    return draw(self,tex,x,y,a,r,g,b,...)
+  end
+ end
+ if w.drawText and(kind=='combo'or kind=='tick')then
+  local text=w.drawText
+  wrappers.drawText=function(self,label,x,y,r,g,b,a,...)
+   if P.neutral(r,g,b)and((kind=='combo'and self.disabled)or(kind=='tick'and P.equal(r,.5)))then local c=color(canvas,'disabledText');r,g,b=c.r,c.g,c.b end
+   return text(self,label,x,y,r,g,b,a,...)
+  end
+ end
+ if kind=='frame'and w.drawTextCentre and w.title~=nil then
+  local text=w.drawTextCentre
+  wrappers.drawTextCentre=function(self,label,x,y,r,g,b,a,...)
+   if label==self.title and y==1 and x==self:getWidth()/2 and P.neutral(r,g,b)then local c=color(canvas,'titleText');r,g,b=c.r,c.g,c.b end
+   return text(self,label,x,y,r,g,b,a,...)
   end
  end
  if kind=='volume'then
@@ -122,12 +153,13 @@ function N.adopt(w,kind,active)
      -- Native shared dropdown rows read parentCombo colours, not popup fields.
      local combo=self.parentCombo
      local proxy=P.canvas(combo,N.player(combo),'dropdown',combo.drawRect,combo.drawRectBorder)
-     local bg,hover,edge=combo.backgroundColor,combo.backgroundColorMouseOver,combo.borderColor
+     local bg,hover,edge,text=combo.backgroundColor,combo.backgroundColorMouseOver,combo.borderColor,combo.textColor
      combo.backgroundColor=color(proxy,'panel',bg and bg.a)
      combo.backgroundColorMouseOver=color(proxy,'hover',hover and hover.a)
      combo.borderColor=color(proxy,'border',edge and edge.a)
+     combo.textColor=color(proxy,'text',text and text.a)
      local result=P.pack(pcall(N.paint,self,delegate,kind,...))
-     combo.backgroundColor,combo.backgroundColorMouseOver,combo.borderColor=bg,hover,edge
+     combo.backgroundColor,combo.backgroundColorMouseOver,combo.borderColor,combo.textColor=bg,hover,edge,text
      if not result[1]then error(result[2],0)end
      return unpack(result,2,result.n)
     end

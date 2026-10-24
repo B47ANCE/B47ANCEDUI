@@ -9,6 +9,7 @@ subprocess.run([sys.executable,'-B',str(ROOT/'scripts/check_versions.py')],check
 subprocess.run([sys.executable,'-B',str(ROOT/'scripts/check_source.py')],check=True)
 subprocess.run([sys.executable,'-B',str(ROOT/'tests/test_package.py')],check=True)
 subprocess.run([sys.executable,'-B',str(ROOT/'tests/test_menu_assets.py')],check=True)
+subprocess.run([sys.executable,'-B',str(ROOT/'tests/test_preset_packager.py')],check=True)
 for path in sorted((ROOT/'src').rglob('*.lua')):
     LuaRuntime().execute('assert(loadstring(...))',path.read_text())
 print('PASS Lua 5.1 syntax')
@@ -78,3 +79,9 @@ atoms.globals().package.path=native.globals().package.path
 atoms.globals().B47ANCEDUI_FIXTURE_ONLY=True
 atoms.execute((ROOT/'tests/test_api.lua').read_text())
 atoms.execute((ROOT/'tests/test_atom_theme.lua').read_text())
+for test in ('test_preset_plugins.lua','test_preset_export.lua'):
+    packs=client_runtime()
+    packs.globals().package.path=native.globals().package.path
+    packs.globals().B47ANCEDUI_FIXTURE_ONLY=True
+    packs.execute((ROOT/'tests/test_api.lua').read_text())
+    packs.execute((ROOT/'tests'/test).read_text())

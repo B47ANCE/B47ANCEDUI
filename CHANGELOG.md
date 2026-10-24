@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.12.0-dev.1] - 2026-10-24
+
+- Add independent editable surface/state colors, per-component scrollbar styles and RGB controls alongside hex values; old generic colors remain fallbacks.
+- Add data-only preset plugins from enabled mods. Packs populate an inactive catalog; explicit selection previews a detached editable local copy. Save retains complete data; Cancel restores the prior selection. Discovery never activates or writes preferences.
+- Add one-button selected-preset export with stable pack identity, read-back verification and native Workshop handoff. An optional offline packager/watch helper creates a data-only dependent mod and private Workshop staging, preserving native item identity/visibility on updates. Pure Lua cannot safely create new Workshop staging content; helper setup and final native Publish remain explicit user steps.
+- Offline suites PASS: all39 added independent colors, RGB/catalogue editor integration, guarded native states, cross-Lua pack parsing, inactive discovery/copies, interrupted identity journals, exact data-only inventory, checksum bounds, transactional rollback and native metadata preservation.
+- Compatible MINOR addition; public API1, local journal/plugin schema1, menu/HUD defaults and gameplay ownership retained. Native visual/input/discovery/export/Workshop integration NOT TESTED; no deployment, game launch or upload.
+
 ## [0.11.0-dev.1] - 2026-10-24
 
 - Extend shared near-black presentation across audited native frontend, gameplay and specialist Lua windows: deferred instance adoption, late children, neutral frames, dialogs, buttons, tabs, lists, dropdowns, text entries, checks, sliders and both scrollbar orientations. Retain existing main/Esc, Options, inventory and editor owners.

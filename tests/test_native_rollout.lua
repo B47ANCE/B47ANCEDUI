@@ -124,3 +124,25 @@ for _,vertical in ipairs({true,false})do
  scroll.fail=true;assert(not pcall(scroll.render,scroll)and rawget(scroll,'drawTextureScaled')==nil,'Scroll error left override')
 end
 print('PASS OFFLINE broad native lifecycle, deferred/late children, frontend/gameplay/specialist roots, owner guards, palette/error restoration, semantic colour, player presets, tabs and shared dropdowns')
+
+-- Distinct pressed/disabled/focus channels reach actual native draw calls.
+local colors=U.StylePresets.new();local cp=U.StylePresets
+for key,value in pairs({disabledBorder='#123456',focusOuter='#234567',pressed='#345678',hover='#AA4433',radius=0})do colors=cp.set(colors,'default','*','button',key,value)end
+local colorOwner={};assert(cp.preview(0,colors,colorOwner))
+local painters=U.NativePainters
+local colorButton=widget(ISButton);colorButton.enable=false
+local function borderOnly(self)self:drawRectBorder(0,0,self.width,self.height,1,.4,.4,.4)end
+painters.paint(colorButton,borderOnly,'button')
+assert(find(colorButton,function(d)return d[1]=='drawRectBorder'and d[7]==0x12/255 and d[8]==0x34/255 end),'Native enable=false missed disabledBorder')
+colorButton.joypadFocused=true;colorButton.draws={};painters.paint(colorButton,borderOnly,'button')
+assert(find(colorButton,function(d)return d[7]==0x23/255 and d[8]==0x45/255 end),'Disabled border masked controller focus')
+colorButton.pressed=true;colorButton.fade={fraction=function()return .5 end};colorButton.backgroundColorMouseOver={r=.4,g=.4,b=.4,a=1};colorButton.draws={}
+painters.paint(colorButton,function(self)local c=self.backgroundColorMouseOver;self:drawRect(0,0,self.width,self.height,1,c.r,c.g,c.b)end,'button')
+local bg=U.ComponentStyles.color({b47StyleFamily='button'},U.Theme.colors.raised)
+assert(find(colorButton,function(d)return math.abs(d[7]-(0x34/255*.5+bg.r*.5))<.000001 end),'Pressed colour lost when hover was nonneutral')
+ISButton.prerender=borderOnly
+local dedicated=widget(ISButton);dedicated.enable=false
+assert(U.NativePresentation.button(dedicated,0,function()return true end));dedicated:prerender()
+assert(find(dedicated,function(d)return d[7]==0x12/255 and d[8]==0x34/255 end),'Dedicated handler missed disabled border')
+cp.clearPreview(0,colorOwner)
+print('PASS OFFLINE native disabled/focus precedence, colored-hover pressed fade and dedicated button border channels')

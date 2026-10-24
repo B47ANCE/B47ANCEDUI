@@ -3,7 +3,7 @@ require 'B47ANCEDUI/Theme'
 local U=B47ANCEDUI;if U.StylePresets then return U.StylePresets end
 local S={};U.StylePresets=S
 local cache,scopes={}, {B47ANCEDUI=true}
-S.families={'all','button','buttonSmall','menuButton','slider','volume','tick','input','dropdown','panel','window','dialog','list','row','tabs','tooltip','text','progress'}
+S.families={'all','button','buttonSmall','menuButton','slider','scrollbar','volume','tick','input','dropdown','panel','window','dialog','list','row','tabs','tooltip','text','progress'}
 S.properties={
  {id='background',type='color'},{id='hover',type='color'},{id='selected',type='color'},
  {id='border',type='color'},{id='focus',type='color'},{id='text',type='color'},{id='muted',type='color'},
@@ -15,6 +15,8 @@ S.properties={
  {id='thumbWidth',type='number',min=4,max=32,step=1,family='slider'},
  {id='thumbHeight',type='number',min=8,max=48,step=1,family='slider'},
 }
+local extra={};for key in pairs(U.Theme.colorAliases)do extra[#extra+1]=key end;table.sort(extra)
+for _,key in ipairs(extra)do S.properties[#S.properties+1]={id=key,type='color'}end
 local definitions={};for _,v in ipairs(S.properties)do definitions[v.id]=v end
 local function id(v)return type(v)=='string' and #v<=64 and v:match('^[A-Za-z][A-Za-z0-9_.-]*$')~=nil end
 function S.scope(v)return v=='*' or id(v)end

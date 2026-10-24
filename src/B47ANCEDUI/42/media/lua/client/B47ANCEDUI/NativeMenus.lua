@@ -50,7 +50,7 @@ local function style(screen,label)
   if self.fade then self.fade:update() end
   local disabled=blocked(screen,self)
   local active=not disabled and (self.joypadFocused or self:isMouseOver())
-  local c=U.ComponentStyles.color(self,disabled and T.colors.disabled or active and T.colors.accent or T.colors.text,'menuButton')
+  local c=U.ComponentStyles.color(self,disabled and T.colors.disabledText or active and T.colors.menuHover or T.colors.menuText,'menuButton')
   local name,translation=self.name,self.translation
   local r,g,b,a,textColor=self.r,self.g,self.b,self.a,self.textColor
   local full=translation or name or ''
@@ -103,7 +103,7 @@ local function styleStatusLabel(screen,label)
   local titleX=(width-titleWidth)/2
   local disabled=blocked(screen,self)
   local active=not disabled and (self.joypadFocused or self:isMouseOver())
-  local c=U.ComponentStyles.color(self,disabled and T.colors.disabled or active and T.colors.accent or T.colors.text,'menuButton')
+  local c=U.ComponentStyles.color(self,disabled and T.colors.disabledText or active and T.colors.menuHover or T.colors.menuText,'menuButton')
   if not self.tooltip or self.tooltip==self.b47NativeMenuFallbackTip then
    self.b47NativeMenuFallbackTip=short~=full and full or nil;self.tooltip=self.b47NativeMenuFallbackTip
   end
@@ -139,7 +139,7 @@ local function styleStatusLabel(screen,label)
   if self:getHeight()~=height then self:setHeight(height) end
   self.height=fieldHeight
   if not ok then error(result) end
-  if active then R.rect(self,titleX,math.max(0,primaryHeight-6),titleWidth,math.min(2,primaryHeight),T.colors.accent) end
+  if active then R.rect(self,titleX,math.max(0,primaryHeight-6),titleWidth,math.min(2,primaryHeight),T.colors.menuUnderline) end
   return result
  end
 end

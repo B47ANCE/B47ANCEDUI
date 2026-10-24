@@ -1,4 +1,6 @@
-Version 0.11.0-dev.1
+Version 0.12.0-dev.1
+
+- Development source:53 editable colors, hex/RGB, separate Scrollbar styles and inactive plugin preset choices with editable saved copies. Export selected styling; optional offline helper stages data-only Workshop mods, preserving native metadata and final Publish. Offline suites PASS; actual discovery/export/upload NOT TESTED. Not uploaded.
 
 - Development source: extend shared near-black native chrome across audited frontend, gameplay and specialist Lua windows, with native controls, pooled dropdown guards and separate PZAPI lifecycle. Preserve semantic content, native actions and saved menu/layout defaults. Offline suites PASS; native visual/input acceptance NOT TESTED. Not uploaded; Workshop remains0.5.0-dev.11.
 

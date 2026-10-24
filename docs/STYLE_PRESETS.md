@@ -1,6 +1,10 @@
 # Editable UI style presets
 
-Project Version: 0.11.0-dev.1
+Project Version: 0.12.0-dev.1
+
+0.12 adds39 independent colors (53 total) and a separate Scrollbar family, alongside the existing19 family choices including All components. Hex and RGB sliders stay synchronized and display inherited colors. Specific channels cover surfaces; pressed/selected/disabled/focus states; title/status bars; slider tracks/thumbs; scrollbar tracks/thumbs/arrows; checks/icons; progress; menu text/hover/underline; tooltips; and owned input text/placeholders. Old generic values remain fallbacks. Scrollbar values inherit old Slider colors before explicit Scrollbar overrides.
+
+[Packs and sharing](PRESET_PLUGINS.md) add inactive external choices, explicit preview/local copies, multi-preset switching and export/New versus Update. Exports contain authored styling only. Layouts and legacy Appearance preferences remain separate. Every supported token is editable, but tokens affect only drawing paths that consume them: item/map/health/document semantics and engine internals are retained. Native input text/placeholder customization is limited to API-owned inputs; arbitrary native cursor/selection cannot be recolored safely. PZAPI image icons and scrollbar thumb bodies are supported; universal PZAPI thumb-hover and arbitrary icons are not. Focus outlines remain visible even with ordinary borders disabled.
 
 0.11 extends live shared presets to guarded audited native frames/controls throughout frontend, gameplay and specialist windows. Existing API/Options/inventory owners retain their scopes. Native standard slider dimensions refresh on preview/Cancel; the separate PZAPI chrome adapter refreshes palette presets and restores native colors on opt-out. Native fonts, semantic content and unsupported engine/custom rendering remain outside generic replacement. See [NATIVE_ROLLOUT.md](NATIVE_ROLLOUT.md) for exact coverage and runtime limits.
 
@@ -59,4 +63,4 @@ The subsequent user screenshot of the dev.2 local test showed blank Options cate
 
 ## Native overhaul coverage (0.10)
 
-Context menus use List, inventory/loot chrome uses Window, neutral inventory drawing uses Row, owned native controls use Normal button, tooltips use Tooltip, selected confirmations use Dialog, and inventory scrollbar colours use Slider. These are scoped adapters. Native text/semantic colours/fonts/geometry remain native; scrollbar dimension presets do not resize its hit areas. Transparent icon backings stay transparent and controller focus remains visible at zero border width. See [exact token/alpha bounds](NATIVE_OVERHAUL.md).
+Context menus use List, inventory/loot chrome uses Window, neutral inventory drawing uses Row, owned native controls use Normal button, tooltips use Tooltip, selected confirmations use Dialog, and inventory scrollbar colours use Scrollbar (with legacy Slider inheritance). These are scoped adapters. Native text/semantic colours/fonts/geometry remain native; scrollbar dimension presets do not resize its hit areas. Transparent icon backings stay transparent and controller focus remains visible at zero border width. See [exact token/alpha bounds](NATIVE_OVERHAUL.md).

@@ -1,6 +1,10 @@
 # Public Lua API
 
-Project Version: 0.11.0-dev.1
+Project Version: 0.12.0-dev.1
+
+0.12 adds `API.PresetPacks={schema=1,path='media/B47ANCEDUI/style-pack.txt',refresh=function() ... end}`. `refresh()` returns detached catalogue and issue arrays from currently enabled mods, without activation, preference writes or revision changes. Entries carry `source`, `pack`, `version`, `key`, `preset`; issues carry source/status. Format1 and public API1 are independent. Selection/export remain owned by the standard StyleEditor. See [preset pack contract](PRESET_PLUGINS.md).
+
+Theme color tokens now include53 independently editable channels. Consumers using the public resolver inherit generic old colors unless a specific channel is set; the shared Theme remains read-only. Native semantic/gameplay content and unsupported engine drawing remain caller-owned.
 
 0.11 adds automatic styling for audited native Lua instances and a separate PZAPI adapter, preserving API1, scopes, callbacks, saved schemas and menu/default layouts. `UI.excludeNativeTheme(widget)` protects a provider-owned tree; pass `false` to release that opt-out. Existing API-owned/editor trees are already excluded. The flag is local and not persisted. Native wrappers check it on draw; PZAPI restores its known palette during the next native root renderUpdate. It does not opt arbitrary providers into automatic styling or grant gameplay authority. See [native rollout and engine limits](NATIVE_ROLLOUT.md).
 

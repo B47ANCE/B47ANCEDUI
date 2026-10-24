@@ -11,14 +11,14 @@ local function style(tip,owner,p)
  tip.drawRect=function(self,x,y,w,h,a,r,g,b)
   local props=U.ComponentStyles.properties(self,'tooltip')
   if a>0 and x==0 and y==0 and w==self:getWidth()and h==self:getHeight()and U._hasEntries(props)then
-   local c=U.ComponentStyles.color(self,U.Theme.colors.panel,'tooltip');c=U.Theme.copy(c);c.a=(props.opacity or a*100)/100
+   local c=U.ComponentStyles.color(self,U.Theme.colors.tooltipBackground,'tooltip');c=U.Theme.copy(c);c.a=(props.opacity or a*100)/100
    return U.Renderer.roundedRect(proxy,x,y,w,h,c,0)
   end
   return rect(self,x,y,w,h,a,r,g,b)
  end
  tip.drawRectBorder=function(self,x,y,w,h,a,r,g,b)
   if x==0 and y==0 and w==self:getWidth()and h==self:getHeight()and U._hasEntries(U.ComponentStyles.properties(self,'tooltip'))then
-   local c=U.Theme.copy(U.ComponentStyles.color(self,U.Theme.colors.border,'tooltip'));c.a=a
+   local c=U.Theme.copy(U.ComponentStyles.color(self,U.Theme.colors.tooltipBorder,'tooltip'));c.a=a
    return U.Renderer.roundedBorder(proxy,x,y,w,h,c,0)
   end
   return border(self,x,y,w,h,a,r,g,b)
@@ -101,7 +101,7 @@ function H.inspect(playerNum,text,owner,scope)
  for line in (tostring(text or ''):gsub('<LINE>','\n')..'\n'):gmatch('(.-)\n') do
   local wrapped=H.wrap(line,maxWidth,font);local row=list:addItem(line,wrapped);row.height=#wrapped*fh+8
  end
- list.doDrawItem=function(self,y,row) if y+self:getYScroll()+row.height<=0 or y+self:getYScroll()>=self:getHeight() then return y+row.height end;for i,line in ipairs(row.item) do self:drawText(line,8,y+4+(i-1)*fh,1,1,1,1,font) end;return y+row.height end
+ list.doDrawItem=function(self,y,row) if y+self:getYScroll()+row.height<=0 or y+self:getYScroll()>=self:getHeight() then return y+row.height end;for i,line in ipairs(row.item)do U.Renderer.text(self,line,8,y+4+(i-1)*fh,U.Theme.colors.tooltipText,font,'tooltip')end;return y+row.height end
  local total=0;for _,row in ipairs(list.items) do total=total+row.height end;list:setScrollHeight(total)
  local function close() panel:removeFromUIManager();U.Focus.restore(playerNum,owner and (not owner.isReallyVisible or owner:isReallyVisible()) and owner or nil) end
  local button=U.Button:new(10,height-40,width-20,28,getText('UI_B47ANCEDUI_Close'),nil,close);button:initialise();button:instantiate();panel:addChild(button)

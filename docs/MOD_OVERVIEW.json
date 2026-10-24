@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.11.0-dev.1",
+  "version": "0.12.0-dev.1",
   "reviewed": true,
-  "source_digest": "8237c1c2fd66c5494e0a4fe2f78f969f168e3998d72463367f338af3fe8907de",
+  "source_digest": "769421fb576beb8f76269e2a57e60980c0ead952708f8187fe11fc208a60754c",
   "features": [
     {
       "status": "Source",
@@ -133,9 +133,21 @@
     {
       "status": "Source",
       "text": "Broad native Lua chrome rollout: registry of591 class declarations, deferred/late instance adoption across frontend/gameplay/admin/debug/controller families, guarded shared controls and separate PZAPI lifecycle. Preserves main-menu/editor/inventory/Options owners, player presets, native actions/semantics and provider boundaries. Native acceptance NOT TESTED."
+    },
+    {
+      "status": "Source",
+      "text": "53 editable color channels, hex/RGB and19 family choices including Scrollbar and All. Native state palettes preserve input/semantics; unsupported engine/custom content remains explicit."
+    },
+    {
+      "status": "Source",
+      "text": "Enabled data-only preset packs populate an inactive catalogue. Explicit selection previews a detached editable copy; Save persists, Cancel restores. Source removal/update preserves saved copies. Catalogue256/local16 bounds."
+    },
+    {
+      "status": "Source",
+      "text": "One-button authored-preset data export with explicit New/Update identity, checked completion/status and native Options/Workshop handoff. Optional manually started Python helper stages dependent data-only mods with fixed inventory, transactional rollback/history and exact native metadata preservation. Final native Publish stays explicit; actual discovery/export/upload NOT TESTED."
     }
   ],
-  "limits": "0.11.0-dev.1 compatible MINOR local-presentation rollout; API1 and schemas/defaults compatible. Offline suites PASS:76 runtime files/144 keys/29 unreviewed English-fallback locales. 61-area route/limit record is not a screen-completion claim. Bespoke rows/inner textures, inaccessible local classes, native engine clock/moodles/radials/model/document content and unknown providers retain explicit boundaries. Native rendering/input/controller/split-screen/performance/load order and PZAPI Meta dispatch NOT TESTED. Earlier audits/startup tests remain historical; G6 NOT TESTED, project G7/stable G8 BLOCKED. No deploy/launch/package/upload; Workshop remains0.5.0-dev.11.",
+  "limits": "0.12.0-dev.1 compatible MINOR local-presentation colors/catalogue/export addition; API1 and schemas/defaults compatible. Offline suites PASS:78 runtime files/198 keys/29 unreviewed English-fallback locales. 61-area route/limit record is not a screen-completion claim. Bespoke rows/inner textures, inaccessible local classes, native engine clock/moodles/radials/model/document content and unknown providers retain explicit boundaries. Native rendering/input/controller/split-screen/performance/load order and PZAPI Meta dispatch NOT TESTED. Earlier audits/startup tests remain historical; G6 NOT TESTED, project G7/stable G8 BLOCKED. No deploy/launch/package/upload; Workshop remains0.5.0-dev.11. Native input text/placeholders limited to API-owned inputs; PZAPI universal thumb-hover/cursor/selection unavailable. Exports omit layouts and legacy Appearance preferences. Helper setup is required for new Workshop staging; no pure-Lua one-click upload claim.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -184,7 +196,12 @@
     "docs/NATIVE_ROLLOUT_COVERAGE.json",
     "tests/test_native_rollout.lua",
     "tests/test_atom_theme.lua",
-    "scripts/check_native_rollout.py"
+    "scripts/check_native_rollout.py",
+    "docs/PRESET_PLUGINS.md",
+    "tests/test_preset_plugins.lua",
+    "tests/test_preset_export.lua",
+    "tests/test_preset_packager.py",
+    "scripts/preset_packager.py"
   ],
   "relations": []
 }

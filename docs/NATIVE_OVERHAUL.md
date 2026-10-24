@@ -1,6 +1,6 @@
 # Native UI overhaul: first slice
 
-Project Version: 0.11.0-dev.1
+Project Version: 0.12.0-dev.1
 
 This page retains the original 0.10 inventory/context/tooltip/dialog slice and its historical test scope. The current broad frontend/gameplay/specialist extension and its explicit engine/provider limits are recorded in [NATIVE_ROLLOUT.md](NATIVE_ROLLOUT.md); the earlier coverage labels below are not the current whole-project adoption inventory.
 

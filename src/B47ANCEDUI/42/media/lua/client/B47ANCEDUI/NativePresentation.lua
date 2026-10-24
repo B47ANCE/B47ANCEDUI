@@ -37,14 +37,15 @@ end
 function P.fill(canvas,x,y,width,height,token,alpha,radius)
  if alpha~=nil and alpha<=0 then return end
  local c=P.color(canvas,token,alpha)
- if token=='window' or token=='panel' or token=='raised'then
+ local base=T.colorAliases[token]or token
+ if base=='window' or base=='panel' or base=='raised'then
   local inherited=alpha~=nil and alpha or U.Appearance.alpha(canvas)
   c.a=S.number(canvas,'opacity',inherited*100)/100
  end
  return R.roundedRect(canvas,x,y,width,height,c,radius or 4)
 end
 function P.edge(canvas,x,y,width,height,token,alpha,radius)
- if token=='accent' and S.number(canvas,'borderWidth',1)==0 then
+ if (token=='accent'or token=='focusOuter'or token=='focusInner')and S.number(canvas,'borderWidth',1)==0 then
   -- Ordinary borders may be hidden; keyboard/controller focus stays visible.
   local focus={parent=canvas,b47StyleSafe=true,b47RawRect=canvas.b47RawRect,b47RawBorder=canvas.b47RawBorder}
   return R.roundedBorder(focus,x,y,width,height,P.color(canvas,token,alpha),radius or 4)
@@ -94,11 +95,11 @@ function P.tooltip(w,player,active)
   local canvas=P.canvas(self,state.player,'tooltip',rect,border)
   return P.around(self,delegate,{
    drawRect=function(target,x,y,width,height,a,r,g,b,...)
-    if x==0 and y==0 and width==target:getWidth() and height==target:getHeight() and P.neutral(r,g,b)then return P.fill(canvas,x,y,width,height,'window')end
+    if x==0 and y==0 and width==target:getWidth() and height==target:getHeight() and P.neutral(r,g,b)then return P.fill(canvas,x,y,width,height,'tooltipBackground')end
     return rect(target,x,y,width,height,a,r,g,b,...)
    end,
    drawRectBorder=function(target,x,y,width,height,a,r,g,b,...)
-    if x==0 and y==0 and width==target:getWidth() and height==target:getHeight() and (P.neutral(r,g,b)or(class==ISToolTip and P.equal(a,.5)and P.equal(r,.9)and P.equal(g,.9)and b==1))then return P.edge(canvas,x,y,width,height,'border')end
+    if x==0 and y==0 and width==target:getWidth() and height==target:getHeight() and (P.neutral(r,g,b)or(class==ISToolTip and P.equal(a,.5)and P.equal(r,.9)and P.equal(g,.9)and b==1))then return P.edge(canvas,x,y,width,height,'tooltipBorder')end
     return border(target,x,y,width,height,a,r,g,b,...)
    end},...)
  end
@@ -118,12 +119,13 @@ function P.button(w,player,active)
   return P.around(self,delegate,{
    drawRect=function(target,x,y,width,height,a,r,g,b,...)
     if x==0 and y==0 and width==target:getWidth() and height==target:getHeight() and P.neutral(r,g,b)then
+     if self.pressed and S.properties(canvas).pressed then a,r,g,b=S.buttonFill(self,a,r,g,b,canvas);return R.roundedRect(canvas,x,y,width,height,{a=a,r=r,g=g,b=b},4)end
      return P.fill(canvas,x,y,width,height,r>=.6 and 'selected' or r>.15 and 'hover' or 'raised',a)
     end
     return rect(target,x,y,width,height,a,r,g,b,...)
    end,
    drawRectBorder=function(target,x,y,width,height,a,r,g,b,...)
-    if x==0 and y==0 and width==target:getWidth() and height==target:getHeight() and P.neutral(r,g,b)then return P.edge(canvas,x,y,width,height,self.joypadFocused and 'accent' or 'border',a)end
+    if x==0 and y==0 and width==target:getWidth() and height==target:getHeight() and P.neutral(r,g,b)then return P.edge(canvas,x,y,width,height,self.joypadFocused and 'focusOuter'or self.enable==false and 'disabledBorder'or 'border',a)end
     return border(target,x,y,width,height,a,r,g,b,...)
    end},...)
  end

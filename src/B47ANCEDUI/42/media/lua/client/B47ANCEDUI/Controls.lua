@@ -54,7 +54,7 @@ function U.skin(w,kind,role)
   local render=w.render
   w.render=function(self,...)
    local full=self.title
-   if kind=='menuButton' then self.textColor=T.copy(U.ComponentStyles.color(self,menuActive(self) and T.colors.accent or T.colors.text)) end
+   if kind=='menuButton' then self.textColor=T.copy(U.ComponentStyles.color(self,menuActive(self) and T.colors.menuHover or T.colors.menuText)) end
    local fontHeight=getTextManager():getFontHeight(self.font)
    if full and (self.b47FullTitle~=full or self.b47TitleWidth~=self:getWidth() or self.b47TitleFont~=self.font or self.b47TitleFontHeight~=fontHeight) then
     self.b47FullTitle=full;self.b47TitleWidth=self:getWidth();self.b47TitleFont=self.font;self.b47TitleFontHeight=fontHeight;self.b47ShortTitle=R.fit(full,self:getWidth()-2*(self.b47Padding or 9),self.font)
@@ -73,6 +73,10 @@ function U.skin(w,kind,role)
   U.ComponentStyles.restore(self)
   U.Appearance.prepare(self,kind)
   U.ComponentStyles.prepare(self,kind)
+  if kind=='input'and self.javaObject then
+   if self.setTextRGBA then local c=U.ComponentStyles.color(self,T.colors.inputText);self:setTextRGBA(c.r,c.g,c.b,c.a)end
+   if self.setPlaceholderTextRGBA then local c=U.ComponentStyles.color(self,T.colors.inputPlaceholder);self:setPlaceholderTextRGBA(c.r,c.g,c.b,c.a)end
+  end
   if old then old(self,...) end
   if self.tooltipUI and not self.tooltipUI.b47Styled then
    self.tooltipUI.b47Styled=true -- Preserve the native final tooltip frame deliberately.
@@ -129,7 +133,7 @@ function U.Layout.scrollbar(list)
   U.Layout.place(list.vscroll,list:getWidth()-T.metrics().scrollbar,0,T.metrics().scrollbar,list:getHeight())
  end
 end
-U.SectionHeader={draw=function(w,label,x,y) R.text(w,label,x,y,T.colors.text,T.fonts.section,'text') end}
+U.SectionHeader={draw=function(w,label,x,y) R.text(w,label,x,y,T.colors.titleText,T.fonts.section,'text') end}
 
 U.TabBar={}
 function U.TabBar.add(parent,label,callback)

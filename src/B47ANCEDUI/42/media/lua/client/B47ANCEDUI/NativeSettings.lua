@@ -104,10 +104,23 @@ local function tick(w,root)
  local draw=w.drawTextureScaled
  w.drawTextureScaled=function(self,tex,x,y,width,height,alpha,red,green,blue,...)
   if owned(self,root) and tex==self.tickTexture then
-   local c=scoped(self,self.enable==false and T.colors.disabled or T.colors.accent)
+   local c=scoped(self,self.enable==false and T.colors.disabledText or T.colors.check)
    red,green,blue=c.r,c.g,c.b
   end
   return draw(self,tex,x,y,width,height,alpha,red,green,blue,...)
+ end
+ local rect,border=w.drawRect,w.drawRectBorder
+ w.drawRect=function(self,x,y,width,height,a,r,g,b,...)
+  if owned(self,root)and x==self.leftMargin and width==self.boxSize and height==self.boxSize and U.ComponentStyles.properties(self).checkBackground then
+   local c=scoped(self,T.colors.checkBackground);r,g,b=c.r,c.g,c.b
+  end
+  return rect(self,x,y,width,height,a,r,g,b,...)
+ end
+ w.drawRectBorder=function(self,x,y,width,height,a,r,g,b,...)
+  if owned(self,root)and x==self.leftMargin and width==self.boxSize and height==self.boxSize and U.ComponentStyles.properties(self).checkBorder then
+   local c=scoped(self,T.colors.checkBorder);r,g,b=c.r,c.g,c.b
+  end
+  return border(self,x,y,width,height,a,r,g,b,...)
  end
 end
 local function volume(w,root)

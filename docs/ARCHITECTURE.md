@@ -1,6 +1,8 @@
 # Architecture and persistence
 
-Project Version: 0.11.0-dev.1
+Project Version: 0.12.0-dev.1
+
+0.12 adds local-presentation-only color channels and shareable data presets. PresetPlugins lazily reads one bounded fixed-path data file per enabled mod and builds an inactive, source-namespaced catalogue. Explicit selection copies complete data into a draft; Save alone persists the local book. Plugin removal never erases a saved copy. PresetExport writes checked Lua-cache data/identity journals/completion markers; it never owns gameplay state or invokes Workshop create/submit networking. Native Options Back owns its rollback/confirmation before uploader handoff. The optional standard-library Python packager owns only verified generated data packages, uses a fixed allowlist, complete directory transactions and retained history, and never runs automatically. Native metadata and final publication stay with the uploader/user. Local UI preferences require no server synchronization or sandbox setting. Full bounds, persistence/update and unsupported capability details: [PRESET_PLUGINS.md](PRESET_PLUGINS.md).
 
 The 0.11 native rollout extends the original instance-only design with two delegated ISUIElement construction hooks (new/addChild) and the separate declared PZAPI lifecycle. Constructors enqueue guarded instances; pre-UI draw drains construction work without a recurring tree/world scan. Class renderer/palette tables remain unchanged. Specialized Options/inventory/menu/editor ownership wins; unknown/provider/custom trees fail closed, including reparented controls and pooled dropdown owner switches. Original statements below about no global patches describe the earlier foundation; the bounded lifecycle observer is the explicit current exception. [Current architecture, provenance and limits](NATIVE_ROLLOUT.md).
 

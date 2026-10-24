@@ -32,10 +32,10 @@ local function scrollbar(w,player,active)
  w.render=function(self,...)
   if not active()or not self.vertical then return render(self,...)end
   local rect,border,scaled,texture=self.drawRect,self.drawRectBorder,self.drawTextureScaled,self.drawTexture
-  local canvas=P.canvas(self,player,'slider',rect,border)
+  local canvas=P.canvas(self,player,'scrollbar',rect,border)
   return P.around(self,render,{
    drawRect=function(target,x,y,width,height,a,r,g,b,...)
-    if x==4 and y==0 and width==target.width-5 and height==target.height then return P.fill(canvas,x,y,width,height,'raised',a,0)end
+    if x==4 and y==0 and width==target.width-5 and height==target.height then return P.fill(canvas,x,y,width,height,'scrollTrack',a,0)end
     return rect(target,x,y,width,height,a,r,g,b,...)
    end,
    drawRectBorder=function(target,x,y,width,height,a,r,g,b,...)
@@ -43,12 +43,14 @@ local function scrollbar(w,player,active)
     return border(target,x,y,width,height,a,r,g,b,...)
    end,
    drawTextureScaled=function(target,tex,x,y,width,height,a,r,g,b,...)
-    if tex==target.midtex and x==5 and y==target.bary+2 and width==9 and height==target.barheight-4 then return P.fill(canvas,x,y,width,height,'accent',a,0)end
+    if tex==target.midtex and x==5 and y==target.bary+2 and width==9 and height==target.barheight-4 then return P.fill(canvas,x,y,width,height,self.scrolling and 'scrollThumbHover'or 'scrollThumb',a,0)end
     return scaled(target,tex,x,y,width,height,a,r,g,b,...)
    end,
    drawTexture=function(target,tex,x,y,a,r,g,b,...)
     if x==5 and ((tex==target.toptex and y==target.bary)or(tex==target.bottex and y==target.bary+target.barheight-3))then
-     local c=P.color(canvas,'accent');r,g,b=c.r,c.g,c.b
+     local c=P.color(canvas,self.scrolling and 'scrollThumbHover'or 'scrollThumb');r,g,b=c.r,c.g,c.b
+    elseif tex==target.uptex or tex==target.downtex then
+     local c=P.color(canvas,'scrollArrow');r,g,b=c.r,c.g,c.b
     end
     return texture(target,tex,x,y,a,r,g,b,...)
    end},...)
@@ -114,8 +116,8 @@ function I.adopt(root,player,slot)
     return border(target,x,y,width,height,a,r,g,b,...)
    end,
    drawTextureScaled=function(target,tex,x,y,width,height,a,r,g,b,...)
-    if tex==target.titlebarbkg and x==2 and y==1 and width==target:getWidth()-4 and height==title-2 then return P.fill(canvas,x,y,width,height,'raised',a,0)end
-    if tex==target.statusbarbkg and x==1 and width==target:getWidth()-2 and y+height==full-1 then return P.fill(canvas,x,y,width,height,'raised',a,0)end
+    if tex==target.titlebarbkg and x==2 and y==1 and width==target:getWidth()-4 and height==title-2 then return P.fill(canvas,x,y,width,height,'titleBackground',a,0)end
+    if tex==target.statusbarbkg and x==1 and width==target:getWidth()-2 and y+height==full-1 then return P.fill(canvas,x,y,width,height,'statusBackground',a,0)end
     return texture(target,tex,x,y,width,height,a,r,g,b,...)
    end},...)
  end

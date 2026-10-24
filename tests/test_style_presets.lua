@@ -121,3 +121,21 @@ local nativeLabel={getWidth=function()return 100 end,getHeight=function()return 
 U.Renderer.menuUnderline(nativeLabel,3,60);assert(line.r==0x77/255 and line.b==0x99/255,'Native underline lost menu family accent')
 P.clearPreview(0,owner)
 print('PASS OFFLINE style journals/limits/unknown preservation/failed writes/protected data, preview ownership/copies, scoped inheritance/Cancel and detached slider value/geometry isolation')
+
+local channels=P.new();local channelOwner={};local count=0
+for key in pairs(T.colorAliases)do
+ count=count+1;channels=assert(P.set(channels,'default','*','all',key,'#123456'))
+end
+assert(count==39 and P.preview(0,channels,channelOwner))
+for key,base in pairs(T.colorAliases)do
+ assert(T.colors[key]~=T.colors[base],'Alias shares mutable theme table')
+ local c=S.color({},T.colors[key]);assert(c.r==0x12/255 and c.g==0x34/255 and c.b==0x56/255,key)
+end
+P.clearPreview(0,channelOwner)
+local inherited=P.set(P.new(),'default','*','slider','accent','#234567')
+inherited=P.set(inherited,'default','*','scrollbar','scrollThumb','#345678')
+assert(P.preview(0,inherited,channelOwner))
+assert(S.color({b47StyleFamily='scrollbar'},T.colors.scrollThumb).r==0x34/255)
+assert(S.color({b47StyleFamily='slider'},T.colors.accent).r==0x23/255)
+P.clearPreview(0,channelOwner)
+print('PASS OFFLINE all39 additional independent colour channels and scrollbar-specific inheritance')
