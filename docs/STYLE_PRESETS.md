@@ -1,6 +1,8 @@
 # Editable UI style presets
 
-Project Version: 0.10.0-dev.2
+Project Version: 0.11.0-dev.1
+
+0.11 extends live shared presets to guarded audited native frames/controls throughout frontend, gameplay and specialist windows. Existing API/Options/inventory owners retain their scopes. Native standard slider dimensions refresh on preview/Cancel; the separate PZAPI chrome adapter refreshes palette presets and restores native colors on opt-out. Native fonts, semantic content and unsupported engine/custom rendering remain outside generic replacement. See [NATIVE_ROLLOUT.md](NATIVE_ROLLOUT.md) for exact coverage and runtime limits.
 
 Open **Options → Interface → UI Style Presets**. Select the shared preset or a registered mod, then a component and property. Hex colors accept six digits with optional `#`; numeric properties have a bounded slider and text field. Empty values inherit. Duplicate, rename or delete presets (the default cannot be deleted), inherit one property, reset one component, or remove a mod's preset binding with Follow shared preset. Reset removes that component's explicit values only; inherited all-component/shared values still apply.
 

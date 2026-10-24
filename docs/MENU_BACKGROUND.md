@@ -1,6 +1,6 @@
 # Security-room main menu
 
-Project Version: 0.10.0-dev.2
+Project Version: 0.11.0-dev.1
 
 Compatible MINOR addition from 0.4.0-dev.1; public API major 1, appearance storage and consumer contracts are unchanged. Current 0.5.0-dev.11 Workshop MP testing distribution is recorded in WORKSHOP_PIPE_UPDATE.md; native acceptance remains NOT TESTED.
 

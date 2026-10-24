@@ -1,6 +1,8 @@
 # Public Lua API
 
-Project Version: 0.10.0-dev.2
+Project Version: 0.11.0-dev.1
+
+0.11 adds automatic styling for audited native Lua instances and a separate PZAPI adapter, preserving API1, scopes, callbacks, saved schemas and menu/default layouts. `UI.excludeNativeTheme(widget)` protects a provider-owned tree; pass `false` to release that opt-out. Existing API-owned/editor trees are already excluded. The flag is local and not persisted. Native wrappers check it on draw; PZAPI restores its known palette during the next native root renderUpdate. It does not opt arbitrary providers into automatic styling or grant gameplay authority. See [native rollout and engine limits](NATIVE_ROLLOUT.md).
 
 The native Options/settings adapter is internal and automatic when UI loads. Consumers still use API major 1 and style only their own widgets; it adds no consumer API, gameplay settings or dependency. It retains native option ownership and guards custom renderers. See [native settings scope](NATIVE_SETTINGS.md).
 

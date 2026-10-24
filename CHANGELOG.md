@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.11.0-dev.1] - 2026-10-24
+
+- Extend shared near-black presentation across audited native frontend, gameplay and specialist Lua windows: deferred instance adoption, late children, neutral frames, dialogs, buttons, tabs, lists, dropdowns, text entries, checks, sliders and both scrollbar orientations. Retain existing main/Esc, Options, inventory and editor owners.
+- Add a separate PZAPI Window/FishWindow/PrintMedia chrome adapter using declared native lifecycle and colour setters. Preserve document subtrees, live condition colours, textures, native dispatch and callbacks. Add a public provider-tree opt-out.
+- Compatible MINOR presentation addition. API1 and all profile schemas/defaults remain compatible; no geometry, input actions, permissions or gameplay ownership changes. Offline evidence and explicit engine/provider/runtime limits: docs/NATIVE_ROLLOUT.md. Native visual/input acceptance NOT TESTED; no deploy/upload.
+
 ## [0.10.0-dev.2] - 2026-10-23
 
 - 2026-10-24 audit-only checkpoint: refresh all61 work areas and complete623-candidate/607-definition catalogue for current scoped native adoption, including qualified Lua and named PZAPI templates. Add187 concrete source targets/169 evidence-file bindings, remaining frontend/gameplay menu registers, priorities and source-bound repeatable checks; no runtime/version/profile change.

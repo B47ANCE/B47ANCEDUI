@@ -69,6 +69,18 @@
     {
       "path": "docs/NATIVE_OVERHAUL.md",
       "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/NATIVE_ROLLOUT.md",
+      "pattern": "^Project Version: (?P<version>[^\\s]+)$"
+    },
+    {
+      "path": "docs/NATIVE_ROLLOUT_SOURCE.json",
+      "pattern": "^  \"project_version\": \"(?P<version>[^\\\"]+)\""
+    },
+    {
+      "path": "docs/NATIVE_ROLLOUT_COVERAGE.json",
+      "pattern": "^  \"project_version\": \"(?P<version>[^\\\"]+)\""
     }
   ],
   "changelog": {

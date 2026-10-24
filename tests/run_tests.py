@@ -3,6 +3,8 @@ from pathlib import Path
 import sys,subprocess
 from lupa.lua51 import LuaRuntime
 ROOT=Path(__file__).resolve().parents[1]
+subprocess.run([sys.executable,'-B',str(ROOT/'scripts/generate_native_registry.py'),'--check'],check=True)
+subprocess.run([sys.executable,'-B',str(ROOT/'scripts/check_native_rollout.py')],check=True)
 subprocess.run([sys.executable,'-B',str(ROOT/'scripts/check_versions.py')],check=True)
 subprocess.run([sys.executable,'-B',str(ROOT/'scripts/check_source.py')],check=True)
 subprocess.run([sys.executable,'-B',str(ROOT/'tests/test_package.py')],check=True)
@@ -66,3 +68,13 @@ existing_event.globals().B47ANCEDUI_FIXTURE_ONLY=True
 existing_event.globals().B47ANCEDUI_EMPTY_EVENT_PREEXISTS=True
 existing_event.execute((ROOT/'tests/test_api.lua').read_text())
 existing_event.execute((ROOT/'tests/test_native_overhaul.lua').read_text())
+rollout=client_runtime()
+rollout.globals().package.path=native.globals().package.path
+rollout.globals().B47ANCEDUI_FIXTURE_ONLY=True
+rollout.execute((ROOT/'tests/test_api.lua').read_text())
+rollout.execute((ROOT/'tests/test_native_rollout.lua').read_text())
+atoms=client_runtime()
+atoms.globals().package.path=native.globals().package.path
+atoms.globals().B47ANCEDUI_FIXTURE_ONLY=True
+atoms.execute((ROOT/'tests/test_api.lua').read_text())
+atoms.execute((ROOT/'tests/test_atom_theme.lua').read_text())

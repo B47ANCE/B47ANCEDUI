@@ -1,6 +1,8 @@
 # Architecture and persistence
 
-Project Version: 0.10.0-dev.2
+Project Version: 0.11.0-dev.1
+
+The 0.11 native rollout extends the original instance-only design with two delegated ISUIElement construction hooks (new/addChild) and the separate declared PZAPI lifecycle. Constructors enqueue guarded instances; pre-UI draw drains construction work without a recurring tree/world scan. Class renderer/palette tables remain unchanged. Specialized Options/inventory/menu/editor ownership wins; unknown/provider/custom trees fail closed, including reparented controls and pooled dropdown owner switches. Original statements below about no global patches describe the earlier foundation; the bounded lifecycle observer is the explicit current exception. [Current architecture, provenance and limits](NATIVE_ROLLOUT.md).
 
 NativeSettings adds an instance-scoped Options palette/drawing adapter. Native settings retain their original values, callbacks, fonts/geometry, tabs, page stencils, display confirmation, audio rollback and input ownership. Supported late additions are adopted through owned container addChild delegates, with bounded initial traversal. Custom renderers and colour swatches remain guarded; shared dropdown popup fields/methods restore after themed draw/error and detached controls stop receiving drawing changes. Accent is UI's local slot 0; no gameplay state, new settings storage or public API changes. See NATIVE_SETTINGS.md for scope, evidence and runtime gates.
 

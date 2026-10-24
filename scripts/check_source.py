@@ -18,7 +18,10 @@ def validate():
         text=p.read_text()
         assert not re.search(r'\bnext\s*\(',text),(p,'Unsupported Kahlua global table iterator')
         for prohibited in ('B47ANCEDQuartermaster','UI_QMSS_','sendClientCommand','sendServerCommand','ModData','getSpecificPlayer'):
-            assert prohibited not in text,(p,prohibited)
+            # Native metadata includes ISModDataDebug UI names. That is not
+            # access to the global shared gameplay store.
+            present = bool(re.search(r'\bModData\b',text)) if prohibited=='ModData' else prohibited in text
+            assert not present,(p,prohibited)
         for required in re.findall(r"require\s*\(?\s*['\"](B47ANCEDUI/[^'\"]+)",text):
             assert (SOURCE/'42/media/lua/client'/f'{required}.lua').is_file(),required
         keys.update(re.findall(r"getText\(['\"](UI_B47ANCEDUI_[^'\"]+)",text))

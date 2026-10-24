@@ -1,6 +1,8 @@
 # Native UI overhaul: first slice
 
-Project Version: 0.10.0-dev.2
+Project Version: 0.11.0-dev.1
+
+This page retains the original 0.10 inventory/context/tooltip/dialog slice and its historical test scope. The current broad frontend/gameplay/specialist extension and its explicit engine/provider limits are recorded in [NATIVE_ROLLOUT.md](NATIVE_ROLLOUT.md); the earlier coverage labels below are not the current whole-project adoption inventory.
 
 This compatible MINOR addition starts the implementation following the [dated coverage audit](UI_COVERAGE_AUDIT_2026-10-23.md). That audit remains an unchanged historical snapshot. The whole-game overhaul is unfinished; the table below describes this iteration's source coverage, not runtime acceptance or a completion percentage.
 

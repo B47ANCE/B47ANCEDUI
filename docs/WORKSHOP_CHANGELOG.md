@@ -1,4 +1,6 @@
-Version 0.10.0-dev.2
+Version 0.11.0-dev.1
+
+- Development source: extend shared near-black native chrome across audited frontend, gameplay and specialist Lua windows, with native controls, pooled dropdown guards and separate PZAPI lifecycle. Preserve semantic content, native actions and saved menu/layout defaults. Offline suites PASS; native visual/input acceptance NOT TESTED. Not uploaded; Workshop remains0.5.0-dev.11.
 
 - Development main-menu Quit to desktop confirmation now uses shared near-black rounded surfaces and local accent; native Yes/No actions/focus/geometry retained. Native acceptance NOT TESTED; not uploaded.
 
