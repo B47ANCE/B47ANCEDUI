@@ -2,6 +2,8 @@
 
 ## [0.9.0-dev.4] - 2026-10-22
 
+- 2026-10-23 audit-only checkpoint: record 61 grouped UI work areas, 622 installed source candidates and 576 UI declarations with source fingerprints, explicit adoption/geometry/preview/engine boundaries and prioritized remaining work. Add read-only repeatable catalogue tooling; no runtime/version change.
+
 - Fix native Options setup aborting at the section dropdown: use the installed ISComboBox tooltip-map API after each native clear, rather than an unsupported generic tooltip setter.
 - Tighten the native-shaped fixture so only real label/button/text-entry receivers expose setTooltip; reproduce the exact dev.3 attach failure before the fix and verify section help survives rebuilds afterward.
 - Compatible PATCH; API1, settings values, saved schemas/defaults and native Apply behavior unchanged. Actual dev.3 Options initialization FAILED; dev.4 offline and runtime evidence are recorded separately in TESTING.md.

@@ -2,6 +2,8 @@
 
 Development version: 0.9.0-dev.4.
 
+The [2026-10-23 UI coverage audit and inventory](docs/UI_COVERAGE_AUDIT_2026-10-23.md) identifies 61 work areas and 622 installed UI-related candidate files. Current adapters cover selected menus/Options and owned tools; HUD geometry/previews do not constitute a whole-game skin. The report prioritizes remaining native screens/components and preserves runtime evidence limits.
+
 Historical development **0.9.0-dev.2** fixes a startup rendering error caused by unsupported global `next()` in the installed Kahlua runtime. Table-presence checks now use a private `pairs()` helper; all behavioral tests run with `next` unavailable. No profile/API/schema change. The local corrected build starts and attaches Options styling without the prior UI exception at observation; full interactive acceptance is pending.
 
 Development **0.9.0-dev.4** corrects a native dropdown tooltip API mismatch that stopped Options construction. It restores the **Options** categories and search after dropdown dismissal. A section selector and bounded Previous/Next pages keep supported settings inside the window without unnecessary scrollbars or tiny text. Search reveals the original setting on its section/page. Native values, callbacks, controller rows and Apply/save ownership remain unchanged. Crowded category lists use navigation pages; specialized/controller/provider content retains genuine overflow access. Existing page-specific resets remain. [Layout, compatibility and runtime checks](docs/OPTIONS_LAYOUT.md).

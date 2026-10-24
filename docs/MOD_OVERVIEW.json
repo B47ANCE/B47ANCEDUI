@@ -4,7 +4,7 @@
   "name": "B47ANCE'd UI",
   "version": "0.9.0-dev.4",
   "reviewed": true,
-  "source_digest": "38e8bd0065f92f61f4fbfafcd18b48770a983a26a5868ea720e2606991b6aeb3",
+  "source_digest": "34bc31ea7b90ec775295d676725362a9ff5a1685e4458d99eebfd5c8d09e2dd5",
   "features": [
     {
       "status": "Source",
@@ -119,7 +119,7 @@
       "text": "Native Options section-dropdown compatibility fix: verified setToolTipMap/defaultTooltip after clear replaces unsupported setTooltip. Actual dev.3 Kahlua attach failure reproduced at identical source call in strict fixture; current suite passes, native post-fix acceptance pending."
     }
   ],
-  "limits": "0.9.0-dev.4 compatible development correction; Workshop remains0.5.0-dev.11. Offline suites PASS:68 runtime files/144 keys/29 unreviewed English-fallback locales. Dev.1 global-next rendering failure corrected in dev.2, whose limited startup was observed. Dev.3 source101ac0a deployed with68/68 hash parity but native Options attach FAILED at unsupported ISComboBox.setTooltip, producing a partial shell. Dev.4 uses setToolTipMap after clear and passes the exact strict regression; post-fix native rendering/input/controller acceptance NOT TESTED. Safe previews/explicit supported HUD overrides only; unknown providers opt in and oversized specialized content retains genuine overflow. No shared gameplay/network/sandbox state. G6 NOT TESTED; project G7/stable G8 BLOCKED. Current correction is prepared for authorized local retesting; no package/upload.",
+  "limits": "0.9.0-dev.4 compatible development correction; Workshop remains0.5.0-dev.11. Offline suites PASS:68 runtime files/144 keys/29 unreviewed English-fallback locales. Dev.1 global-next rendering failure corrected in dev.2, whose limited startup was observed. Dev.3 source101ac0a deployed with68/68 hash parity but native Options attach FAILED at unsupported ISComboBox.setTooltip, producing a partial shell. Dev.4 uses setToolTipMap after clear and passes the exact strict regression; post-fix native rendering/input/controller acceptance NOT TESTED. Safe previews/explicit supported HUD overrides only; unknown providers opt in and oversized specialized content retains genuine overflow. No shared gameplay/network/sandbox state. G6 NOT TESTED; project G7/stable G8 BLOCKED. Current correction is prepared for authorized local retesting; no package/upload. Dated 2026-10-23 audit identifies 61 grouped work areas and 622 UI-related source candidates; files/classes are not screen counts or completion percentages. Eight native HUD targets provide geometry only; broad gameplay/frontend adoption remains outstanding. Audit changes no runtime files.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -151,7 +151,10 @@
     "docs/STYLE_PRESETS.md",
     "docs/STYLE_PRESETS_SOURCE.json",
     "tests/test_style_presets.lua",
-    "tests/test_style_editor.lua"
+    "tests/test_style_editor.lua",
+    "docs/UI_COVERAGE_AUDIT_2026-10-23.md",
+    "docs/UI_COVERAGE_INVENTORY_2026-10-23.json",
+    "docs/UI_SOURCE_CATALOG_2026-10-23.json"
   ],
   "relations": []
 }
