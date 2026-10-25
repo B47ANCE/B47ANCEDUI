@@ -1,6 +1,8 @@
 # Native main and Esc menu styling
 
-Project Version: 0.12.0-dev.1
+Project Version: 0.12.0-dev.2
+
+Current evidence (2026-10-24, dev.2): [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). Overall native acceptance is FAILED / INCOMPLETE. Earlier version-specific NOT TESTED statements below retain their original checkpoint scope. Bunker/main navigation, optional status text, Quit/Cancel and one SP Esc/Resume were observed. Quit's dark surface rendered; semantic red/green square outlines need corner-ownership review. Keyboard/controller, all actions and audio listening remain pending.
 
 The native Options screen has a separate internal palette/drawing adapter in this development revision. It preserves native settings and input behavior; it does not apply large text-only menu navigation to the ordinary settings buttons. See [settings integration](NATIVE_SETTINGS.md). Native acceptance remains NOT TESTED.
 

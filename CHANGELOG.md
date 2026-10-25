@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0-dev.2] - 2026-10-24
+
+- Fix UI Style Presets failing to open: native RGB slider setValues dispatches callbacks during construction, before text handlers exist. Keep editor synchronization active until construction and final refresh finish; no default/profile/schema change.
+- Reproduce the real StyleEditor.lua112 failure with native-eager slider doubles before the fix; cover unchanged initial draft and all three working RGB channels afterward.
+- Complete a bounded45-case baseline/candidate runtime and offline fixture-packaging pass. Overall acceptance FAILED / INCOMPLETE:61 areas classified18 LIMITED/17 FAIL/26 NOT_REACHED. Record actionable Options/editor/clipping/native-selection gaps and exact private evidence hashes in docs/UI_RUNTIME_ACCEPTANCE_2026-10-24.md/json; no complete-area PASS or dedicated claim.
+- PATCH correction to0.12.0-dev.1. Original saves were not loaded and original preferences retain their baseline hashes. Workshop remains0.12.0-dev.1; no UI release package or new upload.
+
 ## [0.12.0-dev.1] - 2026-10-24
 
 - Publication: PR16 merged after CI; existing public Workshop item3822582242 updated from exact source d992608. SteamCMD commit-success and exact public description/source/ZIP/stage parity verified. Separate user-approved Steam start confirmed (already closed); no local deployment or game/server launch. Native/dedicated acceptance remains NOT TESTED; dated receipt in docs/WORKSHOP_PRESETS_UPDATE.md.

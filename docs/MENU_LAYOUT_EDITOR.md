@@ -1,8 +1,10 @@
 # Main-menu layout editor
 
-Project Version: 0.12.0-dev.1
+Project Version: 0.12.0-dev.2
 
-The 0.7 series adds compatible local layout editing; this dev.2 PATCH guards unsaved exits. Public API major1, formats and approved defaults are unchanged. Workshop remains 0.5.0-dev.11; current source is not deployed/uploaded. Historical 0.6.0-dev.2 local startup is recorded separately in TESTING.md.
+Current evidence (2026-10-24, dev.2): [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). Overall native acceptance is FAILED / INCOMPLETE. Earlier version-specific NOT TESTED statements below retain their original checkpoint scope. Approved independent defaults were retained at both tested sizes. An attempted logo drag closed its editor; mouse capture/exit behavior needs reproduction. No default geometry or profile migration is included in this patch.
+
+The0.7 series introduced local editing/unsaved guards;0.6.0-dev.3 captured the owner-approved defaults below. Current API1, formats and defaults are unchanged. Workshop remains0.12.0-dev.1; the candidate was tested only in an isolated profile. Historical startup evidence is recorded separately in TESTING.md.
 
 ## Shipped defaults (0.6.0-dev.3)
 

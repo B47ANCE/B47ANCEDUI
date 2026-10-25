@@ -25,6 +25,13 @@ for _,class in ipairs({ISPanel,ISPanelJoypad})do
 end
 ISTextEntryBox.setMaxTextLength=function(self,n)self.maxLength=n end
 ISComboBox.clear=function(self)self.options={};self.selected=1 end
+-- Match native setValues: construction dispatches onValueChange even before
+-- editor handlers exist, unless explicitly suppressed by the caller.
+ISSliderPanel.setValues=function(self,a,b,step,shift,ignoreCurVal)
+ self.minimum=a;self.maximum=b;self.step=step
+ if not ignoreCurVal then self:setCurrentValue(self.currentValue or 0)end
+ self:paginate()
+end
 local U=B47ANCEDUI;local P=U.StylePresets;U.forMod('StyleConsumer')
 local callbacks={};Events.OnGameStart.Add=function(fn)callbacks[#callbacks+1]=fn end
 local E=require 'B47ANCEDUI/StyleEditor'
@@ -42,6 +49,7 @@ local function find(values,value)for i,v in ipairs(values)do if v==value or type
 local state,root=open();assert(root.wantKeyEvents and focus.focus==root and root.initialFocus==state.preset and playerFocusCalls==0)
 assert(state.veil:onMouseDown()and state.veil:onMouseUp()and state.veil:onMouseWheel(1),'Outside clicks leaked into native Options')
 assert(root==E.open(owner)and state.number.disabled and writes==0)
+assert(P.serialize(state.draft,1)==P.serialize(P.get(0),1),'Construction wrote explicit RGB values into the draft')
 state.value:setText('#123456')
 assert(P.current(0).presets.default.values['*'].button.background=='#123456'and P.get(0).presets.default.values['*']==nil)
 root:onKeyRelease(Keyboard.KEY_RETURN);assert(E.active==state and writes==0,'Enter implicitly saved')
@@ -93,6 +101,8 @@ state,root=open();assert(#state.presetKeys==2 and P.serialize(P.get(0),1)==uncha
 choose(state.preset,2);assert(state.draft.active~='default'and state.name:getInternalText()=='Imported')
 assert(P.serialize(P.get(0),1)==unchanged,'Selecting plugin saved implicitly')
 state.rgb[1]:setCurrentValue(255);assert(state.value:getInternalText()=='#FF4466')
+state.rgb[2]:setCurrentValue(170);assert(state.value:getInternalText()=='#FFAA66')
+state.rgb[3]:setCurrentValue(187);assert(state.value:getInternalText()=='#FFAABB')
 state.value:setText('');local red=state.rgb[1].currentValue;assert(red~=255,'Inherit left explicit RGB value')
 choose(state.familyBox,find(P.families,'slider'));choose(state.propertyBox,find(state.properties,'thumbWidth'))
 assert(state.number.visible and not state.rgb[1].visible)

@@ -1,6 +1,8 @@
 # Validation
 
-Project Version: 0.12.0-dev.1
+Project Version: 0.12.0-dev.2
+
+0.12.0-dev.2 [TESTED: offline Windows and native frontend/disposable SP,2026-10-24]: [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). The45 cases include baseline/candidate runtime and offline fixture packaging. Overall acceptance FAILED / INCOMPLETE:61 areas classified18 LIMITED/17 FAIL/26 NOT_REACHED. Native slider setValues construction failure reproduced before the one-line guard, then opening/Red click-drag/Inherit/Keep/Discard/Save-reopen and inactive generated-plugin selection worked. Options/editor/clipping/native-selection defects remain. Exact version/full regression/installed-contract/report-binding/diff checks PASS; commands and limitations are in the report. Original real saves were not loaded; five original preference hashes match baseline. No server launch, UI release package or Workshop update. G7 NOT TESTED / BLOCKED; stable G8 BLOCKED. The records below preserve earlier checkpoints.
 
 2026-10-24 publication [VERIFIED distribution, not runtime]: PR16 merged asd992608; exact merged-head CI, build/regressions, release version, source/ZIP/stage78-file parity, public-data/VDF/text/link checks PASS. SteamCMD exit0/commit-success and exact public description verified for item3822582242/version0.12.0-dev.1. Prior package preserved. Explicitly approved Steam start verified (client already closed); no local deployment/game/server launch. Native acceptance and subscribed download NOT TESTED; G6 NOT TESTED, G7/stable G8 BLOCKED. Immutable source/hash/command evidence: [WORKSHOP_PRESETS_UPDATE.md](WORKSHOP_PRESETS_UPDATE.md). The implementation-only record below describes the earlier source checkpoint.
 

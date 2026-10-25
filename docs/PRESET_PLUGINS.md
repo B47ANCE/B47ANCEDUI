@@ -1,6 +1,8 @@
 # Shareable preset plugins
 
-Project Version: 0.12.0-dev.1
+Project Version: 0.12.0-dev.2
+
+Current evidence (2026-10-24, dev.2): [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). Overall native acceptance is FAILED / INCOMPLETE. Earlier version-specific NOT TESTED statements below retain their original checkpoint scope. An actual191-byte runtime export was packaged into a data-only fixture, enabled through native Mods, discovered inactive, explicitly previewed as a detached copy and saved/reopened. Original Default was restored. Duplicate local display names need improvement. Helper-to-uploader handoff, Steam publication/subscription and changed-profile cold reload remain NOT TESTED. Only the isolated profile was modified.
 
 Open **Options → Interface → UI Style Presets**. Color properties accept hex or Red/Green/Blue sliders. Choose a shared preset or a registered consumer scope; changes preview immediately on supported UI. Save keeps the selection; Cancel restores the saved book. Multiple presets can be kept and switched without restarting. Menu/HUD layout profiles remain separate.
 
@@ -55,4 +57,4 @@ The transport header has its own schema1, stable ASCII ID (1–64 bytes) and can
 
 [TESTED: offline Windows, Lua5.1/Python] Cross-language format round trips; inactive discovery; copies/collisions/capacity; read/close/partial-write/future-file guards; identity journals; RGB/hex/editor state; completed-request/status checks; exact data-only inventory; preview PNG CRC; versioned staging; metadata retention; transactional fault injection/recovery. Tests use disposable folders and doubles, with global next unavailable. No real player exports or Workshop folders were staged.
 
-[RUNTIME GATE] Real enabled-mod reads, in-game export/read-back, selection/reload, native input/controller, filesystem permissions, helper-to-PZ wizard handoff, upload/download and performance remain NOT TESTED. G6 NOT TESTED; project G7/stable G8 BLOCKED. The initial implementation was source-only. The UI provider was subsequently merged/published as0.12.0-dev.1 on2026-10-24; see [distribution receipt](WORKSHOP_PRESETS_UPDATE.md). That upload does not verify this user-authored plugin workflow. No local deployment or game/server launch was performed.
+[RUNTIME GATE] The bounded local discovery/export/selection/Save/reopen path above was reached. Complete input/controller, permissions failures, watch/helper-to-PZ wizard handoff, plugin upload/download and performance remain NOT TESTED. Full G6 acceptance FAILED / INCOMPLETE; project G7/stable G8 BLOCKED. The initial source-only implementation and provider publication are historical checkpoints; see [distribution receipt](WORKSHOP_PRESETS_UPDATE.md). Provider upload does not establish user-authored plugin publication. No server was launched or Workshop content changed during this acceptance pass.

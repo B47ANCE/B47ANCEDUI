@@ -1,4 +1,6 @@
-Version 0.12.0-dev.1
+Version 0.12.0-dev.2
+
+Development candidate, NOT UPLOADED. Fix preset editor initialization before native RGB callbacks; current Workshop distribution is0.12.0-dev.1.
 
 MP testing build - dedicated multiplayer NOT TESTED
 
@@ -11,4 +13,6 @@ MP testing build - dedicated multiplayer NOT TESTED
 - Apply the shared style to main-menu Quit to desktop confirmation. Correct unsupported Kahlua global-next checks and the absent empty-inventory event bootstrap without changing gameplay or public API1/profile schema1 contracts.
 - Preserve the existing security-room artwork, independent 1-60 second CRT static/no-signal loops and title-screen audio behavior.
 
-Offline syntax/regression/source/version/translation/integrity checks pass. Native visual/input/controller, split-screen, settings/profile reload, actual plugin discovery/export, helper-to-uploader handoff, subscription/download and dedicated multiplayer acceptance remain NOT TESTED. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. This upload does not establish runtime acceptance.
+Offline syntax/regression/source/version/translation/integrity checks pass. Native acceptance is FAILED / INCOMPLETE; representative frontend/SP/preset paths were reached, but full visual/input/controller, split-screen, helper-to-uploader handoff, plugin publication/subscription and dedicated multiplayer acceptance remain pending. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. Distribution does not establish runtime acceptance.
+
+Current candidate acceptance (2026-10-24): FAILED / INCOMPLETE. The bounded45-case report includes baseline/candidate runtime and offline fixture packaging. RGB editor construction is corrected; Options clipping, layout-editor input, native selection chrome and unreached areas remain. Full controller/split-screen/ultrawide/dedicated acceptance and plugin publication remain pending. Workshop remains0.12.0-dev.1; this candidate has not been uploaded. See docs/UI_RUNTIME_ACCEPTANCE_2026-10-24.md in the public source.

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "project_version": "0.12.0-dev.1",
+  "project_version": "0.12.0-dev.2",
   "date": "2026-10-21",
   "game_target": "Build 42.21",
   "steam_build": "25485521",
@@ -24,6 +24,12 @@
         ],
         "function ISSliderPanel:new": [
           240
+        ],
+        "function ISSliderPanel:setValues": [
+          166
+        ],
+        "function ISSliderPanel:doOnValueChange": [
+          160
         ]
       }
     },
@@ -144,5 +150,6 @@
     "interactive_input_persistence_controller": "NOT TESTED",
     "dedicated": "NOT TESTED",
     "upload": "NOT PERFORMED"
-  }
+  },
+  "reviewed_on": "2026-10-24"
 }

@@ -1,6 +1,8 @@
 # Native settings presentation
 
-Project Version: 0.12.0-dev.1
+Project Version: 0.12.0-dev.2
+
+Current evidence (2026-10-24, dev.2): [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). Overall native acceptance is FAILED / INCOMPLETE. Earlier version-specific NOT TESTED statements below retain their original checkpoint scope. All eight Options category entries and representative dropdowns/page controls were reached. Keybinding/controller/picker geometry defects and unresolved text/Escape input prevent acceptance. Native setting changes, display rollback and all controller paths were not comprehensively tested.
 
 The Options screen now uses the sidebar/search/card workspace described in [OPTIONS_LAYOUT.md](OPTIONS_LAYOUT.md). `NativeSettings.lua` remains its palette adapter: near-black surfaces, restrained rounded native controls, grey default accent `#B0B0B0` and guarded native/provider ownership. `OptionsLayout.lua` adds instance geometry/navigation after palette and Interface attachment. It replaces the recognized native tab strip with category navigation, while preserving the original tabs/pages/controls/actions underneath. The palette-only statements below describe NativeSettings, not the aggregate workspace layout.
 

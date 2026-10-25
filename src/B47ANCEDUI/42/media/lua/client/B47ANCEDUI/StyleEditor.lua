@@ -15,7 +15,7 @@ function E.open(owner)
  if E.active and not E.active.closed then return E.active.root end
  local player=U.Appearance.player(owner);local book,status=P.get(player)
  Plugins.refresh()
- local state={draft=book,baseline=P.copy(book),rows={},owner=owner,player=player,scope='*',family='button',property=P.properties[1],status=status,exitMessageKey='StyleUnsavedMessage'}
+ local state={draft=book,baseline=P.copy(book),rows={},owner=owner,player=player,scope='*',family='button',property=P.properties[1],status=status,syncing=true,exitMessageKey='StyleUnsavedMessage'}
  if not P.preview(player,book,state)then E.lastError='preview-owned';return end
  local vw=getPlayerScreenWidth and getPlayerScreenWidth(player)or 1024;local vh=getPlayerScreenHeight and getPlayerScreenHeight(player)or 768
  local left=getPlayerScreenLeft and getPlayerScreenLeft(player)or 0;local top=getPlayerScreenTop and getPlayerScreenTop(player)or 0

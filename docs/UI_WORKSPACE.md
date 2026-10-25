@@ -1,8 +1,10 @@
 # Options and safe HUD layout workspace
 
-Project Version: 0.12.0-dev.1
+Project Version: 0.12.0-dev.2
 
-Current 0.8.0-dev.2 adds compatible PATCH fixes for HUD editor input/exit handling to the 0.8 Options workspace. The 0.7 series introduced safe HUD previews and shared unsaved-exit confirmation. Public API major 1, existing appearance storage, main-menu schema 1 and the owner-approved menu/logo defaults remain compatible. No current package, deployment, launch or Workshop upload is part of this iteration.
+Current evidence (2026-10-24, dev.2): [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). Overall native acceptance is FAILED / INCOMPLETE. Earlier version-specific NOT TESTED statements below retain their original checkpoint scope. HUD selector text changed to Nearby Loot while Inventory remained the active preview and plus-button target; direct drags did not move it. Blank clicks stayed inert and Cancel/Discard protected the unsaved draft. Attempted main-menu logo drag closed that editor. Input/capture timing and Escape remain unresolved; offline input fixtures do not establish these paths work natively.
+
+Historical 0.8.0-dev.2 added compatible PATCH fixes for HUD editor input/exit handling to the 0.8 Options workspace. The 0.7 series introduced safe HUD previews and shared unsaved-exit confirmation. Public API major 1, existing appearance storage, main-menu schema 1 and the owner-approved menu/logo defaults remain compatible. That original checkpoint did not package, deploy, launch or upload; the dated dev.2 report above records the later isolated runtime pass.
 
 ## Player controls
 

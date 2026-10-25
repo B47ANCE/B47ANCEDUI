@@ -1,6 +1,8 @@
 # Editable UI style presets
 
-Project Version: 0.12.0-dev.1
+Project Version: 0.12.0-dev.2
+
+Current evidence (2026-10-24, dev.2): [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). Overall native acceptance is FAILED / INCOMPLETE. Earlier version-specific NOT TESTED statements below retain their original checkpoint scope. Native eager RGB callbacks exposed a construction crash; dev.2 keeps synchronization active until construction completes. The strict fixture reproduces the prior failure. Opening, Red click/drag, Inherit, Keep/Discard, Save/reopen and a generated plugin preview now work in the isolated profile. Typed hex, complete CRUD/scopes/channels/states/controller acceptance remain pending; imported local Default labels are ambiguous.
 
 0.12 adds39 independent colors (53 total) and a separate Scrollbar family, alongside the existing19 family choices including All components. Hex and RGB sliders stay synchronized and display inherited colors. Specific channels cover surfaces; pressed/selected/disabled/focus states; title/status bars; slider tracks/thumbs; scrollbar tracks/thumbs/arrows; checks/icons; progress; menu text/hover/underline; tooltips; and owned input text/placeholders. Old generic values remain fallbacks. Scrollbar values inherit old Slider colors before explicit Scrollbar overrides.
 
