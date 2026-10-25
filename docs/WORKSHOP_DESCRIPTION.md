@@ -1,7 +1,8 @@
 # B47ANCE'd UI
 
 ## Overview
-A shared near-black interface for Project Zomboid Build 42.21, with a neutral grey accent, restrained rounded corners and a public Lua API for cooperating mods. Version 0.12.0-dev.1 is an MP testing build.
+Development candidate0.12.0-dev.2 fixes preset-editor construction. Not uploaded; the public Workshop build remains0.12.0-dev.1.
+A shared near-black interface for Project Zomboid Build 42.21, with a neutral grey accent, restrained rounded corners and a public Lua API for cooperating mods. Version 0.12.0-dev.2 is an MP testing build.
 
 MP testing build - dedicated multiplayer NOT TESTED
 
@@ -24,7 +25,7 @@ Target: Project Zomboid Build 42.21. Mod ID: B47ANCEDUI. Public client Lua API: 
 
 UI works without Quartermaster, Rooms or PC Framework. Enable it with dependent mods; follow those mods' server/client installation requirements. The optional PZ Optimization menu-entry adapter preserves its action and live status while reserving a subtitle line. Other custom renderers remain guarded and may retain their original styling.
 
-Offline Lua 5.1 regression, version, source, translation and integrity checks pass. Native rendering/input/controller/split-screen, settings reload, actual preset discovery/export, subscribed download and dedicated multiplayer acceptance for this build are NOT TESTED. G7 and stable-release G8 remain blocked. Test distribution is not stable-release certification.
+Offline Lua 5.1 regression, version, source, translation and integrity checks pass. Native acceptance is FAILED / INCOMPLETE: representative frontend/SP/preset discovery-export-selection paths were reached, with known Options/editor/styling defects. Complete input/controller/split-screen, changed-profile cold reload, plugin Workshop publication/subscription and dedicated acceptance remain pending. G7 and stable-release G8 remain blocked. Test distribution is not stable-release certification.
 
 ## Configuration
 Open Options > Interface for appearance, UI Style Presets and layout editing. Colors accept #RRGGBB or Red/Green/Blue sliders. The default accent is grey #B0B0B0. Inherit restores fallback values; explicit component values take priority over legacy accent/opacity preferences. Save keeps a preset; Cancel restores the saved selection.
@@ -49,3 +50,5 @@ Pure Lua cannot safely create new Workshop staging content through a verified AP
 
 ## Credits & Permissions
 Developed by B47ANCE'd Workshop. Original B47ANCE-owned shared code extracted from Quartermaster with explicit owner authorization. No external mod implementation or assets copied. No reuse license is implied beyond permissions separately granted by the owner.
+
+Current candidate acceptance (2026-10-24): FAILED / INCOMPLETE. The bounded45-case report includes baseline/candidate runtime and offline fixture packaging. RGB editor construction is corrected; Options clipping, layout-editor input, native selection chrome and unreached areas remain. Full controller/split-screen/ultrawide/dedicated acceptance and plugin publication remain pending. Workshop remains0.12.0-dev.1; this candidate has not been uploaded. See docs/UI_RUNTIME_ACCEPTANCE_2026-10-24.md in the public source.

@@ -1,6 +1,6 @@
 # Public Lua API
 
-Project Version: 0.12.0-dev.1
+Project Version: 0.12.0-dev.2
 
 0.12 adds `API.PresetPacks={schema=1,path='media/B47ANCEDUI/style-pack.txt',refresh=function() ... end}`. `refresh()` returns detached catalogue and issue arrays from currently enabled mods, without activation, preference writes or revision changes. Entries carry `source`, `pack`, `version`, `key`, `preset`; issues carry source/status. Format1 and public API1 are independent. Selection/export remain owned by the standard StyleEditor. See [preset pack contract](PRESET_PLUGINS.md).
 

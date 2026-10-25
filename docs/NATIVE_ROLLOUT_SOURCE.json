@@ -1,14 +1,14 @@
 {
   "schema": 1,
-  "project_version": "0.12.0-dev.1",
+  "project_version": "0.12.0-dev.2",
   "game_version": "42.21.0",
   "game_revision": "4a0e9546ec",
   "steam_build": "25485521",
   "evidence": "VERIFIED installed source contracts; TESTED offline Lua5.1; no copied native function bodies",
-  "runtime_acceptance": "NOT TESTED",
+  "runtime_acceptance": "FAILED / INCOMPLETE",
   "provenance_limit": "Installed engine overrides are present; not pristine-distribution certification. Known provider source excluded; no external source imported.",
   "project_fingerprints": {
-    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/API.lua": "c1f01c2cfb3d421e1070f22bc58bb2f8f619550de869e7b598b7236fc63b5382",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/API.lua": "a5a93fbbaa94db1f3426e795344bc381768db442c3fc60c5730f0156180ef17f",
     "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Appearance.lua": "7437765b204d3f4c40160bae1435fe90281be3bce212823d5ff779127d28d252",
     "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/AppearanceEditor.lua": "f3c4b257772e791b35693842bfa61b643bf9cd6b96b38b9f96de1d9b44d1368b",
     "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Clipboard.lua": "1ec36b9c3669c3e023b3fd85a9c2ebe71b5b94a733b90921f5de4cc020ffdb43",
@@ -40,7 +40,7 @@
     "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/PZAPITheme.lua": "e4d1e12d73203647635ef3128562fe180f1266699da426e7a1116fbe0436afec",
     "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Renderer.lua": "7ab5a1f3f9cab99614ab5b23c396a00cba60730f20bc2ae1d403026e01401d3f",
     "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/RowTooltip.lua": "599670855f85e8d8e5e04e07b7ffb3f6badf0b3db1ec2b9ea4d7d0b397b0ce47",
-    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/StyleEditor.lua": "cac70735c8ad54933d5ef9d5222e25c1c9d84b030dccb6ea027eab1039369cda",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/StyleEditor.lua": "03276394e1ebf2444bc923d6fecdf7e7e47270855f2cd00a4de8d5fc77ecb391",
     "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/StylePresets.lua": "6af4aac6fa108968e5afdea3aebbc5fc7f0358b2c79952dad2deac5e33dff0bd",
     "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Theme.lua": "d71f144292f6843c1d7b18da6bccc5909d8412bdc81d74ada7a71555da83fa90",
     "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Tooltip.lua": "cb9bd267393f30bf99a2f0d4954e55f8b21e848109f5017e7555fffe15af46a1",
@@ -85,7 +85,7 @@
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static6.png": "c87c64a549b6b808f09e632291f7c82f8c2f7b49e0bafb796e966d9b51822e61",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static7.png": "57cbd4aaca2abf88d4d29c5b60f1c5d648e519db998db0ba5c9fa0c6090c3f4c",
     "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static8.png": "65137127a76a187573ad6d04c7f1f4f928b808ed387b0bd042cd4484ff6490cf",
-    "src/B47ANCEDUI/42/mod.info": "59d8dd6ecb17b225cc296b12bc02203ac35bc878e8d79a82eedd287959ba4f00"
+    "src/B47ANCEDUI/42/mod.info": "482101a7a5e495c8d8ae4db1ff1135afaab6ae5df22a3d4315ea2e36dd29c5e2"
   },
   "installed_contracts": [
     {
@@ -442,5 +442,10 @@
     "native_inspection": "Packaged LuaManager GlobalObject writers/readers checked read-only; no game classes executed or generated",
     "local_presentation": "No shared gameplay state, commands or synchronization",
     "packager": "Optional offline authoring helper; not shipped/required as runtime code; no upload"
+  },
+  "runtime_report": {
+    "path": "docs/UI_RUNTIME_ACCEPTANCE_2026-10-24.json",
+    "sha256": "d16e8bfd2e6e707a0786e55c2b59fd63c1384d820b7d4dc16402a6ff254a8726",
+    "hash_format": "SHA256; CRLF normalized to LF"
   }
 }

@@ -1,6 +1,8 @@
 # Options workspace
 
-Project Version: 0.12.0-dev.1
+Project Version: 0.12.0-dev.2
+
+Current evidence (2026-10-24, dev.2): [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). Overall native acceptance is FAILED / INCOMPLETE. Earlier version-specific NOT TESTED statements below retain their original checkpoint scope. Ordinary categories and section/page navigation were reached, but keybinding columns and nested controller controls clipped at both1280x800 and1920x1009. A1280 color picker extended offscreen. Key-capture Cancel retained Forward=W and Apply disabled. Search typing/input delivery and actual controller hardware remain unresolved.
 
 The owner-provided reference guides near-black Options with header search, left categories, original primitive icons/subtitles, rounded native settings and fixed Back / Apply / Accept actions. The editable accent defaults to grey. No reference pixels, third-party code or assets are copied.
 

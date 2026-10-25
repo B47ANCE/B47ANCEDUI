@@ -1,10 +1,12 @@
 # Native UI rollout
 
-Project Version: 0.12.0-dev.1
+Project Version: 0.12.0-dev.2
+
+Current evidence (2026-10-24, dev.2): [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). Overall native acceptance is FAILED / INCOMPLETE. Earlier version-specific NOT TESTED statements below retain their original checkpoint scope. The 45-case pass combines published baseline, candidate frontend/disposable-SP observations and offline fixture packaging; all61 areas are classified (18 LIMITED,17 FAIL,26 NOT_REACHED), with no complete-area PASS. Orange native selections/local subclasses and Options/editor geometry/input failures remain.
 
 0.12 extends these same guarded drawing paths with53 editable colors and specific surface/state/slider/scrollbar/check/title/menu/tooltip/progress channels. Disabled-button outlines use the native enable field and retain focus precedence; pressed colors preserve native fade interpolation. Native text-entry text/placeholder setters are used only for API-owned inputs. PZAPI icon and scrollbar thumb bodies are supported; universal thumb-hover and native cursor/selection/semantic item colors remain outside this adapter. Palette loans still restore on errors and Cancel. Shareable data packs add inactive choices, never implicit styling; [preset workflow and helper](PRESET_PLUGINS.md).
 
-The shared near-black theme now has an automatic adoption route for the audited native Lua UI classes, across frontend setup, gameplay windows and specialist tools. It preserves each screen's native controls and behavior. This is a source implementation and offline validation milestone; native visual/input acceptance is **NOT TESTED**. It is not a claim that every candidate is an active screen or that every pixel has been replaced.
+The shared near-black theme now has an automatic adoption route for the audited native Lua UI classes, across frontend setup, gameplay windows and specialist tools. It preserves each screen's native controls and behavior. The source implementation and offline checks are supplemented by the bounded failed/incomplete native pass linked above. It is not a claim that every candidate is an active screen or that every pixel has been replaced.
 
 ## Coverage
 

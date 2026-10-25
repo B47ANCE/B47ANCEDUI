@@ -20,11 +20,25 @@ def check(game_root=None):
     coverage = json.loads((ROOT/'docs/NATIVE_ROLLOUT_COVERAGE.json').read_text(encoding='utf-8'))
     version = (ROOT/'VERSION').read_text().strip()
     assert source['project_version'] == coverage['project_version'] == version
-    assert source['runtime_acceptance'] == coverage['runtime_acceptance'] == 'NOT TESTED'
+    report_ref = source['runtime_report']
+    assert report_ref == coverage['runtime_report']
+    report_path = (ROOT/report_ref['path']).resolve()
+    assert report_path.is_relative_to((ROOT/'docs').resolve())
+    assert report_ref['hash_format'] == 'SHA256; CRLF normalized to LF'
+    assert digest(report_path, True) == report_ref['sha256'], 'Runtime report changed; review/rebind evidence'
+    report = json.loads(report_path.read_text(encoding='utf-8'))
+    assert report['project_version'] == version
+    assert source['runtime_acceptance'] == coverage['runtime_acceptance'] == report['runtime_acceptance']
+    assert report['runtime_acceptance'] == 'FAILED / INCOMPLETE', 'No complete native acceptance claimed'
+    case_ids = {case['id'] for case in report['cases']}
+    assert len(case_ids) == len(report['cases']) == report['case_count'] > 0
+    observations = {area['id']: area for area in report['areas']}
+    assert len(observations) == len(report['areas']) == report['area_count'] == 61
     runtime = ROOT/'src/B47ANCEDUI'
     assert source['project_hash_format'] == 'SHA256; .lua/.json/.info CRLF normalized to LF; binary exact bytes'
     files = {p.relative_to(ROOT).as_posix(): digest(p,True) for p in runtime.rglob('*') if p.is_file()}
     assert files == source['project_fingerprints'], 'Rollout source changed; review/rebind evidence'
+    assert files == report['tested_project_fingerprints'], 'Runtime evidence belongs to a different source snapshot'
     catalog = json.loads((ROOT/'docs/UI_SOURCE_CATALOG_2026-10-24.json').read_text())
     known = {item['path']: item['sha256'] for item in catalog['files']}
     for evidence in source['installed_contracts']:
@@ -44,8 +58,15 @@ def check(game_root=None):
     assert coverage['counts']['separate_pzapi_templates'] == 16
     assert (runtime/'42/media/lua/client/B47ANCEDUI/NativeRegistry.lua').read_text() == render()
     for area in coverage['areas']:
-        assert area['route'] and area['limits'] and area['runtime_acceptance'] == 'NOT TESTED'
-    print(f'PASS rollout bindings: {len(files)} runtime files, 61 reviewed areas; native acceptance NOT TESTED')
+        observed = observations[area['id']]
+        assert area['route'] and area['limits'] and area['title'] == observed['title']
+        assert area['runtime_acceptance'] == observed['result'] in {'LIMITED', 'FAIL', 'NOT_REACHED'}
+        assert area['runtime_case_ids'] == observed['case_ids']
+        assert set(observed['case_ids']) <= case_ids
+        assert bool(observed['case_ids']) == (observed['result'] != 'NOT_REACHED')
+    assert report['area_results'] == {status: sum(a['result'] == status for a in report['areas'])
+                                      for status in {'LIMITED', 'FAIL', 'NOT_REACHED'}}
+    print(f'PASS rollout/report bindings: {len(files)} runtime files, 61 reviewed areas; native acceptance FAILED / INCOMPLETE')
     if game_root:
         print('PASS exact installed contract hashes/line bounds; source inspection only')
 

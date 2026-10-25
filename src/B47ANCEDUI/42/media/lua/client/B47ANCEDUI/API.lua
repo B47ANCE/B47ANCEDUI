@@ -7,7 +7,7 @@ local U=B47ANCEDUI
 U.AppearanceEditor={open=function(owner) return require('B47ANCEDUI/AppearanceEditor').open(owner) end}
 U.StyleEditor={open=function(owner)return require('B47ANCEDUI/StyleEditor').open(owner)end}
 U.apiVersion=1
-U.version='0.12.0-dev.1'
+U.version='0.12.0-dev.2'
 -- Data-only preset pack contract. Discovery never selects or saves a style.
 U.PresetPacks={schema=1,path='media/B47ANCEDUI/style-pack.txt',
  refresh=function()local K=require 'B47ANCEDUI/PresetPlugins';K.refresh();return U.StylePresets.copy(K.entries),U.StylePresets.copy(K.issues)end}

@@ -208,6 +208,10 @@
     {
       "reference": "docs/WORKSHOP_PRESETS_UPDATE.md; docs/WORKSHOP_UPDATE_0.12.0-dev.1_2026-10-24.json",
       "reason": "Immutable dated0.12.0-dev.1 Workshop distribution receipt binds actual source/validation commit, exact package/runtime/text hashes and public verification. Preserve its version/identities on future development bumps; not native or dedicated acceptance."
+    },
+    {
+      "reference": "docs/UI_RUNTIME_ACCEPTANCE_2026-10-24.md; docs/UI_RUNTIME_ACCEPTANCE_2026-10-24.json",
+      "reason": "Dated baseline/candidate45-case native frontend/disposable-SP and offline fixture-package record binds observed0.12.0-dev.1/0.12.0-dev.2, source parent and tested runtime fingerprints. Preserve actual FAILED / INCOMPLETE findings; never relabel as future runtime proof."
     }
   ]
 }
