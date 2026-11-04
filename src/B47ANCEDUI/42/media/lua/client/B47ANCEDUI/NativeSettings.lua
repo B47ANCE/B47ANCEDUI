@@ -4,6 +4,7 @@ require 'OptionScreens/MainOptions'
 require 'ISUI/ISTabPanel'
 require 'ISUI/ISComboBox'
 require 'ISUI/ISTickBox'
+require 'ISUI/ISColorPicker'
 require 'ISUI/ISVolumeControl'
 require 'ISUI/ISMegaVolumeControl'
 require 'RadioCom/ISUIRadio/ISSliderPanel'
@@ -157,12 +158,19 @@ local function rounded(w,root)
  end
 end
 local adopt
+function S.clampPicker(w,root)
+ if w and ISColorPicker and native(w,ISColorPicker)and w.parent==root then
+  w:setX(math.max(0,math.min(w:getX(),root:getWidth()-w:getWidth())))
+  w:setY(math.max(0,math.min(w:getY(),root:getHeight()-w:getHeight())))
+ end
+end
 local function container(w,root,depth,budget)
  if not w.b47SettingsContainer then
   w.b47SettingsContainer=true
   local add=w.addChild
   if add then w.addChild=function(self,child,...)
    local result=add(self,child,...)
+   if self==root then S.clampPicker(child,root)end
    if owned(self,root) then adopt(child,root,0,{left=4096}) end
    return result
   end end

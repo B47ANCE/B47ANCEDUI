@@ -8,6 +8,12 @@ ISButton.onMouseUpOutside=function(self)self.pressed=false end
 local screen=ISPanel:new(120,90,1920,1080);screen.Type='MainScreen';screen.bottomPanel=ISPanel:new(0,0,200,200)
 MainScreen.instance=screen
 local modal,mouseDown=false,false;UIManager.isModalVisible=function()return modal end
+UIManager.getUI=function()
+ local p=ISComboBox.SharedPopup
+ local nodes={p and p.visible and p.javaObject or {isModalVisible=function()return modal end,isCapture=function()return modal end}}
+ return {size=function()return #nodes end,get=function(_,i)return nodes[i+1]end,
+ contains=function(_,object)return p and p.visible and p.javaObject==object end}
+end
 isMouseButtonDown=function()return mouseDown end
 local focus={focus=screen};JoypadState={getMainMenuJoypad=function()return focus end}
 local writes=0;getFileWriter=function()return {write=function()writes=writes+1 end,close=function()end}end
@@ -81,6 +87,8 @@ W.key(screen,Keyboard.KEY_ESCAPE);prompt=state.exitPrompt;assert(prompt and writ
 local foreignFocus={};focus.focus=foreignFocus;modal=true;state.root:prerender()
 assert(screen.b47HudEditing==state and state.exitPrompt==prompt and focus.focus==foreignFocus and state.suspended)
 W.key(screen,Keyboard.KEY_ESCAPE);assert(state.exitPrompt==prompt and writes==0)
+prompt.discard();prompt.keep();prompt.panel:onJoypadDown(Joypad.AButton)
+assert(screen.b47HudEditing==state and state.exitPrompt==prompt and writes==0,'Foreign modal allowed stale confirmation actions')
 modal=false;state.root:prerender();assert(not state.suspended and state.exitPrompt==prompt);prompt.keep();unchanged(draft)
 -- Height-only/fixed-size/reference-only definitions retain their contracts.
 W.select(screen,index('B47ANCEDUI.mechanics'));frame=state.frames['B47ANCEDUI.mechanics'];before=rect('B47ANCEDUI.mechanics')

@@ -319,4 +319,50 @@ local long=W:new(1400,20,200,30);long.Type='CustomWidget';fallbackPage:addChild(
 assert(O.attach(fallbackRoot)and fallbackPage.hscroll)
 assert(fallbackPage.hscroll.y+fallbackPage.hscroll.height==fallbackPage.height)
 long:setX(20);O.layout(fallbackRoot);assert(not fallbackPage.hscroll)
-print('PASS OFFLINE Options contained sections/pages, visible categories/search, popup ownership, native identities/visibility/Apply, 7 sizes x 4 fonts, footer, genuine fallback scrolling and controller focus; native runtime NOT TESTED')
+-- Native key pairs start in two columns calculated from the whole root.
+local keyRoot=root();local kp,view=page(keyRoot,'UI_optionscreen_keybinding')
+local kh=ISLabel:new(20,10,200,24);kh.font=UIFont.Medium;kh.name='Movement';kp:addChild(kh)
+MainOptions.keyText={}
+for i=1,32 do
+ local x=i%2==0 and 1500 or 500;local y=40+math.floor((i-1)/2)*40
+ local label=ISLabel:new(x,y,240,24);label.name='Native key '..i;kp:addChild(label)
+ local b=ISButton:new(x+260,y,190,28,'Binding');kp:addChild(b)
+ MainOptions.keyText[i]={txt=label,btn=b}
+end
+local tick=W:new(1800,110,20,24);tick.Type='ISTickBox';tick.options={'A long native checkbox caption'};kp:addChild(tick)
+assert(O.attach(keyRoot)and kp.b47OptionsRows and kp.b47OptionsRows.fits)
+for _,width in ipairs({896,1344,1920})do
+ keyRoot.width=width;O.layout(keyRoot);local d=kp.b47OptionsRows
+ for pi=1,#d.plans[1].pages do
+  O.select(keyRoot,1,pi)
+  for _,entry in ipairs(MainOptions.keyText)do for _,w in ipairs({entry.txt,entry.btn})do
+   if w:isVisible()then assert(w.x>=0 and w.x+w.width<=kp.width and w.y+w.height<=kp.height,'Key pair clipped')end
+  end end
+ end
+end
+local cr=root();local controller,cv=page(cr,'UI_optionscreen_controller')
+controller.midPanel=W:new(0,0,300,600);controller.midPanel.Type='ISPanel';controller:addChild(controller.midPanel)
+controller.rightPanel=W:new(300,0,100,600);controller.rightPanel.Type='ISPanel';controller:addChild(controller.rightPanel)
+controller.midPanel.b47NativeSettingsOwner=cr;controller.rightPanel.b47NativeSettingsOwner=cr
+controller.onDoLayout=function(self)self.midPanel.width=self.width*.75;self.rightPanel.width=self.width*.25;return 'native',nil,9 end
+assert(O.attach(cr)and controller.b47OptionsController)
+O.select(cr,2);assert(controller.rightPanel.width==controller.width and controller.rightPanel:isVisible()and not controller.midPanel:isVisible())
+cr:prerender();assert(cr.b47OptionsShell.sectionBox:isVisible(),'Controller selector disappeared during native render')
+local a,b,c=controller:onDoLayout();assert(a=='native'and b==nil and c==9 and controller.rightPanel.width==controller.width)
+local replacement=W:new(11,12,123,124);replacement.Type='ISPanel';replacement.parent=controller
+local nativeRight=controller.rightPanel
+controller.rightPanel=replacement;O.select(cr,1)
+assert(replacement.x==11 and replacement.width==123 and not controller.b47OptionsController.fits,'Late foreign panel was resized')
+controller.rightPanel=nil;O.layout(cr);assert(not controller.b47OptionsController.fits,'Missing native panel was accepted')
+controller.rightPanel=nativeRight;O.layout(cr);assert(controller.b47OptionsController.fits,'Native panel reconstruction did not recover')
+local nativeMid=controller.midPanel;controller.midPanel=nil;O.layout(cr)
+assert(not controller.b47OptionsController.fits,'Missing first native panel was accepted')
+controller.midPanel=nativeMid;O.layout(cr);assert(controller.b47OptionsController.fits)
+local guarded=root();local composite=page(guarded,'UI_optionscreen_controller')
+composite.midPanel=W:new(0,0,300,600);composite.midPanel.Type='ISPanel';composite:addChild(composite.midPanel)
+composite.rightPanel=W:new(300,0,100,600);composite.rightPanel.Type='ISPanel';composite:addChild(composite.rightPanel)
+composite.midPanel.b47NativeSettingsOwner=guarded
+composite.rightPanel.render=function()end -- rejected by native settings owner guard
+composite.onDoLayout=function()end
+assert(O.attach(guarded)and not composite.b47OptionsController and composite.rightPanel.width==100,'Custom composite was resized/hidden')
+print('PASS OFFLINE Options key-pair pagination, controller sections/native relayout, contained sections, popup/setting/Apply ownership and genuine provider overflow')

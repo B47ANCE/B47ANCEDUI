@@ -1,6 +1,12 @@
 # Options workspace
 
-Project Version: 0.12.0-dev.1
+Project Version: 0.12.0-dev.3
+
+Full native-shaped offline containment tests PASS for key-pair pagination, captions, controller sections and picker clamping. Bounded1920x1009 runtime observations are in UI_RUNTIME_DEV3_CHECKPOINT_2026-11-04.md.1280x720 ordinary Display/sidebar rendering was reached; specialized smaller-screen/controller/key capture acceptance remains pending.
+
+Dev.3 corrections: native key label/button pairs now share contained sections and pagination. Checkbox bounds include measured captions, rather than only their20px native box. The controller's original panels become full-width Bindings/Settings sections while retaining native layout delegates; both panels must remain owned by the same settings root, and missing/replaced panels disable adaptation until a valid native rebuild. Native color pickers are clamped within the Options owner. The1920x1009 runtime retest reached contained key labels, controller section switching and an inside-edge picker; physical key rebinding, controller hardware and the smaller viewport remain separate tests.
+
+Historical evidence (2026-10-24, dev.2): [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). Overall native acceptance is FAILED / INCOMPLETE. Earlier version-specific NOT TESTED statements below retain their original checkpoint scope. Ordinary categories and section/page navigation were reached, but keybinding columns and nested controller controls clipped at both1280x800 and1920x1009. A1280 color picker extended offscreen. Key-capture Cancel retained Forward=W and Apply disabled. Search typing/input delivery and actual controller hardware remain unresolved.
 
 The owner-provided reference guides near-black Options with header search, left categories, original primitive icons/subtitles, rounded native settings and fixed Back / Apply / Accept actions. The editable accent defaults to grey. No reference pixels, third-party code or assets are copied.
 

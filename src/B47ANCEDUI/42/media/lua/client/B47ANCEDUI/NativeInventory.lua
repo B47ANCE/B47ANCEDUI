@@ -30,30 +30,8 @@ local function scrollbar(w,player,active)
  w.b47NativeInventoryScroll=true
  local render=w.render
  w.render=function(self,...)
-  if not active()or not self.vertical then return render(self,...)end
-  local rect,border,scaled,texture=self.drawRect,self.drawRectBorder,self.drawTextureScaled,self.drawTexture
-  local canvas=P.canvas(self,player,'scrollbar',rect,border)
-  return P.around(self,render,{
-   drawRect=function(target,x,y,width,height,a,r,g,b,...)
-    if x==4 and y==0 and width==target.width-5 and height==target.height then return P.fill(canvas,x,y,width,height,'scrollTrack',a,0)end
-    return rect(target,x,y,width,height,a,r,g,b,...)
-   end,
-   drawRectBorder=function(target,x,y,width,height,a,r,g,b,...)
-    if x==3 and y==0 and width==target.width-4 and height==target.height then return P.edge(canvas,x,y,width,height,'border',a,0)end
-    return border(target,x,y,width,height,a,r,g,b,...)
-   end,
-   drawTextureScaled=function(target,tex,x,y,width,height,a,r,g,b,...)
-    if tex==target.midtex and x==5 and y==target.bary+2 and width==9 and height==target.barheight-4 then return P.fill(canvas,x,y,width,height,self.scrolling and 'scrollThumbHover'or 'scrollThumb',a,0)end
-    return scaled(target,tex,x,y,width,height,a,r,g,b,...)
-   end,
-   drawTexture=function(target,tex,x,y,a,r,g,b,...)
-    if x==5 and ((tex==target.toptex and y==target.bary)or(tex==target.bottex and y==target.bary+target.barheight-3))then
-     local c=P.color(canvas,self.scrolling and 'scrollThumbHover'or 'scrollThumb');r,g,b=c.r,c.g,c.b
-    elseif tex==target.uptex or tex==target.downtex then
-     local c=P.color(canvas,'scrollArrow');r,g,b=c.r,c.g,c.b
-    end
-    return texture(target,tex,x,y,a,r,g,b,...)
-   end},...)
+  if not active()then return render(self,...)end
+  return P.scrollbarPaint(self,render,player,...)
  end
 end
 local function pane(w,root,player,active)

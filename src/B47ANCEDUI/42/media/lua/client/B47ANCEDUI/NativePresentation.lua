@@ -45,12 +45,63 @@ function P.fill(canvas,x,y,width,height,token,alpha,radius)
  return R.roundedRect(canvas,x,y,width,height,c,radius or 4)
 end
 function P.edge(canvas,x,y,width,height,token,alpha,radius)
+ if alpha~=nil and alpha<=0 then return end
  if (token=='accent'or token=='focusOuter'or token=='focusInner')and S.number(canvas,'borderWidth',1)==0 then
   -- Ordinary borders may be hidden; keyboard/controller focus stays visible.
   local focus={parent=canvas,b47StyleSafe=true,b47RawRect=canvas.b47RawRect,b47RawBorder=canvas.b47RawBorder}
   return R.roundedBorder(focus,x,y,width,height,P.color(canvas,token,alpha),radius or 4)
  end
  return R.roundedBorder(canvas,x,y,width,height,P.color(canvas,token,alpha),radius or 4)
+end
+-- Delegate native scrollbar layout/hit testing; replace only its chrome draws.
+function P.scrollbarPaint(w,delegate,player,...)
+ local rect,border,scaled,texture=w.drawRect,w.drawRectBorder,w.drawTextureScaled,w.drawTexture
+ if not rect or not border or not scaled or not texture then return delegate(w,...)end
+ local canvas=P.canvas(w,player,'scrollbar',rect,border)
+ local owner=w
+ for _=1,64 do
+  if not owner then break end
+  if owner.b47Styled and owner.b47Kind then canvas.b47AppearanceScope=U.Appearance.scope(owner);break end
+  owner=owner.parentCombo or owner.parent
+ end
+ local function arrow(self,x,y,a,forward)
+  local cx=self.vertical and self.barx+self.barwidth/2 or x+10
+  local cy=self.vertical and y+10 or self.bary+self.barheight/2
+  local c=P.color(canvas,'scrollArrow',a)
+  for i=0,2 do
+   local offset=forward and 1-i or i-1
+   for _,side in ipairs({-1,1})do
+    local px=self.vertical and cx+side*i or cx+offset
+    local py=self.vertical and cy+offset or cy+side*i
+    rect(self,math.floor(px),math.floor(py),1,1,c.a,c.r,c.g,c.b)
+   end
+  end
+ end
+ return P.around(w,delegate,{
+  drawRect=function(self,x,y,width,height,a,r,g,b,...)
+   if x==4 and y==0 and width==self.width-5 and height==self.height and P.neutral(r,g,b)then
+    return P.fill(canvas,x,y,width,height,'scrollTrack',a,2)
+   end
+   return rect(self,x,y,width,height,a,r,g,b,...)
+  end,
+  drawRectBorder=function(self,x,y,width,height,a,r,g,b,...)
+   local track=self.vertical and x==3 and y==0 and width==self.width-4 and height==self.height
+    or not self.vertical and x==0 and y==3 and width==self.width and height==self.height-4
+   if track and P.neutral(r,g,b)then return P.edge(canvas,x,y,width,height,'border',a,2)end
+   return border(self,x,y,width,height,a,r,g,b,...)
+  end,
+  drawTextureScaled=function(self,tex,x,y,width,height,a,r,g,b,...)
+   if tex==self.midtex then
+    local hover=self.scrolling or a>=.95
+    return P.fill(canvas,self.barx,self.bary,self.barwidth,self.barheight,hover and 'scrollThumbHover'or 'scrollThumb',a,2)
+   end
+   return scaled(self,tex,x,y,width,height,a,r,g,b,...)
+  end,
+  drawTexture=function(self,tex,x,y,a,r,g,b,...)
+   if tex==self.toptex or tex==self.bottex then return end
+   if tex==self.uptex or tex==self.downtex then return arrow(self,x,y,a,tex==self.downtex)end
+   return texture(self,tex,x,y,a,r,g,b,...)
+  end},...)
 end
 local function frame(w,class,player,active,method,family)
  if not P.native(w,class)then return false end
@@ -95,11 +146,11 @@ function P.tooltip(w,player,active)
   local canvas=P.canvas(self,state.player,'tooltip',rect,border)
   return P.around(self,delegate,{
    drawRect=function(target,x,y,width,height,a,r,g,b,...)
-    if x==0 and y==0 and width==target:getWidth() and height==target:getHeight() and P.neutral(r,g,b)then return P.fill(canvas,x,y,width,height,'tooltipBackground')end
+    if x==0 and y==0 and width==target:getWidth() and height==target:getHeight() and P.neutral(r,g,b)then return P.fill(canvas,x,y,width,height,'tooltipBackground',a)end
     return rect(target,x,y,width,height,a,r,g,b,...)
    end,
    drawRectBorder=function(target,x,y,width,height,a,r,g,b,...)
-    if x==0 and y==0 and width==target:getWidth() and height==target:getHeight() and (P.neutral(r,g,b)or(class==ISToolTip and P.equal(a,.5)and P.equal(r,.9)and P.equal(g,.9)and b==1))then return P.edge(canvas,x,y,width,height,'tooltipBorder')end
+    if x==0 and y==0 and width==target:getWidth() and height==target:getHeight() and (P.neutral(r,g,b)or(class==ISToolTip and P.equal(a,.5)and P.equal(r,.9)and P.equal(g,.9)and b==1))then return P.edge(canvas,x,y,width,height,'tooltipBorder',a)end
     return border(target,x,y,width,height,a,r,g,b,...)
    end},...)
  end

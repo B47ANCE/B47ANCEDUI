@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.12.0-dev.3] - 2026-11-04
+
+- Fix editor capture ownership so own drags and dropdown dismissal remain in the editor; foreign modals suspend editing while retaining drafts. Guard stale unsaved-confirmation actions.
+- Contain Options key label/button pairs, checkbox captions and native controller sections; clamp native color pickers without changing setting values or Apply behavior.
+- Complete guarded native local-panel selection scopes, radio module headers, code-view contrast, stencil-owned crafting descendants and selected-image tint. Improve MP browser chrome and mod-path readability while retaining semantic warning/status colors.
+- Theme full legacy scrollbar tracks, thumbs, borders and arrow glyphs in both orientations, plus recognized PZAPI scrollbar slices. Preserve native hit/drag geometry, explicit opt-outs, per-mod colors and foreign artwork. Native scrollbar retest remains pending.
+- Fix empty displaced Advanced Audio tooltip boxes by preserving native draw alpha during positioning; user confirmed the tooltip correction.
+- Clarify Save preset, percentage opacity and duplicate preset names. Keep API1, schemas, approved defaults, artwork and gameplay ownership unchanged.
+- Offline regression/source/version/integrity checks PASS; 60 bounded incremental development cases are recorded separately from the historical dev.2 baseline. Full native acceptance INCOMPLETE; dedicated G7 NOT TESTED / BLOCKED and stable G8 BLOCKED. Authorized distribution remains an MP testing build.
+
+## [0.12.0-dev.2] - 2026-10-24
+
+- Fix UI Style Presets failing to open: native RGB slider setValues dispatches callbacks during construction, before text handlers exist. Keep editor synchronization active until construction and final refresh finish; no default/profile/schema change.
+- Reproduce the real StyleEditor.lua112 failure with native-eager slider doubles before the fix; cover unchanged initial draft and all three working RGB channels afterward.
+- Complete a bounded45-case baseline/candidate runtime and offline fixture-packaging pass. Overall acceptance FAILED / INCOMPLETE:61 areas classified18 LIMITED/17 FAIL/26 NOT_REACHED. Record actionable Options/editor/clipping/native-selection gaps and exact private evidence hashes in docs/UI_RUNTIME_ACCEPTANCE_2026-10-24.md/json; no complete-area PASS or dedicated claim.
+- PATCH correction to0.12.0-dev.1. Original saves were not loaded and original preferences retain their baseline hashes. Workshop remains0.12.0-dev.1; no UI release package or new upload.
+
 ## [0.12.0-dev.1] - 2026-10-24
 
 - Publication: PR16 merged after CI; existing public Workshop item3822582242 updated from exact source d992608. SteamCMD commit-success and exact public description/source/ZIP/stage parity verified. Separate user-approved Steam start confirmed (already closed); no local deployment or game/server launch. Native/dedicated acceptance remains NOT TESTED; dated receipt in docs/WORKSHOP_PRESETS_UPDATE.md.

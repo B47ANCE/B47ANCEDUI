@@ -21,11 +21,12 @@ UI.Window={init=function()end,setCollapsed=function(self,value)self.collapsed=va
 UI.FishWindow={init=function()end,setCollapsed=UI.Window.setCollapsed}
 UI.PrintMedia={init=function()end,setCollapsed=function(self,value)self.printCollapsed=value end}
 local function node(values)
- local n={r=0,g=0,b=0,a=.7,setColor=setColor,children={}}
+ local n={r=0,g=0,b=0,a=.7,setColor=setColor,children={},setVisible=function(self,v)self.visible=v end}
  for key,value in pairs(values or {})do n[key]=value end
  if n._ATOM_UI_CLASS==UI.Texture._ATOM_UI_CLASS then n.setTexture=UI.Texture.setTexture;n.setSlice9=UI.Texture.setSlice9 end
  return setmetatable(n,UI._mt)
 end
+setmetatable(UI.Texture,{__call=function(_,values)values._ATOM_UI_CLASS=UI.Texture._ATOM_UI_CLASS;return node(values)end})
 local function panel(values)
  local n=node(values);n.setBorderColor=border
  for _,name in ipairs({'leftBorder','rightBorder','topBorder','downBorder'})do n.children[name]=node({r=.4,g=.4,b=.4,a=1})end
@@ -104,11 +105,20 @@ UI._mt.instantiate(build);assert(build.children.background.b47NativeAtom,'Native
 search:onLeftClick();build:renderUpdate();assert(search.r==U.Theme.colors.selected.r and search.isSearch,'Active native search state lost')
 search:onHover(false);assert(search.r==U.Theme.colors.selected.r,'Hover exit erased active search')
 snap:onHover(true);snap:onHover(false);U.excludeNativeTheme(build);build:renderUpdate();assert(snap.r==.12,'Native hover snapshot contaminated by theme')
-UI.ScrollBarVertical={setBarSize=function()end}
-local scrollbar=node({setBarSize=UI.ScrollBarVertical.setBarSize});scrollbar.children.bar=node();local thumb=node({_ATOM_UI_CLASS=UI.Texture._ATOM_UI_CLASS,texture={}})
-scrollbar.children.bar.children.mid=thumb;w.children.body.children.scroll=scrollbar;UI._addChild(w.children.body,scrollbar)
-local thumbBook=U.StylePresets.set(U.StylePresets.new(),'default','B47ANCEDUI','slider','accent','#123456');local thumbOwner={}
+UI.ScrollBarVertical={setBarSize=function()end,updateBar=function()end,children={top={texture={}},bottom={texture={}},bar={children={top={texture={}},mid={texture={}},bottom={texture={}}}}}}
+local scrollbar=panel({setBarSize=UI.ScrollBarVertical.setBarSize,updateBar=UI.ScrollBarVertical.updateBar,width=11,height=180});scrollbar.children.bar=node({onLeftDrag=function()return 'drag'end})
+for _,key in ipairs({'top','bottom'})do scrollbar.children[key]=UI.Texture{texture=UI.ScrollBarVertical.children[key].texture,width=11,height=20};scrollbar.children[key].children=nil end
+for _,key in ipairs({'top','mid','bottom'})do scrollbar.children.bar.children[key]=UI.Texture{texture=UI.ScrollBarVertical.children.bar.children[key].texture}end
+local thumb=scrollbar.children.bar.children.mid;local texture=thumb.texture;local drag=scrollbar.children.bar.onLeftDrag
+w.children.body.children.scroll=scrollbar;UI._addChild(w.children.body,scrollbar)
+local thumbBook=U.StylePresets.set(U.StylePresets.new(),'default','B47ANCEDUI','scrollbar','scrollThumb','#123456');local thumbOwner={}
 assert(U.StylePresets.preview(1,thumbBook,thumbOwner));w:renderUpdate();assert(thumb.r==0x12/255 and thumb.g==0x34/255,'Thumb ignored slider family')
+assert(thumb.texture==nil and scrollbar.children.top.texture==nil and scrollbar.children.bottom.texture==nil,'Vanilla Atom scrollbar textures remain')
+assert(scrollbar.width==11 and scrollbar.height==180 and scrollbar.children.bar.onLeftDrag==drag,'Atom scrollbar input/geometry changed')
+local decoration=scrollbar.children.top.children.b47Chevron0_1;assert(decoration and decoration.enabled==false and decoration.width==1,'Chevron decoration missing or interactive')
+local count=#w.b47NativeAtomNodes;A.adopt(w);assert(#w.b47NativeAtomNodes==count,'Repeated scrollbar adoption duplicated decorations')
+U.excludeNativeTheme(scrollbar);w:renderUpdate();assert(thumb.texture==texture and decoration.visible==false,'Scrollbar opt-out failed to restore artwork')
+U.excludeNativeTheme(scrollbar,false);w:renderUpdate();assert(thumb.texture==nil and decoration.visible==true,'Scrollbar re-enable stale')
 U.StylePresets.clearPreview(1,thumbOwner)
 local provider=node({init=UI.Window.init,setCollapsed=UI.Window.setCollapsed,b47AppearanceScope='OtherMod'});provider.children.body=panel()
 UI._mt.instantiate(provider);assert(not provider.children.body.b47NativeAtom and not provider.b47NativeAtomObserver,'Provider ownership ignored')

@@ -51,3 +51,11 @@ Independent design: observe the team's native MainOptions instance completion th
 - [x] No new game/server launch, deployment, external change or upload at this development checkpoint.
 
 [TESTED: offline Lua5.1] Deferred-construction regression fails on pre-fix dev.2 and passes with the observer; saved-create draw path, rebuilds, callback/page idempotence, native returns/errors and guarded custom renderers pass. [RUNTIME GATE] Actual post-fix Options opening, tabs, Apply/Back/display/audio/keybinding/controller behavior and provider integration NOT TESTED. G7/stable G8 remain BLOCKED.
+
+## Isolated input diagnostic — 2026-10-25 / UI 0.12.0-dev.3
+
+Purpose: investigate injected keyboard/pointer delivery during the authorized disposable runtime suite. PZ Optimization provenance remains account xD3I, Workshop3805285544, release25/commitd1bbdcf; reuse license UNKNOWN. Read-only research used public configuration metadata and the [public settings guide](https://github.com/xD3I/PZ_Optimization/blob/d1bbdcf/docs/guide/settings.md). External implementation, assets and text imported: NONE; upstream files changed: NONE.
+
+[TESTED: isolated local runtime] Its public settings UI changed only the private test profile's inputLatch setting to false. The original profile configuration retained SHA256 EBF67E2D95CED610904EA6DF8C77A41B60FFAC708E0B963A13FFBA20FF495085. The A/B did not resolve injected keyboard/long-drag delivery, so no provider causality or production workaround is claimed. Some short pointer gestures worked where a quick click did not; this remains an automation/environment observation.
+
+Independent limited clean-room/source signoff: /root/selection_scope_reader, 2026-10-25. No external implementation was imported and own native-owner boundaries were reviewed. This is engineering review, not legal clearance, comprehensive provider integration or dedicated multiplayer evidence. Raw diagnostics and private profile details remain outside the repository.

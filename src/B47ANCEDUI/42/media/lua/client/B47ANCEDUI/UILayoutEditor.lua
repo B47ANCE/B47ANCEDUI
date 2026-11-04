@@ -12,16 +12,10 @@ local function ownerAlive(screen)
  return screen and screen.Type=='MainScreen' and not screen.inGame and visible(screen)
   and (not MainScreen or not MainScreen.instance or MainScreen.instance==screen)
 end
-local function ownedPopup(state)
- local box=state and state.selector;local popup=box and box.popup
- return box and box.expanded and popup and popup==ISComboBox.SharedPopup and popup.parentCombo==box
-  and popup.javaObject and UIManager.getUI and UIManager.getUI():contains(popup.javaObject)
-end
 local function modal(state)
  -- Native captured dropdowns are a distinct owned input state. Do not treat
  -- their registered shared popup as an unexplained external editor teardown.
- if ownedPopup(state)then return false end
- return UIManager.isModalVisible and UIManager.isModalVisible()
+ return C.foreignModal(state and state.root,state and state.selector)
 end
 function W.available(screen)return ownerAlive(screen) and not modal()end
 local function inputAllowed(screen,state)

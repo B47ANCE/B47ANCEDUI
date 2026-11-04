@@ -42,6 +42,7 @@ def validate():
     aliases=re.search(r'T.colorAliases=\{(.*?)\}',palette,re.S).group(1)
     keys.update('UI_B47ANCEDUI_StyleProperty_'+key for key in re.findall(r"([A-Za-z]+)='[A-Za-z]+'",aliases))
     keys.add('UI_B47ANCEDUI_StyleFamily_scrollbar')
+    keys.update('UI_B47ANCEDUI_'+key for key in ('StyleSave','ControllerBindings','ControllerSettings'))
     keys.update('UI_B47ANCEDUI_'+key for key in ('StyleExport','StyleExportFolder','StyleOpenWorkshop','StyleRefreshPlugins','StyleExportFailed','StyleExportWaiting','StyleExportReady','StylePluginIssues','StyleWorkshopMenuOnly','StyleExportMode','StyleExportNew','StyleExportUpdate','StyleExportStale','StyleExportTarget'))
     assert set(english)==keys,(set(english),keys)
     locales=[]

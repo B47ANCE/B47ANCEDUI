@@ -6,6 +6,10 @@ local calls,draws={},{}
 local base={}
 function base:getWidth() return self.width end
 function base:getHeight() return self.height end
+function base:getX()return self.x end
+function base:getY()return self.y end
+function base:setX(v)self.x=v end
+function base:setY(v)self.y=v end
 function base:drawRect(...) draws[#draws+1]={...} end
 function base:drawRectBorder(...) draws[#draws+1]={...} end
 function base:drawRectBorderStatic(...) draws[#draws+1]={...} end
@@ -18,7 +22,7 @@ local function class(name,path)
  _G[name]=c;package.loaded[path or 'ISUI/'..name]=c;return c
 end
 local panel=class('ISPanel');class('ISPanelJoypad');local button=class('ISButton')
-class('ISTextEntryBox');class('ISTickBox');local tabs=class('ISTabPanel')
+class('ISTextEntryBox');class('ISTickBox');class('ISColorPicker');local tabs=class('ISTabPanel')
 tabs.tabSelected={};tabs.tabUnSelected={}
 function tabs:getActiveViewIndex() for i,v in ipairs(self.viewList) do if v==self.activeView then return i end end end
 function tabs:getTabX(index) return 1+(index-1)*121 end
@@ -198,3 +202,9 @@ failedListener=nil;assert(Lifecycle.observe(retry) and retry.b47NativeSettingsOw
 package.loaded['B47ANCEDUI/NativeSettings']=nil
 assert(require('B47ANCEDUI/NativeSettings')==S and #handlers==3,'Reload stacked lifecycle registrations')
 print('PASS OFFLINE native settings instances, geometry/fonts, callbacks/stencil, lifecycle/late children, scoped popup restoration, live accents and native value ownership')
+local picker=widget(ISColorPicker);picker.x=1000;picker.y=-40;picker.parent=r
+S.clampPicker(picker,r);assert(picker.x==0 and picker.y==0,'Native picker escaped short Options root')
+r.width=800;r.height=600;picker.width=240;picker.height=200;picker.x=790;picker.y=590
+S.clampPicker(picker,r);assert(picker.x==560 and picker.y==400,'Native picker right/bottom clamp failed')
+picker.render=function()end;picker.x=900;S.clampPicker(picker,r);assert(picker.x==900,'Foreign renderer picker moved')
+print('PASS OFFLINE native color-picker edge clamping and foreign-renderer guard')

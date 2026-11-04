@@ -43,26 +43,82 @@ local function spec(view)
 end
 local safe={ISLabel=true,HorizontalLine=true,ISComboBox=true,ISTickBox=true,ISButton=true,
  ISTextEntryBox=true,ISVolumeControl=true,ISMegaVolumeControl=true,ISVolumeIndicator=true,ISPanel=true}
+local function controllerLayout(p)
+ local d=p.b47OptionsController;if not d then return false end
+ if not p.midPanel or not p.rightPanel then d.fits=false;return false end
+ for _,child in ipairs({p.midPanel,p.rightPanel})do
+  if not child or child.parent~=p or child.b47NativeSettingsOwner~=d.root then d.fits=false;return false end
+ end
+ d.fits=true
+ for i,child in ipairs({p.midPanel,p.rightPanel})do
+  show(child,i==d.section);place(child,0,0,p:getWidth(),p:getHeight())
+  if child.doLayout then child:doLayout()end
+ end
+ p:setScrollHeight(p:getHeight());p:setScrollWidth(p:getWidth());p:setXScroll(0);p:setYScroll(0)
+ if p.vscroll then p.vscroll:setVisible(false)end
+ return true
+end
+local function controllerSnapshot(root,p)
+ if p.b47OptionsController or not p.midPanel or not p.rightPanel or not p.onDoLayout then return end
+ if p.midPanel.Type~='ISPanel'or p.rightPanel.Type~='ISPanel'then return end
+ for _,child in ipairs({p.midPanel,p.rightPanel})do
+  if child.parent~=p or child.b47NativeSettingsOwner~=root then return end
+ end
+ p.b47OptionsController={root=root,section=1,page=1,fits=true,sections={{title=tr('ControllerBindings')},{title=tr('ControllerSettings')}},plans={{pages={{}}},{pages={{}}}}}
+ local native=p.onDoLayout
+ p.onDoLayout=function(self,...)
+  local result=pack(native(self,...));controllerLayout(self);return unpack(result,1,result.n)
+ end
+end
 -- Require native GameOption identity as well as recognized native page/widget
 -- contracts. Unknown/custom pages retain their native internal presentation.
 local function snapshot(root,view)
  local p=view.view;local s=spec(view)
- if not p or p.b47OptionsRows or not s[1] or s[3]=='keys' or s[3]=='controller' then return end
+ if not p or p.b47OptionsRows or not s[1]then return end
  if p.b47NativeSettingsOwner~=root then return end
+ if s[3]=='controller'then controllerSnapshot(root,p);return end
  local list=children(p);local controls={}
  for _,option in ipairs(root.gameOptions and root.gameOptions.options or {})do
   local w=option.control
   while w and w.parent and w.parent~=p do w=w.parent end
   if w and w.parent==p then controls[w]=true end
  end
- if not U._hasEntries(controls)then return end
- for _,w in ipairs(list)do
-  if not safe[w.Type] and w~=MainOptions.translatorPane then return end
-  if w.Type=='ISPanel' and not controls[w] then return end
- end
+ if not U._hasEntries(controls)and s[3]~='keys'then return end
  local sections,rows={},{};local current
  local function section(title)
   current={title=title,rows={}};sections[#sections+1]=current
+ end
+ if s[3]=='keys'then
+  local used={};local headings={}
+  for _,w in ipairs(list)do if w.Type=='ISLabel'and w.font==UIFont.Medium then headings[#headings+1]=w;section(label(w));current.heading=w;used[w]=true end end
+  if #sections==0 then section(view.name)end
+  local function append(items,control,lab)
+   local row={items={},control=control,label=lab,y=control:getY(),height=0}
+   for _,w in ipairs(items)do
+    used[w]=true;w:setAnchorsTBLR(true,false,true,false)
+    local width=w:getWidth()
+    if w.Type=='ISTickBox'then
+     for _,text in ipairs(w.options or {})do width=math.max(width,(w.leftMargin or 0)+(w.boxSize or 20)+(w.textGap or 6)+getTextManager():MeasureStringX(w.font or UIFont.Small,text)+8)end
+    end
+    row.items[#row.items+1]={w=w,x=w:getX(),y=w:getY(),width=width,height=w:getHeight()};row.height=math.max(row.height,w:getHeight())
+   end
+   local si=1;for i,heading in ipairs(headings)do if heading:getY()<=row.y then si=i end end
+   table.insert(sections[si].rows,row)
+  end
+  for _,entry in ipairs(MainOptions.keyText or {})do
+   if entry.txt and entry.btn and entry.txt.parent==p and entry.btn.parent==p and not entry.isModBind then append({entry.txt,entry.btn},entry.btn,entry.txt)end
+  end
+  if not U._hasEntries(used)then return end
+  for _,w in ipairs(list)do
+   if not used[w]and w.Type~='HorizontalLine'then
+    if w.Type=='ISTickBox'or w.Type=='ISButton'then append({w},w)else return end
+   end
+  end
+  for _,section in ipairs(sections)do table.sort(section.rows,function(a,b)return a.y==b.y and a.control:getX()<b.control:getX()or a.y<b.y end)end
+ else
+ for _,w in ipairs(list)do
+  if not safe[w.Type] and w~=MainOptions.translatorPane then return end
+  if w.Type=='ISPanel' and not controls[w] then return end
  end
  for _,w in ipairs(list)do
   if w.Type=='HorizontalLine' then
@@ -77,6 +133,7 @@ local function snapshot(root,view)
    row.height=math.max(row.height,w:getHeight())
    if w.Type=='ISLabel' then row.label=w elseif controls[w] or w.Type=='ISButton' or w.Type=='ISVolumeIndicator' or w==MainOptions.translatorPane then row.control=w end
   end
+ end
  end
  -- A lone helper label must stay with its native row; ambiguous structures fail closed.
  for _,c in ipairs(sections)do for _,row in ipairs(c.rows)do if not row.control then return end end end
@@ -138,7 +195,8 @@ local function cards(root,p)
   end
   local col=M.columns(width,f,math.min(controlW,width-28));local pad=col.pad
   -- Section selection supplies the heading; reserve the body for native rows.
-  col.summaryW=0;col.tipW=0;col.controlX=width-pad-controlW;col.labelX=pad
+  local bodyW=math.min(width,math.max(480,32*f+controlW+pad*2));local bodyX=(width-bodyW)/2
+  col.summaryW=0;col.tipW=0;col.controlX=bodyX+bodyW-pad-controlW;col.labelX=bodyX+pad
   col.labelW=col.controlX-col.labelX-pad;col.stacked=col.labelW<math.max(160,10*f)
   if col.stacked then col.controlX=pad end
   local heights={}
@@ -181,7 +239,7 @@ local function cards(root,p)
   end
   rowY=rowY+plan.heights[ri]
  end
- d.cards={{y=0,h=available-1}}
+ d.cards={{y=0,h=math.min(available-1,rowY+pad)}}
  p:setScrollHeight(p:getHeight());p:setScrollWidth(p:getWidth());p:setXScroll(0);p:setYScroll(0)
  if p.vscroll then p.vscroll:setVisible(false)end
  if p.hscroll then p:removeChild(p.hscroll);p.hscroll=nil end
@@ -224,7 +282,7 @@ local function blocked(root)
 end
 function O.select(root,section,page,target)
  if blocked(root)then return end
- local p=root.tabs.activeView and root.tabs.activeView.view;local d=p and p.b47OptionsRows
+ local p=root.tabs.activeView and root.tabs.activeView.view;local d=p and(p.b47OptionsRows or p.b47OptionsController)
  if not d then return end
  local data=p.joyfocus;local focused=data and data.focus==p
  if focused then p:clearJoypadFocus(data)end
@@ -405,10 +463,10 @@ function O.layout(root)
     for _,w in ipairs(children(p))do w:setAnchorsTBLR(true,false,true,false)end
    end
    place(p,0,0,c.w,c.h);U.Layout.scrollbar(p)
-   if not p.b47OptionsRows or not cards(root,p)then fallback(root,p)end
+   if not controllerLayout(p)and(not p.b47OptionsRows or not cards(root,p))then fallback(root,p)end
   end
  end
- local active=root.tabs.activeView and root.tabs.activeView.view;local d=active and active.b47OptionsRows
+ local active=root.tabs.activeView and root.tabs.activeView.view;local d=active and(active.b47OptionsRows or active.b47OptionsController)
  s.syncing=true;s.sectionBox:clear()
  -- Native clear resets its tooltip map. Combo has no generic setTooltip.
  s.sectionBox:setToolTipMap({defaultTooltip=tr('OptionsSections')})
@@ -429,6 +487,7 @@ function O.layout(root)
  end
  for i,b in ipairs(s.resultButtons)do place(b,c.x,c.header+(i-1)*(c.button+2),c.w,c.button)end
  O.search(root,s.search:getInternalText())
+ if U.NativeSettings and U.NativeSettings.clampPicker then for _,child in pairs(root.children or {})do U.NativeSettings.clampPicker(child,root)end end
 end
 function O.attach(root)
  if not root.tabs or root.tabs.Type~='ISTabPanel' or root.b47NativeSettingsOwner~=root or root.tabs.b47NativeSettingsOwner~=root or not root.backButton or not root.saveButton or not root.acceptButton then return false end
@@ -448,11 +507,11 @@ function O.attach(root)
  end)
  selector:initialise();selector:instantiate();U.Dropdown.style(selector);root:addChild(selector);s.sectionBox=selector
  s.pagePrevious=button(root,'<',function()
-  local p=root.tabs.activeView and root.tabs.activeView.view;local d=p and p.b47OptionsRows
+  local p=root.tabs.activeView and root.tabs.activeView.view;local d=p and(p.b47OptionsRows or p.b47OptionsController)
   if d then O.select(root,d.section,(d.page or 1)-1)end
  end)
  s.pageNext=button(root,'>',function()
-  local p=root.tabs.activeView and root.tabs.activeView.view;local d=p and p.b47OptionsRows
+  local p=root.tabs.activeView and root.tabs.activeView.view;local d=p and(p.b47OptionsRows or p.b47OptionsController)
   if d then O.select(root,d.section,(d.page or 1)+1)end
  end)
  s.pagePrevious:setTooltip(tr('OptionsPrevious'));s.pageNext:setTooltip(tr('OptionsNext'))
@@ -551,7 +610,7 @@ function O.attach(root)
     end
     local visible=self.modal==nil and MainOptions.setKeybindDialog==nil and self.tabs:isVisible()
     ss.nav:setVisible(visible);ss.search:setVisible(visible)
-    local data=active and active.view.b47OptionsRows;local pagesVisible=visible and data and data.fits or false
+    local data=active and(active.view.b47OptionsRows or active.view.b47OptionsController);local pagesVisible=visible and data and data.fits or false
     ss.sectionBox:setVisible(pagesVisible);ss.pagePrevious:setVisible(pagesVisible);ss.pageNext:setVisible(pagesVisible)
     if pagesVisible then R.text(self,R.fit(ss.pageLabel or '',ss.counterW),ss.counterX,c.sectionY+(c.button-getTextManager():getFontHeight(UIFont.Small))/2,T.colors.text)end
     for i,b in ipairs(ss.resultButtons)do b:setVisible(visible and ss.results[i]~=nil)end

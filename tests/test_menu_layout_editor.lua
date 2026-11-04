@@ -152,10 +152,13 @@ main.bottomPanel:setVisible(false);main:prerender()
 assert(not main.b47LayoutEditing and not main.b47LayoutButton.visible and not state.root.capture)
 main.bottomPanel:setVisible(true);main:prerender();assert(main.b47LayoutButton.visible)
 main:onKeyRelease(Keyboard.KEY_F10);state=main.b47LayoutEditing
+state.rows[1].slider:setCurrentValue(24);local draft=state.draft
 local other={};data.focus=other;modal=true;main:prerender()
-assert(not main.b47LayoutEditing and data.focus==other,'Closing editor stole external modal focus')
-local count=nativeKeys;main:onKeyRelease(Keyboard.KEY_F10);assert(not main.b47LayoutEditing and nativeKeys==count+1)
-modal=false;data.focus=main;main.prerender=function()end
+assert(main.b47LayoutEditing==state and state.suspended and data.focus==other,'Foreign modal discarded draft or stole focus')
+local count=nativeKeys;main:onKeyRelease(Keyboard.KEY_F10);assert(main.b47LayoutEditing==state and nativeKeys==count+1)
+assert(not E.save(main)and not E.select(main,'logo')and not E.requestClose(main)and state.draft==draft,'Suspended draft remained editable')
+modal=false;main:prerender();assert(not state.suspended and main.b47LayoutEditing==state and data.focus==other and state.draft==draft,'Modal return lost draft/focus')
+E.cancel(main);data.focus=main;main.prerender=function()end
 assert(not E.open(main),'Editor opened against a replacement renderer')
 main.prerender=owned;E.open(main);state=main.b47LayoutEditing;state.frames.menu:onMouseDown(3,3)
 assert(gameStart and state.frames.menu.capture);gameStart()

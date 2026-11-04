@@ -40,6 +40,11 @@ local borderNames={'leftBorder','rightBorder','topBorder','downBorder'}
 local function restore(w)
  local state=w.b47NativeAtom
  if not state then return end
+ if state.nativeTexture and state.flatApplied then
+  if w.texture==nil then w:setTexture(state.nativeTexture)end
+  for _,node in ipairs(state.decorations or {})do node:setVisible(false)end
+  state.flatApplied=false
+ end
  if equal(w,state.last)then w:setColor(state.base.r,state.base.g,state.base.b,w.a)end
  for name,saved in pairs(state.borders or {})do
   local child=w.children[name]
@@ -52,11 +57,17 @@ local function apply(w)
  if not w.javaObj or not w.b47NativeAtom then return end
  if not known(root)or content(w,root)then restore(w);return end
  local state=w.b47NativeAtom;local kind=state.kind
+ if state.nativeTexture then
+  if w.texture and w.texture~=state.nativeTexture then restore(w);return end
+  if not state.flatApplied then
+   w:setTexture(nil);for _,node in ipairs(state.decorations or {})do node:setVisible(true)end;state.flatApplied=true
+  end
+ end
  if not equal(w,state.last)then state.base=rgba(w)end
  if (kind=='panel'or kind=='button')and not w.isSearch and not P.neutral(state.base.r,state.base.g,state.base.b)then restore(w);return end
- local proxy=canvas(w,kind=='panel'and 'window'or kind=='thumb'and 'scrollbar'or kind=='tab'and 'tabs'or 'button')
- local token=kind=='panel'and 'window'or kind=='thumb'and 'accent'or kind=='image'and(w.b47NativeAtom.hover and 'accentHover'or 'text')or kind=='tab'and(w.selected and 'selected'or 'raised')or w.isSearch and 'selected'or(w.b47NativeAtom.hover and 'hover'or 'raised')
- if kind=='thumb'and U.ComponentStyles.properties(proxy).scrollThumb then token='scrollThumb'end
+ local scroll=kind=='thumb'or kind=='scrollTrack'or kind=='scrollArrow'or kind=='scrollGlyph'
+ local proxy=canvas(w,scroll and 'scrollbar'or kind=='panel'and 'window'or kind=='tab'and 'tabs'or 'button')
+ local token=(kind=='scrollTrack'or kind=='scrollArrow')and 'scrollTrack'or kind=='scrollGlyph'and 'scrollArrow'or kind=='thumb'and 'scrollThumb'or kind=='panel'and 'window'or kind=='image'and(w.b47NativeAtom.hover and 'accentHover'or 'text')or kind=='tab'and(w.selected and 'selected'or 'raised')or w.isSearch and 'selected'or(w.b47NativeAtom.hover and 'hover'or 'raised')
  if kind=='image'then token=w.enable==false and 'iconDisabled'or w.b47NativeAtom.hover and 'accentHover'or 'icon'end
  if kind=='panel'and root.children then
   local props=U.ComponentStyles.properties(proxy)
@@ -85,11 +96,27 @@ local function prepare(w,root,depth,key,parent,grandparent)
  local tab=w.textureSelected and w.textureUnselected and w.setSelected and w.children and w.children.label
  local texture=UI.Texture and w.setTexture==UI.Texture.setTexture and w.setSlice9==UI.Texture.setSlice9
  local chrome=texture and not w.texture and chromeKeys[key]and P.neutral(w.r,w.g,w.b)
- local thumb=texture and grandparent and UI.ScrollBarVertical and grandparent.setBarSize==UI.ScrollBarVertical.setBarSize and(key=='top'or key=='mid'or key=='bottom')
- if (panel or button or image or tab or chrome or thumb)and not w.b47NativeAtom then
-  w.b47NativeAtom={kind=button and 'button'or image and 'image'or thumb and 'thumb'or tab and 'tab'or chrome and w.onHover and 'button'or 'panel'}
+ local nativeScroll=UI.ScrollBarVertical
+ local function scrollbar(node)return node and nativeScroll and node.setBarSize==nativeScroll.setBarSize and node.updateBar==nativeScroll.updateBar end
+ local track=scrollbar(w)
+ local thumb=texture and scrollbar(grandparent)and grandparent.children.bar==parent and(key=='top'or key=='mid'or key=='bottom')
+  and nativeScroll.children.bar.children[key].texture==w.texture
+ local arrow=texture and scrollbar(parent)and(key=='top'or key=='bottom')and nativeScroll.children[key].texture==w.texture
+ if (panel or button or image or tab or chrome or thumb or track or arrow)and not w.b47NativeAtom then
+  w.b47NativeAtom={kind=track and 'scrollTrack'or arrow and 'scrollArrow'or button and 'button'or image and 'image'or thumb and 'thumb'or tab and 'tab'or chrome and w.onHover and 'button'or 'panel',nativeTexture=(thumb or arrow)and w.texture or nil}
   root.b47NativeAtomNodes=root.b47NativeAtomNodes or {}
   root.b47NativeAtomNodes[#root.b47NativeAtomNodes+1]=w
+  if arrow then
+   local state=w.b47NativeAtom;state.decorations={}
+   w.children=w.children or {}
+   for i=0,2 do for _,side in ipairs({-1,1})do
+    local name='b47Chevron'..i..'_'..side
+    local node=UI.Texture{x=5+side*i,y=10+(key=='bottom'and 1-i or i-1),width=1,height=1,r=1,g=1,b=1,a=1,enabled=false}
+    node.parent=w;node.b47NativeAtom={kind='scrollGlyph'};w.children[name]=node
+    state.decorations[#state.decorations+1]=node;root.b47NativeAtomNodes[#root.b47NativeAtomNodes+1]=node
+    if w.javaObj then UI._addChild(w,node)end
+   end end
+  end
   for _,method in ipairs({'onHover','setSelected'})do
    local delegate=w[method]
    if type(delegate)=='function'then w[method]=function(self,value,...)

@@ -1,8 +1,14 @@
 # Options and safe HUD layout workspace
 
-Project Version: 0.12.0-dev.1
+Project Version: 0.12.0-dev.3
 
-Current 0.8.0-dev.2 adds compatible PATCH fixes for HUD editor input/exit handling to the 0.8 Options workspace. The 0.7 series introduced safe HUD previews and shared unsaved-exit confirmation. Public API major 1, existing appearance storage, main-menu schema 1 and the owner-approved menu/logo defaults remain compatible. No current package, deployment, launch or Workshop upload is part of this iteration.
+Dev.3 HUD target selection, direct body movement and dirty Cancel/Discard were observed in the isolated runtime. Complete HUD edge/corner sizing, saved reload and physical input remain pending; see UI_RUNTIME_DEV3_CHECKPOINT_2026-11-04.md. The menu editor has a separate bounded successful resize observation.
+
+Dev.3 fixes distinguish workspace-owned capture and its shared selector popup from foreign modal UI. Selector ownership remains recognized through native deferred removal, so selection changes the actual edited asset. Native tests moved Inventory directly, switched the selected asset and used dirty Cancel/Discard without writing preferences. The shared confirmation rejects stale Keep/Discard/controller callbacks while a foreign modal owns input. Long corner-resize input, keyboard exits and physical controller coverage are not inferred from these observations.
+
+Historical evidence (2026-10-24, dev.2): [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). Overall native acceptance is FAILED / INCOMPLETE. Earlier version-specific NOT TESTED statements below retain their original checkpoint scope. HUD selector text changed to Nearby Loot while Inventory remained the active preview and plus-button target; direct drags did not move it. Blank clicks stayed inert and Cancel/Discard protected the unsaved draft. Attempted main-menu logo drag closed that editor. Input/capture timing and Escape remain unresolved; offline input fixtures do not establish these paths work natively.
+
+Historical 0.8.0-dev.2 added compatible PATCH fixes for HUD editor input/exit handling to the 0.8 Options workspace. The 0.7 series introduced safe HUD previews and shared unsaved-exit confirmation. Public API major 1, existing appearance storage, main-menu schema 1 and the owner-approved menu/logo defaults remain compatible. That original checkpoint did not package, deploy, launch or upload; the dated dev.2 report above records the later isolated runtime pass.
 
 ## Player controls
 

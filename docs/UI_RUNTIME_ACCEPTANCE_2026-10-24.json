@@ -1,0 +1,1762 @@
+{
+  "schema": 1,
+  "project_version": "0.12.0-dev.2",
+  "date": "2026-10-24",
+  "runtime_acceptance": "FAILED / INCOMPLETE",
+  "case_count": 45,
+  "area_count": 61,
+  "area_results": {
+    "LIMITED": 18,
+    "FAIL": 17,
+    "NOT_REACHED": 26
+  },
+  "source_parent": "46db745ea1eca24d1c9270374d3aa2c552d2ec15",
+  "source_was_dirty": true,
+  "tested_project_fingerprints": {
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/API.lua": "a5a93fbbaa94db1f3426e795344bc381768db442c3fc60c5730f0156180ef17f",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Appearance.lua": "7437765b204d3f4c40160bae1435fe90281be3bce212823d5ff779127d28d252",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/AppearanceEditor.lua": "f3c4b257772e791b35693842bfa61b643bf9cd6b96b38b9f96de1d9b44d1368b",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Clipboard.lua": "1ec36b9c3669c3e023b3fd85a9c2ebe71b5b94a733b90921f5de4cc020ffdb43",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/ComponentStyles.lua": "c7cd80ad9ab1e448844bd8aaa376125df8cee5e9b17c3d3e0ae40e923a8de063",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Controls.lua": "4e6ff80bd1e221648996b7da919f6b0788b9b7cf89225cadb370e8ab05132e3f",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Dialog.lua": "d68c18a00641278f044cf0efdd38a598c9e64db6f7aa4a1a3b83de274705c3f4",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/EditorControls.lua": "db0ba92701f885460387d3db20dd84086de1b2738a21b1ced5ac2e301e177f10",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/HUDLayoutRuntime.lua": "2d98e340c194a6db81560af66fc880626107cc10c9a2f4ae2a6f85f001bb6770",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/HUDPreviews.lua": "e99ad8a66b5e39312b9a35565d2051681fce86cc2a4024315af226125e100a5a",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/LayoutAssets.lua": "47806987bc432b0a63c40cbd62a97dc39a9fc6e2934926244a25b643217908e3",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/MenuBackground.lua": "0da9aa2d8890e4819bb8df152ff6391efba978915b0fe2ca95d4050fd2e42cc7",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/MenuLayout.lua": "5bb884b6896492a51518f1dfb2eaf2c849dd5d628693fdd6bef4fe3fe0530754",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/MenuLayoutEditor.lua": "9bcbc65eb8c3e5c88b109ec485eeb1d2f195f618d9179b9bb212145044799722",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeContext.lua": "84b287034b10fd512cad5a384bd8084c2d4b01f440744b30304172823879904a",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeDialogs.lua": "ba4158630262a193f54100fb2f9c97fd954f94da473c45f765e790d84948bf17",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeInventory.lua": "eac9aa06e010ca56f86b9ede6f695af8c8c9bf1c93fb8bc43333c5d4cd5c4ee6",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeMenus.lua": "91ac932fc0772398a25aecf6b707ebd390a6ffb6d9473c279465ce52c39bb57e",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativePainters.lua": "488d3bd069c5d24a592cd149d6ec6111f31ac51ce6d6bc36b809f2e499a27268",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativePresentation.lua": "b7c6613f64dc4866f04700cd8ed50f3f4ac3caa810eb88ca76539cd0123c0121",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeRegistry.lua": "de9aac10637a5862f38522d4e00d64c859944cbae02df42a66aaf7aeabf1ceb0",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeSettings.lua": "42bb0af1918cfee4f8fbc4809f912a6dccb4c1045e4dbd0f3aaf99eb54e33d0c",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/NativeTheme.lua": "4618bb7b90f1f3a8f1e7a31f27f55ee92b5ee1ef6a55e48bcb6783a8a72e0eec",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsInterface.lua": "c32883d17d1063a2306d4c7ed6def788eac45bcb5c8cc75afd3d16197b2be98d",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsLayout.lua": "e9f4ca785f619f689b8e1f1efc56be935d5d74b3792e4038601f60cc13b72469",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsLayoutModel.lua": "b283cf7cb47e63e32b9eb03ee1513b4f446a89c0eaeb99a18123c5c635072b08",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/OptionsLifecycle.lua": "83fd33772c4ccc5ea474aee8f626e11d16524e5889c4161c5b171819699aff90",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/PresetExport.lua": "999cb058b4b6ab87360130023f5f6dfcf75dc2672eea2d3dd058d04835722662",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/PresetPlugins.lua": "0b1c2fd0149e65b179a6f9d53d9f9df4a6250a4db1d64892081c4982ec545e35",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/PZAPITheme.lua": "e4d1e12d73203647635ef3128562fe180f1266699da426e7a1116fbe0436afec",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Renderer.lua": "7ab5a1f3f9cab99614ab5b23c396a00cba60730f20bc2ae1d403026e01401d3f",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/RowTooltip.lua": "599670855f85e8d8e5e04e07b7ffb3f6badf0b3db1ec2b9ea4d7d0b397b0ce47",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/StyleEditor.lua": "03276394e1ebf2444bc923d6fecdf7e7e47270855f2cd00a4de8d5fc77ecb391",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/StylePresets.lua": "6af4aac6fa108968e5afdea3aebbc5fc7f0358b2c79952dad2deac5e33dff0bd",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Theme.lua": "d71f144292f6843c1d7b18da6bccc5909d8412bdc81d74ada7a71555da83fa90",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/Tooltip.lua": "cb9bd267393f30bf99a2f0d4954e55f8b21e848109f5017e7555fffe15af46a1",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/UILayout.lua": "8f6c23ea637a3ac01f86ce797501c1e9baf04675794185380b987431f455e292",
+    "src/B47ANCEDUI/42/media/lua/client/B47ANCEDUI/UILayoutEditor.lua": "c71d8ddf0194afb6578b9fedf0fb08194e7ab1ab15ebeb483962defbb0c23bc2",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/AR/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/CA/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/CH/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/CN/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/CS/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/DA/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/DE/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/EN/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/ES/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/ES_CL/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/ES_MX/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/FI/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/FR/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/HU/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/ID/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/IT/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/JP/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/KO/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/NL/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/NO/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/PL/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/PT/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/PTBR/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/RO/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/RU/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/STREW/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/TH/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/TR/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/lua/shared/Translate/UA/UI.json": "b767ba45c9042aba5ea4b6ee9cbaeef81bf3cb5644dce8272d9ad8412910da5d",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoom.png": "1b694091f466f951e6917d6399f5f2ab9aeb4748b047d2a1c5d00befe7991295",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/SecurityRoomPanorama.png": "340e86248af1da41a23bda51a46ecd7fff39d356096a8ebf6313d7685c87d5c0",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static1.png": "dbaf8fdc8c66029bf9a7544b506df6a3f586463ffd7a420b6ea8ad2c9b046e9d",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static2.png": "768f0cd0c1d32b8f97c271a848dc8929b230e05c0f903555e5914ed0cfb56cc5",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static3.png": "aaea06a05b84d93318769b03d04b2b057fb909bd21a5ce754a71380513afb310",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static4.png": "353d0174157fd89776b8deb8addad12d0282080a5b9fd09622439865ad52e863",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static5.png": "f7950b521ffcfb04eea2a7166c2b442a3bd8dd670d64ab40766f4edf36ea0b64",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static6.png": "c87c64a549b6b808f09e632291f7c82f8c2f7b49e0bafb796e966d9b51822e61",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static7.png": "57cbd4aaca2abf88d4d29c5b60f1c5d648e519db998db0ba5c9fa0c6090c3f4c",
+    "src/B47ANCEDUI/42/media/ui/B47ANCEDUI/Static8.png": "65137127a76a187573ad6d04c7f1f4f928b808ed387b0bd042cd4484ff6490cf",
+    "src/B47ANCEDUI/42/mod.info": "482101a7a5e495c8d8ae4db1ff1135afaab6ae5df22a3d4315ea2e36dd29c5e2"
+  },
+  "environment": {
+    "game": "42.21.0",
+    "revision": "4a0e9546ec",
+    "steam_build": "25485521",
+    "platform": "Windows, bundled engine runtime, isolated cachedir, local mod folders",
+    "viewports": [
+      "1280x800",
+      "1920x1009"
+    ],
+    "fontSize_option": 6,
+    "limits": [
+      "Installed PZ Optimization engine overrides remain; not a pristine vanilla installation.",
+      "Custom launcher agents excluded; runtime mod source remains Lua-only.",
+      "Computer Use mouse observations are real native UI evidence. Keyboard/text injection was inconsistent; causes remain UNKNOWN.",
+      "One new disposable sandbox/character, no real saves or profile edits. No server launch or Workshop upload.",
+      "Screenshots were inspected in Computer Use; raw logs, player/cache data and launch helpers remain private."
+    ],
+    "published_subscription_parity": {
+      "result": "VERIFIED local installed content only",
+      "files": 78,
+      "version": "0.12.0-dev.1",
+      "receipt": "docs/WORKSHOP_UPDATE_0.12.0-dev.1_2026-10-24.json",
+      "limitation": "Exact downloaded bytes match the published receipt; no Steam transport/timing or generated preset-plugin subscription claim."
+    }
+  },
+  "evidence_hashes": {
+    "baseline.stderr.log": "4429110fd0184fd5a47cc5f6e625784b37b7cdfe090ff963d08bb0eaf15084aa",
+    "baseline.stdout.log": "aa80d1fb6de3f764180069d3650cb9fd41ee3ce9a0c8222e2ec271df2b4edecf",
+    "cold-dev1.stderr.log": "fdcde8d074169c92cb600bf6ae7ca2dd41bd5d67c415822bf2d6ff319b1e06ac",
+    "cold-dev1.stdout.log": "de1f6aaffc4430631cfce6881d4d3511b44a51e606f7a7146671666c1e38366c",
+    "dev2-final-options.stderr.log": "fdcde8d074169c92cb600bf6ae7ca2dd41bd5d67c415822bf2d6ff319b1e06ac",
+    "dev2-final-options.stdout.log": "e56c141af0233fe94deb7b7441e427fb09cf164a0fb4bd4894f67d9152bae4d5",
+    "dev2-plugin.stderr.log": "bb8a939a1001c2f34aac803101fd187103d206ef402584f091b6418dace06fdf",
+    "dev2-plugin.stdout.log": "81fcede6fbd9825fb13644b6bd66dd8303574eca5bf2c277635ac90cff1fe1df",
+    "dev2-suite-resume.stderr.log": "8efed60696574b1513d54768c338a2d4b2e00979c5a10e08d6b8319932e90ce3",
+    "dev2-suite-resume.stdout.log": "ef7b1f2557c4ca15d24126ca116af398ab7eb1ef05b5b654e28079950597120d",
+    "dev2-suite.stderr.log": "fdcde8d074169c92cb600bf6ae7ca2dd41bd5d67c415822bf2d6ff319b1e06ac",
+    "dev2-suite.stdout.log": "74d7be834ff1fc35ab43a56a666ff2631eb4eafdbae78dbefe7d30610add099f",
+    "dev2-tests.log": "b9654b562143d30f845e9a5697a7bcc333f132ebe3961dbfe701841d3912f4b9",
+    "dev2-wide.stderr.log": "fdcde8d074169c92cb600bf6ae7ca2dd41bd5d67c415822bf2d6ff319b1e06ac",
+    "dev2-wide.stdout.log": "ef12e34cd6543b27459bd00a5e427b0218b73f2a7c1b7b130816f874b474d914",
+    "dev2.stderr.log": "fdcde8d074169c92cb600bf6ae7ca2dd41bd5d67c415822bf2d6ff319b1e06ac",
+    "dev2.stdout.log": "f076aa99abb752b7918733d9f4a51879fc2b193972bc6e09e80462485f5b3c27"
+  },
+  "cases": [
+    {
+      "id": "BOOT-01",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "Published dev.1 activated through the native mod selector and Lua reload; startup rendered without the original menu exception."
+    },
+    {
+      "id": "MENU-01",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS with observation",
+      "observation": "Bunker artwork, four CRTs, menu/logo, optional status subtitle and both editor buttons rendered. Tight logo/menu spacing at 1280x800."
+    },
+    {
+      "id": "MENU-02",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "All four monitors transitioned from static to persistent NO SIGNAL loops."
+    },
+    {
+      "id": "MENU-03",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "VISUAL DEFECT",
+      "observation": "Quit confirmation opened and was cancelled. Green/red square button outlines remain; distinguish semantic colors from corner styling."
+    },
+    {
+      "id": "OPTIONS-01",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS with defects",
+      "observation": "Sidebar, search, section selector, card and footer fit. Disabled arrows retain red square outlines; short cards are sparse."
+    },
+    {
+      "id": "OPTIONS-02",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "Section dropdown opened, Textures selected and navigation remained visible."
+    },
+    {
+      "id": "OPTIONS-03",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "Thirteen UI rows fit without an unnecessary scrollbar."
+    },
+    {
+      "id": "OPTIONS-04",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "Audio page one and native segmented volume controls fit; privacy/VOIP controls untouched."
+    },
+    {
+      "id": "OPTIONS-05",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS with density observation",
+      "observation": "Audio page two navigation worked; large unused card space remains."
+    },
+    {
+      "id": "OPTIONS-06",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "VISUAL DEFECT / remaining native layout",
+      "observation": "Keybinding columns exceeded the narrowed pane; right controls clipped and native overflow bars remained."
+    },
+    {
+      "id": "OPTIONS-07",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "Key capture prompt opened with dark rounded chrome."
+    },
+    {
+      "id": "OPTIONS-08",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "Cancel preserved Forward=W, navigation and disabled Apply."
+    },
+    {
+      "id": "OPTIONS-09",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "Accessibility page one compound player checkboxes fit."
+    },
+    {
+      "id": "OPTIONS-10",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "VISUAL DEFECT / hardware not tested",
+      "observation": "Controller right controls/text and lower diagram clipped; hardware input not tested."
+    },
+    {
+      "id": "OPTIONS-11",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "Multiplayer Options rows fit without changing settings."
+    },
+    {
+      "id": "OPTIONS-12",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "VISUAL DEFECT",
+      "observation": "Native highlight-color picker extended beyond the right viewport edge. Dismissed without picking a color."
+    },
+    {
+      "id": "OPTIONS-13",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "Interface tools fit; entry visibility alone did not verify editors."
+    },
+    {
+      "id": "PRESETS-01",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "FAIL blocking runtime exception",
+      "observation": "Dev.1 StyleEditor failed at line112 when RGB slider construction invoked an unassigned text handler."
+    },
+    {
+      "id": "BOOT-02",
+      "version": "0.12.0-dev.1",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "Published dev.1 cold startup rendered cleanly. Original full-profile NativeMenus53 failure not reproduced."
+    },
+    {
+      "id": "BOOT-03",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "Dev.2 cold startup rendered cleanly in the isolated profile."
+    },
+    {
+      "id": "PRESETS-02",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS WITH LIMITS",
+      "observation": "Patched editor opened; Red click/drag updated hex and sample, Keep editing retained draft, export succeeded, Inherit restored defaults, Save closed."
+    },
+    {
+      "id": "APPEARANCE-01",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "Red slider changed live accent/hex; Reset restored grey and default opacity; Close worked in test preferences."
+    },
+    {
+      "id": "HUD-01",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "FAIL",
+      "observation": "Dropdown changed its label but kept Inventory selected; plus edited Inventory. Two direct drags did not move assets. Blank click stayed open; Cancel/Discard worked. Escape delivery unresolved."
+    },
+    {
+      "id": "LAYOUT-01",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "FAIL / INPUT UNCERTAIN",
+      "observation": "Menu editor opened, but attempted direct logo drag closed it without moving or prompting. Input/capture cause unresolved."
+    },
+    {
+      "id": "SOLO-01",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS WITH VISUAL GAPS",
+      "observation": "New Game, Custom Sandbox, spawn map, Time/Zombie settings, occupation/traits, avatar and Play reached. New isolated world used Zombie Count=None. Orange native selections remain."
+    },
+    {
+      "id": "SP-01",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "Info, Skills, Health, Exercise, Protection and Temperature opened and switched. Native diagrams/status colors retained; Skills scrolls."
+    },
+    {
+      "id": "SP-02",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS WITH LIMITS",
+      "observation": "Inventory and cupboard loot expanded; Jeans tooltip/context/More submenu fit. No transfer/equip/craft. Long fixed-width category text clipped."
+    },
+    {
+      "id": "SP-03",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS WITH VISUAL GAPS",
+      "observation": "Handcraft and Building browsers opened naturally near a table, with recipe requirements and disabled actions. Orange selections remain. No craft/place."
+    },
+    {
+      "id": "SP-04",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "World map, key, symbols and settings popup fit; Close returned to world. No annotation or map-setting change."
+    },
+    {
+      "id": "SP-05",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS WITH LIMITS",
+      "observation": "Foraging window and Search Focus dropdown fit; popup dismissal and Close worked. Search Mode not enabled."
+    },
+    {
+      "id": "SP-06",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PASS",
+      "observation": "Oven Settings opened through its natural context menu; knobs, units and Close fit. Appliance/knobs unchanged."
+    },
+    {
+      "id": "SP-07",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1280x800",
+      "result": "PARTIAL / INPUT UNCERTAIN",
+      "observation": "Esc menu and Resume observed once; later injected Escape/B were inconsistent. Alt+F4 closed gracefully. Root cause unassigned."
+    },
+    {
+      "id": "RESPONSIVE-01",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1920x1009",
+      "result": "PASS WITH LIMITS",
+      "observation": "Menu rendered at 1920x1009 with four no-signal loops and editor buttons. Actual ultrawide hardware not tested."
+    },
+    {
+      "id": "LOAD-01",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1920x1009",
+      "result": "PASS WITH VISUAL GAPS",
+      "observation": "Disposable save details and More panel opened; Back worked. No rename/delete/new-player/load action. Orange selection remains."
+    },
+    {
+      "id": "MODS-01",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1920x1009",
+      "result": "PASS WITH VISUAL GAPS",
+      "observation": "About Mods, selector and Back worked without activation changes. Orange selection remains; green enabled marks are semantic."
+    },
+    {
+      "id": "WORKSHOP-01",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1920x1009",
+      "result": "PASS WITH VISUAL GAPS",
+      "observation": "Native Workshop entry and directory selection opened; Back twice returned. No metadata change or upload."
+    },
+    {
+      "id": "MP-01",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1920x1009",
+      "result": "PASS WITH VISUAL GAPS",
+      "observation": "Empty Favorites server browser opened and Back worked. Orange tab/row and blue placeholder remained. No query/connect/auth/privacy changes."
+    },
+    {
+      "id": "HOST-01",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1920x1009",
+      "result": "PASS WITH LIMITS",
+      "observation": "Host setup and empty Manage Server Settings list opened; Back worked. No server configuration creation/edit or server launch."
+    },
+    {
+      "id": "CREDITS-01",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1920x1009",
+      "result": "PASS WITH INPUT LIMIT",
+      "observation": "Credits scrolled. Injected Escape was not recognized; graceful Alt+F4 worked. Input cause unassigned."
+    },
+    {
+      "id": "OPTIONS-14",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1920x1009",
+      "result": "INPUT UNVERIFIED",
+      "observation": "Focused search received two injected typing attempts after refocus but showed no text. Search-code cause unproven; input acceptance unresolved."
+    },
+    {
+      "id": "OPTIONS-15",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1920x1009",
+      "result": "PASS WITH LIMITS",
+      "observation": "Rendering/Performance and Accessibility pages one/two fit at the wider size; page buttons worked. Values and Apply unchanged."
+    },
+    {
+      "id": "OPTIONS-16",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1920x1009",
+      "result": "FAIL",
+      "observation": "Keybinding compound labels and controller controls/diagram still clipped at the wider size."
+    },
+    {
+      "id": "PRESETS-03",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1920x1009",
+      "result": "PASS WITH LIMITS",
+      "observation": "Cold reopen preserved inherited Default; family/property dropdowns and Red RGB worked. Cancel/Discard returned to Options. Specific scrollbar tokens not verified."
+    },
+    {
+      "id": "PACKAGER-01",
+      "version": "0.12.0-dev.2",
+      "environment": "offline packager",
+      "viewport": "1280x800",
+      "result": "PASS OFFLINE",
+      "observation": "Offline helper accepted the actual 191-byte runtime export and staged six exact payload files plus metadata/receipt, UI dependency and private visibility. No publication."
+    },
+    {
+      "id": "PLUGIN-01",
+      "version": "0.12.0-dev.2",
+      "environment": "native frontend / disposable SP",
+      "viewport": "1920x1009",
+      "result": "PASS WITH USABILITY GAP",
+      "observation": "Generated data-only plugin enabled through native Mods/Accept/Lua reload. Choice stayed inactive until selected; detached preview, Save/reopen and original Default restoration worked. Duplicate local Default display names remain ambiguous."
+    }
+  ],
+  "areas": [
+    {
+      "id": "C01",
+      "title": "Main menu navigation and security-room scene",
+      "result": "LIMITED",
+      "case_ids": [
+        "MENU-01",
+        "MENU-02",
+        "BOOT-02",
+        "BOOT-03",
+        "RESPONSIVE-01"
+      ],
+      "observed_windows": [
+        "MainScreen main menu/security-room scene"
+      ],
+      "observations": [
+        "Four CRTs transitioned from startup static to NO SIGNAL; menu/logo, optional subtitle and editor entry buttons rendered at1280x800 and1920x1009.",
+        "Logo/menu spacing tight at1280x800. Current isolated fontSize6 was not changed. Actual ultrawide hardware was not tested."
+      ],
+      "remaining": [
+        "Other resolutions/font scales, dynamic added/removed menu rows, controller navigation, audio listening/restoration."
+      ]
+    },
+    {
+      "id": "C02",
+      "title": "Esc/pause navigation",
+      "result": "LIMITED",
+      "case_ids": [
+        "SP-07"
+      ],
+      "observed_windows": [
+        "MainScreen in-game Esc/pause menu"
+      ],
+      "observations": [
+        "Menu-style text and Resume observed. Later injected Escape was inconsistent; cause unassigned."
+      ],
+      "remaining": [
+        "Controlled physical keyboard and controller retest; modal/focus and repeated open/close."
+      ]
+    },
+    {
+      "id": "C03",
+      "title": "Frontend Quit to desktop confirmation",
+      "result": "LIMITED",
+      "case_ids": [
+        "MENU-03"
+      ],
+      "observed_windows": [
+        "ISModalDialog frontend Quit to desktop confirmation"
+      ],
+      "observations": [
+        "Centered dark confirmation reached; final quit not confirmed. Ledger records a visual defect for vivid green/red square outlines.",
+        "Accept/cancel colors are native semantics; exact quit-adapter corner ownership still needs verification, so this is not a complete pass or an automatic recoloring request."
+      ],
+      "remaining": [
+        "Verify active quit adapter/painter path; preserve semantic state colors; Cancel/reopen/focus and controlled keyboard."
+      ]
+    },
+    {
+      "id": "C04",
+      "title": "Native Options and Interface page",
+      "result": "FAIL",
+      "case_ids": [
+        "OPTIONS-01",
+        "OPTIONS-02",
+        "OPTIONS-03",
+        "OPTIONS-04",
+        "OPTIONS-05",
+        "OPTIONS-06",
+        "OPTIONS-07",
+        "OPTIONS-08",
+        "OPTIONS-09",
+        "OPTIONS-10",
+        "OPTIONS-11",
+        "OPTIONS-12",
+        "OPTIONS-13",
+        "OPTIONS-14",
+        "OPTIONS-15",
+        "OPTIONS-16"
+      ],
+      "observed_windows": [
+        "MainOptions: Display/Textures, User Interface, Audio pages1/2, Key Bindings, Accessibility, Controller, Multiplayer, Interface",
+        "MainOptions key-capture modal and native highlight-color picker"
+      ],
+      "observations": [
+        "Contained ordinary pages, section/page navigation and key-capture Cancel observed at1280x800; Rendering/Performance and Accessibility pages also fit at1920x1009. Native values and Apply state remained unchanged.",
+        "Keybinding compound labels and controller controls/diagram labels still clipped at1920x1009, confirming visible geometry failures beyond1280. Native highlight-color picker remained an unresolved right-edge finding.",
+        "Search focus border appeared but two injected typing attempts produced no text. This is INPUT UNVERIFIED; no search-code cause established."
+      ],
+      "remaining": [
+        "Replay specialized layout and picker bounds after fixes; verify search with known-working physical/native input.",
+        "Apply/Back rollback, value reload, large fonts, further resolutions and real controller input remain incomplete."
+      ]
+    },
+    {
+      "id": "C05",
+      "title": "Main-menu layout editor",
+      "result": "FAIL",
+      "case_ids": [
+        "LAYOUT-01"
+      ],
+      "observed_windows": [
+        "MenuLayoutEditor main-menu Menu/Logo inspector and frames"
+      ],
+      "observations": [
+        "Editor opened. An attempted direct logo drag closed it without movement or unsaved prompt; later keyboard injection was inconsistent.",
+        "Observed interaction failed, but actual input delivery/focus and mod root cause remain unverified."
+      ],
+      "remaining": [
+        "Controlled native mouse/keyboard reproduction with stable foreground/focus; inspect selection/drag/resize and Save/Cancel/Reset only after input is verified."
+      ]
+    },
+    {
+      "id": "C06",
+      "title": "HUD preview/layout editor",
+      "result": "FAIL",
+      "case_ids": [
+        "HUD-01"
+      ],
+      "observed_windows": [
+        "UILayoutEditor black preview canvas and asset selector"
+      ],
+      "observations": [
+        "Nearby Loot selection changed its displayed label while Inventory highlight/values remained; plus moved Inventory. Two attempted direct drags did not move an asset.",
+        "Blank click inert; dropdown kept editor open; Cancel/Discard returned to Options. Input delivery and focus need independent verification before assigning a root cause."
+      ],
+      "remaining": [
+        "Reproduce selector/drag behavior with verified physical/native input; then verify each supported asset, Save/Cancel/Reset, pending fields and actual HUD application."
+      ]
+    },
+    {
+      "id": "C07",
+      "title": "Style preset and accent/appearance editors",
+      "result": "FAIL",
+      "case_ids": [
+        "PRESETS-01",
+        "PRESETS-02",
+        "APPEARANCE-01",
+        "PRESETS-03",
+        "PACKAGER-01",
+        "PLUGIN-01"
+      ],
+      "observed_windows": [
+        "StyleEditor UI Style Presets inspector/sample area and supported Options behind it",
+        "AppearanceEditor local accent/opacity dialog",
+        "Native Mods selector enable/Accept/Lua reload for a generated data-only preset pack"
+      ],
+      "observations": [
+        "Dev1 preset construction failed; dev2 native opening passed after the construction-sync change. Red slider click/drag, live sample styling, Inherit, unsaved Keep, Save and reopen were reached.",
+        "Cold reopen preserved the inherited Default after prior Save. Scrollbars family and Accent property selected; red drag produced #34B0B0. Generic accent did not visibly recolor horizontal preview scroll thumb; specific scrollbar tokens were not tested and no drawing fault is assigned. Cancel/Discard returned to Options.",
+        "Actual runtime export was191bytes. Offline packager accepted that data and produced6exact payload files plus metadata/receipt, B47ANCEDUI dependency and private visibility; this is OFFLINE packaging evidence, not a native uploader or publication pass.",
+        "Generated data-only plugin was enabled through native Mods Accept/Lua reload. Existing grey Options remained unchanged until explicit catalogue selection. Selecting Default[packID] created an editable detached copy and previewed #770F0F on the sample and Options behind the editor.",
+        "Save then reopen retained the plugin-derived color. Selecting the original Default and Save restored grey. Two local Default labels were indistinguishable: unresolved usability gap.",
+        "Appearance RGB Red/Reset/Close worked in isolated preferences. Native arrow textures remain."
+      ],
+      "remaining": [
+        "Disambiguate duplicate local preset display labels and replay; full CRUD/scopes/hex/all53colors and all states remain incomplete.",
+        "Full cold reload of the changed profile, other pack malformed/future/update/removal paths and actual helper-to-native-wizard handoff remain untested.",
+        "No Steam upload/subscription/download or real controller/split-screen proof."
+      ]
+    },
+    {
+      "id": "C08",
+      "title": "Shared API controls, dialogs and managed tooltip helpers",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [
+        "No independent consuming-mod/public API acceptance scenario. Preset samples are incidental evidence only."
+      ],
+      "remaining": [
+        "Exercise API1 scoped controls/dialogs/managed tooltips through a real authorized consumer or safe fixture."
+      ]
+    },
+    {
+      "id": "X01",
+      "title": "Native confirmations, warnings and text-entry dialogs beyond frontend Quit",
+      "result": "LIMITED",
+      "case_ids": [
+        "MENU-03",
+        "OPTIONS-07",
+        "OPTIONS-08"
+      ],
+      "observed_windows": [
+        "ISModalDialog Quit confirmation",
+        "MainOptions native key-capture modal"
+      ],
+      "observations": [
+        "Key-capture prompt and Cancel retained binding and disabled Apply. Quit semantic border observation remains triaged separately."
+      ],
+      "remaining": [
+        "Other confirmations/text-entry/countdown dialogs; modal focus, close/reopen and callback behavior."
+      ]
+    },
+    {
+      "id": "X02",
+      "title": "World/item/container context menus and submenus",
+      "result": "LIMITED",
+      "case_ids": [
+        "SP-02"
+      ],
+      "observed_windows": [
+        "Inventory item context menu and More submenu"
+      ],
+      "observations": [
+        "Jeans context menu and pooled nested More submenu opened and fitted. No item action executed."
+      ],
+      "remaining": [
+        "World/empty-container menus, multiple submenu reuse paths, controller and provider-owned exclusions."
+      ]
+    },
+    {
+      "id": "X03",
+      "title": "Item, rich, world-object and container tooltips",
+      "result": "LIMITED",
+      "case_ids": [
+        "SP-02",
+        "OPTIONS-02"
+      ],
+      "observed_windows": [
+        "Inventory item tooltip",
+        "Options section/control tooltips"
+      ],
+      "observations": [
+        "Item tooltip and Options tooltip rendering observed; not all tooltip painters or lifecycle paths tested."
+      ],
+      "remaining": [
+        "Rich/world/container tooltips, edge placement, delayed/pooled reuse, controller and cleanup."
+      ]
+    },
+    {
+      "id": "X04",
+      "title": "Native scrollbars, scrolling panels and clipping",
+      "result": "FAIL",
+      "case_ids": [
+        "OPTIONS-01",
+        "OPTIONS-03",
+        "OPTIONS-05",
+        "OPTIONS-06",
+        "OPTIONS-10",
+        "SP-01",
+        "SP-02",
+        "OPTIONS-15",
+        "OPTIONS-16",
+        "PRESETS-03"
+      ],
+      "observed_windows": [
+        "MainOptions ordinary pages and specialized key/controller pages",
+        "Character Skills scroll area",
+        "Inventory/loot scroll areas"
+      ],
+      "observations": [
+        "Ordinary Options pages contained at1280x800 and1920x1009; character/inventory scroll areas reached. Specialized key/controller labels/controls still clip at1920x1009.",
+        "Classic scrollbar/arrow textures alone are native presentation boundaries. Specific Scrollbar style tokens and physical controller reveal behavior were not tested."
+      ],
+      "remaining": [
+        "Fix reachable extents/clipping on specialized pages; verify both axes, thumb/wheel/focus and content fit."
+      ]
+    },
+    {
+      "id": "X05",
+      "title": "Lists, tables, trees and column headers",
+      "result": "FAIL",
+      "case_ids": [
+        "SOLO-01",
+        "SP-02",
+        "SP-03",
+        "OPTIONS-06",
+        "LOAD-01",
+        "MODS-01",
+        "WORKSHOP-01",
+        "MP-01"
+      ],
+      "observed_windows": [
+        "Setup spawn/sandbox/occupation/traits lists",
+        "Inventory/loot list and expanded container",
+        "Handcraft recipe and building category/recipe lists",
+        "Options keybinding grid"
+      ],
+      "observations": [
+        "Orange selected rows remain in setup/crafting/building and newly reached save/mod/Workshop/browser screens. Setup/craft source candidates were verified; newly reached frontend paths need exact painter/ownership inspection before implementation.",
+        "Long loot category clipped at fixed width; no new inventory geometry requirement inferred."
+      ],
+      "remaining": [
+        "Guarded selection-chrome adapters and replay, without changing semantic trait/recipe colors; table/header/tree/provider variants still untested."
+      ]
+    },
+    {
+      "id": "X06",
+      "title": "Native tabs, check/radio controls, color pickers and popups outside Options",
+      "result": "FAIL",
+      "case_ids": [
+        "OPTIONS-02",
+        "OPTIONS-03",
+        "OPTIONS-09",
+        "OPTIONS-11",
+        "OPTIONS-12",
+        "PRESETS-02",
+        "PRESETS-03",
+        "PLUGIN-01"
+      ],
+      "observed_windows": [
+        "Options section dropdown, checkbox groups and native color picker",
+        "StyleEditor controls"
+      ],
+      "observations": [
+        "Ordinary dropdowns/checkbox groups and plugin catalogue selection were reached; native color picker remains offscreen. Semantic color swatches/gradients are preserved.",
+        "Plugin discovery stayed inactive until explicit selection; selection/Save/reopen/default restore worked with a duplicate-name usability gap."
+      ],
+      "remaining": [
+        "Clamp/replay native picker, then test tabs/radio/tick/popups/controller/capture and both edge anchors."
+      ]
+    },
+    {
+      "id": "X07",
+      "title": "Typography, density, icon states and preset coverage",
+      "result": "LIMITED",
+      "case_ids": [
+        "OPTIONS-01",
+        "OPTIONS-05",
+        "PRESETS-02",
+        "APPEARANCE-01",
+        "RESPONSIVE-01",
+        "OPTIONS-15",
+        "PRESETS-03",
+        "PLUGIN-01"
+      ],
+      "observed_windows": [
+        "Options cards/footer",
+        "StyleEditor sample area",
+        "AppearanceEditor sliders"
+      ],
+      "observations": [
+        "Readable ordinary Options/preset rendering observed at1280x800 and1920x1009 with existing fontSize6 unchanged. Short cards retain large unused space.",
+        "Some RGB/inherited/family controls and plugin preview were exercised. All53tokens, specific scrollbar channels, typography scales, icons and states are not accepted from this subset."
+      ],
+      "remaining": [
+        "Normal/large fonts, standard/ultrawide, all supported component states and explicit Cancel restoration."
+      ]
+    },
+    {
+      "id": "F01",
+      "title": "Solo mode, difficulty and challenge selection",
+      "result": "LIMITED",
+      "case_ids": [
+        "SOLO-01"
+      ],
+      "observed_windows": [
+        "NewGameScreen difficulty/mode selection"
+      ],
+      "observations": [
+        "Difficulty and Custom Sandbox reached in isolated setup. Some unstyled setup panels remain."
+      ],
+      "remaining": [
+        "Other modes/challenges and local ModePanel descendants; selected-card/disabled state and controller."
+      ]
+    },
+    {
+      "id": "F02",
+      "title": "Load/save browser and saved-game configuration",
+      "result": "FAIL",
+      "case_ids": [
+        "LOAD-01"
+      ],
+      "observed_windows": [
+        "LoadGameScreen save browser",
+        "LoadGameScreen More/details controls"
+      ],
+      "observations": [
+        "Disposable save/mod details listed; More revealed choose-mods/player/rename/file controls and Back worked. No rename/delete/new-player/load action.",
+        "Orange selected row and native square controls remain; selection chrome requires source triage distinct from semantic button colors."
+      ],
+      "remaining": [
+        "Inspect selected-row ownership/painter; other save variants/controller/large fonts and actual load remain incomplete. Do not delete/overwrite saves to fill coverage."
+      ]
+    },
+    {
+      "id": "F03",
+      "title": "World/map and spawn selection",
+      "result": "FAIL",
+      "case_ids": [
+        "SOLO-01"
+      ],
+      "observed_windows": [
+        "World/spawn map selection in new-game flow"
+      ],
+      "observations": [
+        "Spawn map reached; setup orange row selections remain. WorldSelect/MapSpawnSelect row drawing is an actionable source candidate."
+      ],
+      "remaining": [
+        "Exact selected-row painter coverage, seed/info/map overlays and controller/navigation."
+      ]
+    },
+    {
+      "id": "F04",
+      "title": "Sandbox settings and presets",
+      "result": "FAIL",
+      "case_ids": [
+        "SOLO-01"
+      ],
+      "observed_windows": [
+        "SandboxOptionsScreen Time and Zombie settings"
+      ],
+      "observations": [
+        "Isolated sandbox reached and world created with no zombies. Orange native category selections remain."
+      ],
+      "remaining": [
+        "Exact local list adapter; other categories/presets/validation dialogs and controller."
+      ]
+    },
+    {
+      "id": "F05",
+      "title": "Character identity, clothing and avatar creation",
+      "result": "LIMITED",
+      "case_ids": [
+        "SOLO-01"
+      ],
+      "observed_windows": [
+        "CharacterCreationMain appearance/clothing and Play step"
+      ],
+      "observations": [
+        "Character appearance and Play reached; no comprehensive identity/avatar/clothing acceptance."
+      ],
+      "remaining": [
+        "Local ClothingPanel descendants, presets, inputs, avatar/model and focus."
+      ]
+    },
+    {
+      "id": "F06",
+      "title": "Occupation and traits",
+      "result": "FAIL",
+      "case_ids": [
+        "SOLO-01"
+      ],
+      "observed_windows": [
+        "CharacterCreationProfession occupation and traits"
+      ],
+      "observations": [
+        "Occupation/traits reached; orange selected rows remain. Trait cost/availability colors are semantic."
+      ],
+      "remaining": [
+        "Selected-row chrome adapter for verified local subclass; keep trait cost colors, callbacks and selection math."
+      ]
+    },
+    {
+      "id": "F07",
+      "title": "Multiplayer server browser",
+      "result": "FAIL",
+      "case_ids": [
+        "MP-01"
+      ],
+      "observed_windows": [
+        "MultiplayerUI Favorites/Add Server empty browser"
+      ],
+      "observations": [
+        "Empty Favorites/Add Server browser rendered; Back worked. Orange active tab/row and blue server placeholder remained.",
+        "No Internet query, connection, authentication, text input or privacy change. Blue placeholder/data colors are not automatically chrome defects."
+      ],
+      "remaining": [
+        "Inspect active-tab/selection drawing separately from server/data semantics. Populated browser, errors, connect/auth and controller are not tested."
+      ]
+    },
+    {
+      "id": "F08",
+      "title": "Connection, bootstrap, progress and error popups",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Connection/bootstrap/errors requires its actual native entry route; inspect without connecting/starting or changing shared configuration."
+      ]
+    },
+    {
+      "id": "F09",
+      "title": "Host/local-coop setup",
+      "result": "LIMITED",
+      "case_ids": [
+        "HOST-01"
+      ],
+      "observed_windows": [
+        "CoopOptionsScreen Host Game setup"
+      ],
+      "observations": [
+        "Host Game opened and navigation to/back from Manage Server Settings worked. No configuration create/edit/start/deletion."
+      ],
+      "remaining": [
+        "Configured setup controls/local-coop paths remain unreached; server Start requires its separate authorized scenario."
+      ]
+    },
+    {
+      "id": "F10",
+      "title": "Server configuration editor",
+      "result": "LIMITED",
+      "case_ids": [
+        "HOST-01"
+      ],
+      "observed_windows": [
+        "ServerSettingsScreen Manage Server Settings empty isolated configuration list"
+      ],
+      "observations": [
+        "Only the empty configuration-management list and Back were reached."
+      ],
+      "remaining": [
+        "Actual configured server-settings editor pages, validation/dialogs/mod selection/spawn regions were NOT REACHED; no creation/edit/start/deletion."
+      ]
+    },
+    {
+      "id": "F11",
+      "title": "Mod manager, mod presets and missing-mod warnings",
+      "result": "FAIL",
+      "case_ids": [
+        "BOOT-01",
+        "MODS-01",
+        "PLUGIN-01"
+      ],
+      "observed_windows": [
+        "Native About Mods information modal",
+        "ModSelector Select Mods list",
+        "ModSelector enable/Accept/Lua reload for generated preset pack"
+      ],
+      "observations": [
+        "About Mods→OK→Select Mods and Back reached. Initial UI-only activation preserved; filter/search visible but not typed.",
+        "Generated data-only preset pack later enabled through native Accept/Lua reload; pack became an inactive catalogue choice and did not change existing grey Options automatically.",
+        "Orange row selection remains; green enabled mark is meaningful native state and must not be blanket-recolored."
+      ],
+      "remaining": [
+        "Exact selection painter, search/filter input, dependency/load order/presets/missing-mod variants/controller remain incomplete."
+      ]
+    },
+    {
+      "id": "F12",
+      "title": "Server Workshop dependency installation",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Server Workshop dependency installation not entered. Ordinary Options Audio/Multiplayer or local data export does not establish this area."
+      ]
+    },
+    {
+      "id": "F13",
+      "title": "Workshop submission/update wizard",
+      "result": "FAIL",
+      "case_ids": [
+        "WORKSHOP-01"
+      ],
+      "observed_windows": [
+        "WorkshopSubmitScreen Create/update items",
+        "WorkshopSubmitScreen Choose item directory (ModTemplate only at observation)"
+      ],
+      "observations": [
+        "Native Workshop wizard reached directory selection and Back twice returned. Orange selected row/native square controls remained.",
+        "No metadata editing/upload. Later191-byte export packaging and native plugin enablement do not prove staged preset discovery by this wizard."
+      ],
+      "remaining": [
+        "Inspect selection chrome. Generated preset staging→wizard handoff, metadata review/final confirmation/upload/download remain NOT TESTED."
+      ]
+    },
+    {
+      "id": "F14",
+      "title": "Credits, Terms/legal, help/report and ancillary entry controls",
+      "result": "LIMITED",
+      "case_ids": [
+        "CREDITS-01"
+      ],
+      "observed_windows": [
+        "CreditsScreen scrolling credits"
+      ],
+      "observations": [
+        "Credits scrolled with content retained. Injected Escape was not recognized; graceful AltF4 closed cleanly. Cause UNKNOWN in modified installed environment."
+      ],
+      "remaining": [
+        "Controlled native input/Back/Escape; Terms/legal/help/report screens not reached."
+      ]
+    },
+    {
+      "id": "F15",
+      "title": "Steam invitations and scoreboard",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Steam invitations/scoreboard not entered. Ordinary Options Audio/Multiplayer or local data export does not establish this area."
+      ]
+    },
+    {
+      "id": "F16",
+      "title": "Local-player/cooperative character join flow",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Cooperative character join not entered. Ordinary Options Audio/Multiplayer or local data export does not establish this area."
+      ]
+    },
+    {
+      "id": "F17",
+      "title": "Advanced sound browser",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Advanced ISGameSounds browser not entered. Ordinary Options Audio/Multiplayer or local data export does not establish this area."
+      ]
+    },
+    {
+      "id": "G01",
+      "title": "Live inventory and loot windows",
+      "result": "LIMITED",
+      "case_ids": [
+        "SP-02"
+      ],
+      "observed_windows": [
+        "ISInventoryPage inventory and nearby Cupboard loot pane",
+        "Inventory item tooltip and context/More submenu"
+      ],
+      "observations": [
+        "Container expand/tooltip/menu reached; no transfer/equip/craft. Classic titlebar/scroll shapes retained and long loot category clipped."
+      ],
+      "remaining": [
+        "Repeated containers, transfers/permissions on disposable fixture, controller, split-screen, resize and category fit."
+      ]
+    },
+    {
+      "id": "G02",
+      "title": "Character, skills, health, protection, insulation, fitness and garment panels",
+      "result": "LIMITED",
+      "case_ids": [
+        "SP-01"
+      ],
+      "observed_windows": [
+        "Character Info, Skills, Health, Exercise dialog, Protection and Temperature panels"
+      ],
+      "observations": [
+        "Info, Skills, Health, Exercise, Protection and Temperature were opened at 1280x800. Native body/status colors retained. Garment inspection and the full descendant set were not reached."
+      ],
+      "remaining": [
+        "Garment/insulation variants, detailed interactions, multiple fonts/viewports and controller."
+      ]
+    },
+    {
+      "id": "G03",
+      "title": "Equipment and hotbar",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Equipment/hotbar not explicitly inspected. Incidental world HUD or inventory presence is not area acceptance."
+      ]
+    },
+    {
+      "id": "G04",
+      "title": "Clock/watch and moodles/status indicators",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Clock/watch/moodles not explicitly inspected. Incidental world HUD or inventory presence is not area acceptance."
+      ]
+    },
+    {
+      "id": "G05",
+      "title": "Chat",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Chat not explicitly inspected. Incidental world HUD or inventory presence is not area acceptance."
+      ]
+    },
+    {
+      "id": "G06",
+      "title": "Minimap, world/paper maps, symbols, legends and sharing",
+      "result": "LIMITED",
+      "case_ids": [
+        "SP-04"
+      ],
+      "observed_windows": [
+        "World map; key/legend, symbols and settings popups"
+      ],
+      "observations": [
+        "Map controls/popups fitted and Close returned to world; no annotations/settings changed. Native map layers retained."
+      ],
+      "remaining": [
+        "Minimap/paper maps/sharing/annotation variants, edge popups and controller; shared actions separately authorized."
+      ]
+    },
+    {
+      "id": "G07",
+      "title": "Build42 handcraft and recipe UI",
+      "result": "FAIL",
+      "case_ids": [
+        "SP-03"
+      ],
+      "observed_windows": [
+        "Handcraft recipe browser with missing-material details and disabled Craft"
+      ],
+      "observations": [
+        "Natural recipe browser entry reached; orange category/recipe selection remains. No craft executed."
+      ],
+      "remaining": [
+        "Selection chrome adapter; search/details/scroll/reopen/controller and action behavior only in disposable test."
+      ]
+    },
+    {
+      "id": "G08",
+      "title": "Building, placement and moveable controls",
+      "result": "FAIL",
+      "case_ids": [
+        "SP-03"
+      ],
+      "observed_windows": [
+        "Building browser with disabled Build"
+      ],
+      "observations": [
+        "Natural building entry reached; orange selection remains. Close required a second observed click; capture/input cause not assigned. No placement."
+      ],
+      "remaining": [
+        "Selection chrome and controlled close/input replay; placement/moveable specialized panels not reached."
+      ]
+    },
+    {
+      "id": "G09",
+      "title": "Entities and crafting workstations",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Entity/workstation windows not entered through an actual gameplay route. A nearby table does not prove workstation UI coverage."
+      ]
+    },
+    {
+      "id": "G10",
+      "title": "Vehicle mechanics",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Vehicle mechanics not entered through an actual gameplay route. A nearby table does not prove workstation UI coverage."
+      ]
+    },
+    {
+      "id": "G11",
+      "title": "Vehicle dashboard, seats, climate, lightbar and radial controls",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Vehicle dashboard/seats/climate/radials not entered through an actual gameplay route. A nearby table does not prove workstation UI coverage."
+      ]
+    },
+    {
+      "id": "G12",
+      "title": "Radio, television and recorded media",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Radio/TV/media not entered through an actual gameplay route. A nearby table does not prove workstation UI coverage."
+      ]
+    },
+    {
+      "id": "G13",
+      "title": "Foraging, search and tracking overlays",
+      "result": "LIMITED",
+      "case_ids": [
+        "SP-05"
+      ],
+      "observed_windows": [
+        "Investigate Area/foraging window and Search Focus dropdown"
+      ],
+      "observations": [
+        "Window/dropdown fit; dismiss and Close worked. No Search Mode/tracking action. Close after popup dismissal needed a later click."
+      ],
+      "remaining": [
+        "Search mode overlays, icons, zones/tracks and controlled input sequence."
+      ]
+    },
+    {
+      "id": "G14",
+      "title": "Fishing and newer PZAPI fish window",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Fishing/FishWindow requires an existing natural test-world entry; no debug spawning or synthetic constructor acceptance."
+      ]
+    },
+    {
+      "id": "G15",
+      "title": "Animals, designation zones, hutches, tracks and butchering",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Animal/hutch/butchering/designation windows requires an existing natural test-world entry; no debug spawning or synthetic constructor acceptance."
+      ]
+    },
+    {
+      "id": "G16",
+      "title": "Farming and plant information",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Farming/plant windows requires an existing natural test-world entry; no debug spawning or synthetic constructor acceptance."
+      ]
+    },
+    {
+      "id": "G17",
+      "title": "Fluid transfer and container information",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Fluid transfer/info requires an existing natural test-world entry; no debug spawning or synthetic constructor acceptance."
+      ]
+    },
+    {
+      "id": "G18",
+      "title": "Appliances, heating, generator and BBQ information",
+      "result": "LIMITED",
+      "case_ids": [
+        "SP-06"
+      ],
+      "observed_windows": [
+        "Oven Settings temperature/timer knobs and unit checkbox"
+      ],
+      "observations": [
+        "Natural oven Settings action opened pane; labels/Close fit. Did not enable device or move knobs."
+      ],
+      "remaining": [
+        "Other appliances, generator/BBQ, warnings/disabled states, controller; gameplay changes only in authorized disposable test."
+      ]
+    },
+    {
+      "id": "G19",
+      "title": "Literature, journals, notes and printed media",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Literature/journals/PrintMedia not explicitly reached. Do not manufacture destructive/shared actions to fill the inventory."
+      ]
+    },
+    {
+      "id": "G20",
+      "title": "Alarm, sleeping and post-death/respawn UI",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Alarm/sleep/death/respawn not explicitly reached. Do not manufacture destructive/shared actions to fill the inventory."
+      ]
+    },
+    {
+      "id": "G21",
+      "title": "Player tools, factions, safehouses, tickets, trading and wars",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Social/faction/safehouse/tickets/trade/war not explicitly reached. Do not manufacture destructive/shared actions to fill the inventory."
+      ]
+    },
+    {
+      "id": "G22",
+      "title": "Tutorial, survival help and focus overlays",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Tutorial/help overlays not explicitly reached. Do not manufacture destructive/shared actions to fill the inventory."
+      ]
+    },
+    {
+      "id": "G23",
+      "title": "Timed-action progress, radials and transient HUD feedback",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Timed actions/radials/transient HUD not explicitly reached. Do not manufacture destructive/shared actions to fill the inventory."
+      ]
+    },
+    {
+      "id": "A01",
+      "title": "Administration and player/server management",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Administration/player/server management not entered; permission checks and gameplay/server changes remain outside this UI-only pass."
+      ]
+    },
+    {
+      "id": "A02",
+      "title": "Debug and developer tools",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [],
+      "remaining": [
+        "Debug/developer tools not entered; permission checks and gameplay/server changes remain outside this UI-only pass."
+      ]
+    },
+    {
+      "id": "A03",
+      "title": "Controller, split-screen, on-screen keyboard and reconnect UI",
+      "result": "FAIL",
+      "case_ids": [
+        "OPTIONS-10",
+        "OPTIONS-16"
+      ],
+      "observed_windows": [
+        "MainOptions controller configuration page/diagram (visual only)"
+      ],
+      "observations": [
+        "Controller right-side controls/text and bottom diagram/labels clipped at1280x800 and1920x1009.",
+        "No physical controller, split-screen, reconnect or on-screen keyboard test. Visible mouse-driven page geometry is not hardware-input acceptance."
+      ],
+      "remaining": [
+        "Fix specialized layout; physical controller focus/capture, reconnect, keyboard and split-screen are separate runtime gates."
+      ]
+    },
+    {
+      "id": "I01",
+      "title": "Newer PZAPI atoms, templates and organisms",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [
+        "No natural FishWindow or PrintMedia route reached; native Meta dispatch remains untested."
+      ],
+      "remaining": [
+        "Actual FishWindow/PrintMedia/prototype UI opening, lifecycle/close/reopen and palette preview; never substitute constructor invocation."
+      ]
+    },
+    {
+      "id": "I02",
+      "title": "Consuming mods and arbitrary provider UI",
+      "result": "LIMITED",
+      "case_ids": [
+        "MENU-01",
+        "PLUGIN-01"
+      ],
+      "observed_windows": [
+        "Optional PZ Optimization main-menu subtitle entry (visual observation only)",
+        "MainOptions/StyleEditor with generated data-only preset pack enabled"
+      ],
+      "observations": [
+        "Optional title/status subtitle rendered in the installed modified environment.",
+        "Generated data-only plugin was read after native enable/reload; discovery left grey Options unchanged. Explicit choice made a detached local copy, previewed supported native Options, Save/reopen retained it, and original Default/Save restored grey.",
+        "No arbitrary third-party renderer, Quartermaster consumer or provider-owned custom UI acceptance. No external-mod implementation inspected by this reviewer."
+      ],
+      "remaining": [
+        "Other consumers, API scopes/load-order/opt-out and full cold reload; Steam subscription/download not tested."
+      ]
+    },
+    {
+      "id": "E01",
+      "title": "Boot/logo/loading layers, native renderer internals and platform overlays",
+      "result": "NOT_REACHED",
+      "case_ids": [],
+      "observed_windows": [],
+      "observations": [
+        "Boot was reached but engine/platform/model/item-stat rendering boundaries were not individually inspected."
+      ],
+      "remaining": [
+        "Record engine content as expected native where no verified palette API exists; do not equate startup with engine UI coverage."
+      ]
+    }
+  ],
+  "remaining_actionability": [
+    {
+      "id": "A01",
+      "priority": "P1",
+      "areas": [
+        "C04",
+        "X04",
+        "X05"
+      ],
+      "kind": "Actionable Lua layout defect",
+      "summary": "Keybinding canvas exceeds narrowed Options body.",
+      "case_ids": [
+        "OPTIONS-06",
+        "OPTIONS-16"
+      ],
+      "source_targets": [
+        "B47ANCEDUI/OptionsLayout.lua:190-218,402-408,511",
+        "B47ANCEDUI/OptionsLayoutModel.lua:6-24",
+        "media/lua/client/OptionScreens/MainOptions.lua:3921-3944"
+      ],
+      "next_action": "Preserve key/button objects and capture callbacks; base/reveal both columns against actual page canvas and replay at1280x800 plus larger fonts."
+    },
+    {
+      "id": "A02",
+      "priority": "P1",
+      "areas": [
+        "C04",
+        "A03",
+        "X04"
+      ],
+      "kind": "Actionable Lua layout defect",
+      "summary": "Controller descendants overflow their resized nested panels; direct-child extent omits nested overflow.",
+      "case_ids": [
+        "OPTIONS-10",
+        "OPTIONS-16"
+      ],
+      "source_targets": [
+        "B47ANCEDUI/OptionsLayout.lua:190-218,407-408,511",
+        "media/lua/client/ISUI/Gamepad/GameOptionControllerTab.lua:32-50,80-113,283-318",
+        "media/lua/client/ISUI/Gamepad/ISControllerBindingsEditorPanel.lua:302-305,388-403"
+      ],
+      "next_action": "Preserve native recursive layout and minimum scrolling; bound right controls without distorting diagrams. Engine resize timing remains UNKNOWN until runtime replay."
+    },
+    {
+      "id": "A03",
+      "priority": "P1",
+      "areas": [
+        "C04",
+        "X06"
+      ],
+      "kind": "Actionable Lua popup bounds defect",
+      "summary": "Accessibility highlight-color grid extends beyond right viewport edge.",
+      "case_ids": [
+        "OPTIONS-12"
+      ],
+      "source_targets": [
+        "B47ANCEDUI/NativeSettings.lua:160-192",
+        "media/lua/client/OptionScreens/MainOptions.lua:3144-3185",
+        "media/lua/client/ISUI/ISColorPicker.lua:184-190"
+      ],
+      "next_action": "Clamp only the owned native picker after native positioning, preserving semantic palette, picked callbacks, capture and resetFocusTo; test left/right and vertical flip."
+    },
+    {
+      "id": "A04",
+      "priority": "P1",
+      "areas": [
+        "C02",
+        "C05",
+        "C06",
+        "G08"
+      ],
+      "kind": "Observed interaction failures / input delivery and cause UNVERIFIED",
+      "summary": "HUD selector edits wrong asset; direct drag fails. Menu drag closes editor unexpectedly. Repeated injected keyboard/close behavior is not causally assigned.",
+      "case_ids": [
+        "HUD-01",
+        "LAYOUT-01",
+        "SP-03",
+        "SP-07",
+        "OPTIONS-14",
+        "CREDITS-01"
+      ],
+      "source_targets": [
+        "B47ANCEDUI/UILayoutEditor.lua",
+        "B47ANCEDUI/MenuLayoutEditor.lua",
+        "B47ANCEDUI/EditorControls.lua"
+      ],
+      "next_action": "Verify foreground window, focus, physical/native input and capture boundaries before assigning a UI cause. Then reproduce selector/drag/search/key/close behavior under controlled dispatch. Installed engine overrides remain an environment limit."
+    },
+    {
+      "id": "A05",
+      "priority": "P2",
+      "areas": [
+        "F01",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "X05"
+      ],
+      "kind": "Actionable setup chrome gaps and guarded local subclasses",
+      "summary": "Orange setup selection paths and local panel descendants remain native; these are Lua scope boundaries, not engine-only limits.",
+      "case_ids": [
+        "SOLO-01"
+      ],
+      "source_targets": [
+        "media/lua/client/OptionScreens/MapSpawnSelect.lua:838,964",
+        "media/lua/client/OptionScreens/WorldSelect.lua:191,245,258",
+        "media/lua/client/OptionScreens/SandboxOptions.lua:4,26",
+        "media/lua/client/OptionScreens/CharacterCreationProfession.lua:11,995,1048",
+        "media/lua/client/OptionScreens/NewGameScreen.lua:13,206",
+        "media/lua/client/OptionScreens/CharacterCreationMain.lua:1012",
+        "B47ANCEDUI/NativeTheme.lua:20-30,67"
+      ],
+      "next_action": "Consider verified parent-owned instance adapters for exact selected-row chrome/local child instances. Preserve doDrawItem, geometry, selection math, semantic costs and callbacks; do not mutate upstream or remove identity guards globally."
+    },
+    {
+      "id": "A06",
+      "priority": "P2",
+      "areas": [
+        "G07",
+        "G08",
+        "X05"
+      ],
+      "kind": "Actionable recipe/build selection chrome gap",
+      "summary": "Native orange selectionColor is non-neutral and survives generic palette loans; recipe row drawSelection uses that base color.",
+      "case_ids": [
+        "SP-03"
+      ],
+      "source_targets": [
+        "media/lua/client/ISUI/ISScrollingListBox.lua:325-328,738",
+        "media/lua/client/Entity/ISUI/CraftRecipe/ISRecipeScrollingListBox.lua:73-93",
+        "B47ANCEDUI/NativePainters.lua:33-38,72-78"
+      ],
+      "next_action": "Add a verified selection-field/row adapter for native instances, retaining craftability/requirements good/bad colors and recipe icons. Verify actual handcraft/build/local descendants separately."
+    },
+    {
+      "id": "A07",
+      "priority": "Boundary review",
+      "areas": [
+        "C03",
+        "X01",
+        "X07",
+        "F06",
+        "G07",
+        "G08"
+      ],
+      "kind": "Intentional semantic colors / native drawing boundaries",
+      "summary": "Green accept, red cancel/disabled, trait costs and craftability colors have semantic meaning. Non-neutral border paths can intentionally remain square; exact owned quit/Options border adoption still warrants inspection.",
+      "case_ids": [
+        "MENU-03",
+        "OPTIONS-01",
+        "SOLO-01",
+        "SP-03"
+      ],
+      "source_targets": [
+        "media/lua/client/ISUI/ISButton.lua:386-405,434-437",
+        "B47ANCEDUI/NativePainters.lua:31-38,49-78",
+        "B47ANCEDUI/Controls.lua:25-32",
+        "B47ANCEDUI/Renderer.lua:50-64",
+        "media/lua/client/OptionScreens/CharacterCreationProfession.lua:1006-1031",
+        "media/lua/client/Entity/ISUI/BuildRecipe/ISBuildPanel.lua:180-181",
+        "media/lua/client/Entity/ISUI/CraftRecipe/ISHandCraftPanel.lua:134-135"
+      ],
+      "next_action": "Preserve semantic colors; distinguish selected orange chrome from cost/availability/warning data. Do not mark every red/green square a missing-theme bug. If exact owned backing should round, verify actual painter route first. Whole construction-panel colored outlines may be native debug lines, not semantic buttons."
+    },
+    {
+      "id": "A08",
+      "priority": "P2",
+      "areas": [
+        "C01",
+        "C04",
+        "X07"
+      ],
+      "kind": "Visual density observation / incomplete responsive acceptance",
+      "summary": "Menu/logo adjacent and short Options cards sparse at1280x800; one viewport is insufficient for responsive acceptance.",
+      "case_ids": [
+        "MENU-01",
+        "RESPONSIVE-01",
+        "OPTIONS-01",
+        "OPTIONS-05",
+        "OPTIONS-15"
+      ],
+      "source_targets": [
+        "B47ANCEDUI/MenuBackground.lua",
+        "B47ANCEDUI/OptionsLayoutModel.lua"
+      ],
+      "next_action": "Review design at standard/ultrawide and large fonts. Preserve approved normalized defaults and existing user overrides unless explicit new layout approved."
+    },
+    {
+      "id": "A09",
+      "priority": "P1 verification",
+      "areas": [
+        "C07",
+        "X07"
+      ],
+      "kind": "Resolved specific construction blocker; broad preset acceptance incomplete",
+      "summary": "Specific construction blocker resolved in native dev2 opening. Limited preview/Save/reopen/default restore, actual191-byte export packaging and native inactive plugin discovery verified; broad feature acceptance incomplete.",
+      "case_ids": [
+        "PRESETS-01",
+        "PRESETS-02",
+        "PRESETS-03",
+        "APPEARANCE-01",
+        "PACKAGER-01",
+        "PLUGIN-01"
+      ],
+      "source_targets": [
+        "B47ANCEDUI/StyleEditor.lua:18,103-115",
+        "B47ANCEDUI/PresetPlugins.lua",
+        "B47ANCEDUI/PresetExport.lua",
+        "scripts/preset_packager.py"
+      ],
+      "next_action": "Preserve dev1 failure. Disambiguate local duplicate names; replay hex/scopes/all tokens/Cancel and full changed-profile cold reload. Packaging was offline; native wizard integration, upload/download remain untested."
+    },
+    {
+      "id": "A10",
+      "priority": "P2",
+      "areas": [
+        "F02",
+        "F07",
+        "F11",
+        "F13",
+        "X05"
+      ],
+      "kind": "Observed frontend selection gaps; exact source painter triage pending",
+      "summary": "Orange selection/tab chrome remains in save, Mods, Workshop and MP browser screens. Distinguish it from green enabled marks, blue server placeholders and semantic square controls.",
+      "case_ids": [
+        "LOAD-01",
+        "MODS-01",
+        "WORKSHOP-01",
+        "MP-01"
+      ],
+      "source_targets": [
+        "media/lua/client/OptionScreens/LoadGameScreen.lua",
+        "media/lua/client/OptionScreens/MultiplayerUI.lua",
+        "media/lua/client/OptionScreens/ModSelector/ModSelector.lua",
+        "media/lua/client/OptionScreens/WorkshopSubmitScreen.lua",
+        "B47ANCEDUI/NativePainters.lua:33-38,72-78"
+      ],
+      "next_action": "Inspect each reached native instance and row/tab callback before adding a guarded original painter. Source candidates are not proof of current native adapter ownership. Preserve content, callbacks, permissions and meaningful state colors."
+    },
+    {
+      "id": "A11",
+      "priority": "P2",
+      "areas": [
+        "C07"
+      ],
+      "kind": "Observed preset catalogue usability gap",
+      "summary": "Imported detached copy and original preset both display Default after explicit selection, making local choices ambiguous despite stable internal keys.",
+      "case_ids": [
+        "PLUGIN-01"
+      ],
+      "source_targets": [
+        "B47ANCEDUI/StyleEditor.lua:243-247"
+      ],
+      "next_action": "Provide stable local display disambiguation without changing saved IDs, authored names or pack data; replay plugin selection, Save/reopen and restoration of original Default."
+    }
+  ],
+  "gates": {
+    "offline": "PASS",
+    "native_visual_input": "FAILED / INCOMPLETE",
+    "original_full_profile_crash": "NOT REPRODUCED; initiating exception UNKNOWN",
+    "physical_controller_split_screen": "NOT TESTED",
+    "dedicated_G7": "BLOCKED / NOT TESTED",
+    "stable_G8": "BLOCKED",
+    "publication": "NOT PERFORMED; Workshop remains 0.12.0-dev.1"
+  }
+}

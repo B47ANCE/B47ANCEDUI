@@ -98,6 +98,29 @@ function C.commit(rows,apply)
  return true
 end
 function C.typing(rows) for _,row in ipairs(rows) do if focused(row.entry) then return row end end end
+-- Engine modal detection includes every captured mouse element. Exclude only
+-- this editor's subtree and its own shared popup, including deferred removal.
+function C.foreignModal(root,selector)
+ if not UIManager.isModalVisible or not UIManager.isModalVisible()then return false end
+ local list=UIManager.getUI and UIManager.getUI()
+ if not list or not list.size or not list.get then return true end
+ local popup=selector and selector.popup
+ local ownedPopup=popup and ISComboBox and popup==ISComboBox.SharedPopup and popup.parentCombo==selector and popup.javaObject
+ local budget=4096
+ local function blocked(node,depth)
+  if node== (root and root.javaObject)or node==ownedPopup then return false end
+  budget=budget-1;if depth>64 or budget<0 then return true end
+  if not node.isModalVisible then return true end
+  if not node:isModalVisible()then return false end
+  if node.isCapture and node:isCapture()then return true end
+  if not node.getControls then return true end
+  local children=node:getControls()
+  for i=0,children:size()-1 do if blocked(children:get(i),depth+1)then return true end end
+  return false
+ end
+ for i=0,list:size()-1 do if blocked(list:get(i),0)then return true end end
+ return false
+end
 function C.release(rows)
  for _,row in ipairs(rows) do
   local s=row.slider;s.dragInside=false;s.leftPressed=false;s.rightPressed=false;s:setCapture(false)
@@ -154,8 +177,9 @@ function C.requestExit(state,release,close)
  for _,name in ipairs({'onMouseDown','onMouseUp','onMouseDoubleClick','onRightMouseDown','onRightMouseUp','onMouseWheel','onMouseMove'}) do shield[name]=function()return true end end
  local panel=ISPanelJoypad:new(0,0,1,1);panel.playerNum=0;panel.b47AppearanceScope='B47ANCEDUI';panel.b47AppearanceOpaque=true
  panel:initialise();panel:instantiate();U.skin(panel,'panel');shield:addChild(panel);prompt.panel=panel
- prompt.keep=function()if state.exitPrompt==prompt then C.dismissExit(state,true) end end
- prompt.discard=function()if state.exitPrompt==prompt then C.dismissExit(state,false);close() end end
+ local function allowed()return state.exitPrompt==prompt and not C.foreignModal(state.root,state.selector)end
+ prompt.keep=function()if allowed()then C.dismissExit(state,true)end end
+ prompt.discard=function()if allowed()then C.dismissExit(state,false);close()end end
  local function button(key,action,role)
   local b=U.Button:new(0,0,1,1,text(key),panel,action);b:initialise();b:instantiate();b.b47Role=role;panel:addChild(b);return b
  end
@@ -163,6 +187,7 @@ function C.requestExit(state,release,close)
  panel.joypadButtonsY={};panel.allJoypadButtons={};panel.joypadButtons={};panel.joypadIndexY=1;panel.joypadIndex=1
  panel:insertNewLineOfButtons(unpack(prompt.buttons))
  prompt.choose=function(index)
+  if not allowed()then return end
   prompt.selected=index
   for i,b in ipairs(prompt.buttons) do b.b47Selected=i==index end
   if state.joypad then panel:setJoypadFocus(prompt.buttons[index],state.joypad) end

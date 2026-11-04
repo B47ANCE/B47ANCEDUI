@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "project_version": "0.12.0-dev.1",
+  "project_version": "0.12.0-dev.3",
   "runtime_acceptance": "NOT TESTED",
-  "status": "Implemented guarded Lua chrome routes; explicit engine/content/provider boundaries, not screen completion counts",
+  "status": "Guarded Lua chrome implementation; runtime pass has failures and unvisited gates. No complete-area PASS.",
   "baseline": "UI_COVERAGE_INVENTORY_2026-10-24.json (frozen pre-rollout0.10.0-dev.2)",
   "counts": {
     "work_areas": 61,
@@ -18,7 +18,8 @@
       "limits": "Approved menu/logo geometry and saved defaults unchanged; actual placement acceptance pending.",
       "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "implemented_scope",
-      "curated_targets": []
+      "curated_targets": [],
+      "runtime_case_ids": []
     },
     {
       "id": "C02",
@@ -28,7 +29,8 @@
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
       "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "partial_scope",
-      "curated_targets": []
+      "curated_targets": [],
+      "runtime_case_ids": []
     },
     {
       "id": "C03",
@@ -38,7 +40,8 @@
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
       "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "implemented_scope",
-      "curated_targets": []
+      "curated_targets": [],
+      "runtime_case_ids": []
     },
     {
       "id": "C04",
@@ -54,7 +57,8 @@
           "class": "MainOptions",
           "line": 12
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "C05",
@@ -64,7 +68,8 @@
       "limits": "Existing editor/defaults and unsaved confirmation retained.",
       "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "implemented_scope",
-      "curated_targets": []
+      "curated_targets": [],
+      "runtime_case_ids": []
     },
     {
       "id": "C06",
@@ -74,7 +79,8 @@
       "limits": "Synthetic previews remain previews; no character/world loaded; native clock/moodles reference-only.",
       "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "preview_and_geometry",
-      "curated_targets": []
+      "curated_targets": [],
+      "runtime_case_ids": []
     },
     {
       "id": "C07",
@@ -84,7 +90,8 @@
       "limits": "Preserve API1/profile schemas, explicit Save/Cancel, scopes and user preferences.",
       "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "implemented_scope",
-      "curated_targets": []
+      "curated_targets": [],
+      "runtime_case_ids": []
     },
     {
       "id": "C08",
@@ -94,7 +101,8 @@
       "limits": "API-owned controls retain consumer scope and ownership; arbitrary provider content is opt-in.",
       "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "opt_in_scope",
-      "curated_targets": []
+      "curated_targets": [],
+      "runtime_case_ids": []
     },
     {
       "id": "X01",
@@ -120,7 +128,8 @@
           "class": "MainOptions",
           "line": 12
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "X02",
@@ -146,7 +155,8 @@
           "class": "ISChat",
           "line": 6
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "X03",
@@ -162,7 +172,8 @@
           "class": "ISToolTipInv",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "X04",
@@ -178,7 +189,8 @@
           "class": "ISScrollBar",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "X05",
@@ -199,7 +211,8 @@
           "class": "ISInventoryPane",
           "line": 10
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "X06",
@@ -225,7 +238,8 @@
           "class": "ISColorPicker",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "X07",
@@ -235,7 +249,8 @@
       "limits": "Native fonts/density/layout and semantic icon content remain native; arbitrary font replacement is not implemented.",
       "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "partial_scope",
-      "curated_targets": []
+      "curated_targets": [],
+      "runtime_case_ids": []
     },
     {
       "id": "F01",
@@ -256,7 +271,8 @@
           "class": "LastStandPlayerSelect",
           "line": 9
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F02",
@@ -272,7 +288,8 @@
           "class": "LoadGameScreen",
           "line": 11
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F03",
@@ -313,7 +330,8 @@
           "class": "MapSpawnSelectSeedPanel",
           "line": 313
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F04",
@@ -329,7 +347,8 @@
           "class": "SandboxOptionsScreen",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F05",
@@ -365,7 +384,8 @@
           "class": "CharacterCreationProfession",
           "line": 10
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F06",
@@ -381,7 +401,8 @@
           "class": "CharacterCreationProfession",
           "line": 10
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F07",
@@ -397,7 +418,8 @@
           "class": "MultiplayerUI",
           "line": 8
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F08",
@@ -423,7 +445,8 @@
           "class": "ServerConnectPopup",
           "line": 6
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F09",
@@ -449,7 +472,8 @@
           "class": "ServerToolbox",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F10",
@@ -481,7 +505,8 @@
           "line": 2987,
           "discovery": "qualified_derive"
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F11",
@@ -600,7 +625,8 @@
           "line": 4,
           "discovery": "qualified_derive"
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F12",
@@ -616,7 +642,8 @@
           "class": "ServerWorkshopItemScreen",
           "line": 4
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F13",
@@ -632,7 +659,8 @@
           "class": "WorkshopSubmitScreen",
           "line": 6
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F14",
@@ -658,7 +686,8 @@
           "class": "MainScreen",
           "line": 9
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F15",
@@ -679,7 +708,8 @@
           "class": "ISScoreboard",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F16",
@@ -715,7 +745,8 @@
           "class": "CoopMapSpawnSelect",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "F17",
@@ -731,7 +762,8 @@
           "class": "ISGameSounds",
           "line": 152
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G01",
@@ -767,7 +799,8 @@
           "class": "ISLootWindowContainerControls",
           "line": 29
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G02",
@@ -828,7 +861,8 @@
           "class": "ISCharacterScreenAvatar",
           "line": 30
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G03",
@@ -859,7 +893,8 @@
           "class": "ISHotbar",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G04",
@@ -869,7 +904,8 @@
       "limits": "No verified universal clock/moodle palette contract; engine internals unchanged. This remains a capability/runtime boundary.",
       "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "reference_only",
-      "curated_targets": []
+      "curated_targets": [],
+      "runtime_case_ids": []
     },
     {
       "id": "G05",
@@ -885,7 +921,8 @@
           "class": "ISChat",
           "line": 6
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G06",
@@ -966,7 +1003,8 @@
           "class": "ISWorldMapSharing_PanelPlayers",
           "line": 249
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G07",
@@ -992,7 +1030,8 @@
           "class": "ISCraftRecipePanel",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G08",
@@ -1023,7 +1062,8 @@
           "class": "ISMoveablesIconToolTip",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G09",
@@ -1054,7 +1094,8 @@
           "class": "ISCraftLogicPanel",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G10",
@@ -1070,7 +1111,8 @@
           "class": "ISVehicleMechanics",
           "line": 1
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G11",
@@ -1106,7 +1148,8 @@
           "class": "ISVehicleGauge",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G12",
@@ -1127,7 +1170,8 @@
           "class": "ISMediaInfo",
           "line": 1
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G13",
@@ -1158,7 +1202,8 @@
           "class": "ISAnimalTracksUI",
           "line": 7
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G14",
@@ -1181,7 +1226,8 @@
           "line": 102,
           "discovery": "ui_template"
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G15",
@@ -1267,7 +1313,8 @@
           "class": "ISAnimalTracksUI",
           "line": 7
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G16",
@@ -1288,7 +1335,8 @@
           "class": "ISFarmingWindow",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G17",
@@ -1319,7 +1367,8 @@
           "class": "ISFluidContainerPanel",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G18",
@@ -1350,7 +1399,8 @@
           "class": "ISBBQInfoWindow",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G19",
@@ -1408,7 +1458,8 @@
           "line": 398,
           "discovery": "ui_template"
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G20",
@@ -1434,7 +1485,8 @@
           "class": "ISPostDeathUI",
           "line": 1
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G21",
@@ -1475,7 +1527,8 @@
           "class": "ISWarManagerUI",
           "line": 1
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G22",
@@ -1496,7 +1549,8 @@
           "class": "TutorialFocus",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "G23",
@@ -1517,7 +1571,8 @@
           "class": "ISRadialMenu",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "A01",
@@ -1553,7 +1608,8 @@
           "class": "ISServerSandboxOptionsUI",
           "line": 4
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "A02",
@@ -1574,7 +1630,8 @@
           "class": "DebugErrorsWindow",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "A03",
@@ -1615,7 +1672,8 @@
           "class": "OnScreenKeyboardPanel",
           "line": 149
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "I01",
@@ -1644,7 +1702,8 @@
           "line": 398,
           "discovery": "ui_template"
         }
-      ]
+      ],
+      "runtime_case_ids": []
     },
     {
       "id": "I02",
@@ -1654,7 +1713,8 @@
       "limits": "Unknown custom renderers/provider-scoped trees remain provider-owned. No third-party source copied or modified.",
       "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "opt_in_boundary",
-      "curated_targets": []
+      "curated_targets": [],
+      "runtime_case_ids": []
     },
     {
       "id": "E01",
@@ -1705,7 +1765,14 @@
           "class": "ISVehicleGauge",
           "line": 3
         }
-      ]
+      ],
+      "runtime_case_ids": []
     }
-  ]
+  ],
+  "runtime_report": {
+    "path": "docs/UI_RUNTIME_ACCEPTANCE_2026-10-24.json",
+    "sha256": "d16e8bfd2e6e707a0786e55c2b59fd63c1384d820b7d4dc16402a6ff254a8726",
+    "hash_format": "SHA256; CRLF normalized to LF"
+  },
+  "runtime_report_applicability": "Historical dev.2 baseline only; changed dev.3 source requires retest."
 }
