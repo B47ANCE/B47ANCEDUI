@@ -118,3 +118,15 @@ state.cancel.onclick();assert(state.exitPrompt);state.exitPrompt.discard()
 assert(P.serialize(P.get(0),1)==unchanged and writes==1)
 X.export,X.previous,X.status=oldExport,oldPrevious,oldStatus;K.refresh=nativeRefresh;K.entries={}
 print('PASS OFFLINE inspector RGB/hex synchronization, inherited channels, inactive plugin selection, explicit update target, stale export and unsaved popup ordering')
+K.refresh=function()return K.entries end
+K.entries={{source='SamePack',id='One',key='one',preset={name='Default',values={['*']={button={background='#112233'}}}}},
+ {source='SamePack',id='Two',key='two',preset={name='Default',values={['*']={button={background='#445566'}}}}}}
+state,root=open();state.duplicate.onclick();state.name:setText(state.draft.presets.default.name);state.name.onTextChangeFunction();choose(state.scopeBox,1)
+local labels={}
+for _,label in ipairs(state.preset.options)do assert(not labels[label],'Preset labels collided');labels[label]=true end
+local pluginStart=#state.presetKeys-1
+choose(state.preset,pluginStart);assert(state.name:getInternalText()=='Default'and P.current(0).presets[state.draft.active].values['*'].button.background=='#112233')
+choose(state.preset,#state.presetKeys);assert(state.name:getInternalText()=='Default'and P.current(0).presets[state.draft.active].values['*'].button.background=='#445566')
+assert(state.save.title=='UI_B47ANCEDUI_StyleSave','Style inspector used the layout Save caption')
+state.cancel.onclick();state.exitPrompt.discard();K.refresh=nativeRefresh;K.entries={}
+print('PASS OFFLINE distinct local/plugin display labels preserve stored names and selected values; explicit preset Save caption')

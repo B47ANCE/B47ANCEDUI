@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-295e28ef7161",
   "name": "B47ANCE'd UI",
-  "version": "0.12.0-dev.2",
+  "version": "0.12.0-dev.3",
   "reviewed": true,
-  "source_digest": "cefd6cf31757cef74e8113ffb4e458d6f18665f2a04420465ef882b1076bd6e4",
+  "source_digest": "7991f8314a7e5ed0e9a00ffb042d34533df72760ed42d162d81a4bb8db1877b0",
   "features": [
     {
       "status": "Source",
@@ -44,7 +44,7 @@
     },
     {
       "status": "Source",
-      "text": "Local main-menu layout editor with independent geometry and schema1 preferences. Native attempted logo drag closed the editor without successful manipulation; input/capture/exit acceptance FAILED and unresolved. Approved defaults retained."
+      "text": "Local main-menu layout editor preserves approved defaults and valid local overrides. Dev.3 fixes capture ownership; bounded runtime body/edge/corner movement, modal suspension and dirty Cancel/Discard observed. Complete physical input/save/reload acceptance pending."
     },
     {
       "status": "Source",
@@ -52,7 +52,7 @@
     },
     {
       "status": "Source",
-      "text": "Native Options/settings near-black presentation preserves original controls/actions. All8 category entries and representative section/page/dropdown/capture-Cancel paths reached; keybinding/controller clipping and offscreen picker prevent acceptance."
+      "text": "Native Options retains original controls/actions. Dev.3 contains key pairs, checkbox captions and controller sections and clamps pickers; bounded1920x1009 retests reached these routes. Specialized small-screen and physical input pending."
     },
     {
       "status": "Source",
@@ -72,7 +72,7 @@
     },
     {
       "status": "Source",
-      "text": "Public Workshop item3822582242 remains0.12.0-dev.1 after PR16 sourced992608. SteamCMD/public listing/source-ZIP-stage proof retained; later subscribed78-file parity verified. Dev.2 candidate is not uploaded. Dedicated NOT TESTED."
+      "text": "Public Workshop item3822582242 last verified0.12.0-dev.1. Authorized dev.3 test publication follows checks; distribution evidence remains separate from incomplete native/dedicated acceptance."
     },
     {
       "status": "Source",
@@ -80,15 +80,15 @@
     },
     {
       "status": "Source",
-      "text": "Black-canvas HUD workspace has10 safe static samples/eight supported bindings/two references and separate schema1 preferences. Runtime combo changed label but retained Inventory target, plus edited wrong asset and drags failed. Blank clicks/Cancel-Discard worked; no successful native drag/resize claim."
+      "text": "Black-canvas HUD workspace retains safe static samples and separate schema1 preferences. Dev.3 fixes selector/capture ownership; native target switching, direct body movement and dirty Cancel/Discard observed. Complete HUD resize/save/reload pending."
     },
     {
       "status": "Source",
-      "text": "Shared compact inspectors have larger steps/thumbs/numeric fields and edge/corner grips with offline ownership/axis tests. Native interaction failed as recorded in the dated report; complete input/controller acceptance pending."
+      "text": "Compact inspectors retain bounded controls and direct grips. Dev.3 capture/input corrections pass offline tests; menu body/edge/corner and HUD body movement observed. Full HUD resize and physical input pending."
     },
     {
       "status": "Source",
-      "text": "Owned unsaved-exit confirmation with Keep editing default and explicit Discard. Native HUD Cancel/Discard worked; menu drag unexpectedly closed, and injected Escape/controller acceptance unresolved."
+      "text": "Owned unsaved-exit confirmation retains Keep editing default and explicit Discard; native menu/HUD Cancel/Discard observed. Foreign modals suspend changes and stale actions are rejected."
     },
     {
       "status": "Source",
@@ -96,11 +96,11 @@
     },
     {
       "status": "Source",
-      "text": "Native Options workspace retains original setting ownership with contained section/pages. Ordinary entries/pages fit, but keybinding/controller descendants and color picker failed bounds; focused search typing input unresolved."
+      "text": "Native Options sections/pages preserve settings ownership and genuine overflow. Key-pair/controller/picker corrections pass offline; bounded large-screen runtime retests observed. Full small-screen/controller/input acceptance pending."
     },
     {
       "status": "Source",
-      "text": "HUD editor hit-test/direct manipulation and popup/exit guards pass offline fixtures but failed native target-selection/drag acceptance. Do not infer native success from the doubles."
+      "text": "HUD direct selection/body movement and popup/exit guards corrected and observed in isolated runtime; complete grip sizing, Save/reload and physical input pending."
     },
     {
       "status": "Source",
@@ -132,7 +132,7 @@
     },
     {
       "status": "Source",
-      "text": "Broad native Lua chrome rollout has guarded registry/lifecycle routes and separate PZAPI adapters. Runtime61-area classification18 LIMITED/17 FAIL/26 NOT_REACHED; orange selections/local native subclasses remain actionable gaps. Counts are not screen completion."
+      "text": "Broad guarded native chrome rollout includes exact local owner scopes, stencil builder provenance, radio/code/image/MP browser/mod-path corrections and full legacy/PZAPI scrollbar presentation. Offline tests pass; cases are bounded observations, not complete-area acceptance."
     },
     {
       "status": "Source",
@@ -144,14 +144,18 @@
     },
     {
       "status": "Source",
-      "text": "One-button authored styling export plus optional offline Python packager stages dependent data-only preset plugins. Actual export/package/native enable/inactive discovery/explicit detached preview/Save-reopen observed. Final native wizard/publish/download and watch handoff pending; duplicate local names ambiguous."
+      "text": "One-button styling export and offline packager create data-only dependent preset plugins. Bounded local export/package/discovery/selection/Save-reopen observed; final Workshop handoff/publication/subscription pending. Dev.3 clarifies Save/opacity/duplicate display labels."
     },
     {
       "status": "Source",
       "text": "0.12.0-dev.2 PATCH fixes eager native RGB callbacks during style-editor construction. Regression reproduces the prior line112 failure and checks unchanged initial draft/all3channels; isolated native opening/live slider/Save-reopen retest passed. No API/schema/default/gameplay ownership change."
+    },
+    {
+      "status": "Source",
+      "text": "Dev.3 tooltip alpha preserves native invisible positioning and cursor-follow content; user confirmed Advanced Audio correction. Full legacy scrollbar track/thumb/border/arrows and exact PZAPI texture slices consume per-mod styles with ownership/opt-out restoration; final runtime scrollbar acceptance pending."
     }
   ],
-  "limits": "0.12.0-dev.2 PATCH to published0.12.0-dev.1; candidate not uploaded.45 cases span published baseline/candidate frontend/disposable SP and offline fixture packaging on42.21.0/Steam25485521 at1280x800/1920x1009. Overall acceptance FAILED / INCOMPLETE:18 LIMITED/17 FAIL/26 NOT_REACHED areas, no complete-area PASS. Options/controller/keybinding/picker bounds, editor selection/drag, native orange selections and preset naming/opacity warning remain. Original profile error not reproduced; existing PZ Optimization engine overrides prevent pristine-vanilla certification. Original saves not loaded; five original preference hashes unchanged. Full injected keyboard/controller/split-screen/ultrawide/audio/performance/PZAPI/dedicated and unreached specialized paths pending. Offline78-file/198-key/29English-fallback-locale suites pass; G7 NOT TESTED/BLOCKED and stable G8 BLOCKED. Export omits layouts/legacy Appearance; optional helper required for staging, final native publish explicit. No UI release package/server/Workshop update in this pass.",
+  "limits": "Dev.3 compatible PATCH; full offline suite PASS with78 runtime files/201 keys/29 unreviewed English-fallback locales.60 incremental development cases (38PASS/17LIMITED/4retained styling gaps/1offline) are snapshot-scoped, not all61-area or final-payload acceptance. User confirms tooltip fix. Scrollbar native retest, full HUD resizing/reload, small-screen specialized Options, physical input/controller/split-screen/ultrawide, specialized gameplay and dedicated social/admin paths remain pending. No controller available; dedicated server bootstrap had no client join. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. Existing engine/provider overrides prevent pristine-vanilla certification. Styling plugins omit layouts/legacy Appearance; optional offline helper/final native publishing remain separate. Authorized Workshop MP test distribution does not certify runtime acceptance.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -209,7 +213,10 @@
     "docs/WORKSHOP_PRESETS_UPDATE.md",
     "docs/WORKSHOP_UPDATE_0.12.0-dev.1_2026-10-24.json",
     "docs/UI_RUNTIME_ACCEPTANCE_2026-10-24.md",
-    "docs/UI_RUNTIME_ACCEPTANCE_2026-10-24.json"
+    "docs/UI_RUNTIME_ACCEPTANCE_2026-10-24.json",
+    "docs/UI_RUNTIME_DEV3_CHECKPOINT_2026-11-04.md",
+    "docs/UI_RUNTIME_DEV3_CHECKPOINT_2026-11-04.json",
+    "tests/test_editor_capture.lua"
   ],
   "relations": []
 }

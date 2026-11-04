@@ -35,6 +35,7 @@ layout.execute((ROOT/'tests/test_menu_layout_editor.lua').read_text())
 layout.execute((ROOT/'tests/test_ui_workspace.lua').read_text())
 layout.execute((ROOT/'tests/test_editor_exit.lua').read_text())
 layout.execute((ROOT/'tests/test_hud_editor_input.lua').read_text())
+layout.execute((ROOT/'tests/test_editor_capture.lua').read_text())
 layout.execute((ROOT/'tests/test_style_editor.lua').read_text())
 hud=client_runtime()
 hud.globals().package.path=(ROOT/'src/B47ANCEDUI/42/media/lua/client').as_posix()+'/?.lua;'+hud.globals().package.path

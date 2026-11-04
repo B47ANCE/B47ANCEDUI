@@ -133,7 +133,7 @@
   "UI_B47ANCEDUI_StyleProperty_danger": "Danger",
   "UI_B47ANCEDUI_StyleProperty_warning": "Warning",
   "UI_B47ANCEDUI_StyleProperty_success": "Success",
-  "UI_B47ANCEDUI_StyleProperty_opacity": "Background opacity (%)",
+  "UI_B47ANCEDUI_StyleProperty_opacity": "Background opacity (percent)",
   "UI_B47ANCEDUI_StyleProperty_radius": "Corner radius (px)",
   "UI_B47ANCEDUI_StyleProperty_borderWidth": "Border width (px)",
   "UI_B47ANCEDUI_StyleProperty_trackThickness": "Slider track thickness (px)",
@@ -196,5 +196,8 @@
   "UI_B47ANCEDUI_StyleExportNew": "Create a new preset plugin",
   "UI_B47ANCEDUI_StyleExportUpdate": "Update the previously exported plugin",
   "UI_B47ANCEDUI_StyleExportStale": "Preset changed. Export again before opening Workshop.",
-  "UI_B47ANCEDUI_StyleExportTarget": "Updating plugin:"
+  "UI_B47ANCEDUI_StyleExportTarget": "Updating plugin:",
+  "UI_B47ANCEDUI_StyleSave": "Save preset",
+  "UI_B47ANCEDUI_ControllerBindings": "Controller bindings",
+  "UI_B47ANCEDUI_ControllerSettings": "Controller settings"
 }

@@ -1,0 +1,631 @@
+{
+  "project_version": "0.12.0-dev.3",
+  "record_date": "2026-11-04",
+  "observation_period": "2026-10-25 development snapshots",
+  "runtime_acceptance": "INCOMPLETE",
+  "game_version": "42.21.0",
+  "steam_build": "25485521",
+  "source_parent": "8e63e1fb45672e1e15ae59d4f141558bf6400f01",
+  "case_counts": {
+    "PASS": 38,
+    "LIMITED": 17,
+    "FAIL_STYLING_GAP": 4,
+    "PASS_OFFLINE": 1
+  },
+  "snapshot_limit": "Cases span incremental dev.3 source snapshots. Only explicitly identified snapshot/run/manifest bindings apply; earlier cases are not final-payload certification. Raw evidence remains private.",
+  "final_payload_reference": "docs/NATIVE_ROLLOUT_SOURCE.json:project_fingerprints",
+  "last_isolated_copy_manifest_sha256": "79d37b604a42bf93148bdde98ac25f4e7f3eebac8ad55ceff840347c83eb1995",
+  "user_confirmation": "User confirmed the Advanced Audio tooltip fix. This is human runtime evidence, not an automated full-suite result.",
+  "pending": [
+    "Current legacy/PZAPI scrollbar visual and input retest",
+    "Complete HUD edge/corner resizing and saved reload matrix",
+    "1280x720 specialized Options key/controller paths",
+    "Physical key capture and controller/split-screen hardware",
+    "Fishing, TV/appliance, tutorial and death/respawn completion",
+    "Dedicated client join/rejoin, chat, scoreboard, trade and admin UI",
+    "Ultrawide hardware, audible weather, performance and external-mod load orders",
+    "Preset plugin final Workshop publication/subscription and helper-to-uploader handoff"
+  ],
+  "dedicated": "Server bootstrap only; no test-client connection. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED.",
+  "cases": [
+    {
+      "id": "D3-HUD-01",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Native direct Inventory body drag moved preview from12/3 to16.06/8.82 percent while editor stayed open; current width32 height30 unchanged."
+      ]
+    },
+    {
+      "id": "D3-HUD-02",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Owned dropdown dismissal now updates selected asset and inspector rather than retaining Inventory; native deferred capture no longer blocks onChange. Grip coordinates remain under investigation."
+      ]
+    },
+    {
+      "id": "D3-HUD-03",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Dirty HUD Cancel showed centered Unsaved changes dialog with Keep editing default and explicit Discard; Discard closed without writing preferences."
+      ]
+    },
+    {
+      "id": "D3-MENU-01",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Native logo body drag moved logo and editor stayed open after owned capture fix; approved defaults unchanged by unsaved test."
+      ]
+    },
+    {
+      "id": "D3-API-01",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "environment": "native SP frontend, private Lua API consumer",
+      "observations": [
+        "Small button callback count incremented once; disabled button left count unchanged",
+        "Dropdown second choice selected and callback displayed Choice 2",
+        "Populated 12-row scroll list visibly scrolled",
+        "Public confirmation displayed Accept/Cancel and Cancel callback displayed Dialog cancel"
+      ],
+      "limits": [
+        "Physical keyboard and long drag remain unverified; fixtures do not prove external consumer integration",
+        "Persisted test style included red disabled border and translucent panels"
+      ]
+    },
+    {
+      "id": "D3-INPUT-AB",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "environment": "private profile, inputLatch=false",
+      "observations": [
+        "Real optimizer profile hash unchanged",
+        "Corner drag down arrived at destination instead of source; Escape injection not observed"
+      ],
+      "limits": [
+        "Disabling inputLatch alone did not resolve computer input timing",
+        "No production input workaround inferred"
+      ]
+    },
+    {
+      "id": "D3-OPTIONS-KEYS",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "environment": "native frontend 1920x1009",
+      "observations": [
+        "Key Bindings one-column labels/buttons fit card",
+        "Toggle Jog/Sprint checkbox labels fully visible"
+      ],
+      "limits": [
+        "Physical rebinding input not verified"
+      ]
+    },
+    {
+      "id": "D3-OPTIONS-CONTROLLER",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "environment": "native frontend 1920x1009; no device listed",
+      "observations": [
+        "Bindings diagram contained at full width",
+        "Section selector visible; successfully switched to Controller settings; all controls contained"
+      ],
+      "limits": [
+        "No physical controller inputs tested"
+      ]
+    },
+    {
+      "id": "D3-OPTIONS-PICKER",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "environment": "native frontend 1920x1009",
+      "observations": [
+        "Rendering/performance native color picker fits inside right edge of Options root",
+        "Native full color grid preserved"
+      ],
+      "limits": [
+        "No color preference persisted"
+      ]
+    },
+    {
+      "id": "D3-SP-ALARM",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "environment": "native disposable SP, real Base.AlarmClock2",
+      "observations": [
+        "Native item context and debug submenu render with dark chrome and semantic colors",
+        "Set Alarm opened populated time panel; hour arrow changed 3 to 4; OK closed cleanly"
+      ],
+      "limits": [
+        "Alarm sounding not awaited; no MP evidence"
+      ]
+    },
+    {
+      "id": "D3-SP-PRINT",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "environment": "native disposable SP, real generated Brochure metadata",
+      "observations": [
+        "Inspect queued native timed reading action",
+        "Actual populated Scarlet Oak brochure opened",
+        "Alternate text view toggled and content remained readable",
+        "Native artwork retained; dark top/bottom chrome; close succeeded"
+      ],
+      "limits": [
+        "One brochure variant; other flier/book pages not exhaustive"
+      ]
+    },
+    {
+      "id": "D3-SP-NOTE",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "environment": "native disposable SP real Notebook/Pen",
+      "observations": [
+        "Write Note opened actual editor with title/body/page controls and OK/Cancel",
+        "Body focus showed caret; Cancel closed"
+      ],
+      "limits": [
+        "Injected text did not appear, same delivery limitation as native search; no typed content/save persistence verified"
+      ]
+    },
+    {
+      "id": "D3-SP-RADIO",
+      "result": "FAIL_STYLING_GAP",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "environment": "native disposable SP real RadioBlack",
+      "observations": [
+        "Equipping real radio opened native populated device window",
+        "Power changed to On; live signal/volume LEDs updated",
+        "Volume module collapsed; close succeeded"
+      ],
+      "limits": [
+        "Metallic section strips still vanilla; scoped fix now offline tested, native retest pending",
+        "No dedicated radio synchronization evidence"
+      ]
+    },
+    {
+      "id": "D3-SP-FLUIDINFO",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "environment": "native disposable SP real WaterBottle",
+      "observations": [
+        "Actual 1 L bottle info displayed changing used/empty amounts and blue fluid content",
+        "Dark frame/native semantic fill readable; Cancel closed"
+      ],
+      "limits": [
+        "Other fluid mixtures not yet tested"
+      ]
+    },
+    {
+      "id": "D3-SP-FLUIDTRANSFER",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "environment": "native disposable SP real bottle and mug",
+      "observations": [
+        "No-target validation/disabled Pour shown",
+        "Target picker chose Empty Mug; native amount slider set 110 mL",
+        "Pour completed: bottle 290 to 180 mL; mug 0 to 110 mL",
+        "Window stayed usable and Cancel closed"
+      ],
+      "limits": [
+        "SP UI/native action only; no MP authority claim"
+      ]
+    },
+    {
+      "id": "D3-SP-GARMENT",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "environment": "native disposable SP worn Jeans",
+      "observations": [
+        "Inspect opened populated garment body/protection table",
+        "All body rows, condition/dirt/blood channels fit; condition/semantic green retained",
+        "Close succeeded"
+      ],
+      "limits": [
+        "Patching/removal and damaged garment variants not yet tested"
+      ]
+    },
+    {
+      "id": "D3-SP-DEBUG-GENERAL",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "environment": "native -debug disposable SP",
+      "observations": [
+        "Natural debug icon opened Main/Dev menu",
+        "General debugger Game and Body tabs opened with real player values",
+        "Dark controls/slider rows readable and contained; close worked"
+      ],
+      "limits": [
+        "Debug actions not exhaustively invoked; no client/server admin permission claim"
+      ]
+    },
+    {
+      "id": "D3-SP-DEBUG-ITEMS",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "limits": "Category item selection did not complete through injected clicks; no item spawn action tested.",
+      "evidence": "Native Items List Viewer opened from Debug Menu with 4894 real script items, contained columns and semantic green/red booleans. Category popup opened above filter and dismissed outside; Close worked."
+    },
+    {
+      "id": "D3-SP-DEBUG-FLUIDS",
+      "result": "FAIL_STYLING_GAP",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "limits": "Code dump identifiers retained black text on darkened pane. Scoped code palette correction passes offline; native retest pending.",
+      "evidence": "Native Fluids Debugger populated Acid, Categories/Alcoholic list and Fluid Mixer controls. Tabs worked and close completed. Semantic fluid swatches preserved."
+    },
+    {
+      "id": "D3-SP-DEBUG-XUI",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "limits": "No XUI script entries populated in installed runtime; test-window/variable actions not exercised.",
+      "evidence": "XUI Debugger opened with populated system/custom palette entries and disabled script actions; native close completed."
+    },
+    {
+      "id": "D3-SP-PZAPI-CATALOGUE",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "limits": "Airport alternate text contains native raw markup; this is populated prototype content evidence, not live fishing or all PZAPI templates.",
+      "evidence": "Natural Debug Dev > New UI opened populated Fliers/Brochures catalogue; Brochures tab switched, airport entry opened actual full artwork, alternate text toggled, close worked. Native document colors/art preserved."
+    },
+    {
+      "id": "D3-SP-BUILD",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "limits": "Recipe/build action without materials not run. Native requirement placeholders/icons observed; no placement or every recipe acceptance inferred.",
+      "evidence": "Private route invoked verified native ISEntityUI.OpenBuildWindow on real disposable character. Populated Building list opened; Carpentry filtered recipes; selecting Log Doorframe changed details and missing requirements; Build remained disabled.",
+      "run": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-GUIDE",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "limits": "Guide subset only; full scripted Tutorial not yet run. No startup preference changed.",
+      "evidence": "Private route used verified existing SurvivalGuide instance. Native populated Movement/Loot/Interactables/Combat list and animated demonstration rendered; selecting Map replaced title/text/content. Native close worked and pause was restored.",
+      "run": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-RADIO-RETEST",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "limits": "One handheld radio; television/recorded-media and MP not covered. Supersedes styling failure in D3-SP-RADIO for this snapshot.",
+      "evidence": "Natural equipped-item Device Options reopened real powered ValuTech radio. Metallic strips are now flat dark headers. Battery gradient, power LED, live signal and green volume cells preserved; clicking volume reduced selected cells.",
+      "run": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-DEBUG-CODE-RETEST",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "limits": "Search-highlight behavior has offline regression evidence; keyboard typing not verified. Supersedes code contrast failure in D3-SP-DEBUG-FLUIDS for this snapshot.",
+      "evidence": "Reopened natural Fluids Debugger populated Acid object dump. Previously black identifiers/operators are readable light text; collection/null/boolean/string syntax remains distinct on dark pane; fluid swatches unchanged.",
+      "run": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-FARMING",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "limits": "One seedling/low-skill information view; crop growth, harvest, treatment and MP not covered.",
+      "evidence": "Private context seeded one real outdoor tomato plot via verified SFarmingSystem native APIs after free/outside/soil checks. Natural Seedling Tomato Vine > Info walked character adjacent and opened populated Plant Information, green semantic plant name, Compost No, Water level Parched. Close worked.",
+      "run": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-SLEEP",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "limits": "Confirmation/Cancel only; overnight sleep, alarm wake and death/respawn separate.",
+      "evidence": "Natural Sleep on Ground from real fatigued disposable character opened populated native Yes/No confirmation with dark surface. No canceled and returned to awake world.",
+      "run": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-GENERATOR",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "limits": "Generator stayed disconnected/unpowered; load/fuel/live-power states, BBQ/oven and MP separate.",
+      "evidence": "Private context placed one real unpowered IsoGenerator on verified free outside floor. Natural Generator > Generator Info walked player adjacent and opened populated dark native window, item art, Fuel0%, Condition100%; close worked.",
+      "run": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-ANIMAL",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": "Native AnimalContextMenu.onAnimalInfo opened ISAnimalUI for a real nearby Rhode Island Red hen, populated model/type/breed/gender/age/health/feed/thirst/fertility/attitude/player acceptance and native red unassigned-zone warning. Native distance guard initially closed it at ~16 tiles; native AnimalCheat was enabled through debug checkbox+Save to inspect without changing production behavior.",
+      "limits": "Single animal info surface only; husbandry zones/trailer/feeding/breeding actions not yet tested.",
+      "snapshot": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-MECHANICS",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": "Actual sheriff vehicle picked from world context; native onMechanic pathfinding/timed action completed, real ISVehicleMechanics showed populated parts/condition diagram, engine/temperature/quality details updated on selection. Semantic green condition colors retained.",
+      "limits": "No destructive repairs/removal and no dedicated MP.",
+      "snapshot": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-VEHICLE-CONTROLS",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": "Real vehicle entry completed. Native radial opened, heater dialog opened and real temperature knob rotated on drag, Close returned to vehicle; actual seating selector showed occupancy/available seats, clicking seat2 switched character from driver to passenger and removed driver dashboard.",
+      "limits": "Native dashboard bottom clipped in current windowed profile; needs diagnosis/retest. Lightbar/radio/engine/driving and MP still pending.",
+      "snapshot": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-LIGHTBAR",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": "Actual sheriff vehicle Light controller opened from native passenger radial; native knob rotated to pattern1 and world red/blue light effect appeared, knob returned to OFF and lights stopped; Close worked. Panel/buttons styled dark, native knob labels/semantic lights preserved.",
+      "limits": "Siren audio/modes not exercised; MP not tested.",
+      "snapshot": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-FITNESS",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": "Actual Health toolbar opened populated native body status; Exercise button opened real ISFitnessUI. Push-ups selection changed description/green selected indicator; plus duration changed10 to20; equipment-dependent exercises remained disabled; Close worked.",
+      "limits": "No exercise performed to completion; health treatment and dedicated MP pending.",
+      "snapshot": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-CHARACTER",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": "Real character Health/Skills/Protection/Temperature tabs switched and native windows resized to populated content. Protection body/percentage colors remained semantic; Temperature→Insulation changed live body heat map and legend; Skills category collapse removed/reflowed crafting rows, XP bars retained; close worked.",
+      "limits": "No XP transaction or medical treatment performed.",
+      "snapshot": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-FORAGING",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": "Ordinary Investigate Area toolbar opened native ISSearchWindow. Focus dropdown populated, Stones selected; Enable changed to Disable on simulation resume and native search vignette appeared; Disable restored world view. Native info button opened SurvivalGuide directly on Search Menu with populated animation/instructions; Close worked.",
+      "limits": "No discovered-item pickup or full tracking tested.",
+      "snapshot": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-WORLDMAP",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": "Ordinary toolbar opened real visited map, map key and symbols. Settings popup fit visible screen. Add Note opened populated colors/perspective/scale/rotation/dialog; field caret focused but injected text did not arrive, Cancel worked. House symbol placed in disposable map and persisted across close/reopen. Semantic map/ink colors preserved.",
+      "limits": "Typing blocked by known input transport; note acceptance, eraser/edit sharing, minimap/paper map pending.",
+      "snapshot": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-HANDCRAFT",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": "Ordinary Crafting toolbar opened populated handcraft entity window; Cooking category filtered list; Carve Pumpkin selection updated title/ingredients/output/time; missing-items/surface warning and disabled Craft retained. Native icons in detail pane visibly dark; exact ISImage tint fix implemented afterward and requires retest.",
+      "limits": "No craft completed, keyboard search transport blocked, pending image-tint retest.",
+      "snapshot": "dev3-world-routes"
+    },
+    {
+      "id": "D3-SP-WORKSTATION",
+      "result": "FAIL_STYLING_GAP",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": "Native Build Cheat checkbox+Save permitted actual advanced forge placement on clear disposable grass. After native Walk To ground selection, ordinary forge context opened populated workstation. Tools category filtered recipes and details/missing requirements updated. Window retained vanilla bevel/selection chrome; native stencil ownership barriers and background textures under diagnosis.",
+      "limits": "No forge process/crafting performed; styling retest required.",
+      "snapshot": "dev3-world-routes"
+    },
+    {
+      "id": "D3-FRONT-SCENARIOS",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Native debug Scenarios drawer collapsed to header, expanded on pointer hover; backing continuously black across full expansion, readable populated rows/scrollbar. No scenario launched."
+      ],
+      "manifest": "dev3-stencil.sha256.json"
+    },
+    {
+      "id": "D3-STYLE-PRESETS",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Duplicate created unique Preset2. RGB Red drag updated hex #700F0F, sample and Options buttons live. Save/reopen retained exact hex and active styling.",
+        "Consumer scope UIAcceptanceFixture selected safely; green drag changed sample to #70A80F while native Options retained shared red. Cancel showed Unsaved changes, Discard restored saved styling.",
+        "Catalogue distinguishes Default, Default(2), and plugin identity. Explicit plugin selection created detached editable local copy; it did not activate on boot. Default reselected and saved, restoring gray styling.",
+        "Native scroll thumb exposed sharing controls with fixed Save/Cancel footer. Export reported successful optional packager handoff. Keyboard hex typing and deletion not exercised."
+      ],
+      "manifest": "dev3-stencil.sha256.json"
+    },
+    {
+      "id": "D3-APPEARANCE",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Appearance panel displayed opacity82%, gray#B0B0B0 and RGB176.",
+        "Red slider realdrag changed214, synchronized#D6B0B0 and live accent. Reset restored all176/#B0B0B0; Close worked.",
+        "Direct hex keyboard injection remains transport-limited; no real user preferences changed."
+      ],
+      "manifest": "dev3-stencil.sha256.json"
+    },
+    {
+      "id": "D3-SOLO-SETUP",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Native NewGame mode selection switched Apocalypse to CustomSandbox; preserved animation/art and dark mode cards.",
+        "Spawn list Riverside selection changed map, photo, title and description; native gray selection and unchanged artwork.",
+        "Sandbox Time and advanced Zombie categories populated, scroll remained inside footer. Advanced toggle/caption tooltip worked.",
+        "Carpenter selection updated major skills, tooltip and negative point gating. Doubleclick AllThumbs transferred chosen trait, removed conflicting positive and enabled Next at0points.",
+        "Character identity/clothing/avatar rendered; native clothing colorpicker opened/accepted, artwork/skin/semantic palette preserved. No new world started. Preset save/typing not exercised."
+      ],
+      "manifest": "dev3-stencil.sha256.json"
+    },
+    {
+      "id": "D3-LOAD",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Actual disposable Sandbox save selected with gray row, populated mode/maps/mods/worldversion info.",
+        "More toggled native config panel with player dropdown, ChooseMods/NewPlayer/OpenLocation/Rename/Debug controls. Gray styled descendants; native info unchanged. Back returned. No delete/rename/modification."
+      ],
+      "manifest": "dev3-stencil.sha256.json"
+    },
+    {
+      "id": "D3-MP-BROWSER",
+      "result": "FAIL_STYLING_GAP",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Actual native Favorites browser opened; AddServer form focused empty name, IP validationred/Save disabled; Cancelclosed. No remoteconnection.",
+        "Favorites/AddServer stillorange and detailheaderblue; source diagnosis pending. Session/bootstrap/admin/social require loopback permission."
+      ],
+      "manifest": "dev3-stencil.sha256.json"
+    },
+    {
+      "id": "D3-WORKSHOP",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Native WorkshopPage9 navigation→Page1 stageddirectorylist→Page2 title/description/tags/visibility/preview→Page3 new/existingchoice.",
+        "All reached localPage descendants dark, readable, native preview palette retained. Existing privately exported plugin recognized.",
+        "Stopped before creating Workshopitem or entering remoteID. Upload/progress/error pages intentionally notsubmitted."
+      ],
+      "manifest": "dev3-stencil.sha256.json"
+    },
+    {
+      "id": "D3-PRESET-PACKAGER",
+      "result": "PASS_OFFLINE",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "New actual runtimeexport parsed with Python andLua5.1, matchingrequestchecksum, onepreset, zeroexplicitoverrides.",
+        "Optionalpackager produced readydata-onlyplugin in newprivatefolder, noupload; nativewizarddiscovery testedseparately witholderexistingprofileWorkshopfixture."
+      ],
+      "manifest": "dev3-stencil.sha256.json"
+    },
+    {
+      "id": "D3-HOST-PREFLIGHT",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "ActualHostscreen showed fixtureServername/4GB/memory and disabled destructive controls; noStart.",
+        "ManageexistingSettings displayed gray selectedrow/managementbuttons. Edit opened realModsusedbyserverPage; native listdark/gray.",
+        "Stopped before native modsetreload; fullerconfiguration panels pending matched3-mod fixture. No serverlaunched."
+      ],
+      "manifest": "dev3-stencil.sha256.json"
+    },
+    {
+      "id": "D3-MODS",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "AboutMods warning/populatedcatalogue3enabledmods shown. Selectingpresetpluginrow updatedposter/description/version/dependencystatus/ModIDdetails; grayselectionpreservedgreenEnabled/dependency.",
+        "Path hyperlinkdarkblueonblack lowcontrast; source review pending. No enable/disable/delete or liveWorkshop subscription."
+      ],
+      "manifest": "dev3-stencil.sha256.json"
+    },
+    {
+      "id": "D3-CREDITS",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Actual Credits opened, readable scrolling content/logo on black; native Pause/speed controls visible. InjectedEscape didnotdeliver; normalwindowclose(AltF4) gracefullyclosedfrontend. Nativecallbackfallback preparedforretest."
+      ],
+      "manifest": "dev3-stencil.sha256.json"
+    },
+    {
+      "id": "D3-MENU-DIRECT-RESIZE-MODAL",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Native menu edge drag increased width27.97→28.13%; corner drag increased width28.13→28.28% andheight52.50→52.80%. Body drag and slider/step controls changeddraft; earlierlargedrags wereinputtransportinconclusive.",
+        "Real foreigncapturemodal blockededitcontrols, preserved draft and resumed after nativeOK; normalCancel/Discard cleanup to follow.",
+        "Cancel showedstyledUnsavedchangesconfirmation; Discardclosededitorandrestoredsavedlayout."
+      ],
+      "manifest": "dev3-links.sha256.json"
+    },
+    {
+      "id": "D3-MP-BROWSER-RETEST",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Favorites/AddServer selectiongray andserverdetailheaderdark; vanillaart/iconsandsemanticinvalidredfieldsremain. EmptyformSave disabled; nativeCancelclosed. No networkjoinorcredentials."
+      ],
+      "manifest": "dev3-links.sha256.json",
+      "supersedes": "D3-MP-BROWSER"
+    },
+    {
+      "id": "D3-MODS-CONTRAST-RETEST",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "NativeUIandpresetpluginPath text nowlight/readable; Enabled/dependencygreenandversion/ModIDsemanticsunchanged. NoHomepagevalueintheseactualfixtures; clickableHomepagebranchverifiedofflineonly. No cataloguechanges."
+      ],
+      "manifest": "dev3-links.sha256.json",
+      "supersedes": "D3-MODS"
+    },
+    {
+      "id": "D3-HOST-CONFIG",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "MatchedfixturemodsetallowednativePage3withoutreload. PopulatedINI,Workshopdependency(emptydisabledRemove/installedcatalogue),Map(Muldraughgrayrow),SpawnRegions(actualtownfilelist) andSandboxTime renderedwithdarkcontrols;categoryscrollbarreachedlowergroups. NoSave/Start/network."
+      ],
+      "manifest": "dev3-links.sha256.json"
+    },
+    {
+      "id": "D3-ADVANCED-SOUND",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "PrivatebuttoninvokedexactnativeMainOptions.onAdvancedSounds, withoutenablingdisabledordinaryfeature. RealpopulatedAnimals/UI soundtabs,graytracksandcontrols; UIActivateTabdragreported105%, reverse100%; tooltipreadable; Close returnedOptions. No claimordinarybuttonavailability/audiofidelity."
+      ],
+      "manifest": "dev3-links.sha256.json"
+    },
+    {
+      "id": "D3-LEGAL-QUIT",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "RealLegalnoticeblack/readable,nativeart/buttonsandAcceptclosed. QuitopenednativeconfirmationwithdarkbackingandsemanticgreenYes/redNo; No restoredmainmenu. Noexternalterms/reportlinksopened."
+      ],
+      "manifest": "dev3-links.sha256.json"
+    },
+    {
+      "id": "D3-CREDITS-RETURN",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Realcreditsblack/readableaftertransition; nativePausechangedcaptionResume. PrivatebuttonroutedcreditsEscapehandlerandrestoredmainmenu; physicalEscapeinputtransportstillunverified."
+      ],
+      "manifest": "dev3-links.sha256.json"
+    },
+    {
+      "id": "D3-WORKSTATION-RETEST",
+      "result": "LIMITED",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "ActualAdvancedForge reopenedwithpopulatednativecategories/recipes/requirements/outputs; orangechromeabsent, debugyellowandred/greenrequirementsretained; itemartvisible. Closednormally.",
+        "Privateobject-referenceprobeprovedentity/components/containerandworkstationdescendantsadopted(native=true), ownershipandgeometryunchanged. Categoryclickdeliveryinconclusivethisrun; craftingnotexecuted."
+      ],
+      "manifest": "dev3-links.sha256.json",
+      "supersedes": "D3-SP-WORKSTATION"
+    },
+    {
+      "id": "D3-PAPER-MAP",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "PrivatebuttoncallednativeonCheckMapwithactualWestpointMapitem. RealWestPointart/map/legendretained; darkfootercontrols. EditMarkingsopenednativecolor/symboltabsanddisabledstatecontrols; Close returnedworld."
+      ],
+      "manifest": "dev3-links.sha256.json"
+    },
+    {
+      "id": "D3-HANDCRAFT-IMAGE-RETEST",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "ActualhandcraftopenedfromHUD. Cookingcategoryfilteredrealrecipes; CarvePumpkinselectionupdateddetails/requirements/output. Brightnativepumpkin/meat/bombartrestored; unavailableinputsdimmedbyvanillarequirementlogic. Graychromeandsemanticred/greenpreserved; noForceAction/crafting."
+      ],
+      "manifest": "dev3-links.sha256.json"
+    },
+    {
+      "id": "D3-DASHBOARD-RADIO-RETEST",
+      "result": "PASS",
+      "scope": "bounded observation on development snapshot; not complete-area acceptance",
+      "observations": [
+        "Actualdriverentryshowednativewalking/entryprogressbarandcompleted. Dashboardartnowvisiblewithfullsemicirculargaugesandicons. Probe552x121anchoredto1009bottomand127x66gaugesending1009matchesnativeart/source, noheightclippingdefectdemonstrated.",
+        "DashboardRadioopenedactualvehicleHamRadio; powerOff→On→Offvianativetimedactions; signalandgreenvolumestateschanged; AddPresetopenedrealname/frequencysliderform; noSavedpreset."
+      ],
+      "manifest": "dev3-links.sha256.json"
+    }
+  ]
+}

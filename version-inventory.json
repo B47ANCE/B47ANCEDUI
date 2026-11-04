@@ -212,6 +212,10 @@
     {
       "reference": "docs/UI_RUNTIME_ACCEPTANCE_2026-10-24.md; docs/UI_RUNTIME_ACCEPTANCE_2026-10-24.json",
       "reason": "Dated baseline/candidate45-case native frontend/disposable-SP and offline fixture-package record binds observed0.12.0-dev.1/0.12.0-dev.2, source parent and tested runtime fingerprints. Preserve actual FAILED / INCOMPLETE findings; never relabel as future runtime proof."
+    },
+    {
+      "reference": "docs/UI_RUNTIME_DEV3_CHECKPOINT_2026-11-04.md; docs/UI_RUNTIME_DEV3_CHECKPOINT_2026-11-04.json",
+      "reason": "Dated dev.3 incremental runtime observations and publication-preflight checkpoint; preserve actual version, snapshot limits and pending gates on future iterations."
     }
   ]
 }

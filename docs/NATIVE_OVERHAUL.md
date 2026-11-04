@@ -1,6 +1,6 @@
 # Native UI overhaul: first slice
 
-Project Version: 0.12.0-dev.2
+Project Version: 0.12.0-dev.3
 
 Current evidence (2026-10-24, dev.2): [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). Overall native acceptance is FAILED / INCOMPLETE. Earlier version-specific NOT TESTED statements below retain their original checkpoint scope. Disposable-SP inventory/loot, item tooltip/context/More, selected character panels, crafting/building, map, foraging and oven settings were reached. Long category text clips and native orange recipe/category chrome remain. No inventory action, craft, placement, transfer or dedicated behavior is validated.
 

@@ -1,6 +1,8 @@
 # Validation
 
-Project Version: 0.12.0-dev.2
+Project Version: 0.12.0-dev.3
+
+Current dev.3 validation and acceptance limits: [UI_RUNTIME_DEV3_CHECKPOINT_2026-11-04](UI_RUNTIME_DEV3_CHECKPOINT_2026-11-04.md). Full offline suite and version checks PASS on2026-11-04;78 Lua-only runtime files/201 keys/29 English-fallback locales. User confirmed Advanced Audio tooltips.60 development cases are snapshot-scoped; complete native acceptance, final scrollbar retest and dedicated G7 remain pending. The dated records below retain their original versions and findings.
 
 0.12.0-dev.2 [TESTED: offline Windows and native frontend/disposable SP,2026-10-24]: [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). The45 cases include baseline/candidate runtime and offline fixture packaging. Overall acceptance FAILED / INCOMPLETE:61 areas classified18 LIMITED/17 FAIL/26 NOT_REACHED. Native slider setValues construction failure reproduced before the one-line guard, then opening/Red click-drag/Inherit/Keep/Discard/Save-reopen and inactive generated-plugin selection worked. Options/editor/clipping/native-selection defects remain. Exact version/full regression/installed-contract/report-binding/diff checks PASS; commands and limitations are in the report. Original real saves were not loaded; five original preference hashes match baseline. No server launch, UI release package or Workshop update. G7 NOT TESTED / BLOCKED; stable G8 BLOCKED. The records below preserve earlier checkpoints.
 

@@ -1,8 +1,12 @@
 # Main-menu layout editor
 
-Project Version: 0.12.0-dev.2
+Project Version: 0.12.0-dev.3
 
-Current evidence (2026-10-24, dev.2): [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). Overall native acceptance is FAILED / INCOMPLETE. Earlier version-specific NOT TESTED statements below retain their original checkpoint scope. Approved independent defaults were retained at both tested sizes. An attempted logo drag closed its editor; mouse capture/exit behavior needs reproduction. No default geometry or profile migration is included in this patch.
+Latest bounded dev.3 runtime retest observed direct menu edge/corner resizing and body movement, modal suspension/return and dirty Cancel/Discard. It supersedes the earlier gesture gap only for those recorded cases. Physical keyboard/controller and complete save/reload coverage remain pending; see UI_RUNTIME_DEV3_CHECKPOINT_2026-11-04.md.
+
+Dev.3 input correction: engine modal detection includes mouse capture. The editor now distinguishes its own root/selector capture from unrelated native modal UI. An unrelated modal suspends manipulation and retains the draft; returning restores owned focus. Actual hidden/replaced owners and game entry still cancel the editor. Shared unsaved-exit actions reject stale callbacks and foreign-modal activation. Native body movement and Cancel/Discard were observed; long resize gestures and physical keyboard/controller exits remain separate acceptance gates.
+
+Historical evidence (2026-10-24, dev.2): [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). Overall native acceptance is FAILED / INCOMPLETE. Earlier version-specific NOT TESTED statements below retain their original checkpoint scope. Approved independent defaults were retained at both tested sizes. An attempted logo drag closed its editor; mouse capture/exit behavior needs reproduction. No default geometry or profile migration is included in this patch.
 
 The0.7 series introduced local editing/unsaved guards;0.6.0-dev.3 captured the owner-approved defaults below. Current API1, formats and defaults are unchanged. Workshop remains0.12.0-dev.1; the candidate was tested only in an isolated profile. Historical startup evidence is recorded separately in TESTING.md.
 

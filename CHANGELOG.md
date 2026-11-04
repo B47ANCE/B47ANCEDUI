@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.12.0-dev.3] - 2026-11-04
+
+- Fix editor capture ownership so own drags and dropdown dismissal remain in the editor; foreign modals suspend editing while retaining drafts. Guard stale unsaved-confirmation actions.
+- Contain Options key label/button pairs, checkbox captions and native controller sections; clamp native color pickers without changing setting values or Apply behavior.
+- Complete guarded native local-panel selection scopes, radio module headers, code-view contrast, stencil-owned crafting descendants and selected-image tint. Improve MP browser chrome and mod-path readability while retaining semantic warning/status colors.
+- Theme full legacy scrollbar tracks, thumbs, borders and arrow glyphs in both orientations, plus recognized PZAPI scrollbar slices. Preserve native hit/drag geometry, explicit opt-outs, per-mod colors and foreign artwork. Native scrollbar retest remains pending.
+- Fix empty displaced Advanced Audio tooltip boxes by preserving native draw alpha during positioning; user confirmed the tooltip correction.
+- Clarify Save preset, percentage opacity and duplicate preset names. Keep API1, schemas, approved defaults, artwork and gameplay ownership unchanged.
+- Offline regression/source/version/integrity checks PASS; 60 bounded incremental development cases are recorded separately from the historical dev.2 baseline. Full native acceptance INCOMPLETE; dedicated G7 NOT TESTED / BLOCKED and stable G8 BLOCKED. Authorized distribution remains an MP testing build.
+
 ## [0.12.0-dev.2] - 2026-10-24
 
 - Fix UI Style Presets failing to open: native RGB slider setValues dispatches callbacks during construction, before text handlers exist. Keep editor synchronization active until construction and final refresh finish; no default/profile/schema change.

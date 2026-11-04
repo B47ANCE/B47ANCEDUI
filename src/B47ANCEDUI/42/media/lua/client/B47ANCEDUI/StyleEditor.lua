@@ -206,7 +206,7 @@ function E.open(owner)
   if not ok then state.error='StyleSaveFailed';return false end
   close();return true
  end
- local saveButton=button('LayoutSave',save,root);local cancelButton=button('LayoutCancel',cancel,root)
+ local saveButton=button('StyleSave',save,root);local cancelButton=button('LayoutCancel',cancel,root)
  U.Layout.place(saveButton,12,height-bh-12,(width-36)/2,bh);U.Layout.place(cancelButton,24+(width-36)/2,height-bh-12,(width-36)/2,bh)
  loadValue=function()
   state.syncing=true;local values=chosen().values[state.scope]or {};local explicit=(values[state.family]or {})[state.property.id]
@@ -241,10 +241,18 @@ function E.open(owner)
  end
  refresh=function()
   state.syncing=true;preset:clear();state.presetKeys=sorted(state.draft.presets)
-  for i,key in ipairs(state.presetKeys)do preset:addOption(state.draft.presets[key].name);if key==current()then preset.selected=i end end
+  local used={}
+  local function displayLabel(name)
+   local display=name;local suffix=2
+   while used[display]do display=name..' ('..suffix..')';suffix=suffix+1 end
+   used[display]=true;return display
+  end
+  for i,key in ipairs(state.presetKeys)do
+   preset:addOption(displayLabel(state.draft.presets[key].name));if key==current()then preset.selected=i end
+  end
   for _,entry in ipairs(Plugins.entries)do
    state.presetKeys[#state.presetKeys+1]={plugin=entry}
-   preset:addOption(entry.preset.name..' ['..entry.source..']')
+   preset:addOption(displayLabel(entry.preset.name..' ['..entry.source..']'))
   end
   name:setText(chosen().name);delete:setEnable(current()~='default')
   scope:clear();state.scopes=P.scopes(state.draft)

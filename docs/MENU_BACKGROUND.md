@@ -1,6 +1,6 @@
 # Security-room main menu
 
-Project Version: 0.12.0-dev.2
+Project Version: 0.12.0-dev.3
 
 Current evidence (2026-10-24, dev.2): [dated acceptance report](UI_RUNTIME_ACCEPTANCE_2026-10-24.md). Overall native acceptance is FAILED / INCOMPLETE. Earlier version-specific NOT TESTED statements below retain their original checkpoint scope. Actual bunker/four-monitor rendering and static/no-signal transitions were inspected at1280x800 and1920x1009. Approved defaults were preserved; other fonts, ultrawide hardware, dynamic row changes and audible rain/thunder suppression remain pending.
 

@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "project_version": "0.12.0-dev.2",
-  "runtime_acceptance": "FAILED / INCOMPLETE",
+  "project_version": "0.12.0-dev.3",
+  "runtime_acceptance": "NOT TESTED",
   "status": "Guarded Lua chrome implementation; runtime pass has failures and unvisited gates. No complete-area PASS.",
   "baseline": "UI_COVERAGE_INVENTORY_2026-10-24.json (frozen pre-rollout0.10.0-dev.2)",
   "counts": {
@@ -16,16 +16,10 @@
       "group": "Current scopes",
       "route": "Existing NativeMenus/MenuBackground owners",
       "limits": "Approved menu/logo geometry and saved defaults unchanged; actual placement acceptance pending.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "implemented_scope",
       "curated_targets": [],
-      "runtime_case_ids": [
-        "MENU-01",
-        "MENU-02",
-        "BOOT-02",
-        "BOOT-03",
-        "RESPONSIVE-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "C02",
@@ -33,12 +27,10 @@
       "group": "Current scopes",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "partial_scope",
       "curated_targets": [],
-      "runtime_case_ids": [
-        "SP-07"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "C03",
@@ -46,12 +38,10 @@
       "group": "Current scopes",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "implemented_scope",
       "curated_targets": [],
-      "runtime_case_ids": [
-        "MENU-03"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "C04",
@@ -59,7 +49,7 @@
       "group": "Current scopes",
       "route": "Existing OptionsLifecycle/NativeSettings/OptionsLayout owners",
       "limits": "Native settings values, Apply and custom pages remain owned by PZ/providers.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "partial_scope",
       "curated_targets": [
         {
@@ -68,24 +58,7 @@
           "line": 12
         }
       ],
-      "runtime_case_ids": [
-        "OPTIONS-01",
-        "OPTIONS-02",
-        "OPTIONS-03",
-        "OPTIONS-04",
-        "OPTIONS-05",
-        "OPTIONS-06",
-        "OPTIONS-07",
-        "OPTIONS-08",
-        "OPTIONS-09",
-        "OPTIONS-10",
-        "OPTIONS-11",
-        "OPTIONS-12",
-        "OPTIONS-13",
-        "OPTIONS-14",
-        "OPTIONS-15",
-        "OPTIONS-16"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "C05",
@@ -93,12 +66,10 @@
       "group": "Current scopes",
       "route": "Existing MenuLayoutEditor",
       "limits": "Existing editor/defaults and unsaved confirmation retained.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "implemented_scope",
       "curated_targets": [],
-      "runtime_case_ids": [
-        "LAYOUT-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "C06",
@@ -106,12 +77,10 @@
       "group": "Current scopes",
       "route": "Existing safe HUD workspace and supported geometry adapters",
       "limits": "Synthetic previews remain previews; no character/world loaded; native clock/moodles reference-only.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "preview_and_geometry",
       "curated_targets": [],
-      "runtime_case_ids": [
-        "HUD-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "C07",
@@ -119,17 +88,10 @@
       "group": "Current scopes",
       "route": "Existing style/appearance editors plus live native painters",
       "limits": "Preserve API1/profile schemas, explicit Save/Cancel, scopes and user preferences.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "implemented_scope",
       "curated_targets": [],
-      "runtime_case_ids": [
-        "PRESETS-01",
-        "PRESETS-02",
-        "APPEARANCE-01",
-        "PRESETS-03",
-        "PACKAGER-01",
-        "PLUGIN-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "C08",
@@ -137,7 +99,7 @@
       "group": "Current scopes",
       "route": "Existing public API plus excludeNativeTheme helper",
       "limits": "API-owned controls retain consumer scope and ownership; arbitrary provider content is opt-in.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "opt_in_scope",
       "curated_targets": [],
       "runtime_case_ids": []
@@ -148,7 +110,7 @@
       "group": "Shared components",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "partial_scope",
       "curated_targets": [
         {
@@ -167,11 +129,7 @@
           "line": 12
         }
       ],
-      "runtime_case_ids": [
-        "MENU-03",
-        "OPTIONS-07",
-        "OPTIONS-08"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "X02",
@@ -179,7 +137,7 @@
       "group": "Shared components",
       "route": "Existing NativeContext plus deferred direct native context adoption",
       "limits": "Capability tests/actions/pooling remain native; exact custom renderer/provider routes are guarded.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "partial_scope",
       "curated_targets": [
         {
@@ -198,9 +156,7 @@
           "line": 6
         }
       ],
-      "runtime_case_ids": [
-        "SP-02"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "X03",
@@ -208,7 +164,7 @@
       "group": "Shared components",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "partial_scope",
       "curated_targets": [
         {
@@ -217,10 +173,7 @@
           "line": 3
         }
       ],
-      "runtime_case_ids": [
-        "SP-02",
-        "OPTIONS-02"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "X04",
@@ -228,7 +181,7 @@
       "group": "Shared components",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "partial_scope",
       "curated_targets": [
         {
@@ -237,18 +190,7 @@
           "line": 3
         }
       ],
-      "runtime_case_ids": [
-        "OPTIONS-01",
-        "OPTIONS-03",
-        "OPTIONS-05",
-        "OPTIONS-06",
-        "OPTIONS-10",
-        "SP-01",
-        "SP-02",
-        "OPTIONS-15",
-        "OPTIONS-16",
-        "PRESETS-03"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "X05",
@@ -256,7 +198,7 @@
       "group": "Shared components",
       "route": "Native list palettes and audited frame descendants",
       "limits": "Bespoke row/header/tree content and hardcoded inner rectangles are not blanket-recolored.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "partial_scope",
       "curated_targets": [
         {
@@ -270,16 +212,7 @@
           "line": 10
         }
       ],
-      "runtime_case_ids": [
-        "SOLO-01",
-        "SP-02",
-        "SP-03",
-        "OPTIONS-06",
-        "LOAD-01",
-        "MODS-01",
-        "WORKSHOP-01",
-        "MP-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "X06",
@@ -287,7 +220,7 @@
       "group": "Shared components",
       "route": "Audited native controls and popup chrome",
       "limits": "Keep data color swatches, picker gradients, native toggle/check state and popup focus semantics.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "partial_scope",
       "curated_targets": [
         {
@@ -306,16 +239,7 @@
           "line": 3
         }
       ],
-      "runtime_case_ids": [
-        "OPTIONS-02",
-        "OPTIONS-03",
-        "OPTIONS-09",
-        "OPTIONS-11",
-        "OPTIONS-12",
-        "PRESETS-02",
-        "PRESETS-03",
-        "PLUGIN-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "X07",
@@ -323,19 +247,10 @@
       "group": "Shared components",
       "route": "Shared theme/preset chrome with native metrics retained",
       "limits": "Native fonts/density/layout and semantic icon content remain native; arbitrary font replacement is not implemented.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "partial_scope",
       "curated_targets": [],
-      "runtime_case_ids": [
-        "OPTIONS-01",
-        "OPTIONS-05",
-        "PRESETS-02",
-        "APPEARANCE-01",
-        "RESPONSIVE-01",
-        "OPTIONS-15",
-        "PRESETS-03",
-        "PLUGIN-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "F01",
@@ -343,7 +258,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -357,9 +272,7 @@
           "line": 9
         }
       ],
-      "runtime_case_ids": [
-        "SOLO-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "F02",
@@ -367,7 +280,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -376,9 +289,7 @@
           "line": 11
         }
       ],
-      "runtime_case_ids": [
-        "LOAD-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "F03",
@@ -386,7 +297,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -420,9 +331,7 @@
           "line": 313
         }
       ],
-      "runtime_case_ids": [
-        "SOLO-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "F04",
@@ -430,7 +339,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -439,9 +348,7 @@
           "line": 3
         }
       ],
-      "runtime_case_ids": [
-        "SOLO-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "F05",
@@ -449,7 +356,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -478,9 +385,7 @@
           "line": 10
         }
       ],
-      "runtime_case_ids": [
-        "SOLO-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "F06",
@@ -488,7 +393,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -497,9 +402,7 @@
           "line": 10
         }
       ],
-      "runtime_case_ids": [
-        "SOLO-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "F07",
@@ -507,7 +410,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -516,9 +419,7 @@
           "line": 8
         }
       ],
-      "runtime_case_ids": [
-        "MP-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "F08",
@@ -526,7 +427,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -553,7 +454,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -572,9 +473,7 @@
           "line": 3
         }
       ],
-      "runtime_case_ids": [
-        "HOST-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "F10",
@@ -582,7 +481,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -607,9 +506,7 @@
           "discovery": "qualified_derive"
         }
       ],
-      "runtime_case_ids": [
-        "HOST-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "F11",
@@ -617,7 +514,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -729,11 +626,7 @@
           "discovery": "qualified_derive"
         }
       ],
-      "runtime_case_ids": [
-        "BOOT-01",
-        "MODS-01",
-        "PLUGIN-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "F12",
@@ -741,7 +634,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -758,7 +651,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -767,9 +660,7 @@
           "line": 6
         }
       ],
-      "runtime_case_ids": [
-        "WORKSHOP-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "F14",
@@ -777,7 +668,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -796,9 +687,7 @@
           "line": 9
         }
       ],
-      "runtime_case_ids": [
-        "CREDITS-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "F15",
@@ -806,7 +695,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -828,7 +717,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -865,7 +754,7 @@
       "group": "Frontend",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -882,7 +771,7 @@
       "group": "Gameplay",
       "route": "Existing NativeInventory owner",
       "limits": "Native transfer/actions and inventory row semantics remain native.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "partial_scope",
       "curated_targets": [
         {
@@ -911,9 +800,7 @@
           "line": 29
         }
       ],
-      "runtime_case_ids": [
-        "SP-02"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "G02",
@@ -921,7 +808,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "geometry_only",
       "curated_targets": [
         {
@@ -975,9 +862,7 @@
           "line": 30
         }
       ],
-      "runtime_case_ids": [
-        "SP-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "G03",
@@ -985,7 +870,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "geometry_only",
       "curated_targets": [
         {
@@ -1017,7 +902,7 @@
       "group": "Gameplay",
       "route": "Existing reference previews; engine palette boundary",
       "limits": "No verified universal clock/moodle palette contract; engine internals unchanged. This remains a capability/runtime boundary.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "reference_only",
       "curated_targets": [],
       "runtime_case_ids": []
@@ -1028,7 +913,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "geometry_only",
       "curated_targets": [
         {
@@ -1045,7 +930,7 @@
       "group": "Gameplay",
       "route": "Audited Lua map frame/control chrome",
       "limits": "Native map layers, explored state, icons and style colors remain semantic content.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "geometry_only",
       "curated_targets": [
         {
@@ -1119,9 +1004,7 @@
           "line": 249
         }
       ],
-      "runtime_case_ids": [
-        "SP-04"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "G07",
@@ -1129,7 +1012,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1148,9 +1031,7 @@
           "line": 3
         }
       ],
-      "runtime_case_ids": [
-        "SP-03"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "G08",
@@ -1158,7 +1039,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1182,9 +1063,7 @@
           "line": 3
         }
       ],
-      "runtime_case_ids": [
-        "SP-03"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "G09",
@@ -1192,7 +1071,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1224,7 +1103,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "geometry_only",
       "curated_targets": [
         {
@@ -1241,7 +1120,7 @@
       "group": "Gameplay",
       "route": "Audited vehicle window/control chrome",
       "limits": "Needles/calibration, warning textures and engine radial segment backgrounds remain native.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1278,7 +1157,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1300,7 +1179,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1324,9 +1203,7 @@
           "line": 7
         }
       ],
-      "runtime_case_ids": [
-        "SP-05"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "G14",
@@ -1334,7 +1211,7 @@
       "group": "Gameplay",
       "route": "Native Lua fishing chrome plus separate PZAPI FishWindow",
       "limits": "Live weather/temperature/condition colors retained; engine dispatch/runtime acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1358,7 +1235,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1445,7 +1322,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1467,7 +1344,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1499,7 +1376,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1523,9 +1400,7 @@
           "line": 3
         }
       ],
-      "runtime_case_ids": [
-        "SP-06"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "G19",
@@ -1533,7 +1408,7 @@
       "group": "Gameplay",
       "route": "Native Lua document frames plus PZAPI PrintMedia chrome",
       "limits": "Entire printed document data subtree, artwork, glyphs and typography excluded, including dynamic additions.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1592,7 +1467,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1619,7 +1494,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1661,7 +1536,7 @@
       "group": "Gameplay",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1683,7 +1558,7 @@
       "group": "Gameplay",
       "route": "Audited Lua transient frame/control chrome; engine boundary",
       "limits": "Native radial segments, progress values and safety/meaning colors retained; no universal engine reskin claimed.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "engine_audit",
       "curated_targets": [
         {
@@ -1705,7 +1580,7 @@
       "group": "Specialist",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1742,7 +1617,7 @@
       "group": "Specialist",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1764,7 +1639,7 @@
       "group": "Specialist",
       "route": "NativeTheme registry/lifecycle plus NativePainters guarded instances",
       "limits": "Only matched native Lua chrome/standard controls; preserve custom/semantic content, native permissions/actions/geometry and input. Native visual/input acceptance pending.",
-      "runtime_acceptance": "FAIL",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1798,10 +1673,7 @@
           "line": 149
         }
       ],
-      "runtime_case_ids": [
-        "OPTIONS-10",
-        "OPTIONS-16"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "I01",
@@ -1809,7 +1681,7 @@
       "group": "Integration",
       "route": "PZAPITheme declared Meta lifecycle with verified native setters",
       "limits": "Window/Fish/PrintMedia and recognized prototype chrome only; inactive templates/content are not claimed complete. Meta instance dispatch remains a runtime gate.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "unadopted",
       "curated_targets": [
         {
@@ -1839,13 +1711,10 @@
       "group": "Integration",
       "route": "Public API/provider opt-in and exclusion boundary",
       "limits": "Unknown custom renderers/provider-scoped trees remain provider-owned. No third-party source copied or modified.",
-      "runtime_acceptance": "LIMITED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "opt_in_boundary",
       "curated_targets": [],
-      "runtime_case_ids": [
-        "MENU-01",
-        "PLUGIN-01"
-      ]
+      "runtime_case_ids": []
     },
     {
       "id": "E01",
@@ -1853,7 +1722,7 @@
       "group": "Engine boundary",
       "route": "Lua-owned chrome only; engine/platform boundary",
       "limits": "Boot/loading/model/item-stat/platform internals remain unchanged where no verified universal palette API exists.",
-      "runtime_acceptance": "NOT_REACHED",
+      "runtime_acceptance": "NOT TESTED",
       "prior_source_state": "engine_audit",
       "curated_targets": [
         {
@@ -1904,5 +1773,6 @@
     "path": "docs/UI_RUNTIME_ACCEPTANCE_2026-10-24.json",
     "sha256": "d16e8bfd2e6e707a0786e55c2b59fd63c1384d820b7d4dc16402a6ff254a8726",
     "hash_format": "SHA256; CRLF normalized to LF"
-  }
+  },
+  "runtime_report_applicability": "Historical dev.2 baseline only; changed dev.3 source requires retest."
 }

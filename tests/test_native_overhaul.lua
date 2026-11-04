@@ -30,7 +30,7 @@ button.prerender=function(self)
 end
 class('ISResizableButton','ISUI/ISResizeableButton').prerender=button.prerender
 local tip=class('ISToolTip');local invTip=class('ISToolTipInv')
-tip.prerender=function(self)self.layouts=(self.layouts or 0)+1;self:drawRect(0,0,self.width,self.height,.8,0,0,0)end
+tip.prerender=function(self)self.layouts=(self.layouts or 0)+1;self:drawRect(0,0,self.width,self.height,self.backgroundColor.a,0,0,0)end
 tip.render=function(self)
  self:drawRect(0,0,self.width,self.height,.7,.05,.05,.05)
  self:drawRectBorder(0,0,self.width,self.height,.5,.9,.9,1)
@@ -160,6 +160,15 @@ assert(not C.adopt(foreign,0),'Foreign renderer adopted')
 root.fail=true;assert(not pcall(root.render,root));assert(rawget(root,'drawRect')==nil and rawget(root,'drawRectBorderStatic')==nil);root.fail=false
 local generic=widget(tip);root:showTooltip({toolTip=generic});generic:prerender();generic:render()
 assert(generic.layouts==1 and generic.contents==1 and not color(generic,.05,.05,.05),'Visible tooltip render backing not styled')
+-- Native audio tips are initially positioned in control-local coordinates.
+-- Their transparent layout-phase backing must stay invisible until render.
+local audioTip=widget(tip);audioTip.backgroundColor.a=0;audioTip.x=23;audioTip.y=23
+assert(P.tooltip(audioTip,0,function()return true end));audioTip:prerender()
+assert(#audioTip.draws==0,'Transparent tooltip positioning phase painted an empty ghost box')
+audioTip.x=950;audioTip.y=410;audioTip:render()
+assert(audioTip.contents==1 and audioTip.x==950 and audioTip.y==410,'Tooltip content/position changed')
+assert(has(audioTip,function(d)return d[1]=='drawRect'and P.equal(d[6],.7)end),'Visible tooltip alpha changed')
+assert(has(audioTip,function(d)return (d[1]=='drawRect'or d[1]=='drawRectBorder')and P.equal(d[6],.5)end),'Tooltip border alpha changed')
 local nativePane=widget(pane);nativePane.itemHgt=20;nativePane.headerHgt=20;nativePane.column2=30;nativePane.column4=200
 nativePane.vscroll=widget(bar);nativePane.vscroll.vertical=true;nativePane.vscroll.midtex={};nativePane.vscroll.uptex={};nativePane:addChild(nativePane.vscroll)
 local function inventory(ownPane)
@@ -190,7 +199,7 @@ local item=widget(invTip);local engineTip={};item.tooltip=engineTip
 item.item={DoTooltip=function(_,value)assert(value==engineTip);item.stats=(item.stats or 0)+1 end}
 nativePane.toolRender=item;nativePane:updateTooltip();assert(item.b47NativeTooltip);item:render();assert(item.stats==1 and item.measurements==1)
 local scroll=nativePane.vscroll;scroll:render();assert(scroll.barx==5 and scroll.barwidth==8 and scroll.barheight==24 and scroll.renders==1)
-assert(has(scroll,function(d)return d[1]=='drawTexture'and d[2]==scroll.uptex end),'Native arrows changed')
+assert(not has(scroll,function(d)return d[1]=='drawTexture'and d[2]==scroll.uptex end),'Inventory still drew vanilla arrow texture')
 scroll.fail=true;assert(not pcall(scroll.render,scroll));assert(rawget(scroll,'drawTextureScaled')==nil);scroll.fail=false
 -- Explicit native player indices must not fall back to player zero's preset.
 local presets=U.StylePresets
