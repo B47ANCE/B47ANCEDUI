@@ -216,6 +216,10 @@
     {
       "reference": "docs/UI_RUNTIME_DEV3_CHECKPOINT_2026-11-04.md; docs/UI_RUNTIME_DEV3_CHECKPOINT_2026-11-04.json",
       "reason": "Dated dev.3 incremental runtime observations and publication-preflight checkpoint; preserve actual version, snapshot limits and pending gates on future iterations."
+    },
+    {
+      "reference": "docs/WORKSHOP_DEV3_UPDATE.md; docs/WORKSHOP_UPDATE_0.12.0-dev.3_2026-11-04.json",
+      "reason": "Immutable dated0.12.0-dev.3 Workshop upload/source/package/public verification; preserve actual version/commits/hashes, never upgrade distribution to runtime proof."
     }
   ]
 }

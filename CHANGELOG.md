@@ -2,6 +2,7 @@
 
 ## [0.12.0-dev.3] - 2026-11-04
 
+- Publication verified: PR18/19 and exact merged-head CI passed; existing public item3822582242 updated from source0a9ccb0 after source/ZIP/stage parity and release gates. SteamCMD success and exact public description verified. No Steam restart, game launch, server change or local deployment in this publication operation. Receipt: docs/WORKSHOP_DEV3_UPDATE.md.
 - Fix editor capture ownership so own drags and dropdown dismissal remain in the editor; foreign modals suspend editing while retaining drafts. Guard stale unsaved-confirmation actions.
 - Contain Options key label/button pairs, checkbox captions and native controller sections; clamp native color pickers without changing setting values or Apply behavior.
 - Complete guarded native local-panel selection scopes, radio module headers, code-view contrast, stencil-owned crafting descendants and selected-image tint. Improve MP browser chrome and mod-path readability while retaining semantic warning/status colors.
